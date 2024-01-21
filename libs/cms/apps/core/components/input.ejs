@@ -1,0 +1,22 @@
+<div class="nc-field mui-textfield mui-textfield--float-label <%= props.className %>" data-cmp="input">
+  <input
+  type="<%= props.type || 'text' %>"
+  aria-label="<%= props.label %>"
+  class="form-control"
+  <% if (props.name)  { %>
+    name="<%= props.name %>"
+    id="id-<%= props.name %>"
+    <% } %>
+    <% if (props.dom) { 
+      let allKeys = Object.keys(props.dom);
+      for(var i=0; i < allKeys.length; i++) { 
+        let key = allKeys[i];
+        let value = props.dom[allKeys[i]];
+         %>
+      <%= key %>="<%= value %>"
+    <% } }%>
+    />
+
+  <label class="nc-field__label"><%= props.label %><%= props.required ? "*" : "" %></label>
+  <span class="nc-field__error-message"></span>
+</div>

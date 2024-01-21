@@ -1,0 +1,42 @@
+.tarionClass{
+    background-color: red;
+}
+
+.wrap-around{
+    white-space: normal;
+}
+
+.sq-form{
+    &--4-cols {
+        > .sq-form_fields {
+          display: flex;
+          flex-wrap: wrap;
+          > .sq-form__field {
+            flex-basis: 100%;
+            @media (min-width:$screen-sm) {
+              flex-basis: 25%;
+              padding-right: 20px;
+             
+            }
+          }
+        }
+      }
+
+      &--1-2-1-cols{
+        > .sq-form_fields {
+          display: flex;
+          flex-wrap: wrap;
+          > .sq-form__field {
+            flex-basis: 50% !important;
+            &:nth-child(3n-2){
+                flex-basis: 100% !important;
+            }
+            @media (min-width:$screen-sm) {
+              flex-basis: 100%;
+              padding-right: 20px;
+             
+            }
+          }
+        }
+      }
+}

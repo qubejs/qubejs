@@ -1,0 +1,32 @@
+html {
+  height: -webkit-fill-available;
+}
+body {
+  font-family: $paragraph-font-family;
+  font-size: $base-font-size;
+  color: $sq-text-color;
+  background-color: $body-bg;
+  line-height: normal;
+  min-height: -webkit-fill-available;
+  &::after {
+    position: absolute;
+    opacity: 0;
+    margin: -50px;
+    content: 'xs';
+    @media (min-width: $screen-sm) {
+      content: 'sm';
+    }
+    @media (min-width: $screen-md) {
+      content: 'md';
+    }
+    @media (min-width: $screen-lg) {
+      content: 'lg';
+    }
+    @media (min-width: $screen-xlg) {
+      content: 'xlg';
+    }
+  }
+}
+.bg-gray {
+  background-color: $sq-color-muted-lighter;
+}

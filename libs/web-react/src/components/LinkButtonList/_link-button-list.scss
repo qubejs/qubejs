@@ -1,0 +1,11 @@
+.sq-link-button-list {
+  &__container {
+    display: flex;
+  }
+  &--center {
+    .sq-link-button-list__container {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

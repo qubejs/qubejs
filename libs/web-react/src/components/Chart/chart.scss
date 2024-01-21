@@ -1,0 +1,110 @@
+.sq-chart {
+  &-d-tooltip {
+    position: absolute;
+    background: white;
+    border: solid 1px $sq-color-gray-lighter;
+    border-radius: 4px;
+    padding: 10px;
+    opacity: 0;
+    .tooltip-header {
+      @include t4-style();
+      margin-bottom: 8px;
+    }
+    
+    .tooltip-dot {
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      background: currentColor;
+      border-radius: 50%;
+    }
+    .tooltip-data {
+      display: flex;
+      
+      margin-bottom: 4px;
+    }
+    .tooltip-label {
+      margin-right: 5px;
+      display: flex;
+      align-items: center;
+    }
+    .tooltip-value {
+      text-align: right;
+      flex-grow: 1;
+    }
+  }
+  display: block;
+  position: relative;
+
+  .focus circle {
+    fill: #fff;
+    stroke: #777;
+    stroke-width: 2px;
+  }
+
+  .x-tooltip {
+    width: 100px;
+    height: 80px;
+    text-anchor: middle;
+  }
+  .hover-line {
+    stroke: #777;
+    stroke-width: 1px;
+    stroke-dasharray: 3, 3;
+  }
+  &-overlay {
+    fill: transparent;
+  }
+  &-tooltip {
+    .tooltip-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .tooltip-header {
+      @include t4-style();
+    }
+    &:before {
+      background-color: #fff;
+      border-left-color: transparent;
+      border-top-color: transparent;
+      bottom: 0;
+      content: '';
+      height: 12px;
+      left: 50%;
+      position: absolute;
+      transform-origin: center center;
+      transform: translate(-50%, 50%) rotate(45deg);
+      width: 12px;
+      z-index: 1;
+    }
+    background-color: #fff;
+    box-shadow: $sq-color-gray 2px 2px 10px;
+    left: 0;
+    opacity: 0;
+    padding: 0.5em 1em;
+    pointer-events: none;
+    border-radius: 5px;
+    position: absolute;
+    top: -12px;
+    transition: opacity 0.2s linear, transform 0.2s ease-in-out;
+    z-index: 1;
+  }
+
+  &--inline-tootlip {
+    .sq-chart-d-tooltip {
+      position: static;
+    }
+  }
+  &--no-data {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &--hidden {
+    display: none;
+  }
+}

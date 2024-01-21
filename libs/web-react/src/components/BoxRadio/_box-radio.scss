@@ -1,0 +1,41 @@
+.sq-box-radio {
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+    }
+  }
+  &__item {
+    width: 200px;
+    min-height: 150px;
+    border: solid 1px $sq-color-slate-lighter;
+    margin: 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    &:hover, &.selected {
+      background-color: $sq-color-primary;
+      color:white;
+      .sq-box-radio__eyebrow {
+        color: $sq-color-slate-lighter;
+      }
+    }
+  }
+  &__eyebrow {
+    @include b6-style();
+    display: block;
+    margin-bottom: 8px;
+    color: $sq-color-slate-dark;
+    text-align: left;
+    width: 100%;
+    @media (min-width: $screen-sm) {
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.sq-button-selection {
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+    }
+  }
+  &__label {
+    @include b6-style();
+    display: block;
+    margin-bottom: 8px;
+    color: $sq-color-slate-dark;
+    text-align: left;
+    width: 100%;
+    @media (min-width: $screen-sm) {
+      width: auto;
+    }
+  }
+}

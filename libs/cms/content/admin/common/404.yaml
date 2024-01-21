@@ -1,0 +1,18 @@
+title: Page not found
+template: apps/core/templates/page
+className: sq-page sq-error-page
+contentBodyClass: container
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+items:
+    - eyebrow: 404 - Page not found
+      header: Sorry, unable to find page
+      subHeader: The page you are looking for doesn't exists
+      component: HeroContent
+      imageUrl: /dam/qubejs/svg/404.svg
+      className: sq-hero-content--right-aligned sq-hero-content--image-on-top
+      links:
+        - buttonText: Back to Dashboard
+          type: Button
+          variant: outlined
+          to: adminDashboard

@@ -1,0 +1,56 @@
+<header>
+  <div class="container">
+    <nav class="navbar navbar-expand-md no-gutters">
+      <div class="col-3 text-left">
+        <a class="nav-link" href="<%= siteMap.logo.href%>">
+          Default
+        </a>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse-2"
+        aria-controls="navbarNav7" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse navbar-collapse-2 justify-content-end col-md-6" id="navbarNav7">
+        <ul class="navbar-nav justify-content-center">
+          <% var finalNode = siteMap; 
+            var getActiveClass = function(url, currentpath) {
+              return (url === currentPath || (currentPath.indexOf(url) > -1 && currentPath.length !== url.length)) ? ' active' : '';
+            }
+          %>
+          <% if (currentNode && currentNode.children && currentNode.children.length>0) {
+          finalNode = currentNode;
+        } else {
+          finalNode = currentNode;
+        } %>
+          <% for(var i=0; i < finalNode.children.length; i++) { %>
+          <li class="nav-item <%=getActiveClass(finalNode.children[i].href, currentPath) %>">
+            <a class="nav-link <%=finalNode.children[i].class%>"
+              href="<%=finalNode.children[i].href%>">
+              <% if (finalNode.children[i].icon) { %>
+              <svg class="bi" width="32" height="16" fill="currentColor">
+                <use xlink:href="/client/libs/bootstrap-icons/bootstrap-icons.svg#<%=finalNode.children[i].icon%>"/>
+              </svg>
+              <% } %>
+                <%=finalNode.children[i].title%>
+              </a>
+              
+          </li>
+          <% } %>
+
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse navbar-collapse-2">
+        <ul class="navbar-nav ml-auto justify-content-end">
+          <li class="nav-item">
+           
+          </li>
+        </ul>
+
+
+      </div>
+    </nav>
+  </div>
+</header>

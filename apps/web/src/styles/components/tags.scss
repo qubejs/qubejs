@@ -1,0 +1,9 @@
+
+.sq-tag-label {
+  &--filled {
+    &.purple{
+      background-color: $sq-color-purple-dark;
+      color: $sq-color-white;
+    }
+  }
+}

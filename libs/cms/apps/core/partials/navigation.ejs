@@ -1,0 +1,23 @@
+<div class="sq-toc-sidenav">
+  <a href="<%=parentPath%>" class="sq-toc-sidenav__all-link mb-5">Back</a>
+
+  <ul class="nav flex-column">
+    <% var allKeys = Object.keys(siblingPages); %>
+    <% for(var i=0; i < allKeys.length; i++) { %>
+    <li class="nav-item header">
+      <h3 class="sq-toc-sidenav__header"><%= allKeys[i] %></h3>
+      <div>
+        <ul class="nav flex-column sq-toc-sidenav__nav-list">
+          <% for(var j=0; j < siblingPages[allKeys[i]].length; j++) { %>
+          <% var classCss = siblingPages[allKeys[i]][j].name == pageData.name ? "selected" : ""; %>
+          <li class="nav-item">
+            <a href="<%= siblingPages[allKeys[i]][j].path %>"
+              class="nav nav-link<%= classCss %>"><%= siblingPages[allKeys[i]][j].title %></a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </li>
+    <% } %>
+  </ul>
+</div>

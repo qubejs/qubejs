@@ -1,0 +1,24 @@
+.sq-component-list {
+  background-color: $sq-color-slate-darker;
+  color: $sq-color-slate-lightest;
+  border-radius: 5px;
+  width: 100%;
+  &__item {
+    border-top: 1px solid $sq-color-slate-light;
+    padding: 10px;
+    background-color: $sq-color-slate-darker;
+    &--dragged {
+      background-color: $sq-color-info-darker;
+    }
+  }
+  &__header {
+    padding: 10px;
+  }
+  &__group {
+    background-color: $sq-color-slate-light;
+    color: $black;
+    text-transform: uppercase;
+    @include b8-style();
+    padding: 10px;
+  }
+}

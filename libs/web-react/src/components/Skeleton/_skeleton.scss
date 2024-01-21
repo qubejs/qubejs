@@ -1,0 +1,80 @@
+.sq-skeleton {
+  &--default {
+  }
+  &--ticket {
+    .row {
+      margin-bottom: 16px;
+    }
+  }
+  &--projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .icon {
+      height: 280px;
+      border-radius: 5px;
+    }
+    .text {
+      margin-top: 10px;
+      height: 40px;
+    }
+    .item {
+      width: 280px;
+      height: 320px;
+      margin-right: 20px;
+      margin-bottom: 40px;
+    }
+  }
+  &--permissions {
+    display: flex;
+
+    .left {
+      padding: 20px;
+    }
+    .right {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 20px;
+      .permission-item {
+        padding: 20px;
+      }
+    }
+  }
+  &--grid-tran {
+    .row {
+      display: flex;
+      margin-bottom: 8px;
+      .icon {
+        margin-right: 20px;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .text {
+        margin-right: 20px;
+        flex-grow: 1;
+      }
+      .amount {
+        margin-right: 20px;
+        flex-basis: 100px;
+      }
+    }
+  }
+  &--amount-stat {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    .top {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .data {
+      display: flex;
+      justify-content: flex-end;
+      .percentage {
+        margin-right: 8px;
+      }
+    }
+  }
+}

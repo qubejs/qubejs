@@ -1,0 +1,30 @@
+<section class="sq-cmp-featured">
+  <div class="container sq-cmp-featured__background" style="background-image: url(<%=current.bgURL%>);">
+    <div class="row">
+      <div>
+        <div>
+          <div class="row">
+            <% if (current.items) {
+            var width = 12/current.items.length;
+            %>
+              <% for(var i=0; i < current.items.length; i++) { 
+                var cuurentFeatured = current.items[i];
+              %>
+                <div class="sq-cmp-featured__column col-12 col-md-<%=width%> text-center">
+                  <div class="sq-cmp-featured__column-cnt">
+                    <img class="sq-cmp-featured__img" width="50" src="/client/assets/svg/icons/add.svg" alt="s">
+                    <h1 class="sq-cmp-featured__column-title"><%=cuurentFeatured.title%></h1>
+                    <p class="sq-cmp-featured__column-header"><%=cuurentFeatured.description%></p>
+                    <p class="sq-cmp-featured__column-link"><a href="<%=cuurentFeatured.link.href%>"
+                        class="btn btn-primary"><%=cuurentFeatured.link.title%></a></p>
+                  </div>
+                </div>
+              <% } %>
+              <% } %>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

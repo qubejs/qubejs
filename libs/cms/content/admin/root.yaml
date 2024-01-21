@@ -1,0 +1,18 @@
+merge:
+  currentUserEmail: .currentUser.emailId
+hook:
+  load:
+    - url: /api/v1/admin/module
+      method: get
+      dataKey: moduleData
+  afterLoad:
+    - postHook: authentication.loadUserProfile
+      match:
+        allVals:
+          validators:
+            - type: or
+              validations:
+                - type: hasCookieValue
+                  cookieName: qjs-token
+                - type: hasAdminMatchingUrl
+                  setName: protected

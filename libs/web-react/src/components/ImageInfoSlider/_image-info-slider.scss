@@ -1,0 +1,101 @@
+.sq-image-info-slider {
+  .sq-iis-animate {
+    transition: all ease 5s;
+    display: block;
+    &--fade-out {
+      opacity: 0;
+    }
+    &--fade-in {
+      opacity: 1;
+    }
+  }
+
+  .sq-iis-tmp {
+    &-default {
+      position: relative;
+      padding: 60px 0;
+      @media (min-width: $screen-md) {
+        margin: 0 100px;
+      }
+      &-cnt {
+        overflow: hidden;
+        min-height: 300px;
+      }
+      &__right-content {
+        position: relative;
+      }
+      &__image {
+        img {
+          width: 100%;
+          @media (min-width: $screen-sm) {
+            width: auto;
+            padding: 0 20px 20px 0;
+            border-right: solid 1px $sq-color-gray-light;
+            border-bottom: solid 1px $sq-color-gray-light;
+            max-width: 470px;
+            min-height: 263px;
+          }
+        }
+      }
+      &__list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        &-item {
+          width: 100%;
+          &-cnt {
+            display: flex;
+            flex-direction: column;
+            @media (min-width: $screen-sm) {
+              
+              flex-direction: row;
+            }
+          }
+        }
+      }
+      &__banner {
+        width: 100%;
+        background: $sq-color-gray-lightest;
+        padding: 40px;
+        @media (min-width: $screen-sm) {
+          padding: 120px 40px 40px 40px;
+          width: 400px;
+          height: 200px;
+          position: absolute;
+          left: -40px;
+          top: 0;
+        }
+        &.primary {
+          background: $sq-color-primary-darker;
+          color: white;
+        }
+        &.info {
+          background: $sq-color-info;
+          color: white;
+        }
+        &.success {
+          background: $sq-color-success-darker;
+          color: white;
+        }
+      }
+      &__eyebrow {
+        margin-bottom: 8px;
+      }
+      &__header {
+        @include t3-style();
+        margin-bottom: 16px;
+      }
+      &__actions {
+        .sq-button {
+          width: auto;
+          margin-right: 10px;
+        }
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        @media (min-width: $screen-sm) {
+        }
+      }
+    }
+  }
+}

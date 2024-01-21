@@ -1,0 +1,48 @@
+.sq-editable-field {
+  width: 100%;
+  padding-right: 32px;
+  min-height: 33px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+  margin-left: -4px;
+  padding-left: 4px;
+  min-width: 100px;
+  &:hover {
+    background-color: $sq-color-gray-lightest;
+  }
+  &__pop-over {
+    min-width: 170px !important;
+    &-root {
+      z-index: $z-index-level-topest !important;
+    }
+  }
+  &__cmp {
+    width: 100%;
+  }
+  &__edit {
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 4px;
+    bottom: 0;
+    margin: auto;
+    height: 32px;
+  }
+  &__actions {
+    padding: 2px 8px;
+    background-color: white;
+    position: absolute;
+    box-shadow: 5px -11px 18px rgb(25 25 25 / 12%);
+    top: -30px;
+    border-radius: 4px;
+    right: 0;
+  }
+  &:hover {
+    .sq-editable-field__edit {
+      display: block;
+    }
+  }
+}

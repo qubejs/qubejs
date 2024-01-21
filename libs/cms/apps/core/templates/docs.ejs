@@ -1,0 +1,43 @@
+<script>
+</script>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <%- include('../partials/navigation') %>
+
+  </div>
+  <div class="col-xs-12 col-md-8">
+    <h1><%- pageData.title %></h1>
+    <p>
+      <%- pageData.description %>
+    </p>
+    <hr>
+    <% if (pageData.items) { 
+      for(i=0; i<pageData.items.length; i++) {
+        var currentItem = pageData.items[i];
+        %>
+    <h3><%=currentItem.name%>( <% for(j=0; j<currentItem.inputs.length; j++) { %>
+      <%=currentItem.inputs[j].name%>,
+      <%}%> )</h3>
+        <ul>
+        <% for(j=0; j<currentItem.inputs.length; j++) { %>
+      <li>
+        <div><%=currentItem.inputs[j].name%></div>
+        <div>Type:<%=currentItem.inputs[j].type%></div>
+        <div>Description:<%=currentItem.inputs[j].description%></div>
+      </li>
+      <%}%>
+      </ul>
+        <p><%=currentItem.description%></p>
+      <code class="language-javascript">
+      <%= currentItem.example %>
+    </code>
+      <%}
+    }%>
+
+  </div>
+</div>
+</div>
+
+<script>
+  <% - pageData.javascript %>
+</script>

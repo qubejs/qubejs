@@ -1,0 +1,10 @@
+title: Test page
+template: apps/core/templates/page
+className: sq-page sq-error-page
+layout: apps/crm/layouts/page-spa
+containerTemplate: Homepage
+container: DefaultContent
+items:
+     eyebrow: 404 - Page not found
+      header: Sorry, unable to find page
+      subHeader: The page you are looking for doesn't exists

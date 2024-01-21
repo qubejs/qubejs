@@ -1,0 +1,18 @@
+.sq-global-navigation__item-text {
+  font-weight: 700;
+}
+
+
+.tox-dialog {
+  z-index: $z-index-level-hightop !important;
+
+}
+.tox-tinymce-aux, .tox-dialog-wrap__backdrop {
+  z-index: $z-index-level-topest !important;
+}
+
+.tox-dialog__disable-scroll{
+  .MuiDialog-container {
+    display: none;
+  }
+}

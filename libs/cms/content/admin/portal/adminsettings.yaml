@@ -1,0 +1,76 @@
+title: Admin
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+templateClassName: container-max
+contentBodyClass: container p-3
+merge:
+  manageUser: ::authPermission.hasPermission::listUsers
+  manageRole: ::authPermission.hasPermission::listRoles
+  manageDynamic: ::authPermission.hasPermission::listDynamic
+  manageAppConfig: ::authPermission.hasPermission::dataImport
+  importPermission: ::authPermission.hasPermission::dataImport
+items:
+  - component: Header
+    header: Users and Permissions
+    headerTag: h2
+  - name: header
+    component: Header
+    className: mb-none
+    header: Users and Roles
+    headerTag: h4
+  - component: CustomButton
+    buttonText: Users
+    iconName: user
+    actionType: redirect
+    to: /content/admin/portal/users
+    className: sq-custom-button--inline sq-custom-button--fixed sq-custom-button--xl
+    match:
+      manageUser:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: CustomButton
+    buttonText: Roles
+    iconName: LockOpen
+    actionType: redirect
+    to: /content/admin/portal/roles
+    className: sq-custom-button--inline sq-custom-button--fixed sq-custom-button--xl
+    match:
+      manageRole:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: CustomButton
+    buttonText: Dynmiac Forms
+    iconName: EditAttributes
+    actionType: redirect
+    to: /content/admin/portal/pages
+    className: sq-custom-button--inline sq-custom-button--fixed sq-custom-button--xl
+    match:
+      manageDynamic:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: Wrapper
+    match:
+      importPermission:
+        validators:
+          - type: equals
+            matchValue: true
+    items:
+      - component: Header
+        header: Data import and Migration
+        headerTag: h2
+        className: mt-wide col-12
+      - name: header
+        component: Header
+        className: mb-none col-12
+        header: Import your Data
+        headerTag: h4
+      - component: CustomButton
+        buttonText: Permissions
+        iconName: Shield
+        actionType: redirect
+        to: /content/admin/portal/adminsettings/permissions
+        className: sq-custom-button--inline sq-custom-button--fixed sq-custom-button--xl

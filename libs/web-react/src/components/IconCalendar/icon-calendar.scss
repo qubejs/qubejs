@@ -1,0 +1,68 @@
+.sq-icon-calendar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  &__day {
+    @include t5-style();
+    padding: 4px 0;
+  }
+  &__month {
+    background: $sq-color-gray-dark;
+    color: $white;
+    text-transform: uppercase;
+    @include b7-style();
+  }
+  border: solid 1px $sq-color-gray-dark;
+  border-radius: 4px;
+  &--primary {
+    border: solid 1px $sq-color-primary;
+    .sq-icon-calendar__month {
+      background: $sq-color-primary;
+      color: $white;
+    }
+    border: solid 1px $sq-color-primary;
+  }
+  &--secondary {
+    border: solid 1px $sq-color-secondary;
+    .sq-icon-calendar__day {
+      color: $sq-color-secondary;
+    }
+    .sq-icon-calendar__month {
+      background: $sq-color-secondary;
+      color: $white;
+    }
+    border: solid 1px $sq-color-secondary;
+  }
+  &--info {
+    border: solid 1px $sq-color-info;
+    .sq-icon-calendar__day {
+      color: $sq-color-info;
+    }
+    .sq-icon-calendar__month {
+      background: $sq-color-info;
+      color: $white;
+    }
+    border: solid 1px $sq-color-info;
+  }
+  &--success {
+    border: solid 1px $sq-color-success;
+    .sq-icon-calendar__day {
+      color: $sq-color-success;
+    }
+    .sq-icon-calendar__month {
+      background: $sq-color-success;
+      color: $white;
+    }
+    border: solid 1px $sq-color-success;
+  }
+  &--large {
+    .sq-icon-calendar__day {
+      @include t4-style();
+    }
+    .sq-icon-calendar__month {
+      @include t5-style();
+    }
+  }
+}

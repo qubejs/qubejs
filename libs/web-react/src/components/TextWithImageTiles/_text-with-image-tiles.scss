@@ -1,0 +1,40 @@
+.sq-text-with-image-tiles {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: $screen-max;
+    margin: 0 auto;
+  }
+  &__item-cnt {
+    min-height: 200px;
+    padding: 20px;
+  }
+  &__item {
+    flex-basis: 100%;
+    margin: 40px 0;
+
+    @media (min-width: $screen-md) {
+      flex-basis: 33%;
+      border-right: solid 1px $sq-color-slate-lighter;
+      &:nth-child(3n) {
+        border-right: none;
+      }
+    }
+  }
+  &__img {
+    height: 150px;
+    width: 150px;
+    img {
+        height: 100%;
+    }
+    margin: 0 auto 20px auto;
+}
+  &__text {
+    text-align: center;
+    @include b4-style();
+  }
+  &__header {
+    @include t3-style();
+    text-align: center;
+  }
+}

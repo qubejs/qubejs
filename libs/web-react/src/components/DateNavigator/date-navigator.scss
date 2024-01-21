@@ -1,0 +1,18 @@
+.sq-date-navigator {
+  width: 100%;
+  &__container {
+    display: flex;
+  }
+  &__content {
+    flex-grow: 1;
+    align-items: center;
+    @include b3-style();
+    justify-content: center;
+    display: flex;
+  }
+  &--small {
+    .sq-date-navigator__content {
+      @include b3-style();
+    }
+  }
+}

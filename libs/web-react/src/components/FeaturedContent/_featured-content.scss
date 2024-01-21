@@ -1,0 +1,121 @@
+.sq-featured-content {
+  padding: $spacing-x3 0 ;
+}
+
+.sq-fc {
+  &-default {
+    display: flex;
+    flex-wrap: wrap;
+
+    // @media (min-width: $screen-sm) {
+    //   flex-wrap: nowrap;
+    // }
+    &-item {
+      flex-basis: 100%;
+      @media (min-width: $screen-sm) {
+        flex: 1 1;
+        flex-basis: auto;
+        flex-basis: 33%;
+      }
+      padding: $spacing-x2;
+      &__icon {
+        margin-bottom: $spacing-x2;
+      }
+      &__title {
+        @include t5-style();
+        margin-bottom: 16px;
+      }
+      &__line {
+        border-top: solid 5px  $sq-color-primary;
+        width: 40px;
+        margin: 0 auto 16px auto;
+      }
+      &__links {
+        margin-top: $spacing-x2;
+      }
+      &:hover {
+        .sq-fc-default-item__icon .sq-icon {
+          background-color: $sq-color-primary;
+          color: white;
+        }
+      }
+    }
+  }
+  &-with-bg {
+    display: flex;
+    flex-wrap: wrap;
+    @media (min-width: $screen-sm) {
+      flex-wrap: wrap;
+    }
+    &-item {
+      cursor: pointer;
+      min-height: 250px;
+     margin-bottom: $spacing-x3;
+      flex-basis: 100%;
+      @media (min-width: $screen-sm) {
+        flex: 1;
+        flex-grow: 0;
+        flex-basis: 33%;
+      }
+      &__wrap {
+        position: relative;
+        margin: $spacing-x2;
+        height: 100%;
+      }
+      &__wrapper {
+        height: 100%;
+        background-size: cover;
+        background-position: top;
+      }
+      &__title {
+        margin-bottom: 0;
+      }
+      &__description {
+        color: $sq-color-gray;
+      }
+      transition: all 0.3s ease-in;
+      &:hover {
+        transform: scale(1.1);
+        .sq-fc-with-bg-item__text-wrapper-bg {
+          opacity: 0.7;
+        }
+        .sq-fc-with-bg-item__text-wrapper {
+          opacity: 1;
+        }
+      }
+      &__icon {
+        position: absolute;
+        right: $spacing-x2;
+        top: $spacing-x2;
+      }
+      &__text-wrapper {
+        padding: $spacing-x2;
+        position: absolute;
+        width: 100%;
+        transition: all 0.3s ease-in;
+        left: 0;
+        height: 100px;
+        bottom: 0;
+        opacity: 0;
+        color: $sq-color-white;
+        z-index: $z-index-level-2;
+
+        &-bg {
+          opacity: 0;
+          transition: all 0.3s ease-in;
+          position: absolute;
+          z-index: $z-index-level-1;
+          width: 100%;
+          height: 100px;
+          left: 0;
+          bottom: 0;
+          background-color: $sq-color-black;
+        }
+      }
+
+      &__links {
+        margin-top: 5px;
+      }
+    }
+  }
+}

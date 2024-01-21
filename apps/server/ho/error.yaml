@@ -1,0 +1,9 @@
+title: Error
+template: apps/core/templates/page
+className: sq-content-page--full-width sq-content-page--with-fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+items:
+  - component: HeroContent
+    header: Error occured
+    subHeader: Some unexpected error occured

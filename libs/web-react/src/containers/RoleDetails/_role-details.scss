@@ -1,0 +1,44 @@
+.sq-role-details {
+  &__permissions-wrapper {
+    display: flex;
+
+  }
+  &__permissions-nav {
+    flex-basis: 240px;
+    > ul {
+      width: 220px;
+    }
+    flex-grow: 0;
+    padding: 10px;
+  }
+  &__permissions {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__permission-check {
+    margin-left: 40px;
+  }
+  &__group-wrapper {
+    flex-basis: 100%;
+    @media (min-width: $screen-md) {
+      flex-basis: 50%;
+    }
+    padding-bottom: 32px;
+  }
+  &__actions {
+    text-align: right;
+  }
+  &__user-add {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  &__user-list {
+    min-width: 250px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}

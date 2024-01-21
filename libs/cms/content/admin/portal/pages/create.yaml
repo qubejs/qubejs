@@ -1,0 +1,90 @@
+title: Create New page
+template: apps/core/templates/page
+className: sq-page sq-error-page
+contentBodyClass: container container-form
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+reset:
+  type: clearAll
+hook:
+  load:
+    - url: /api/v1/admin/content/meta
+      method: post
+      dataKey:  metaData
+items:
+    - component: Form
+      className: mt-wide
+      name: page
+      fields:
+        - name: title
+          label: Title
+          validators:
+            - type: required
+        - name: type
+          label: Type
+          cmpType: Autocomplete
+          inject:
+            options: metaData.contentTypes
+          validators:
+            - type: required
+        - name: importDefault
+          cmpType: CheckboxField
+          label: Import default site map
+          selectedValue: Y
+          match:
+            type:
+              validators:
+                - type: equals
+                  matchValue: SITE_MAP
+        - name: path
+          label: Path
+          mask:
+            type: appendText
+            text: /content/
+          validators:
+            - type: required
+              defaultValue: /content/
+            - type: path
+            - type: startsWith
+              startsWith: /content/
+    - component: Button
+      size: large
+      buttonText: Create
+      actionType: submit
+      url: /api/v1/admin/content/page
+      method: post
+      dataKey: createPage
+      rootErrorKey: page
+      defaultResponse:
+        success:
+          - notification:
+              message: Page created succcessfully
+            data:
+              redirect:
+                to: editPage
+                urlParams:
+                  path: .createPage.path
+            match:
+              page.type:
+                validators:
+                  - type: equals
+                    matchValue: PAGE
+          - notification:
+              message: Sitemap created succcessfully
+            data:
+              redirect:
+                to: editSiteMap
+                urlParams:
+                  path: .createPage.path
+            match:
+              page.type:
+                validators:
+                  - type: equals
+                    matchValue: SITE_MAP
+            
+      params:
+        pageData:
+          title: .page.title
+        path: .page.path
+        type: .page.type
+        importDefault: .page.importDefault

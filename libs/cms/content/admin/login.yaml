@@ -1,0 +1,82 @@
+title: Login
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: AdminPlainPage
+templateClassName: 
+contentBodyClass: container container-form
+inject:
+  rootClassName: .moduleData.moduleName
+  backgroundImageUrl: .moduleData.backGroundImageUrl
+isAuthLayout: true
+reset:
+  type: clearAll
+merge:
+  currentError : .lastError.key
+items:
+  # First image with home content
+  - component: Progress
+    className: tp-progress--active
+    overlay: true
+    match:
+        isSubmitting:
+          validators:
+            - type: equals
+              matchValue: true
+  - component: Wrapper
+    className: root-login-form
+    items:
+      - component: Header
+        header: Login to continue
+      - component: Alert
+        type: error
+        className: mb-wide
+        message: Email/password doesn't match
+        match:
+            currentError:
+              validators:
+                - type: equals
+                  matchValue: INVALID_CREDENTIALS
+      - component: Alert
+        type: error
+        className: mb-wide
+        message: User is inactive please contact your administrator
+        match:
+            currentError:
+              validators:
+                - type: equals
+                  matchValue: USER_INACTIVE
+      - component: Form
+        name: login
+        className: full-width--button
+        fields:
+          - name: link
+            cmpType: LinkButton
+            buttonText: Don't have login?
+            to: /content/admin/register
+          - cmpType: Input
+            label: Email Address
+            name: email
+            validators:
+              - type: required
+              - type: email
+          - cmpType: Password
+            name: password
+            type: password
+            label: Password
+            validators:
+              - type: required
+          - name: link
+            cmpType: LinkButton
+            buttonText: Forgot password?
+            to: /content/admin/forgotpassword
+        actions:
+          - buttonText: Login
+            className: sq-button--block
+            actionType: submit-form
+            size: large
+            url:  /api/v1/admin/login
+            method: post
+            postHook: authentication.login
+            params:
+              email: .login.email
+              password: .login.password

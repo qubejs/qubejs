@@ -1,0 +1,166 @@
+
+.application {
+  // &--for-app {
+  //   padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  //   padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+  //   padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  //   padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+  //   padding-left: constant(safe-area-inset-left); /* iOS 11.0 */
+  //   padding-left: env(safe-area-inset-left); /* iOS 11.2 */
+  //   padding-right: constant(safe-area-inset-right); /* iOS 11.0 */
+  //   padding-right: env(safe-area-inset-right); /* iOS 11.2 */
+  // }
+}
+.MuiDialog-root {
+  margin-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  margin-top: env(safe-area-inset-top); /* iOS 11.2 */
+  margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}
+
+.app-view {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 57px;
+  @media screen and (min-width: $screen-sm) {
+    padding-top: 64px;
+  }
+
+  &--fixed-full {
+    margin-left: -15px;
+    margin-right: -15px;
+    .view-full__container {
+      padding-bottom: 60px;
+      > div {
+        padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+        padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+      }
+    }
+  }
+}
+.view-container {
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}
+.view-full {
+  &__bottom-nav {
+    position: fixed;
+    bottom: 0;
+    z-index: $zindex-menubar;
+    left: 0;
+    background-color: $brand-primary;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    @media (min-width: $screen-sm) {
+      bottom: 0;
+    }
+    width: 100%;
+  }
+}
+.container-form {
+  padding-top: 20px;
+  @media screen and (min-width: $screen-md) {
+    min-width: 400px;
+  }
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  &--xs {
+    max-width: 320px;
+  }
+  &--sm {
+    max-width: 400px;
+  }
+  &--med {
+    max-width: 800px;
+  }
+  &--large {
+    max-width: 1024px;
+  }
+  &--xl {
+    max-width: 1200px;
+  }
+}
+
+.container-mid,
+.container-med {
+  padding: 20px 0 0 0;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container-full {
+  padding: 20px 0 0 0;
+}
+
+.container-max {
+  max-width: $screen-max;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.container-wide {
+  max-width: $screen-xlg;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.container-ultrawide {
+  max-width: 1740px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.panel-bg-primary {
+  background: $sq-color-primary;
+  color: white;
+}
+.panel-bg-secondary {
+  color: white;
+  background: $sq-color-secondary;
+}
+.panel-bg-gray {
+  background: $sq-color-gray-lightest;
+}
+.panel-bg-success {
+  background: $sq-color-success-darker;
+  color: white;
+}
+.panel-bg-info {
+  color: white;
+  background: $sq-color-info;
+}
+.panel-bg-warning {
+  background: $sq-color-warning;
+  color: white;
+}
+.panel-bg-error {
+  color: white;
+  background: $sq-color-error;
+}
+
+
+.body-container-small {
+  max-width: 470px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.body-container-med {
+  max-width: 750px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.body-container-lg {
+  max-width: 920px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.body-container-xl {
+  max-width: 1120px !important;
+  margin-left: auto;
+  margin-right: auto;
+}

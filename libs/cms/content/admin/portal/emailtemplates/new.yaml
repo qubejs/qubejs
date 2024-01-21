@@ -1,0 +1,125 @@
+title: Add New Template
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+contentBodyClass: container container-ultrawide
+reset:
+  type: clearAll
+hook:
+  load:
+    # - method: get
+    #   url: /api/v1/admin/emailtemplate/get
+    #   params:
+    #     uid: .query.uid
+    #   dataKey: result
+init:
+  drop_options:
+    emailStatus: ::globals.options::emailStatus
+
+merge:
+  currentError: .lastError.key
+  currentErrorMessage: .lastError.errorMessage
+items:
+  - component: Progress
+    className: tp-progress--active
+    overlay: true
+    match:
+      isSubmitting:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: Header
+    className: mt-wide mb-xtrawide
+    header: Add New Template
+    headerTag: h3
+  - component: Wrapper
+    items:
+      - component: Wrapper
+        className: col-xs-12 col-md-4 order-2 order-md-1
+        items:
+          - component: Form
+            name: template
+            className: add-new-user mt-wide 
+            fields:
+              - name: name
+                label: Template Name
+                validators:
+                  - type: required
+              - name: fromName
+                label: Fromm Name
+                validators:
+                  - type: required
+              - name: from
+                label: Fromm Email
+                validators:
+                  - type: required
+                  - type: email
+              - name: emailCc
+                cmpType: AutoCompleteValue
+                label: CC
+              - name: emailBcc
+                cmpType: AutoCompleteValue
+                label: BCC
+            
+              - cmpType: ButtonSelection
+                name: status
+                label: Status
+                inject:
+                  options: drop_options.emailStatus
+                validators:
+                  - type: required
+      - component: Wrapper
+        className: col-xs-12 col-md-8 order-1 order-md-2
+        items:
+          - component: Form
+            name: email
+            className: add-new-user mt-wide 
+            fields:
+              - name: subject
+                type: Input
+                label: Subject
+                validators:
+                  - type: required
+              - name: body
+                label: Email Body
+                cmpType: RichText
+                validators:
+                  - type: required
+  - component: Alert
+    type: error
+    className: mb-wide
+    message: Email is already in use
+    match:
+        currentError:
+          validators:
+            - type: equals
+              matchValue: GENERIC_ERROR
+  - component: Button
+    buttonText: Save
+    actionType: submit
+    size: large
+    url:  /api/v1/admin/emailtemplate
+    inject:
+      disabled: isSubmitting
+    method: post
+    rootErrorKey: template
+    defaultResponse:
+      success:
+        data:
+          redirect: emailTemplatelList
+        notification:
+          message: Email Template created successfully
+      error:
+        notification:
+          message: Email Template creation failed
+          type: error
+          
+    params:
+      '...email': .email
+      '...template': .template
+  - component: Button
+    buttonText: Cancel
+    size: large
+    variant: outlined
+    actionType: redirect
+    to: emailTemplatelList

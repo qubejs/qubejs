@@ -1,0 +1,6 @@
+title: Email Templates
+template: apps/core/templates/page
+contentBodyClass: container-fluid container-ultrawide
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+container: EmailTemplateList

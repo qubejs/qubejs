@@ -1,0 +1,7 @@
+.sq-email-template-list {
+  &-test {
+    @media (min-width: $screen-md) {
+      min-width: 800px;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@mixin border-radius() {
+  border-radius: 5px;
+}
+@mixin ellipses() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

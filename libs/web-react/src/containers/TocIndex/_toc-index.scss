@@ -1,0 +1,23 @@
+.sq-content-toc {
+  padding: 40px 0;
+
+  &__header {
+    border-left: 5px solid $sq-color-primary;
+    padding-left: 10px;
+  }
+  &__container {
+    column-count: 1;
+    @media (min-width: $screen-sm) {
+      column-count: 2;
+    }
+    @media (min-width: $screen-md) {
+      column-count: 3;
+    }
+    > div {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 0 0 15px;
+    }
+  }
+}

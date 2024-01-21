@@ -1,0 +1,29 @@
+
+
+<h1 class="sq-text-center"><%= pageData.title %></h1>
+<div class="page page-index mt-5 mb-5">
+
+  <div class="col-xs-12 col-md-4">
+    <% 
+  var allKeys = Object.keys(siblingPages);
+  for(var i=0; i < allKeys.length; i++) { %>
+    <div class="group item mt-4 mb-4">
+      <h3 class="group-header">
+        <%= allKeys[i] %>
+      </h3>
+      <div class="group-content">
+        <ul class="nav flex-column data-links-list">
+          <% for(var j=0; j < siblingPages[allKeys[i]].length; j++) { %>
+          <li class="nav-item">
+            <a href="<%= siblingPages[allKeys[i]][j].path %>"><%= siblingPages[allKeys[i]][j].title %></a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <div class="col-xs-12 col-md-8">
+
+  </div>
+</div>

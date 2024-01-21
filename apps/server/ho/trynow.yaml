@@ -1,0 +1,6 @@
+title: Homepage
+template: apps/core/templates/page
+wrapperClassName: sq-content-page--full-width
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: PageBuilder

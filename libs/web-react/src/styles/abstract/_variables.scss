@@ -1,0 +1,253 @@
+@import "bootstrap-vars";
+//
+// SQ COre variables
+// --------------------------------------------------
+
+// BOostrap overrides 
+// --------------------------------------------------
+
+
+//** Global textual link color.
+$link-color:            #06b9ff!default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 10%)!default;
+//** Link hover decoration.
+$link-hover-decoration: none!default;
+
+// END BOostrap Overrides
+// --------------------------------------------------
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base: #000 !default;
+$gray-darker: lighten($gray-base, 13.5%) !default; // #222
+$gray-dark: lighten($gray-base, 20%) !default; // #333
+$gray: lighten($gray-base, 33.5%) !default; // #555
+$gray-light: lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter: lighten($gray-base, 93.5%) !default; // #eee
+
+
+
+// Colors
+$sq-color-primary: #143155!default;
+$sq-color-primary-lightest: lighten($sq-color-primary, 45%)!default;
+$sq-color-primary-lighter: lighten($sq-color-primary, 35%)!default;
+$sq-color-primary-light: lighten($sq-color-primary, 25%)!default;
+$sq-color-primary-medium: lighten($sq-color-primary, 13%)!default;
+$sq-color-primary-dark: darken($sq-color-primary, 2%)!default;
+$sq-color-primary-darker: darken($sq-color-primary, 5%)!default;
+$sq-color-primary-darkest: darken($sq-color-primary, 10%)!default;
+
+$sq-color-secondary: #d32f2f!default;
+$sq-color-secondary-lightest: #ffebee!default;
+$sq-color-secondary-lighter: #ffcdd2!default;
+$sq-color-secondary-light: #ef9a9a!default;
+$sq-color-secondary-dark: #ef5350!default;
+$sq-color-secondary-darker: #f44336!default;
+$sq-color-secondary-darkest: #e53935!default;
+
+$sq-color-muted: #90a4ae!default;
+$sq-color-muted-lightest: lighten($sq-color-muted, 45%)!default;
+$sq-color-muted-lighter: lighten($sq-color-muted, 35%)!default;
+$sq-color-muted-light: lighten($sq-color-muted, 25%)!default;
+$sq-color-muted-medium: lighten($sq-color-muted, 13%)!default;
+$sq-color-muted-dark: darken($sq-color-muted, 2%)!default;
+$sq-color-muted-darker: darken($sq-color-muted, 5%)!default;
+$sq-color-muted-darkest: darken($sq-color-muted, 10%)!default;
+
+$sq-color-extra1: #4230A8!default;
+$sq-color-extra1-lightest: #F1F0FA!default;
+$sq-color-extra1-lighter: #D5CFF5!default;
+$sq-color-extra1-light: #9286D5!default;
+$sq-color-extra1-dark: #3a2f79!default;
+$sq-color-extra1-darker: #251a64!default;
+$sq-color-extra1-darkest: #1c1447!default;
+
+
+$sq-color-slate: #677078!default;
+$sq-color-slate-lightest: #F5F6F7!default;
+$sq-color-slate-lightest: #E4E7ED!default;
+$sq-color-slate-lighter: #BBC2C9!default;
+$sq-color-slate-light: #939BA3!default;
+$sq-color-slate-dark: #454F58!default;
+$sq-color-slate-darker: #222E39!default;
+$sq-color-slate-darkest: #000E19!default;
+
+$sq-color-white: #fff!default;
+$sq-color-black: #000!default;
+
+$sq-color-gray: #728497!default;
+$sq-color-gray-lightest: lighten($sq-color-gray, 45%)!default;
+$sq-color-gray-lighter: lighten($sq-color-gray, 35%)!default;
+$sq-color-gray-light: lighten($sq-color-gray, 25%)!default;
+$sq-color-gray-medium: lighten($sq-color-gray, 13%)!default;
+$sq-color-gray-dark: darken($sq-color-gray, 2%)!default;
+$sq-color-gray-darker: darken($sq-color-gray, 5%)!default;
+$sq-color-gray-darkest: darken($sq-color-gray, 10%)!default;
+
+
+
+$sq-color-info: #009df8!default;
+$sq-color-info-lightest: lighten($sq-color-info, 45%)!default;
+$sq-color-info-lighter: lighten($sq-color-info, 35%)!default;
+$sq-color-info-light: lighten($sq-color-info, 25%)!default;
+$sq-color-info-medium: lighten($sq-color-info, 13%)!default;
+$sq-color-info-dark: darken($sq-color-info, 2%)!default;
+$sq-color-info-darker: darken($sq-color-info, 5%)!default;
+$sq-color-info-darkest: darken($sq-color-info, 10%)!default;
+
+
+
+
+$sq-color-warning: #ffa000!default;
+$sq-color-warning-lightest: lighten($sq-color-warning, 45%)!default;
+$sq-color-warning-lighter: lighten($sq-color-warning, 35%)!default;
+$sq-color-warning-light: lighten($sq-color-warning, 25%)!default;
+$sq-color-warning-medium: lighten($sq-color-warning, 13%)!default;
+$sq-color-warning-dark: darken($sq-color-warning, 2%)!default;
+$sq-color-warning-darker: darken($sq-color-warning, 5%)!default;
+$sq-color-warning-darkest: darken($sq-color-warning, 10%)!default;
+
+$sq-color-error: #d32f2f!default;
+$sq-color-error-lightest: lighten($sq-color-error, 45%)!default;
+$sq-color-error-lighter: lighten($sq-color-error, 35%)!default;
+$sq-color-error-light: lighten($sq-color-error, 25%)!default;
+$sq-color-error-medium: lighten($sq-color-error, 13%)!default;
+$sq-color-error-dark: darken($sq-color-error, 2%)!default;
+$sq-color-error-darker: darken($sq-color-error, 5%)!default;
+$sq-color-error-darkest: darken($sq-color-error, 10%)!default;
+
+$sq-color-success: #308833!default;
+$sq-color-success-lightest: #e9f3ec!default;
+$sq-color-success-lighter: lighten($sq-color-success, 35%)!default;
+$sq-color-success-light: lighten($sq-color-success, 25%)!default;
+$sq-color-success-medium: lighten($sq-color-success, 13%)!default;
+$sq-color-success-dark: darken($sq-color-success, 2%)!default;
+$sq-color-success-darker: darken($sq-color-success, 5%)!default;
+$sq-color-success-darkest: darken($sq-color-success, 10%)!default;
+
+$sq-color-extra-blue: #4267B2;
+$sq-color-extra-blue-dark: #153067;
+$sq-color-extra-red: #DB4437;
+$sq-color-extra-red-dark: #9a170b;
+$sq-color-extra-yellow: #F4B400;
+$sq-color-extra-yellow-dark: #a87b00;
+$sq-color-extra-green: #0F9D58;
+$sq-color-extra-green-dark: #075E54;
+$sq-color-extra-pink: #FF00BF;
+$sq-color-extra-pink-dark: #7a005c;
+$sq-color-extra-purple: #6222bb;
+$sq-color-extra-purple-dark: #2f0a4e;
+
+
+$brand-primary: $sq-color-primary !default; // #337ab7
+$brand-success:$sq-color-success !default;
+$brand-info: $sq-color-info !default;
+$brand-warning: $sq-color-warning !default;
+$brand-danger: $sq-color-secondary !default;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg: #fff !default;
+//** Global text color on `<body>`.
+$text-color: $gray-base!default;
+
+
+//== Typography
+
+$screen-xs: 320px!default;
+$screen-sm: 768px!default;
+$screen-md: 1024px!default;
+$screen-lg: 1280px!default;
+$screen-xlg: 1440px!default;
+
+$screen-max: $screen-lg;
+
+// Typography
+
+$sq-text-color: $gray-base!default;
+$sq-heading-color: $sq-color-muted-darkest!default;
+
+// Fonts
+
+$header-font-family: var(--header-font-family)!default;
+$paragraph-font-family: var(--paragraph-font-family)!default;
+$paragraph-med-font-family: var(--paragraph-med-font-family)!default;
+$text-font-family: var(--text-font-family)!default;
+
+
+
+$jumbo-font-size: 58px!default;
+$large-font-size: 48px!default;
+$big-font-size: 40px!default;
+
+$t1-font-size: 36px!default;
+$t2-font-size: 30px!default;
+$t3-font-size: 24px!default;
+$t4-font-size: 18px!default;
+$t5-font-size: 16px!default;
+$t6-font-size: 14px!default;
+$t7-font-size: 12px!default;
+$t8-font-size: 10px!default;
+
+
+//Spacing
+$spacing-x1: 10px!default;
+$spacing-x2: 20px!default;
+$spacing-x3: 40px!default;
+
+
+// z-indexes
+
+$z-index-level-1: 1001!default;
+$z-index-level-2: 1002!default;
+$z-index-level-3: 1003!default;
+$z-index-level-4: 1004!default;
+$z-index-level-mid-1: 1301!default;
+$z-index-level-mid-2: 1302!default;
+$z-index-level-mid-3: 1303!default;
+$z-index-level-mid-4: 1304!default;
+$z-index-level-3rdtop: 9994!default;
+$z-index-level-2ndtop: 9995!default;
+$z-index-level-top: 9996!default;
+$z-index-level-3rdtopest: 9997!default;
+$z-index-level-2ndtopest: 9998!default;
+$z-index-level-topest: 9999!default;
+$z-index-level-hightop: 10001!default;
+
+$zindex-menubar: 1001!default;
+$zindex-loading: 1002!default;
+$zindex-appdrawer: 1003!default;
+$zindex-app-overlay: 1004!default;
+
+
+
+// Global FOoter
+
+$sq-footer-background-color: $sq-color-muted-lightest!default;
+$sq-footer-background-color-dark: $sq-color-primary-darkest!default;
+
+
+// Global Navigation
+$sq-global-navigation-background-color:  $sq-color-muted-lightest!default;
+$sq-global-navigation-background-color-dark: $sq-color-primary-darkest!default;
+
+
+// base config
+$base-font-size:  $t6-font-size!default;
+
+$accent-color-1-base:#f9c1bd!default; 
+$accent-color-1-top-color:#c31f10!default; 
+$accent-color-2-base:#a5f2d1!default; 
+$accent-color-2-top-color:#00844c!default; 
+$accent-color-3-base:#d5cff5!default; 
+$accent-color-3-top-color:#4230a8!default; 
+$accent-color-4-base:#ffdebc!default; 
+$accent-color-4-top-color:#b95c00!default; 
+$accent-color-5-base:#c9ffbc!default; 
+$accent-color-5-top-color:#00b916!default; 

@@ -1,0 +1,117 @@
+.sq-image-with-spotlight {
+  min-height: 450px;
+  position: relative;
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+  &__bg {
+    background-repeat: no-repeat;
+    min-height: 350px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, transparent 2%, black 100%);
+  }
+  &__header {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__header-text {
+    max-width: 700px;
+  }
+  &__actions-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 65%;
+    width: 100%;
+    gap: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    z-index: 2;
+    flex-wrap: wrap;
+    @media (min-width: $screen-sm) {
+    }
+  }
+  &__action {
+    background-color: $sq-color-gray-lightest;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    max-width: 90%;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.08);
+    @media (min-width: $screen-sm) {
+      flex-basis: 50%;
+      max-width: 47%;
+    }
+    @media (min-width: $screen-md) {
+      flex-basis: 50%;
+      max-width: 250px;
+    }
+    &-icon {
+      width: 64px;
+      height: 64px;
+      padding: 10px;
+      background: $white;
+      border-radius: 50%;
+      margin: auto;
+      margin-bottom: 8px;
+    }
+    &-text {
+      @include b4-style();
+      text-align: center;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.info {
+      background-color: $sq-color-info-lightest;
+      .sq-icon {
+        color: $sq-color-info-darkest;
+      }
+    }
+    &.success {
+      background-color: $sq-color-success-lightest;
+      .sq-icon {
+        color: $sq-color-success-darkest;
+      }
+    }
+    &.warning {
+      background-color: $sq-color-warning-lightest;
+      .sq-icon {
+        color: $sq-color-warning-darkest;
+      }
+    }
+    &.error {
+      background-color: $sq-color-error-lightest;
+      .sq-icon {
+        color: $sq-color-error-darkest;
+      }
+    }
+  }
+}

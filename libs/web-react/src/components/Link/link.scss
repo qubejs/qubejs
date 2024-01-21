@@ -1,0 +1,48 @@
+a {
+ 
+  cursor: pointer;
+  display: inline-block;
+}
+.sq-link {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__pointer {
+    display: inline-block;
+  }
+  &__icon {
+    display: flex;
+    float: left;
+    margin-right: 5px;
+  }
+  &--disabled {
+    color: $sq-color-muted;
+    cursor: default;
+    &:hover {
+      color: $sq-color-muted;
+      cursor: default;
+    }
+  }
+  img {
+    width: 100%;
+  }
+  &--default {
+    @include b5-style();
+    @media screen and (min-width: $screen-md) {
+      @include b4-style();
+    }
+  }
+  &--small {
+    @include b5-style();
+  }
+
+  &--secondary {
+    color: $sq-color-primary;
+    &:hover {
+      color: $sq-color-primary-dark;
+    }
+  }
+  
+}

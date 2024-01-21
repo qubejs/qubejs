@@ -1,0 +1,48 @@
+image: node:18
+stages:
+  - build
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+before_script:
+  - echo ======= before script start ========
+  - export GENERATE_SOURCEMAP=false
+  - node -v
+  - npm -v
+  - echo ======= before script done ========
+cache:
+  paths:
+  - node_modules/
+build_project:
+  stage: build
+  script:
+    - echo ======= build started ========
+    - npm install --legacy-peer-deps
+    - npx nx run-many -t test --codeCoverage -p core cms scripts web-react
+    - npx nx run-many -t dist -p core scripts cms web-react
+    - echo ======= build finished ========
+  artifacts:
+      reports:
+        junit:
+          - coverage/libs/cms/junit.xml
+          - coverage/libs/core/junit.xml
+          - coverage/libs/web-react/junit.xml
+  only:
+    - main
+    - merge_requests
+build_release:
+  stage: build
+  script:
+    - echo ======= release started ========
+    - npm install --legacy-peer-deps
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+    - npx nx run-many -t publish  -p --args="--ver=$CI_COMMIT_TAG --tag=latest"
+    - echo ======= release finished ========
+  artifacts:
+    reports:
+      junit:
+        - coverage/libs/cms/junit.xml
+        - coverage/libs/core/junit.xml
+        - coverage/libs/web-react/junit.xml
+    expire_in: 48 hrs
+  only:
+    - tags

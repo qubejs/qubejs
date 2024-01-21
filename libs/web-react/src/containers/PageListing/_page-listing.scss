@@ -1,0 +1,22 @@
+.sq-page-listing {
+  &__clone {
+    min-width: 500px;
+  }
+  &__container {
+    display: flex;
+  }
+  &__left {
+    width: 250px;
+    padding-right: 16px;
+    overflow: auto;
+    flex-shrink: 0;
+  }
+  &__right {
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+
+.sq-path-tree {
+  height: 100%!important;
+}

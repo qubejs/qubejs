@@ -1,0 +1,24 @@
+$icon-selector-hover-color: $brand-info;
+
+.sq-icon-selector {
+  &__icon-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__icon-item {
+    padding: 5px;
+    border: solid 2px transparent;
+    border-radius: 5px;
+    margin: 4px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--selected {
+      border: solid 2px $icon-selector-hover-color;
+    }
+    &:hover {
+      border: solid 2px $icon-selector-hover-color;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.sq-date-selector {
+  .MuiTextField-root {
+    width: 100%;
+  }
+  &__dialog {
+    z-index: $z-index-level-topest !important;
+  }
+}

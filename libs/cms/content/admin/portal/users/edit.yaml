@@ -1,0 +1,139 @@
+title: Users
+template: apps/core/templates/page
+layout: apps/qubejs/layouts/page-spa
+containerTemplate: AdminDashboard
+contentBodyClass: container container-form
+hook:
+  load:
+    - method: post
+      url: /api/v1/admin/users/search
+      dataKey: resultUser
+      params:
+        email: .query.userId
+    - method: get
+      url: /api/v1/admin/users/role
+      params:
+        userType: INTERNAL
+      dataKey: roles
+
+
+
+reset:
+  type: clearAll
+init:
+  drop_options:
+    roles: .roles
+  user:
+    firstName: .resultUser.data.0.firstName
+    lastName: .resultUser.data.0.lastName
+    emailId: .resultUser.data.0.email
+    contactNumber: .resultUser.data.0.phone
+    role: .resultUser.data.0.roleCode
+merge:
+  currentEmail: .resultUser.data.0.email
+  currentError: .lastError.key
+  currentErrorMessage: .lastError.errorMessage
+items:
+  - component: Progress
+    className: tp-progress--active
+    overlay: true
+    match:
+      isSubmitting:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: Alert
+    message: |
+      Unable to locate user
+    type: error
+    match:
+      currentEmail:
+        validators:
+          - type: notExists
+  - component: ScreenHeader
+    className: mt-wide mb-xtrawide
+    header: Edit User
+    headerTag: h2
+  - component: Form
+    name: user
+    className: add-new-user mt-wide
+    fields:
+      - cmpType: Input
+        size: auto-form
+        name: firstName
+        label: First Name
+        validators:
+          - type: required
+      - cmpType: Input
+        size: auto-form
+        name: lastName
+        label: Last Name
+        validators:
+          - type: required
+      - cmpType: DataField
+        size: auto-form
+        name: emailId
+        label: Email ID
+        validators:
+          - type: required
+          - type: email
+      - cmpType: Input
+        size: auto-form
+        name: contactNumber
+        mask:
+          type: phone
+        label: Phone
+        validators:
+          - type: required
+          - type: phone
+      - cmpType: Select
+        name: role
+        label: Role
+        inject:
+          options: drop_options.roles
+        valueField: code
+        textField: name
+        validators:
+          - type: required
+  - component: Alert
+    type: error
+    className: mb-wide
+    message: Email is already in use
+    match:
+        currentError:
+          validators:
+            - type: equals
+              matchValue: GENERIC_ERROR
+  - component: Button
+    buttonText: Save
+    size: large
+    actionType: submit
+    url: /api/v1/admin/user
+    method: patch
+    defaultResponse:
+      success:
+        data:
+          redirect: usersList
+        notification:
+          message: User updated successfully
+          type: success
+      error:
+        notification:
+          message: User updated failed
+          type: error
+    params:
+      uid: .query.uid
+      firstName: .user.firstName
+      lastName: .user.lastName
+      email: .user.emailId
+      phone: .user.contactNumber
+      roleCode: .user.role
+
+  - component: Button
+    buttonText: Cancel
+    size: large
+    variant: outlined
+    actionType: redirect
+    to: usersList
+
+

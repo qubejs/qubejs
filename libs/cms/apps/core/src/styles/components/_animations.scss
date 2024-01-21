@@ -1,0 +1,19 @@
+@keyframes slidein {
+  from {
+    margin-top:20px;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
+@keyframes slideout {
+  from {
+    margin-top: 20px;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}

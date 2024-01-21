@@ -1,0 +1,78 @@
+.sq-image-uploader {
+  position: relative;
+  &__label {
+    margin-bottom: 4px;
+  }
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+  &__image-preview {
+    border-radius: 5px;
+    border: solid 1px $sq-color-slate-lighter;
+    position: relative;
+    margin: 20px;
+    padding: 2px;
+    img {
+      width: 100px;
+      height: 100px;
+    };
+    &-close {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+    }
+  }
+  &__image-placeholder {
+    > span {
+      > label {
+        display: flex;
+        padding: 10px;
+        flex-direction: column;
+        height: auto;
+        min-width: 100%;
+        max-width: 100%;
+        border: none;
+        > div {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          width: 100%;
+          span {
+            &:first-child {
+              display: none;
+            }
+            display: block;
+            margin-bottom: 4px;
+          }
+        }
+        .file-types {
+          width: 100%;
+          max-width: 100%;
+          white-space:unset;
+        }
+      }
+      > svg {
+        width: 32px;
+      }
+    }
+  }
+  &__list {
+    margin-bottom: 8px;
+  }
+
+  &__file-item {
+    display: flex;
+  }
+  &__file-name {
+    flex-grow: 1;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+  &__file-delete {
+    cursor: pointer;
+  }
+}

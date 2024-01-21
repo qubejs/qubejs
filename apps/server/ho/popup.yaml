@@ -1,0 +1,8 @@
+title: Popup
+template: apps/core/templates/page
+className: sq-content-page--full-width
+layout: apps/layouts/spa
+items:
+  - component: Header
+    className: container-fluid container-max
+    header: Popup test

@@ -1,0 +1,39 @@
+.sq-admin-plain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+  &__header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  &__left {
+    flex-basis: 100%;
+    min-height: 300px;
+    @media (min-width: $screen-sm) {
+      flex-basis: 50%;
+    }
+    background-size: cover;
+  }
+  &__body {
+    width: 100%;
+    padding: 50px;
+  }
+  &__right {
+    flex-basis: 100%;
+    @media (min-width: $screen-sm) {
+      flex-basis: 50%;
+    }
+    display: flex;
+    padding-top: 50px;
+    justify-content: center;
+    border-radius: 20px;
+  }
+  &__logo {
+    width: 150px;
+    height: 50px;
+  }
+}

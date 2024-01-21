@@ -1,0 +1,39 @@
+.sq-carousel {
+  &__item {
+    min-height: 400px;
+  }
+  &__content {
+    padding: 0 20px;
+    @media (min-width:$screen-md) {
+      padding: 0 80px;
+    }
+    margin: auto;
+    text-align: center;
+  }
+  &__image {
+    max-width: 400px;
+    width: 80%;
+    max-height: 280px;
+    margin: 0 auto 30px auto;
+    @media (min-width:$screen-sm) {
+      max-width: 70%;
+      max-height: 280px;
+    }
+  }
+  &__sub-header {
+    color:$sq-color-gray-dark;
+    width: 100%;
+    max-width: 230px;
+    margin: auto;
+    display: block;
+    min-height: 70px;
+  }
+
+  &--full-bg {
+    .sq-carousel__indicator-container {
+      position: absolute;
+      bottom: 10px;
+      z-index: $z-index-level-topest;
+    }
+  }
+}

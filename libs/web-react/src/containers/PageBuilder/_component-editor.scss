@@ -1,0 +1,80 @@
+.sq-component-editor {
+
+  .tp-progress--full-screen .tp-progress__spinner {
+    position: absolute !important;
+  }
+  .tp-progress__overlay {
+    display: none !important;
+  }
+  .tp-progress {
+    position: static !important;
+  }
+  position: relative;
+  padding: 38px 0;
+  @media (min-width: $screen-lg) {
+    padding: 38px 0;
+  }
+  border: 1px dashed transparent;
+  background-color: white;
+  &:hover {
+    border: 1px solid $sq-color-primary-light;
+    > .sq-component-editor__actions {
+      visibility: visible;
+    }
+    > .sq-component-editor__move {
+      display: block;
+    }
+    > .sq-component-editor__name {
+      display: block;
+    }
+  }
+  // &.hover {
+  //   border: 1px solid $sq-color-primary-lighter;
+  // }
+  &__name-text {
+    // @include t6-style();
+  }
+  &__actions {
+    position: absolute;
+    top: -36px;
+    right: 8px;
+    padding: 4px;
+    background-color: white;
+    z-index: $z-index-level-1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    visibility: hidden;
+    display: flex;
+    border: solid 1px $sq-color-primary-lighter;
+    // box-shadow: 2px 2px 5px #e2e2e2;
+  }
+  &__name {
+    background-color: $white;
+    top: 2px;
+    color: $sq-color-slate-light;
+    @include b7-style();
+    position: absolute;
+    border-radius: 5px;
+    padding: 2px 8px;
+    max-width: 50%;
+    left: 2px;
+    display: none;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  &__move {
+    position: absolute;
+    height: 44px;
+    left: -20px;
+    border-radius: 5px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    display: none;
+    margin: auto;
+  }
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

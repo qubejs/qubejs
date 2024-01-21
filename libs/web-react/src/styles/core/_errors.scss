@@ -1,0 +1,31 @@
+.sq-error {
+  color: $brand-danger;
+  margin-top: 8px;
+  &--light {
+    color: $sq-color-error-light;
+  }
+  &--dark {
+    color: $sq-color-error-darker;
+  }
+}
+
+.sq-success {
+  color: $brand-success;
+  @include b5-style();
+  margin-top: 8px;
+}
+
+.sq-text-error {
+  color: $sq-color-error;
+}
+
+.sq-text-success {
+  color: $sq-color-success;
+  &.dark {
+    color: $sq-color-success-lighter;
+  }
+}
+
+.sq-text-muted {
+  color: $sq-color-gray;
+}

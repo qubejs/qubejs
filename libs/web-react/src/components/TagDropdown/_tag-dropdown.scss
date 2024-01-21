@@ -1,0 +1,29 @@
+.sq-tag-dropdown {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    .sq-icon {
+      flex-shrink: 0;
+    }
+  }
+  .sq-tag-label {
+    min-height: 23px;
+    min-width: 73px;
+  }
+  &__menu {
+    z-index: $z-index-level-2ndtopest !important;
+    .MuiMenuItem-root.sq-tag-label--list-item-wrap {
+      padding: 4px 8px;
+    }
+    .sq-tag-label--list-item {
+      width: 100%;
+    }
+  }
+  &__icon {
+    &.active {
+      background-color: $brand-primary;
+      color: white;
+    }
+  }
+ 
+}

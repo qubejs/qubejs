@@ -1,0 +1,12 @@
+.sq-tag-selection {
+  &__label {
+    color: $sq-color-slate;
+    margin-bottom: 4px;
+  }
+  &__items {
+    .sq-tag-label {
+      margin-right: 4px;
+      cursor: pointer;
+    }
+  }
+}

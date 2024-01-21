@@ -1,0 +1,11 @@
+a {
+  color:$link-color;
+  text-decoration: none;
+  &:hover {
+    color:$link-hover-color;
+  }
+}
+.badge-link {
+  max-width: 120px;
+  margin-right: 8px;
+}

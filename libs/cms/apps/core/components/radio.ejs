@@ -1,0 +1,30 @@
+<div class="nc-field mui-radio <%= props.className %>" data-cmp="radio">
+  <fieldset>
+    <% if (props.groupHeader) { %>
+    <legend><%= props.groupHeader %></legend>
+    <% } %>
+    <% if (props.options) { 
+      for (var i=0; i < props.options.length; i++) { 
+        let value; 
+        let text; 
+      if (typeof(props.options[i]) === 'string') { 
+        value = props.options[i]; 
+        text = props.options[i]; 
+      } else if (typeof(props.options[i]) === 'object') { 
+        value = props.options[i].value;
+        text = props.options[i].text; 
+      } %>
+      <label>
+        <input type="radio"
+               name="<%= props.name %>"
+               id="id-<%= props.name %>"
+               class="form-control"
+               value="<%= value %>">
+               <%= text %>
+      </label>
+      <% } }%>
+      
+      <span class="nc-field__error-message"></span>
+    </fieldset>
+  </div>
+  

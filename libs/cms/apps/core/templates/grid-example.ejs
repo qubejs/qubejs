@@ -1,0 +1,32 @@
+<script>
+</script>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <%- include('../partials/navigation') %>
+
+  </div>
+  <div class="col-xs-12 col-md-8">
+    <h1><%- pageData.category %></h1>
+    <h3 class="heading-bullet"><%- pageData.title %></h2>
+      <p>
+        <%- pageData.description %>
+      </p>
+      <button class="btn btn-primary">Edit in fiddle</button>
+      <hr>
+      <h3>Example</h3>
+      <%- pageData.html %>
+      <h4>HTML</h4>
+      <code class="html">
+    <%= pageData.html %>
+    </code>
+      <h4>JAVASCRIPT</h4>
+      <code class="language-javascript">
+      <%= pageData.javascript %>
+    </code>
+  </div>
+</div>
+</div>
+
+<script>
+  <%- pageData.javascript %>
+</script>

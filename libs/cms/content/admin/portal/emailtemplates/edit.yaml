@@ -1,0 +1,150 @@
+title: Add New Template
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+contentBodyClass: container container-ultrawide
+reset:
+  type: clearAll
+hook:
+  load:
+    - method: post
+      url: /api/v1/admin/emailtemplate/get
+      params:
+        uid: .query.uid
+      dataKey: result
+init:
+  drop_options:
+    emailStatus: ::globals.options::emailStatus
+  template:
+    fromName: .result.fromName
+    name: .result.name
+    from: .result.from
+    emailCc: .result.emailCc
+    emailBcc: .result.emailBcc
+    status: .result.status
+  email:
+    subject: .result.subject
+    body: .result.body
+
+
+merge:
+  currentError: .lastError.key
+  currentErrorMessage: .lastError.errorMessage
+items:
+  - component: ProgressisActive
+    className: tp-progress--active
+    overlay: true
+    match:
+      isSubmitting:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: Header
+    className: mt-wide mb-xtrawide
+    header: Edit Template
+    headerTag: h3
+  - component: Wrapper
+    items:
+      - component: Wrapper
+        className: col-xs-12 col-md-4 order-2 order-md-1
+        items:
+          - component: Form
+            name: template
+            className: add-new-user mt-wide 
+            fields:
+              - name: name
+                cmpType: DataField
+                label: Template Name
+              - name: fromName
+                label: From Name
+                validators:
+                  - type: required
+              - name: from
+                label: Fromm Email
+                validators:
+                  - type: required
+                  - type: email
+              - name: emailCc
+                cmpType: AutoCompleteValue
+                label: CC
+              - name: emailBcc
+                cmpType: AutoCompleteValue
+                label: BCC
+            
+              - cmpType: ButtonSelection
+                name: status
+                label: Status
+                inject:
+                  options: drop_options.emailStatus
+                validators:
+                  - type: required
+              - cmpType: Alert
+                type: info
+                className: mb-wide
+                message: Save template before sending test email
+      - component: Wrapper
+        className: col-xs-12 col-md-8 order-1 order-md-2
+        items:
+          - component: Form
+            name: email
+            className: add-new-user mt-wide 
+            fields:
+              - name: subject
+                type: Input
+                label: Subject
+                validators:
+                  - type: required
+              - name: body
+                label: Email Body
+                cmpType: RichText
+                validators:
+                  - type: required
+  - component: Alert
+    type: error
+    className: mb-wide
+    message: Email is already in use
+    match:
+        currentError:
+          validators:
+            - type: equals
+              matchValue: GENERIC_ERROR
+  - component: Button
+    buttonText: Save
+    actionType: submit
+    size: large
+    url:  /api/v1/admin/emailtemplate
+    inject:
+      disabled: isSubmitting
+    method: patch
+    rootErrorKey: template
+    defaultResponse:
+      success:
+        notification:
+          message: Email Template saved successfully
+      error:
+        notification:
+          message: Email Template save failed
+          type: error
+          
+    params:
+      uid: .query.uid
+      '...email': .email
+      '...template': .template
+  - component: Button
+    buttonText: Cancel
+    size: large
+    variant: outlined
+    actionType: redirect
+    to: emailTemplatelList
+  - component: Button
+    buttonText: Send Test Email
+    actionType: popup-screen
+    url: true
+    params:
+      title: Send Test Email
+      url: /content/admin/portal/emailtemplates/test
+      current: .result
+    variant: outlined
+    size: large
+    inject:
+      disabled: isSubmitting

@@ -1,0 +1,87 @@
+title: Add New Template
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: Blank
+contentBodyClass: container sq-email-template-list-test
+hook:
+  load:
+    - method: post
+      url: /api/v1/admin/emailtemplate/get
+      params:
+        uid: .query.uid
+      dataKey: result
+init:
+  drop_options:
+    emailStatus: ::globals.options::emailStatus
+  test:
+    subject: .email.subject
+    body: .email.body
+merge:
+  currentError: .lastError.key
+  currentErrorMessage: .lastError.errorMessage
+items:
+  - component: Progress
+    className: tp-progress--active
+    overlay: true
+    match:
+      isSubmitting:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: Wrapper
+    bodyClassName: d-flex j-content-fl-end
+    items:
+        - component: Button
+          buttonText: Cancel
+          variant: outlined
+          actionType: close-popup-screen
+        - component: Button
+          buttonText: Send
+          actionType: submit
+          url:  /api/v1/admin/emailtemplate/test
+          inject:
+            disabled: isSubmitting
+          method: post
+          rootErrorKey: template
+          finally:
+            successAction:
+              actionType: close-popup-screen
+
+          defaultResponse:
+            success:
+              notification:
+                message: Email Template sent successfully
+            error:
+              notification:
+                message: Email Template sent failed
+                type: error
+                
+          params:
+            templateName: .result.name
+            to: .test.to
+  - component: Form
+    name: test
+    className: add-new-user mt-wide 
+    fields:
+      - name: to
+        label: To Email
+        validators:
+          - type: required
+          - type: email
+      - name: subject
+        cmpType: DataField
+        label: Subject
+        validators:
+          - type: required
+      - name: body
+        label: Email Body
+        cmpType: HTML
+  - component: Alert
+    type: error
+    className: mb-wide
+    message: Email is already in use
+    match:
+      currentError:
+        validators:
+          - type: equals
+            matchValue: GENERIC_ERROR

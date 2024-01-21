@@ -1,0 +1,38 @@
+@import "variables";
+:export {
+    brandPrimary: $sq-color-primary;
+    brandPrimaryDarker: $sq-color-primary-darker;
+    brandPrimaryDarkest: $sq-color-primary-darkest;
+    brandPrimaryLight: $sq-color-primary-light;
+    brandPrimaryLighter: $sq-color-primary-lighter;
+    brandPrimaryLightest: $sq-color-primary-lightest;
+    brandSecondary: $sq-color-secondary;
+    brandSecondaryDarker: $sq-color-secondary-darker;
+    brandSecondaryDark: $sq-color-secondary-dark;
+    brandSecondaryLight: $sq-color-secondary-light;
+    info: $sq-color-info;
+    infoDarker: $sq-color-info-darker;
+    warning: $sq-color-warning;
+    warningDarker: $sq-color-warning-darker;
+    successLighter: $sq-color-success-lighter;
+    success: $sq-color-success;
+    successDarker: $sq-color-success-darker;
+    error: $sq-color-error;
+    errorDarker: $sq-color-error-darker;
+    brandPrimaryLightest: $sq-color-primary-lightest;
+    mutedZBlack: $sq-color-muted-zblack;
+    mutedDarkest: $sq-color-muted-darkest;
+    lightOrange: $sq-color-booked-seat;
+    avatar: {
+      color1: $color-avatar-1;
+      color2: $color-avatar-2;
+      color3: $color-avatar-3;
+      color4: $color-avatar-4;
+      color5: $color-avatar-5;
+      color6: $color-avatar-6;
+      color7: $color-avatar-7;
+      color8: $color-avatar-8;
+      color9: $color-avatar-9;
+      color1: $color-avatar-10;
+    }
+  }

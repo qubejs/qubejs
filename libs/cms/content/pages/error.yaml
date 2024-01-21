@@ -1,0 +1,15 @@
+title: Error occurred
+template: apps/core/templates/page
+class: sq-page-error
+layout: apps/core/layouts/default
+blocks:
+  - title: Error occurred
+    description: Some error has been occurred
+    component: call-to-action
+    variant: type3
+    imgUrl: /client/assets/svg/view.svg
+    class: sq-text-center
+    buttons:
+      - text: Back to home
+        href: /
+        class: uk-button uk-button-primary

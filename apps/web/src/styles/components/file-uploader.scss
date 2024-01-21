@@ -1,0 +1,14 @@
+.sq-file-uploader {
+  > span {
+    > label {
+      border: solid 1px #69B3F3;
+      background-color: #E5F3FF;
+      min-height: 70px;
+      height: 100%;
+      justify-content: space-around;
+      > div {
+        display: none;
+      }
+    }
+  }
+}

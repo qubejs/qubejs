@@ -1,0 +1,119 @@
+title: Add New User
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+contentBodyClass: container container-form
+reset:
+  type: clearAll
+hook:
+  load:
+    - method: get
+      url: /api/v1/admin/users/role
+      params:
+        userType: INTERNAL
+      dataKey: roles
+init:
+  drop_options:
+    roles: .roles
+merge:
+  currentError: .lastError.key
+  currentErrorMessage: .lastError.errorMessage
+items:
+  - component: Progress
+    className: tp-progress--active
+    overlay: true
+    match:
+      isSubmitting:
+        validators:
+          - type: equals
+            matchValue: true
+  - component: ScreenHeader
+    className: mt-wide mb-xtrawide
+    header: Add New User
+    subHeader: Add new user to list
+    headerTag: h3
+  - component: Form
+    name: user
+    className: add-new-user mt-wide 
+    fields:
+      - name: firstName
+        label: First Name
+        keyup: 
+          type: length
+          max: 50
+        validators:
+          - type: required
+      - name: lastName
+        label: Last Name
+        keyup: 
+          type: length
+          max: 50
+        validators:
+          - type: required
+      - name: email
+        label: Email ID
+        validators:
+          - type: required
+          - type: email
+      - name: contactNumber
+        label: Phone
+        keyup:
+          type: length
+          max: 10
+        mask:
+          type: phone
+        validators:
+          - type: required
+          - type: phone
+ 
+      - cmpType: Select
+        name: role
+        label: Role
+        inject:
+          options: drop_options.roles
+        valueField: code
+        textField: name
+        validators:
+          - type: required    
+  - component: Alert
+    type: error
+    className: mb-wide
+    message: Email is already in use
+    match:
+        currentError:
+          validators:
+            - type: equals
+              matchValue: GENERIC_ERROR
+  - component: Button
+    buttonText: Save
+    actionType: submit
+    size: large
+    url:  /api/v1/admin/user
+    inject:
+      disabled: isSubmitting
+    method: post
+    rootErrorKey: user
+    defaultResponse:
+      success:
+        data:
+          redirect: usersList
+        notification:
+          message: User added successfully
+      error:
+        notification:
+          message: User added failed
+          type: error
+          
+    params:
+      password: .user.password
+      firstName: .user.firstName
+      lastName: .user.lastName
+      email: .user.email
+      phone: .user.contactNumber
+      roleCode: .user.role
+  - component: Button
+    buttonText: Cancel
+    size: large
+    variant: outlined
+    actionType: redirect
+    to: usersList

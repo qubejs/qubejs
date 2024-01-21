@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="/favicon-32x32.png" />
+
+    <title><%= siteMap.title %></title>
+    <% if (['development', 'local'].indexOf(mode) === -1) { %>
+    <link
+      href="<%= publicUrl %>/static/css/<%=siteMap.theme %>.<%= siteMap.appVersion %>.css"
+      rel="stylesheet"
+    />
+    <% } else { %>
+      <link rel="stylesheet" href="<%= publicUrl %>/styles.css"><link rel="stylesheet" href="<%= publicUrl %>/main.css"></head>
+    <% } %>
+    <script
+      src="<%= publicUrl %>/assets/js/tinymce/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+  </head>
+
+  <body>
+    <div id="root" class="content"></div>
+
+    <script
+      type="text/javascript"
+      src="<%= publicUrl %>/env/app-config.js?_cb=<%= siteMap.appVersion %>"
+    ></script>
+
+    <% if (['development', 'local'].indexOf(mode) === -1) { %>
+    <script src="<%= publicUrl %>/static/js/main.<%= siteMap.appVersion %>.js"></script>
+    <% } else { %>
+    <script>
+      window.APP_CONFIG.MODE = 'development';
+      window.targetTheme = '<%=siteMap.theme %>';
+    </script>
+    <script src="<%= publicUrl %>/runtime.js" type="module"></script>
+    <script src="<%= publicUrl %>/styles.js" type="module"></script>
+    <script src="<%= publicUrl %>/vendor.js" type="module"></script>
+    <script src="<%= publicUrl %>/main.js" type="module"></script>
+    <% }%>
+  </body>
+</html>

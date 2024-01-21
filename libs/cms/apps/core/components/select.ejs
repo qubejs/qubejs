@@ -1,0 +1,27 @@
+<div class="nc-field mui-select <%= props.className %>" data-cmp="select">
+  <select
+    name="<%=props.name %>"
+    aria-label="<%= props.label %>"
+    class="form-control"
+    id="id-<%= props.name %>"
+  >
+    <option value="" disabled selected>
+      <%= props.defaultText || 'Select' %>
+    </option>
+    <% if (props.options) { 
+      for(var i=0; i < props.options.length; i++) { 
+        let value; 
+        let text; 
+        if (typeof(props.options[i]) === 'string') { 
+          value = props.options[i]; text = props.options[i];
+        } else if (typeof(props.options[i]) === 'object') { 
+          value = props.options[i].value;
+          text = props.options[i].text; 
+        } %>
+    <option value="<%= value %>"><%= text %></option>
+    <% } }%>
+  </select>
+
+  <label class="nc-field__label"><%= props.label %><%= props.required ? "*" : "" %></label>
+  <span class="nc-field__error-message"></span>
+</div>

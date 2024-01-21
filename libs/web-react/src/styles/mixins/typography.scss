@@ -1,0 +1,170 @@
+@mixin style1-header() {
+  font-size: $t1-font-size;
+  
+}
+@mixin ellipsis () {
+  width: 100%;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+@mixin text-ellipsis($lines: 1) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  @if ($lines > 1) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  } @else {
+    white-space: nowrap;
+    display: block !important;
+  }
+}
+@mixin style2-header() {
+  font-size: $t2-font-size;
+}
+@mixin style3-header() {
+  font-size: $t3-font-size;
+}
+
+@mixin header-font() {
+  font-family: $header-font-family;
+  font-weight: normal;
+  font-weight: 900;
+}
+
+@mixin paragraph-font() {
+  font-family: $paragraph-font-family;
+  font-weight: normal;
+}
+@mixin paragraph-med-font() {
+  font-family: $paragraph-med-font-family;
+  font-weight: normal;
+}
+
+@mixin text-font() {
+  font-family: $text-font-family;
+  font-weight: normal;
+}
+@mixin semibold-font() {
+  font-family: $text-font-family;
+  font-weight: 700;
+}
+
+@mixin jumbo-style {
+  @include header-font();
+  font-size: $jumbo-font-size;
+}
+
+@mixin large-style {
+  @include header-font();
+  font-size: $large-font-size;
+}
+@mixin big-style {
+  @include header-font();
+  font-size: $big-font-size;
+}
+
+@mixin t1-style {
+  @include header-font();
+  font-size: $t1-font-size;
+}
+@mixin t2-style {
+  @include header-font();
+  font-size: $t2-font-size;
+}
+
+@mixin t3-style {
+  @include header-font();
+  font-size: $t3-font-size;
+}
+@mixin t4-style {
+  @include header-font();
+  font-size: $t4-font-size;
+}
+
+@mixin t5-style {
+  @include header-font();
+  font-size: $t5-font-size;
+}
+@mixin t6-style {
+  @include header-font();
+  font-size: $t6-font-size;
+}
+
+@mixin b1-style {
+  @include paragraph-font();
+  font-size: $t1-font-size;
+}
+@mixin b2-style {
+  @include paragraph-font();
+  font-size: $t2-font-size;
+}
+
+@mixin b3-style {
+  @include paragraph-font();
+  font-size: $t3-font-size;
+}
+@mixin b4-style {
+  @include paragraph-font();
+  font-size: $t4-font-size;
+}
+
+@mixin b5-style {
+  @include paragraph-font();
+  font-size: $t5-font-size;
+}
+
+@mixin b6-style {
+  @include paragraph-font();
+  font-size: $t6-font-size;
+}
+@mixin b7-style {
+  @include paragraph-font();
+  font-size: $t7-font-size;
+}
+@mixin b8-style {
+  @include paragraph-font();
+  font-size: $t8-font-size;
+}
+
+@mixin b1-med-style {
+  @include paragraph-med-font();
+  font-size: $t1-font-size;
+}
+@mixin b2-med-style {
+  @include paragraph-med-font();
+  font-size: $t2-font-size;
+}
+
+@mixin b3-med-style {
+  @include paragraph-med-font();
+  font-size: $t3-font-size;
+}
+@mixin b4-med-style {
+  @include paragraph-med-font();
+  font-size: $t4-font-size;
+}
+
+@mixin b5-med-style {
+  @include paragraph-med-font();
+  font-size: $t5-font-size;
+}
+
+@mixin b6-med-style {
+  @include paragraph-med-font();
+  font-size: $t6-font-size;
+}
+@mixin b7-med-style {
+  @include paragraph-med-font();
+  font-size: $t7-font-size;
+}
+@mixin b8-med-style {
+  @include paragraph-med-font();
+  font-size: $t8-font-size;
+}
+
+strong {
+   @include header-font();
+}

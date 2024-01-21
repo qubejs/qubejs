@@ -1,0 +1,11 @@
+.sq-card-button-list {
+  &__container {
+    display: flex;
+    overflow: auto;
+    padding: 20px 0;
+    .sq-card-button {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+  }
+}

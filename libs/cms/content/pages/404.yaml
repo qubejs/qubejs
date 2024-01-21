@@ -1,0 +1,15 @@
+title: Page not found
+template: apps/core/templates/page
+class: sq-page-notfound
+layout: apps/core/layouts/default
+blocks:
+    - title: 404, Page doesn't exists
+      description: This is not the webpage you looking for.
+      component: call-to-action
+      variant: type3
+      imgUrl: /client/assets/svg/view.svg
+      class: sq-text-center
+      buttons:
+        - text: Back to home
+          href: /
+          class: uk-button uk-button-primary

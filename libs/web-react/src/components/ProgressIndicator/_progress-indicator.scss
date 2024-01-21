@@ -1,0 +1,36 @@
+.sq-progress-indicator {
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+  &__label {
+    flex-grow: 0;
+    flex-basis: 40px;
+    @include b4-style();
+    padding: 0 0 0 10px;
+  }
+  &__bar {
+    flex-grow: 1;
+  }
+  .MuiLinearProgress-colorPrimary {
+    background-color: $sq-color-gray-lighter;
+  }
+  &--red {
+    color: $sq-color-error;
+    .MuiLinearProgress-bar {
+      background-color: $sq-color-error;
+    }
+  }
+  &--green {
+    color: $sq-color-success;
+    .MuiLinearProgress-bar {
+      background-color: $sq-color-success;
+    }
+  }
+  &--orange {
+    color: $sq-color-warning;
+    .MuiLinearProgress-bar {
+      background-color: $sq-color-warning;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.sq-page-builder {
+  padding: 10px;
+  .dynamic-content {
+    height: auto;
+  }
+  .sq-content-page {
+    padding-top: 0 !important;
+    margin: unset !important;
+  }
+  &__top-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__l-options {
+    top: 0;
+    position: absolute;
+    left: 0;
+    z-index: $z-index-level-1;
+    display: flex;
+    flex-direction: column;
+  }
+  &__r-options {
+    top: 0;
+    position: absolute;
+    right: 0;
+    z-index: $z-index-level-1;
+    display: flex;
+    flex-direction: column;
+  }
+  &__left {
+    flex-grow: 0;
+  }
+  &__center {
+    flex-grow: 1;
+    padding: 35px 20px;
+    height: 100%;
+    overflow: auto;
+  }
+  &__right {
+    flex-grow: 0;
+  }
+  &__content {
+    position: relative;
+  }
+  &__container {
+    display: flex;
+    height: 100%;
+    gap: 16px;
+    padding-left: 50px;
+    padding-right: 0;
+    min-height: 200px;
+  }
+}

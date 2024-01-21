@@ -1,0 +1,102 @@
+.sq-v-screen {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__body-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+  &__title {
+    @include t3-style();
+    flex-grow: 1;
+  }
+  &-grow {
+    flex-grow: 1;
+  }
+  &__top-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    @media (min-width: $screen-sm) {
+      flex-wrap: nowrap;
+    }
+    > :nth-child(1) {
+      flex-basis: 400px;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+    > :nth-child(2) {
+      flex-basis: auto;
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+  }
+  &__pagination-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  &__sub-header {
+    @media (min-width: $screen-sm) {
+      position: absolute;
+      width: auto;
+    }
+    right: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+    min-width: 300px;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    top: -50px;
+  }
+  &__layout-50-50 {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+    }
+  }
+  &--fixed-width {
+    position: relative;
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &--fixed-width-auto-height {
+    position: relative;
+    > div {
+      width: 100%;
+      max-width: $screen-max;
+    }
+  }
+  &--fixed {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    .sq-v-screen-grow {
+      height: 100px;
+      &.auto {
+        overflow: auto;
+      }
+    }
+  }
+}

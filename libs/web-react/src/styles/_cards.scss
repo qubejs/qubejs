@@ -1,0 +1,20 @@
+.sq-card {
+  width: 100%;
+  margin-bottom: 24px;
+  box-shadow: #e2e2e2 2px 2px 0px;
+  border: solid 1px #e2e2e2;
+  &__header-container {
+    padding: 24px 15px 0 15px;
+    border-bottom: solid 1px $sq-color-muted-lightest;
+  }
+
+  &__body {
+    padding: 15px;
+  }
+
+  &__footer {
+    padding: 0 15px 24px 15px;
+    color:$sq-color-muted;
+    @include b5-style();
+  }
+}

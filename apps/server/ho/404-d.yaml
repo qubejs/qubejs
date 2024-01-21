@@ -1,0 +1,9 @@
+title: Sandbox Home
+template: apps/core/templates/page
+className: sq-content-page--full-width sq-content-page--with-fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+items:
+  - component: HeroContent
+    header: 404 Not found - d
+    subHeader: Page you're looking for doesn't exists

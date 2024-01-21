@@ -1,0 +1,53 @@
+.sq-c-panel {
+  border-radius: 5px;
+  position: relative;
+  min-width: 250px;
+  max-width: 250px;
+  height: 100%;
+  &__header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__close{ 
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  &__body {
+    padding: 15px;
+    overflow: auto;
+    flex-grow: 1;
+  }
+  &--default {
+    border: 1px solid $sq-color-slate-lightest;
+    .sq-c-panel__header {
+      border-bottom: 1px solid $sq-color-slate-lightest;
+    }
+    background-color: $white;
+  }
+  &--dark {
+    border: 1px solid $sq-color-slate-lightest;
+    background-color: $sq-color-slate-darker;
+    color: white;
+    .sq-icon {
+      color: white;
+    }
+  }
+  &--full-screen {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    max-width: 100%;
+    bottom: 0;
+    z-index: $z-index-level-topest;
+  }
+}

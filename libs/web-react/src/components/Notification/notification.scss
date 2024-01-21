@@ -1,0 +1,39 @@
+.sq-alert-notification {
+  position: absolute!important;
+  &--fixed {
+    position: fixed!important;
+  }
+  top: 10px;
+  left: 7%;
+  width: 86%;
+  @include b6-style();
+  @media screen and (min-width: $screen-md) {
+    @include b5-style();
+    left: 30%;
+    width: 40%;
+  }
+  text-align: center;
+  opacity: 0;
+  z-index: $z-index-level-top;
+  transition: all 1s ease;
+  &--active {
+    opacity: 1;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  &__text {
+    position: relative;
+    line-height: 24px;
+    display: inline-block;
+    padding-left: 32px;
+  }
+  &--no-icon {
+    .sq-alert-notification__text {
+      padding-left: 0;
+    }
+  }
+}

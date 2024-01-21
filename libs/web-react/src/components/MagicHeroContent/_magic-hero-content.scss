@@ -1,0 +1,46 @@
+.sq-magic-hero-content {
+  .reveal {
+    span {
+      position: relative;
+      display: block;
+    }
+    span:after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      background: white;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      transform-origin: 100% 0;
+    }
+  }
+
+  overflow: hidden;
+  .pin-container {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  .pin-container .panel {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+  
+  }
+
+  .panel {
+    &.primary {
+      background-color: $sq-color-primary-dark;
+    }
+    &.secondary {
+      background-color: $sq-color-secondary-dark;
+    }
+  }
+
+  &-pencil {
+  }
+}

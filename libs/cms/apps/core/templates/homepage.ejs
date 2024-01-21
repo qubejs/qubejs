@@ -1,0 +1,9 @@
+<div class="page page-homepage">
+  <% if (pageData.blocks) { for(var i=0; i < pageData.blocks.length; i++) { %>
+ <section>
+   <%- include('../components/'+pageData.blocks[i].component, {current:pageData.blocks[i]}) %>
+  </section>
+     
+  <% } } %>
+
+</div>

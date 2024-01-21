@@ -1,0 +1,38 @@
+.bg-gray-container {
+  background-color: $sq-color-muted-mild;
+}
+
+.bg-light-gray-container {
+  background-color: $sq-color-muted-lighter;
+}
+
+.tox-dialog {
+  z-index: $z-index-level-hightop !important;
+
+}
+
+.tox-tinymce-aux, .tox-dialog-wrap__backdrop {
+  z-index: $z-index-level-topest !important;
+}
+
+.tox-dialog__disable-scroll {
+  .MuiDialog-container {
+    display: none;
+  }
+}
+
+.re-dialog--standard-width {
+  .MuiDialog-paperWidthSm {
+    @media (min-width: $screen-xs) {
+      min-width: 50%;
+    }
+    @media (min-width: $screen-sm) {
+      min-width: 50%;
+    }
+  }
+
+  .MuiDialogActions-root {
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+}

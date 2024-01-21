@@ -1,0 +1,115 @@
+title: Sandbox Home
+template: apps/core/templates/page
+className: sq-content-page--full-width
+layout: apps/layouts/spa
+containerTemplate: Homepage
+hook:
+  load:
+reset:
+  type: clearAll
+merge:
+  currentError : .lastError.key
+items:
+  - component: Carousel
+    className: sq-home__carousel
+    carouselClassName: sq-home__carousel-1
+    template: full-bg
+    animation: fade
+    interval: 6000
+    items:
+     
+      - component: MagicHeroContent
+        content:
+          component: HeroContent
+          template: large-background
+          className: 
+          header: | 
+            <span> Welcome</span> <span> to Alpha Market</span>
+          background: /dam/alpha-market/imgs/home-bg.png
+          subHeader: |
+            Follow the experts with ease
+          headerTag: h1
+          classes:
+            innerWrapper: container-max
+            links: mb-xtrawide
+          links:
+            - buttonText: Login
+              type: Button
+              color: secondary
+              size: large
+              iconName: arrow-right
+              iconDirection: right
+              to: login
+            - buttonText: Dashboard
+              type: Button
+              color: secondary
+              size: large
+              iconName: arrow-right
+              iconDirection: right
+              to: dashboard
+
+        name: anim-home-1
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+  - component: Button
+    buttonText: Popup
+    actionType: popup-screen
+    params:
+      url: /ho/popup
+      title: Add New Plan
+      dialogProps:
+        className: sq-dialog--fixed-right
+  - component: TextWithImageTiles
+    header: Connecting Investors with Advisors
+    data:
+      - text: All SEBI-Registered experts under one roof
+        imageUrl: /dam/alpha-market/imgs/trading-03.svg
+
+      - text: A strategy to meet everybody’s style, Equities or F&O; Positional, intra-day or Swing Trading; Growth or Value etc.
+        imageUrl: /dam/alpha-market/imgs/trading-03.svg
+
+      - text: All SEBI-Registered experts under one roof
+        imageUrl: /dam/alpha-market/imgs/trading-03.svg
+
+  - component: HeaderWithTiles
+    header: A Strategy for your needs
+    data:
+      - text: Strategies on Call and Put Option for F&O Stocks
+        header: Futures & Options
+        imageUrl: /dam/alpha-market/imgs/trading-03.svg
+      - text: Daily trade calls with high accuracy
+        imageUrl: /dam/alpha-market/imgs/trading-02.svg
+        header: Intra-Day Trading
+      - text: Stocks with high growth potential
+        imageUrl: /dam/alpha-market/imgs/growth.svg
+        header: Growth Investing
+  - component: HeaderWithTiles
+    styleName: top-header
+    header: Workflow
+    data:
+      - text: Explore the strategies or advisors based on your investment style, theme and requirements
+        header: Explore
+        imageUrl: /dam/alpha-market/imgs/explore-img.svg
+      - text: Subscribe to the strategy and start investing or trading per the advise
+        imageUrl: /dam/alpha-market/imgs/invest-trade.svg
+        header: Intra-Day Trading
+      - text: Make changes to the portfolio and track the performance on the go
+        imageUrl: /dam/alpha-market/imgs/track-img.svg
+        header: Growth Investing
+  - component: Header
+    className: container-fluid container-max
+    header: Frequently Asked Questions

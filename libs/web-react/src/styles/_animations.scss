@@ -1,0 +1,32 @@
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 5px rgb(255, 251, 0); }
+  40% { box-shadow: 0 0 20px  rgb(255, 251, 0); }
+  60% { box-shadow: 0 0 20px  rgb(255, 251, 0); }
+  100% { box-shadow: 0 0 5px  rgb(255, 251, 0); }
+}
+
+
+@keyframes border-color {
+  0% { border-color: solid 2px red; }
+  40% { border-color: solid 2px orange; }
+  60% { border-color: solid 2px orange; }
+  100% { border-color: solid 2px red; }
+}
+
+@keyframes bg-color {
+  0% { background-color: solid 2px red; }
+  40% { background-color: solid 2px orange; }
+  60% { background-color: solid 2px orange; }
+  100% { background-color: solid 2px red; }
+}
+
+
+@keyframes fade-end {
+  0% {  opacity: 1;}
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: .7; }
+  100% { opacity: 0; }
+}
+

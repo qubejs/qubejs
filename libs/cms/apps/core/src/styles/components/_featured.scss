@@ -1,0 +1,17 @@
+.sq-cmp-featured {
+  margin: 20px 0;
+  &__background {
+    background-repeat: no-repeat;
+  }
+  &__column {
+    margin-bottom: 20px;
+    @media (min-width:$screen-md) {
+      margin-bottom: 0;
+    }
+  }
+  &__column-cnt {
+    padding: 20px 40px;
+    background: $white;
+    box-shadow:         3px 3px 10px 2px #ccc;
+  }
+}

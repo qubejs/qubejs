@@ -1,0 +1,9 @@
+title: Launched page
+template: apps/core/templates/page
+className: sq-page sq-sample
+layout: apps/crm/layouts/page-spa
+containerTemplate: Homepage
+container: DefaultContent
+items:
+    - header: Sample
+      component: HeroContent

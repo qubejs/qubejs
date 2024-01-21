@@ -1,0 +1,89 @@
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+  margin-top: 0px;
+  margin-bottom: 16px;
+}
+
+h1 {
+  @include t2-style();
+  @media screen and (min-width:$screen-md) {
+    @include t1-style();
+  }
+} 
+h2 {
+  @include t3-style();
+  @media screen and (min-width:$screen-md) {
+    @include t2-style();
+  }
+}
+h3 {
+  @include t4-style();
+  @media screen and (min-width:$screen-md) {
+    @include t3-style();
+  }
+}
+
+
+p {
+  @include b5-style();
+  margin: 0 0 24px 0;
+}
+
+.body-5 {
+  @include b5-style();
+}
+.body-1 {
+  @include b1-style();
+}
+
+.body-2 {
+  @include b2-style();
+}
+.body-3 {
+  @include b3-style();
+}
+.body-4 {
+  @include b4-style();
+}
+.body-6 {
+  @include b6-style();
+}
+.title-5 {
+  @include t5-style();
+}
+.title-1 {
+  @include t1-style();
+}
+
+.title-2 {
+  @include t2-style();
+}
+.title-3 {
+  @include t3-style();
+}
+.title-4 {
+  @include t4-style();
+}
+.title-6 {
+  @include t6-style();
+}
+
+.jumbo-header {
+  @include jumbo-style();
+  @media screen and (min-width:$screen-md) {
+    @include large-style();
+  }
+}
+.large-header {
+  @include large-style();
+  @media screen and (min-width:$screen-md) {
+    @include big-style();
+  }
+}
+.big-header {
+  @include big-style();
+  @media screen and (min-width:$screen-md) {
+    @include t1-style();
+  }
+}

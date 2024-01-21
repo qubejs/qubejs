@@ -1,0 +1,18 @@
+title: Mock not found
+template: apps/core/templates/page
+className: sq-page sq-error-page
+layout: apps/crm/layouts/page-spa
+containerTemplate: Homepage
+container: DefaultContent
+items:
+    - eyebrow: 404 - Page not found
+      header: Sorry, unable to find page
+      subHeader: The page you are looking for doesn't exists
+      component: HeroContent
+      className: sq-hero-content--right-aligned sq-hero-content--image-on-top
+      imageUrl: /client/assets/svg/view.svg
+      links:
+        - buttonText: Back to home
+          type: Button
+          variant: outlined
+          to: seatBooking

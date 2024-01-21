@@ -1,0 +1,41 @@
+.sq-card-button {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  &__eyebrow {
+    padding-top: 24px;
+  }
+  &__header {
+    padding-top: 8px;
+    @include t3-style();
+    @media (min-width: $screen-md) {
+      @include t1-style();
+    }
+    text-align: center;
+  }
+  &__sub-header {
+    @include b6-style();
+    @media (min-width: $screen-md) {
+      @include b4-style();
+    }
+    text-align: center;
+    padding-top: 10px;
+  }
+  &__container {
+    border: solid 1px $sq-color-gray-light;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+  }
+  &--primary {
+    color: $sq-color-primary;
+  }
+  &--checked {
+    .sq-card-button__container {
+      border-color: $sq-color-primary;
+      background-color: $sq-color-primary;
+      color: white;
+    }
+  }
+}

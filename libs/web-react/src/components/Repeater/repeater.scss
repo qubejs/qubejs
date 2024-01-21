@@ -1,0 +1,28 @@
+.sq-repeater {
+  &__no-data-message {
+    padding: 20px;
+  }
+  &__group {
+    &--active {
+      .sq-repeater__group-body {
+        display: block;
+      }
+    }
+
+    &-header {
+      padding: 10px 0;
+      border-bottom: solid 1px $sq-color-gray-lightest;
+      &:hover {
+        background-color: $sq-color-gray-lightest;
+      }
+    }
+    &-body {
+      display: none;
+    }
+    &:last-child {
+      .sq-repeater-header {
+        border-bottom: none;
+      }
+    }
+  }
+}

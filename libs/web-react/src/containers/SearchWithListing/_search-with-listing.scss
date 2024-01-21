@@ -1,0 +1,64 @@
+.sq-search-with-listing {
+  .sq-content-page__body {
+    width: 100%;
+  }
+  &__quick {
+    .sq-form__field {
+      margin: 0;
+    }
+  }
+  &__search-bar {
+    padding: 40px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sq-input-field {
+      flex-grow: 1;
+      max-width: 400px;
+    }
+  }
+  &__results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.sq-search-result-template {
+  &.default {
+    position: relative;
+    width: 350px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border: solid 1px $sq-color-slate-lighter;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    .title {
+      @include text-ellipsis();
+    }
+    .description {
+      padding: 10px 20px;
+      min-height: 71px;
+      margin-bottom: 20px;
+      @include text-ellipsis(3);
+      overflow: hidden;
+    }
+    .top-header {
+      // background-color: $sq-color-slate-dark;
+      padding: 20px 20px 0 20px;
+      color: $sq-color-slate-dark;
+    }
+    .date-field {
+      position: absolute;
+      @include b6-style();
+      color: $sq-color-slate;
+      bottom: 10px;
+      right: 10px;
+    }
+    .open-link {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}

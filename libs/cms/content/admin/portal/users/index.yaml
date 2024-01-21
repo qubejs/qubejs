@@ -1,0 +1,17 @@
+title: Users
+template: apps/core/templates/page
+contentBodyClass: container-fluid container-ultrawide
+layout: apps/core/layouts/spa
+containerTemplate: AdminDashboard
+container: UsersList
+apiConfig:
+  getRoles:
+    url: /api/v1/admin/users/role
+fieldMapping:
+  emailId:
+    name: email
+  contactNumber:
+    name: phone
+  roleName:
+    name: roleCode
+  

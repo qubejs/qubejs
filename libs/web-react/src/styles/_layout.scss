@@ -1,0 +1,24 @@
+.view-form-container {
+  max-width: 400px;
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.sq-d-flex {
+  display: flex;
+  &__align {
+    &--center {
+      align-items: center;
+    }
+  }
+  &__grow {
+    &-yes {
+      flex-grow: 1;
+    }
+    &-no {
+      flex-grow: 0;
+    }
+  }
+}

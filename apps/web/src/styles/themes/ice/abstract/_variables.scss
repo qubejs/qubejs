@@ -1,0 +1,191 @@
+@import '@qubejs/web-react/src/styles/abstract/_variables.scss';
+$bootstrap-sass-asset-helper: false ;
+//
+// Variables
+// --------------------------------------------------
+$header-font-family: Montserrat,Helvetica,Arial,Lucida,sans-serif;
+$header-serif-font-family: Montserrat,Helvetica,Arial,Lucida,sans-serif;
+$paragraph-font-family: 'OpenSans', Arial;
+$text-font-family: 'OpenSans', Arial;
+//== Colors
+//
+
+// Colors for avatar background
+$color-avatar-1:#FFB900;
+$color-avatar-2:#D83B01;
+$color-avatar-3:#B50E0E;
+$color-avatar-4:#E81123;
+$color-avatar-5:#B4009E;
+$color-avatar-6:#5C2D91;
+$color-avatar-7:#0078D7;
+$color-avatar-8:#00B4FF;
+$color-avatar-9:#008272;
+$color-avatar-10:#107C10;
+
+
+
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base: #000 ;
+$gray-darker: lighten($gray-base, 13.5%) ; // #222
+$gray-dark: lighten($gray-base, 20%) ; // #333
+$gray: lighten($gray-base, 33.5%) ; // #555
+$gray-light: lighten($gray-base, 46.7%) ; // #777
+$gray-lighter: lighten($gray-base, 90.5%) ; // #eee
+$gray-lightest: lighten($gray-base, 95.5%) ; // #eee
+
+$brand-primary: #316cb4; // #337ab7
+$brand-secondary: #6e6e6e; // #337ab7
+$brand-success: #00a86c;
+$brand-info: #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger: #dc3545;
+
+// Colors
+$sq-color-primary: $brand-primary;
+$sq-color-primary-lightest: lighten($sq-color-primary, 45%);
+$sq-color-primary-lighter: lighten($sq-color-primary, 35%);
+$sq-color-primary-light: lighten($sq-color-primary, 25%);
+$sq-color-primary-medium: lighten($sq-color-primary, 13%);
+$sq-color-primary-dark: darken($sq-color-primary, 2%);
+$sq-color-primary-darker: darken($sq-color-primary, 5%);
+$sq-color-primary-darkest: darken($sq-color-primary, 10%);
+
+$sq-color-secondary: $brand-secondary;
+$sq-color-secondary-lightest: lighten($sq-color-secondary, 45%);
+$sq-color-secondary-lighter: lighten($sq-color-secondary, 35%);
+$sq-color-secondary-light: lighten($sq-color-secondary, 25%);
+$sq-color-secondary-medium: lighten($sq-color-secondary, 13%);
+$sq-color-secondary-dark: darken($sq-color-secondary, 2%);
+$sq-color-secondary-darker: darken($sq-color-secondary, 5%);
+$sq-color-secondary-darkest: darken($sq-color-secondary, 10%);
+
+$sq-color-muted: #90a4ae;
+$sq-color-muted-lightest: lighten($sq-color-muted, 45%);
+$sq-color-muted-lighter: lighten($sq-color-muted, 35%);
+$sq-color-muted-light: lighten($sq-color-muted, 23%);
+$sq-color-muted-medium: lighten($sq-color-muted, 14%);
+$sq-color-muted-dark: darken($sq-color-muted, 2%);
+$sq-color-muted-darker: darken($sq-color-muted, 5%);
+$sq-color-muted-darkest: darken($sq-color-muted, 10%);
+$sq-color-muted-zblack: #263238;
+$sq-color-muted-mild: #ebeff3;
+
+$sq-color-white: #fff;
+$sq-color-black: #000;
+
+
+$sq-color-gray: #728497;
+$sq-color-gray-lightest: lighten($sq-color-gray, 45%);
+$sq-color-gray-lighter: lighten($sq-color-gray, 30%);
+$sq-color-gray-light: lighten($sq-color-gray, 20%);
+$sq-color-gray-medium: lighten($sq-color-gray, 14%);
+$sq-color-gray-dark: darken($sq-color-gray, 2%);
+$sq-color-gray-darker: darken($sq-color-gray, 5%);
+$sq-color-gray-darkest: darken($sq-color-gray, 10%);
+
+$sq-color-purple: #4230A8;
+$sq-color-purple-lightest: #F1F0FA;
+$sq-color-purple-lighter: lighten($sq-color-purple, 35%);
+$sq-color-purple-light: lighten($sq-color-purple, 25%);
+$sq-color-purple-medium: lighten($sq-color-purple, 13%);
+$sq-color-purple-dark: darken($sq-color-purple, 2%);
+$sq-color-purple-darker: darken($sq-color-purple, 5%);
+$sq-color-purple-darkest: darken($sq-color-purple, 10%);
+
+$base-font-size:  $t5-font-size;
+
+$sq-color-booked-seat: #ffc49a;
+
+$sq-color-success-lightest: #EDFAF5;
+$sq-color-error-lightest: #FFF3F2;
+
+//** Global textual link color.
+$link-color:            $brand-primary;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 10%);
+//** Link hover decoration.
+$link-hover-decoration: none;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg: #fff;
+//** Global text color on `<body>`.
+$text-color: #0c1d2c;
+$sq-text-color: #0c1d2c;
+
+
+$container-dashboard-max-width: 1024px;
+$container-mobile-max-width: 667px;
+
+$re-left-navigation-bg-color: $sq-color-primary-darkest;
+$re-left-navigation-hover-color-bg: $sq-color-gray-lightest;
+$re-left-navigation-dot-bg-color: $sq-color-gray;
+$re-left-navigation-header-text-color: $sq-color-gray-dark;
+$re-left-navigation-icon-color:  $sq-color-gray-lightest;
+
+$re-white: #FFF;
+$re-card-border: #e4e7ed;
+$re-purple-20: #F1F0FA;
+$re-purple-80: #6554C0;
+$re-green-80: #19AB6D;
+$re-green-60: #32D38F;
+$re-green-20: #EDFAF5;
+$re-orange-80: #F47C04;
+$re-orange-60: #FFAC58;
+$re-orange-20: #FAF5F0;
+
+
+// the :export directive is the magic sauce for webpack
+:export {
+  brandPrimary: $sq-color-primary;
+  brandPrimaryDarker: $sq-color-primary-darker;
+  brandPrimaryDarkest: $sq-color-primary-darkest;
+  brandPrimaryLight: $sq-color-primary-light;
+  brandPrimaryLighter: $sq-color-primary-lighter;
+  brandPrimaryLightest: $sq-color-primary-lightest;
+  brandSecondary: $sq-color-secondary;
+  brandSecondaryDarker: $sq-color-secondary-darker;
+  brandSecondaryDark: $sq-color-secondary-dark;
+  brandSecondaryLight: $sq-color-secondary-light;
+  info: $sq-color-info;
+  infoDarker: $sq-color-info-darker;
+  warning: $sq-color-warning;
+  warningDarker: $sq-color-warning-darker;
+  successLighter: $sq-color-success-lighter;
+  success: $sq-color-success;
+  successDarker: $sq-color-success-darker;
+  error: $sq-color-error;
+  errorDarker: $sq-color-error-darker;
+  brandPrimaryLightest: $sq-color-primary-lightest;
+  mutedZBlack: $sq-color-muted-zblack;
+  mutedDarkest: $sq-color-muted-darkest;
+  lightOrange: $sq-color-booked-seat;
+  avatar: {
+    color1: $color-avatar-1;
+    color2: $color-avatar-2;
+    color3: $color-avatar-3;
+    color4: $color-avatar-4;
+    color5: $color-avatar-5;
+    color6: $color-avatar-6;
+    color7: $color-avatar-7;
+    color8: $color-avatar-8;
+    color9: $color-avatar-9;
+    color1: $color-avatar-10;
+  }
+}
+
+$t1-font-size: 43px;
+$t2-font-size: 36px;
+$t3-font-size: 22px;
+$t4-font-size: 16px;
+$t5-font-size: 14px;
+$t6-font-size: 12px;
+$t7-font-size: 10px;
+$t8-font-size: 8px;
+
+$screen-lxs: 576px;
+

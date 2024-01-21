@@ -1,0 +1,14 @@
+.sq-navigation {
+  width: 100%;
+  &__right-menu {
+    margin-right: 10px;
+  }
+  
+}
+.sq-global-navigation-drawer {
+  &__app-version {
+    @include b4-style();
+    padding: 15px;
+    color:$sq-color-gray;
+  }
+}

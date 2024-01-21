@@ -1,0 +1,48 @@
+.sq-content-doc {
+  &__name {
+    display: flex;
+    &-text {
+      flex-grow: 1;
+    }
+    .sq-content-doc__info-row-text {
+      color: $link-hover-color;
+      font-weight: 700;
+    }
+  }
+  &__navigation {
+    column-count: 3;
+  }
+  &__params {
+    &-name {
+      @include t4-style();
+    }
+  }
+  &__params,
+  &__info {
+    code {
+      padding: 4px;
+      background-color: $sq-color-muted-lightest;
+      margin-right: 5px;
+    }
+  }
+  &__info {
+    margin-bottom: 24px;
+
+    &-row {
+      display: flex;
+      margin-bottom: 8px;
+      align-items: center;
+      &-label {
+        @include t5-style();
+        flex-basis: 70px;
+      }
+      &-pre {
+        margin: 0;
+        display: inline-block;
+        font-family: Courier New;
+        padding: 5px;
+        background: #f2f2f2;
+      }
+    }
+  }
+}

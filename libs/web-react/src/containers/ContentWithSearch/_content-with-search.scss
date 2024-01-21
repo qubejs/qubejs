@@ -1,0 +1,30 @@
+.sq-search-content {
+  &__root {
+    margin-bottom: 76px;
+  }
+  &__left-nav {
+    margin-bottom: 24px;
+  }
+  &__content-header {
+    margin-bottom: 40px;
+  }
+  &__block {
+    margin-bottom: 40px;
+  }
+  &__block-header {
+    .sq-header__header {
+      @include t4-style();
+      background: $sq-color-gray-lightest;
+      padding: 16px 32px;
+      border-left: solid 5px $sq-color-secondary;
+    }
+    padding-bottom: 20px;
+  }
+  &__nav-block {
+    padding: 5px 0px;
+    color: $link-color;
+    margin-bottom: 8px;
+    @include t4-style();
+    cursor: pointer;
+  }
+}

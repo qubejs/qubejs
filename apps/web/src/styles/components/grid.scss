@@ -1,0 +1,241 @@
+.re-grid {
+  .sq-grid__body {
+    background-color: white;
+  }
+
+  .sq-grid__header {
+    @include header-font();
+
+    &-row {
+      &-cell {
+        &-text {
+          @include text-ellipsis($lines: 1);
+        }
+      }
+    }
+  }
+
+  .sq-grid__body {
+    .sq-grid__row {
+      min-height: 48px;
+    }
+  }
+
+  &--wide {
+    .sq-grid__body {
+      .sq-grid__row {
+        min-height: 60px;
+      }
+    }
+  }
+
+  &--no-background{
+    .sq-grid {
+      &__body{
+        background-color: transparent;
+      }
+      &__cell{
+        background-color: transparent;
+        border: none;
+      }
+      &__header-row-cell{
+        background-color: transparent !important;
+      }
+      &__header-row-cell-wrapper{
+        border: none;
+      }
+      &__data-cell{
+        border-bottom: none !important;
+      }
+      &__top-bar{
+        display: none;
+      }
+    }
+  }
+
+  &.sq-grid {
+    .sq-grid__header-row:first-child {
+      border-top-left-radius: 5px;
+    }
+
+    .sq-grid__header-row-cell {
+      background-color: #F1F0FA;
+
+      &.sort-enable:hover {
+        .sq-grid__header-row-cell-wrapper {
+          background-color: #e1e0f0;
+          border-right: solid 2px #b3b1d0;
+
+        }
+      }
+    }
+
+    &.sq-grid--has-action {
+      .sq-grid__body {
+        .sq-grid__row.hover {
+          .sq-grid__data-cell {
+            background-color: #E5F3FF;
+          }
+        }
+      }
+    }
+
+    .center-align {
+      justify-content: center;
+
+      .sq-actions {
+        width: auto;
+      }
+    }
+
+    .col-title {
+      flex-basis: 40%;
+      min-width: 40%;
+      flex-grow: 0;
+      justify-content: flex-start;
+      overflow: hidden;
+
+      .sq-text {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .col-small {
+      flex-basis: 100px;
+      min-width: 100px;
+      flex-grow: 0;
+      justify-content: flex-start;
+    }
+
+    .col-medium {
+      flex-basis: 170px;
+      min-width: 170px;
+      flex-grow: 0;
+      justify-content: flex-start;
+    }
+
+    .col-ellipsis {
+      justify-content: flex-start;
+      overflow: hidden;
+
+      .sq-text {
+        display: block;
+        @include text-ellipsis($lines: 1);
+      }
+    }
+
+    .col-large {
+      flex-basis: 240px;
+      min-width: 240px;
+      flex-grow: 0;
+      justify-content: flex-start;
+    }
+
+    .col-large-grow {
+      flex-basis: 240px;
+      min-width: 240px;
+      justify-content: flex-start;
+      flex-grow: 1;
+    }
+
+    .col-initial {
+      flex-grow: 1;
+      flex-basis: 40%;
+      min-width: 40%;
+      justify-content: flex-start;
+    }
+
+    .col-icon {
+      flex-basis: 60px;
+      min-width: 60px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      justify-content: center;
+
+      &.sq-grid__data-cell {
+        padding: 0 10px !important;
+      }
+    }
+
+    .col-actions {
+      flex-basis: 90px;
+      min-width: 90px;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      &.sq-grid__data-cell {
+        padding: 0 4px;
+      }
+    }
+
+    .col-actions-medium {
+      flex-basis: 140px;
+      min-width: 140px;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      &.sq-grid__data-cell {
+        padding: 0 4px;
+      }
+    }
+
+    .col-actions-large {
+      flex-basis: 190px;
+      min-width: 190px;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      &.sq-grid__data-cell {
+        padding: 0 4px;
+      }
+    }
+    .col-actions-large-grow {
+      flex-basis: 190px;
+      min-width: 190px;
+      flex-grow: 1;
+      flex-shrink: 0;
+      &.sq-grid__data-cell {
+        padding: 5px 5px;
+      }
+    }
+
+
+    .sq-grid__data-cell {
+      .sq-text {
+        @include text-ellipsis($lines: 2);
+      }
+    }
+  }
+
+  &--rounded {
+    .sq-grid__root {
+      border: 1px solid $re-card-border;
+      border-radius: 8px;
+    }
+
+    &.sq-grid {
+      .sq-grid__header-row-cell {
+        border: none;
+      }
+    }
+  }
+
+  &--without-spacer {
+    .sq-grid__header-row-cell--spacer {
+      flex-basis: 0 !important;
+      flex-grow: 0 !important;
+      min-width: 0 !important;
+    }
+  }
+}
+
+.content_upload_grid {
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.content_upload_grid .sq-grid__row {
+  display: block;
+}

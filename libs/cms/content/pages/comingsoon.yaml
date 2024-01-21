@@ -1,0 +1,10 @@
+title: Coming soon
+template: apps/core/templates/page
+class: sq-page-comingsoon
+layout: apps/core/layouts/default
+blocks:
+    - title: Coming soon
+      description: This page will be available soon
+      component: call-to-action
+      variant: type3
+      class: sq-text-center

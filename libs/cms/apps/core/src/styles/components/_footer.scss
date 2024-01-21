@@ -1,0 +1,13 @@
+.sq-footer {
+  &__block {
+    margin-bottom: 2em;
+    &-label {
+      color:$sq-color-primary;
+      margin-bottom: 20px;
+    }
+  }
+
+  &--dark {
+    background:$gray-800;
+  }
+}

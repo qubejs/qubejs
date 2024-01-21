@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": false,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@qubejs/cms": ["libs/cms/src/index.ts"],
+      "@qubejs/core": ["libs/core/src/index.ts"],
+      "@qubejs/scripts": ["libs/scripts/src/index.ts"],
+      "@qubejs/ui-material": ["libs/ui-material/src/index.ts"],
+      "@qubejs/web-react": ["libs/web-react/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp", "!react-dnd", "!react-dnd-html5-backend"]
+}

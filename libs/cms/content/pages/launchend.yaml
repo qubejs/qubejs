@@ -1,0 +1,10 @@
+title: Launch Ended
+template: apps/core/templates/page
+class: sq-page-comingsoon
+layout: apps/core/layouts/default
+blocks:
+    - title: We're sorry
+      description: Sorry to say we're closed now. See you next time.
+      component: call-to-action
+      variant: type3
+      class: sq-text-center
