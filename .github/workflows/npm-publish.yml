@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 18
       - run: npm install --legacy-peer-deps
-      - run: npx nx run-many -t test
+      - run: npx nx run-many -t test --codeCoverage -p core cms scripts web-react
 
   publish-npm:
     needs: build
