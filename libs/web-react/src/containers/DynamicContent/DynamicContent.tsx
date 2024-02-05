@@ -296,6 +296,9 @@ class DynamicContent extends Component {
     this.props.contentActions.mergeUserData(this.state.pageData.pageData.merge);
     window.setTimeout(() => {
       onContentChange && onContentChange(processParams(this.props.store.content.userData, contentParams));
+      if (field.changeAction) {
+        this.onAction({ value: currentValue }, field.changeAction, block);
+      }
     }, 300);
   }
 

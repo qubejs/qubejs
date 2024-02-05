@@ -64,9 +64,6 @@ const SQAutocomplete = ({
         value: multiple ? [...fixedOptions.map((i) => i[valueField]), ...parkValue.filter((option) => fixedOptions.indexOf(option) === -1).map((i) => i[valueField])] : parkValue && parkValue[valueField],
         options,
       });
-    if (rest.changeAction && onAction) {
-      onAction({ value: inputValue }, rest.changeAction);
-    }
   };
 
   const handleBlur = () => {

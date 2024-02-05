@@ -32,6 +32,6 @@ jobs:
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
           echo "Token for test ${{secrets.NPM_TOKEN}}"
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-      - run: npx nx run-many -t publish --args="--ver=${{  github.ref_name }} --tag=latest"
+      - run: npx nx run-many -t publish --args="--ver=${{  github.ref_name }} --tag=next"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
