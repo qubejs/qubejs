@@ -59,7 +59,7 @@ const GridCell = ({ column = {}, row, value, onChange, style, onClick, onAction,
     customValue = render(value, column, row);
   }
   const formatters = getFormatters();
-  const newValue = (type && formatters[type] && formatters[type](customValue, restFormatter)) || customValue;
+  const newValue = (type && formatters[type] && formatters[type](customValue, restFormatter, row, { column })) || customValue;
   const { title, ...tooltipProps } = tooltip;
   const finalValTitle = getValue(this, title, row);
   return (
