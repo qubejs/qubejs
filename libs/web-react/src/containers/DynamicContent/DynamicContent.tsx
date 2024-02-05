@@ -242,7 +242,10 @@ class DynamicContent extends Component {
     }
   }
 
-  onChange(value, field, block) {
+  async onChange(value, field, block) {
+    if (field.beforeChangeAction) {
+      await this.onAction({ }, field.beforeChangeAction, block);
+    }
     const { onContentChange, contentParams } = this.props;
     let obj = {};
     block = field?.block ? field.block : block;
