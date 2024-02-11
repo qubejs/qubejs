@@ -13,6 +13,13 @@ let CODES = {
   NOT_FOUND: 404,
 };
 
+let TIMEOUT = 1000 * 60 * 5;
+
+const setApiTimeout = (timeout) => {
+  TIMEOUT = timeout;
+};
+
+
 const setErrorCodes = (newCodes) => {
   CODES = {
     ...CODES,
@@ -97,6 +104,7 @@ export class ApiBridge {
           ...this.getCustomHeaders(),
           ...headers,
         },
+        signal: AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -129,6 +137,7 @@ export class ApiBridge {
           ...headers,
         },
         body,
+        signal: AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -156,6 +165,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
+        signal: AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
