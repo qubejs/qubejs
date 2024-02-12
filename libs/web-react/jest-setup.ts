@@ -51,3 +51,11 @@ Object.defineProperty(window.document, 'cookie', {
   set: (v) => (__cookies = v),
   split: (s) => __cookies.split(s),
 });
+
+if (!AbortSignal.timeout) {
+  AbortSignal.timeout = (ms) => {
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(new DOMException("TimeoutError")), ms);
+    return controller.signal;
+  };
+}
