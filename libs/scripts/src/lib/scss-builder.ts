@@ -32,7 +32,7 @@ class ScssBuildProcess extends FileCopier {
       );
       fs.writeFileSync(
         `${this.config.webSrc}${this.config.targetFolder}/${folProcess}.scss`,
-        output
+        output || ''
       );
     });
     console.log(chalk.cyan('-> build scss done'));
