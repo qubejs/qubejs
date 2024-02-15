@@ -193,6 +193,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
+        signal: AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -220,6 +221,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
+        signal: AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -247,6 +249,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
+        signal: AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -398,4 +401,4 @@ export class ApiBridge {
 }
 
 export default new ApiBridge();
-export { setErrorCodes, getParsers, addParsers };
+export { setErrorCodes, getParsers, addParsers, setApiTimeout };
