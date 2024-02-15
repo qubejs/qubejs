@@ -8,8 +8,8 @@ Core framework for web, plugin, cms &amp; nodejs server
 
 ## Demos
 
-- **Basic demo**: https://www.qubejs.com/content/in/examples/basic
-- **Full list**: https://www.qubejs.com/content/in/examples/special
+- **Basic demo**: https://qubejs.com/content/en/qubejs/docs/intro
+- **Full list**: https://qubejs.com/content/en/qubejs/examples
 
 
 ## Issues Report
