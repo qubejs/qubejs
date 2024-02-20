@@ -42,6 +42,7 @@ const SQAutocomplete = ({
   const [inputValue, setInputValue] = useState('');
   const [currentValue, setCurrentValue] = useState(multiple ? [] : null);
   const [finalOptions, setFinalOptions] = useState([]);
+  const [timer, setTimer] = useState(null);
   const handleChange = (e, _value) => {
     setCurrentValue(_value);
     let parkValue = _value;
@@ -155,18 +156,25 @@ const SQAutocomplete = ({
         value={currentValue}
         onInputChange={(event, newInputValue, reason, test) => {
           setInputValue(newInputValue);
-          if (rest.typeAction && newInputValue?.length >= minTypeLength && onAction) {
-            onAction(
-              {},
-              {
-                actionType: 'user-store',
-                params: { currentText: newInputValue },
-              }
-            );
-            if (reason !== 'reset' && rest.typeAction && onAction) {
-              onAction({ value: newInputValue }, rest.typeAction);
-            }
+          if (timer) {
+            clearTimeout(timer);
+            setTimer(null);
           }
+          setTimer(setTimeout(() => {
+            if (rest.typeAction && newInputValue?.length >= minTypeLength && onAction) {
+              onAction(
+                {},
+                {
+                  actionType: 'user-store',
+                  params: { currentText: newInputValue },
+                }
+              );
+              if (reason !== 'reset' && rest.typeAction && onAction) {
+                onAction({ value: newInputValue }, rest.typeAction);
+              }
+            }
+            setTimer(null);
+          }, 400));
         }}
         renderInput={(params) => {
           return <TextField inputRef={inputEl} {...params} inputProps={{ ...params.inputProps, 'aria-describedby': identifier }} variant={inputVariant} error={error} className={inputClassName} label={label} />;
