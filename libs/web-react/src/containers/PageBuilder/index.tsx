@@ -383,7 +383,7 @@ class PageBuilder extends Component {
 
   render() {
     const { className = '', pageData, store } = this.props;
-    const compList = {...utils.storage.dynamicComponents.get(), ...utils.storage.pageBuilder.get()};
+    const compList = {...utils.storage.dynamicComponents.get()};
     return (
       <div
         className={`sq-page-builder sq-v-screen sq-v-screen--fixed ${className}`}
