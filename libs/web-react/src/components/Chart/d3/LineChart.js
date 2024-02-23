@@ -45,7 +45,7 @@ class LineChart extends BaseChart {
     const d3 = this.d3;
     const vis = this;
     const element = this.element;
-    var { xValue, margin, series = [], colorSet, yAxis = {}, xAxis = {}, tooltip = {}, legendLabelWidth = 100 } = this.config;
+    var { xValue, margin, series = [], colorSet, yAxis = {}, xAxis = {}, tooltip = {}, legendLabelWidth = 100, botMargin = .05, valMargin = 100 } = this.config;
     const { type: xAxisDataType } = xAxis;
     const { format: yAxisFormatter } = yAxis;
     const { formatter: tooltipFormatter = (v) => v } = tooltip;
@@ -60,16 +60,19 @@ class LineChart extends BaseChart {
       };
     });
     let allValues = this.getValuesFromSeries(vis.data);
-
     vis.x.domain(d3.extent(vis.data, (d) => d[xValue]));
-    vis.y.domain([d3.min(allValues, (d) => d) / 1.005, d3.max(allValues, (d) => d) * 1.005]);
+    let minVal = (d3.min(allValues, (d) => d)) - valMargin;
+    let maxValue = (d3.max(allValues, (d) => d)) + valMargin;
+    const perValue = (maxValue - minVal) * botMargin;
+    vis.y.domain([minVal - perValue, maxValue + perValue ]);
 
     vis.svg.attr('class', 'chart-svg').attr('width', width).attr('height', height);
     vis.g.attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     vis.xAxis.attr('transform', `translate(0, ${innerHeight})`);
     // update axes
-    vis.xAxisCall.scale(vis.x);
+    const ticks = width / 100;
+    vis.xAxisCall.scale(vis.x).ticks(ticks < vis.data.length ? ticks : vis.data.length);
     vis.xAxis.transition(vis.t).call(vis.xAxisCall);
     vis.yAxisCall.scale(vis.y);
     vis.yAxis.transition(vis.t).call(vis.yAxisCall.tickFormat(yAxisFormatter));
@@ -102,20 +105,22 @@ class LineChart extends BaseChart {
       const x0 = vis.x.invert(d3.pointer(e)[0]);
       const i = vis.bisectDate(vis.data, x0, 1);
       const d0 = vis.data[i > 0 ? i - 1 : 0];
-      const d1 = vis.data[i >= vis.data.length ? vis.data.length - 1 : i];
-      const d = x0 - d0[xValue] > d1[xValue] - x0 ? d1 : d0;
-      vis.focus.main.attr('transform', `translate(${vis.x(d[xValue])},0 )`);
-      vis.focus.main.select('.x-hover-line').attr('y2', innerHeight);
-      const tooltip = d3.select(vis.element).select('.sq-chart-d-tooltip');
-      tooltip.html(tooltipFormatter(e, d, series));
-      tooltip.style('left', `${vis.x(d[xValue])}px`);
-      tooltip.style('opacity', `1`);
-      tooltip.style('top', `0px`);
-      series.forEach((ser) => {
-        vis.focus[ser.name].select('circle').attr('cy', vis.y(d[ser.yValue]));
-        vis.focus[ser.name].select('text').attr('y', vis.y(d[ser.yValue]));
-        vis.focus[ser.name].select('text').html(tooltipFormatter(d[ser.yValue], d));
-      });
+      if (d0) {
+        const d1 = vis.data[i >= vis.data.length ? vis.data.length - 1 : i];
+        const d = x0 - d0[xValue] > d1[xValue] - x0 ? d1 : d0;
+        vis.focus.main.attr('transform', `translate(${vis.x(d[xValue])},0 )`);
+        vis.focus.main.select('.x-hover-line').attr('y2', innerHeight);
+        const tooltip = d3.select(vis.element).select('.sq-chart-d-tooltip');
+        tooltip.html(tooltipFormatter(e, d, series));
+        tooltip.style('left', `${vis.x(d[xValue])}px`);
+        tooltip.style('opacity', `1`);
+        tooltip.style('top', `0px`);
+        series.forEach((ser) => {
+          vis.focus[ser.name].select('circle').attr('cy', vis.y(d[ser.yValue]));
+          vis.focus[ser.name].select('text').attr('y', vis.y(d[ser.yValue]));
+          vis.focus[ser.name].select('text').html(tooltipFormatter(d[ser.yValue], d));
+        });
+      }
     }
 
     /******************************** Legend Code ********************************/
