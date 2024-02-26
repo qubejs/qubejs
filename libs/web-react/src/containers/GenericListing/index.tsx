@@ -321,7 +321,7 @@ class GenericListing extends Component {
     this.props.raiseAction(stopLoading());
   }
   async handleAction(data, action) {
-    const { onAction } = this.props;
+    const { onAction, userData } = this.props;
     switch (action.actionType) {
       case 'edit-cols':
         this.setState({
@@ -332,6 +332,7 @@ class GenericListing extends Component {
         this.setState({
           showFilter: true,
         });
+        this.setState({ __currentFilter: userData[this.getKey('currentFilter')] });
         break;
       default:
         if (action.actionType) {
