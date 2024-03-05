@@ -4,10 +4,11 @@ import BaseContainer from '../../containers/BaseContainer';
 import config from '../../admin.config';
 import { setUrlMapping } from '../../utils/redirect';
 import { addValidator } from '../../utils/validator';
+
 setUrlMapping(config.urlMapping);
 
 addValidator('hasAdminMatchingUrl', (value, { setName }) => {
-  let currentUrl = window.location.pathname;
+  const currentUrl = window.location.pathname;
   let isAllowed = false;
   config.urls[setName]?.forEach((item) => {
     if (new RegExp(item).test(currentUrl)) {

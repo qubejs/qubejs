@@ -1,10 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-// import GlobalNavigation from '../../components/ui/GlobalNavigation';
-// import Footer from '../../components/ui/Footer';
 import BaseContainer from '../../containers/BaseContainer';
+import { storage } from '../../utils';
 import './_admin-plain.scss';
-import Icon from '../../components/Icon';
+
 class AdminPlainPage extends BaseContainer {
   props:any;
   state:any;
@@ -15,6 +13,7 @@ class AdminPlainPage extends BaseContainer {
   render() {
     const { children, pageData = {}, data = {}, store } = this.props;
     const { metaData = {}, siteMap = {} } = data;
+    const { Icon } = storage.components.get();
     return (
       <div className={`sq-admin-plain ${pageData.className || ''}`}>
         <div

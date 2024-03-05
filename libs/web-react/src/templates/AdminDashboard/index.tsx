@@ -1,20 +1,15 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as utils from '../../utils';
-import './_admin-dashboard.scss';
-import Icon from '../../components/Icon';
-import LeftNavigation from '../../components/LeftNavigation';
-import UserMenu from '../../components/UserMenu';
-import BreadCrumb from '../../components/BreadCrumb';
 import ErrorBoundry from '../../components/ErrorBoundry';
 import AdminContainer from '../AdminContainer';
-import { clearUser, hasPermission } from '../../redux/authentication';
+import { clearUser } from '../../redux/authentication';
 
-// const { Link, Icon, LinkButton } = root;
+import './_admin-dashboard.scss';
+
 class AdminDashboard extends AdminContainer {
   props: any;
   state: any;
-  static propTypes:any;
+  static propTypes: any;
   constructor(props) {
     super(props);
     this.state = {
@@ -24,8 +19,6 @@ class AdminDashboard extends AdminContainer {
     this.onUserMenuAction = this.onUserMenuAction.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
   }
-
-  
 
   onMenuItemClick(item) {
     const { onAnalytics } = this.props;
@@ -68,7 +61,14 @@ class AdminDashboard extends AdminContainer {
   }
 
   render() {
-    const { children, appBarColor = 'default', location, userData } = this.props;
+    const {
+      children,
+      appBarColor = 'default',
+      location,
+      userData,
+    } = this.props;
+    const { Icon, LeftNavigation, UserMenu, BreadCrumb } =
+      utils.storage.components.get();
     const { data = {}, store } = this.props;
     const { pageData = {}, metaData = {}, siteMap = {} } = data;
     const { templateClasses = {} } = pageData;
@@ -113,17 +113,38 @@ class AdminDashboard extends AdminContainer {
           }`}
         >
           <header className={`sq-template__header ${appBarColor}`}>
-              <div className="sq-template__header-text">
-                
-                <div className="sq-template-menu-trigger">
-                  <Icon name="Menu" size="medium" variant='primary' onClick={this.toggleMenu} />
-                </div>
-                {logo.topName && <Icon name={logo.topName}  className='sq-template-menu-logo' size="wide" />}
-                {logo.topImage && <img className='sq-template-menu-logo-img' src={logo.topImage} alt={logo.topImageAlt} />}
-                <div className="sq-template-menu-logo">
-                </div>
+            <div className="sq-template__header-text">
+              <div className="sq-template-menu-trigger">
+                <Icon
+                  name="Menu"
+                  size="medium"
+                  variant="primary"
+                  onClick={this.toggleMenu}
+                />
               </div>
-              {store.authentication.currentUser && <UserMenu user={store.authentication.currentUser} onAction={this.onUserMenuAction} listOfActions={listOfActions} />}
+              {logo.topName && (
+                <Icon
+                  name={logo.topName}
+                  className="sq-template-menu-logo"
+                  size="wide"
+                />
+              )}
+              {logo.topImage && (
+                <img
+                  className="sq-template-menu-logo-img"
+                  src={logo.topImage}
+                  alt={logo.topImageAlt}
+                />
+              )}
+              <div className="sq-template-menu-logo"></div>
+            </div>
+            {store.authentication.currentUser && (
+              <UserMenu
+                user={store.authentication.currentUser}
+                onAction={this.onUserMenuAction}
+                listOfActions={listOfActions}
+              />
+            )}
           </header>
           <div className="admin-app-template__main">
             <div className="admin-app-template__left-nav">
@@ -131,7 +152,11 @@ class AdminDashboard extends AdminContainer {
                 logo={logo}
                 onCloseDrawer={this.toggleMenu}
                 openDrawer={this.state.openDrawer}
-                items={currentUser ? siteMap.siteMap.globalNavigationLoggedIn.navigation : siteMap.siteMap.globalNavigation.navigation}
+                items={
+                  currentUser
+                    ? siteMap.siteMap.globalNavigationLoggedIn.navigation
+                    : siteMap.siteMap.globalNavigation.navigation
+                }
                 roles={[]}
                 permissions={store.authentication.currentUser?.permissions}
                 className={'sq-left-navigation--compact'}
@@ -142,7 +167,6 @@ class AdminDashboard extends AdminContainer {
               <div
                 className={`sq-content-page sq-template sq-template--100-h sq-template--flex-page sq-template--dashobard sq-content-page--top-0`}
               >
-               
                 <section className="sq-template__sub-header">
                   <BreadCrumb
                     navigation={
@@ -169,7 +193,6 @@ class AdminDashboard extends AdminContainer {
               </div>
             </div>
           </div>
-          
         </div>
       </>
     );
