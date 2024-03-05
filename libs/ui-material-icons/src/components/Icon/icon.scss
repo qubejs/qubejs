@@ -1,0 +1,250 @@
+.sq-icon {
+  svg {
+    width: 100%;
+    height: 100%;
+    float: left;
+  }
+  img {
+    height: 100%;
+  }
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  @include b4-style();
+  text-align: center;
+  &--wide {
+    width: 100px;
+    height: 40px;
+  }
+
+  &--text-icon {
+    background-color: currentColor;
+    border-radius: 50%;
+    padding: 5px;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sq-icon__text {
+      color: $sq-color-white;
+      text-transform: uppercase;
+    }
+  }
+  &--bg-icon {
+    background-color: $sq-color-gray-lightest;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    &.sq-icon--text-icon .sq-icon__text {
+      color: $sq-color-primary;
+    }
+  }
+  &--bg-big {
+    background-color: $sq-color-gray-lightest;
+    border-radius: 50%;
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    &.sq-icon--text-icon .sq-icon__text {
+      color: $sq-color-primary;
+    }
+  }
+  &--outline-icon {
+    border:solid 1px currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    padding: 5px;
+    line-height: 22px;
+    .sq-icon__text, svg {
+      color: currentColor;
+      text-transform: uppercase;
+    }
+  }
+  &--contained {
+    background-color: currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    svg {
+      color: $sq-color-white;
+    }
+  }
+
+  &--xs {
+    width: 14px;
+    height: 14px;
+    @include b7-style();
+  }
+  &--small {
+    width: 16px;
+    height: 16px;
+    @include b6-style();
+  }
+  &--medium {
+    width: 32px;
+    height: 32px;
+    @include b5-style();
+  }
+  &--large {
+    width: 36px;
+    height: 36px;
+    @include b3-style();
+  }
+  &--xl {
+    width: 42px;
+    height: 42px;
+    @include b2-style();
+  }
+  &--xxl {
+    width: 50px;
+    height: 50px;
+    @include b1-style();
+  }
+  &--auto {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  &--xxxl {
+    font-size: 50px;
+    width: 158px;
+    height: 158px;
+  }
+  &--full {
+    width: 100px;
+    height: 100px;
+  }
+
+  &--square {
+    border-radius: 5px;
+  }
+
+  &--primary {
+    color: $sq-color-primary;
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--extra1 {
+    color: $sq-color-extra1;
+  }
+  &--secondary {
+    color: $sq-color-secondary;
+  }
+  color: currentColor;
+  &--default {
+    color: $sq-color-muted;
+  }
+  &--white {
+    color: $sq-color-slate-lightest;
+  }
+  &--muted-light {
+    color: $sq-color-muted-light;
+  }
+  &--invert {
+    color: $sq-color-white;
+  }
+  &--info {
+    color: $sq-color-info;
+  }
+  &--warning {
+    color: $sq-color-warning;
+  }
+  &--error {
+    color: $sq-color-error;
+  }
+  &--error-light {
+    color: $sq-color-error-light;
+  }
+  &--success {
+    color: $sq-color-success;
+  }
+  &--success-light {
+    color: $sq-color-success-light;
+  }
+  &--success-dark {
+    color: $sq-color-success-dark;
+  }
+  &--blue {
+    color: $sq-color-extra-blue;
+  }
+  &--blue-dark {
+    color: $sq-color-extra-blue-dark;
+  }
+  &--yellow {
+    color: $sq-color-extra-yellow;
+  }
+  &--yellow-dark {
+    color: $sq-color-extra-yellow-dark;
+  }
+  &--red {
+    color: $sq-color-extra-red;
+  }
+  &--red-dark {
+    color: $sq-color-extra-red-dark;
+  }
+  &--green {
+    color: $sq-color-extra-green;
+  }
+  &--green-dark {
+    color: $sq-color-extra-green-dark;
+  }
+  &--pink {
+    color: $sq-color-extra-pink;
+  }
+  &--pink-dark {
+    color: $sq-color-extra-pink-dark;
+  }
+  &--purple {
+    color: $sq-color-extra-purple;
+  }
+  &--purple-dark {
+    color: $sq-color-extra-purple-dark;
+  }
+}
+
+.sq-icon.sq-icon {
+ 
+  &--accent-1 {
+    color: $accent-color-1-base;
+    .sq-icon__text {
+      color: $accent-color-1-top-color;
+    }
+  }
+  &--accent-2 {
+    color: $accent-color-2-base;
+    .sq-icon__text {
+      color: $accent-color-2-top-color;
+    }
+  }
+  &--accent-3 {
+    color: $accent-color-3-base;
+    .sq-icon__text {
+      color: $accent-color-3-top-color;
+    }
+  }
+  &--accent-4 {
+    color: $accent-color-4-base;
+    .sq-icon__text {
+      color: $accent-color-4-top-color;
+    }
+  }
+  &--accent-5 {
+    color: $accent-color-5-base;
+    .sq-icon__text {
+      color: $accent-color-5-top-color;
+    }
+  }
+}

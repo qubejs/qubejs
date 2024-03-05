@@ -51,7 +51,6 @@ export { default as ErrorBoundry } from './ErrorBoundry';
 // export { default as HeaderWithTiles } from './HeaderWithTiles';
 // export { default as HeroContent } from './HeroContent';
 // export { default as HTML } from './HTML';
-export { default as Icon } from './Icon';
 // export { default as IconButton } from './IconButton';
 // export { default as IconCalendar } from './IconCalendar';
 // export { default as IconSelector } from './IconSelector';

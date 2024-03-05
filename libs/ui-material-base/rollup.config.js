@@ -5,8 +5,6 @@ const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 
 module.exports = (config) => {
   const originalConfig = nrwlConfig(config);
-  console.log(originalConfig);
-  // console.log(originalConfig);
   const postCss = originalConfig.plugins.filter((i) => i.name === 'postcss')[0];
   originalConfig.plugins.splice(originalConfig.plugins.indexOf(postCss), 1);
   // originalConfig.output.preserveModules = true;
