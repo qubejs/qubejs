@@ -1062,7 +1062,7 @@ return (
     </React.Suspense>
 );
 };
-const componentsSend = {
+const components = {
   Actions,
   Alert,
   AutoCompleteValue,
@@ -1183,4 +1183,4 @@ const componentsSend = {
   UserMenu,
   Wrapper,
 };
-export default componentsSend;
+export { components };

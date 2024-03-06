@@ -37,7 +37,15 @@
         "project": "libs/ui-material-base/package.json",
         "entryFile": "libs/ui-material-base/src/index.ts",
         "additionalEntryPoints": [
-          "libs/ui-material-base/src/components.lazy.tsx"
+          "libs/ui-material-base/src/components.lazy.tsx",
+          "libs/ui-material-base/src/advanced.tsx",
+          "libs/ui-material-base/src/basic.tsx",
+          "libs/ui-material-base/src/content.tsx",
+          "libs/ui-material-base/src/data.tsx",
+          "libs/ui-material-base/src/editing.tsx",
+          "libs/ui-material-base/src/files.tsx",
+          "libs/ui-material-base/src/visualization.tsx"
+
         ],
         "generateExportsField": true,
         "external": [

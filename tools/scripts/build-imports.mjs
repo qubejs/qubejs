@@ -120,7 +120,7 @@ function createExport(
   if (fs.lstatSync(source).isDirectory()) {
     files = fs.readdirSync(source);
     if (files.length > 0) {
-      imports.push(`const componentsSend = {`);
+      imports.push(`const components = {`);
     }
     files.forEach(function (file) {
       var curSource = path.join(source, file);
@@ -135,7 +135,7 @@ function createExport(
     });
     if (files.length > 0) {
       imports.push(`};
-export default componentsSend;`);
+export { components };`);
     }
   }
   return imports.join('\n');
