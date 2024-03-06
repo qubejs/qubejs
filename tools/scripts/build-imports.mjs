@@ -130,7 +130,6 @@ function createExport(
       ) {
         const ComponentName = path.relative(resolveApp(source), curSource);
         imports.push(`  ${ComponentName},`);
-        console.log(path.relative(resolveApp(process.argv[2]), curSource));
       }
     });
     if (files.length > 0) {

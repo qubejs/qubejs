@@ -44,10 +44,9 @@
           "libs/ui-material-base/src/data.tsx",
           "libs/ui-material-base/src/editing.tsx",
           "libs/ui-material-base/src/files.tsx",
+          "libs/ui-material-base/src/theme.tsx",
           "libs/ui-material-base/src/visualization.tsx"
-
         ],
-        "generateExportsField": true,
         "external": [
           "react",
           "react-dom",
