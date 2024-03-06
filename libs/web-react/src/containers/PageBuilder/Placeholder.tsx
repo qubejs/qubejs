@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
-import Icon from '../../components/Icon';
 import { ItemTypes } from './ItemTypes';
+import { storage } from '../../utils';
 
 function selectBackgroundColor(isActive, canDrop) {
   if (isActive) {
@@ -40,6 +40,7 @@ const Placeholder = ({
     [allowedDropEffect]
   );
   const isActive = canDrop && isOver;
+  const { Icon } = storage.components.get();
   const backgroundCSS = selectBackgroundColor(isActive, canDrop);
   const finalName = component && name ? `for ${component}#${name}` : 'for root';
   return (

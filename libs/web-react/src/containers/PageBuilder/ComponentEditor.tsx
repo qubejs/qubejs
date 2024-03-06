@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import update from 'immutability-helper';
 import Tooltip from '@mui/material/Tooltip';
 import ErrorBoundary from '../../components/ErrorBoundry';
-import Dialog from '../../components/Dialog';
+// import Dialog from '../../components/Dialog';
+// import Actions from '../../components/Actions';
 import DynamicContentRoot from '../DynamicContent';
 import { Placeholder } from './Placeholder';
-import Actions from '../../components/Actions';
+import { storage } from '../../utils';
 
 class ComponentEditor extends Component {
-  props:any;
-  state:any;
-  static propTypes:any;
+  props: any;
+  state: any;
+  static propTypes: any;
   constructor(props) {
     super(props);
     this.state = { openSettings: false, active: false };
@@ -170,15 +171,34 @@ class ComponentEditor extends Component {
   // }
 
   render() {
-    const { pageData = {}, Component, fieldsMeta, idx, itemsPropName, name, isStart, isEnd, value, compTypeProp, component, editData } = this.props;
+    const {
+      pageData = {},
+      Component: RenderedComponent,
+      fieldsMeta,
+      idx,
+      itemsPropName,
+      name,
+      isStart,
+      isEnd,
+      value,
+      compTypeProp,
+      component,
+      editData,
+    } = this.props;
     const { hasItems } = this.props;
     const { [itemsPropName]: items } = value || {};
     const { className = '' } = pageData;
     const { hasPlaceholder, accept, compList, defaultComp } = this.props;
-    const identifier = `${component}${value.className ? `.${value.className}` : ''}${value.name ? `#${value.name}` : ''}`;
+    const identifier = `${component}${
+      value.className ? `.${value.className}` : ''
+    }${value.name ? `#${value.name}` : ''}`;
+    const { Dialog, Actions } = storage.components.get();
+    const Component = storage.components.get()[RenderedComponent];
     return (
       <div
-        className={`sq-component-editor ${className} ${this.state.active ? 'active' : ''} ${value.className || ''}`}
+        className={`sq-component-editor ${className} ${
+          this.state.active ? 'active' : ''
+        } ${value.className || ''}`}
       >
         <Dialog
           classes={{
@@ -218,9 +238,29 @@ class ComponentEditor extends Component {
         <div className="sq-component-editor__actions">
           <Actions
             actions={[
-              { cmpType: 'IconButton', size: 'small', iconSize: 'small', iconName: 'arrow-up', onClick: this.moveUp, beforeRender: () => !isStart },
-              { cmpType: 'IconButton', size: 'small', iconSize: 'small', iconName: 'arrow-down', onClick: this.moveDown, beforeRender: () => !isEnd },
-              { cmpType: 'IconButton', size: 'small', iconSize: 'small', iconName: 'Settings', onClick: this.toggleEditForm },
+              {
+                cmpType: 'IconButton',
+                size: 'small',
+                iconSize: 'small',
+                iconName: 'arrow-up',
+                onClick: this.moveUp,
+                beforeRender: () => !isStart,
+              },
+              {
+                cmpType: 'IconButton',
+                size: 'small',
+                iconSize: 'small',
+                iconName: 'arrow-down',
+                onClick: this.moveDown,
+                beforeRender: () => !isEnd,
+              },
+              {
+                cmpType: 'IconButton',
+                size: 'small',
+                iconSize: 'small',
+                iconName: 'Settings',
+                onClick: this.toggleEditForm,
+              },
               {
                 cmpType: 'IconButton',
                 size: 'small',
@@ -235,18 +275,26 @@ class ComponentEditor extends Component {
             ]}
           />
         </div>
-        <div className={`sq-component-editor__container ${value.bodyClassName}`}>
+        <div
+          className={`sq-component-editor__container ${value.bodyClassName}`}
+        >
           <ErrorBoundary>
             {!hasItems && (
               <ErrorBoundary>
                 {Component && <Component {...value} />}
-                {!Component && <div className="text-center">Preview not available</div>}
+                {!Component && (
+                  <div className="text-center">Preview not available</div>
+                )}
               </ErrorBoundary>
             )}
             {hasItems &&
               items &&
               items.map((item, idx) => {
-                const Component = compList[item[compTypeProp]] || (!item[compTypeProp] && defaultComp ? compList[defaultComp] : compList.Custom);
+                const Component =
+                  compList[item[compTypeProp]] ||
+                  (!item[compTypeProp] && defaultComp
+                    ? compList[defaultComp]
+                    : compList.Custom);
                 const { [compTypeProp]: cmpType, ...restItem } = item;
                 return (
                   <ErrorBoundary key={idx}>
@@ -284,7 +332,16 @@ class ComponentEditor extends Component {
           </ErrorBoundary>
         </div>
         {hasPlaceholder && (
-          <Placeholder hoverText={identifier} plaecHolderStyle={(!items || items?.length === 0) ? undefined : 'line'} name={value.name} component={component} accept={accept} onDrop={this.onComponentDrop} />
+          <Placeholder
+            hoverText={identifier}
+            plaecHolderStyle={
+              !items || items?.length === 0 ? undefined : 'line'
+            }
+            name={value.name}
+            component={component}
+            accept={accept}
+            onDrop={this.onComponentDrop}
+          />
         )}
       </div>
     );

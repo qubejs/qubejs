@@ -15,3 +15,4 @@ export default {
   dist: resolveApp('dist'),
   distWeb: resolveApp('dist/apps/web'),
 };
+export { resolveApp };

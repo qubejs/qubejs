@@ -1,10 +1,10 @@
-import Form from '../../components/Form';
-import Progress from '../../components/Progress';
-import LaunchTimer from '../../components/LaunchTimer';
-import Wrapper from '../../components/Wrapper';
-import Iframe from '../../components/Iframe';
-import ImageWithSpotlight from '../../components/ImageWithSpotlight';
-import TextColumnWithLinks from '../../components/TextColumnWithLinks';
+// import Form from '../../components/Form';
+// import Progress from '../../components/Progress';
+// import LaunchTimer from '../../components/LaunchTimer';
+// import Wrapper from '../../components/Wrapper';
+// import Iframe from '../../components/Iframe';
+// import ImageWithSpotlight from '../../components/ImageWithSpotlight';
+// import TextColumnWithLinks from '../../components/TextColumnWithLinks';
 import { ItemTypes } from './ItemTypes';
 import HeaderEdit from './edits/Header';
 import HeroContentEdit from './edits/HeroContent';
@@ -45,41 +45,41 @@ import AutocompleteEdit from './edits/Autocomplete';
 import AlertEdit from './edits/Alert';
 import { GLOBAL_OPTIONS } from '../../globals';
 import { dynamicComponents } from '../../utils/storage';
-import Input from '../../components/Input';
-import RichText from '../../components/RichText';
-import Text from '../../components/Text';
-import Header from '../../components/Header';
-import Tabs from '../../components/Tabs';
-import DateSelector from '../../components/DateSelector';
-import Image from '../../components/Image';
-import Button from '../../components/Button';
-import Link from '../../components/Link';
-import LinkButton from '../../components/LinkButton';
-import Textarea from '../../components/Textarea';
-import Radio from '../../components/Radio';
-import ReCaptcha from '../../components/ReCaptcha';
-import Select from '../../components/Select';
-import Autocomplete from '../../components/Autocomplete';
-import CheckboxField from '../../components/Checkbox';
-import Alert from '../../components/Alert';
-import CheckboxList from '../../components/CheckboxList';
-import HeroContent from '../../components/HeroContent';
-import Pricing from '../../components/Pricing';
-import ImageWithSlide from '../../components/ImageWithSlide';
-import UsefulLinks from '../../components/UsefulLinks';
-import Disclaimer from '../../components/Disclaimer';
-import FeaturedContent from '../../components/FeaturedContent';
-import ContactUsInfo from '../../components/ContactUsInfo';
-import GetInTouch from '../../components/GetInTouch';
-import CodeHighlight from '../../components/CodeHighlight';
-import Team from '../../components/Team';
-import ImageBlockWithText from '../../components/ImageBlockWithText';
-import ImageWithHeaderBody from '../../components/ImageWithHeaderBody';
-import HTML from '../../components/HTML';
+// import Input from '../../components/Input';
+// import RichText from '../../components/RichText';
+// import Text from '../../components/Text';
+// import Header from '../../components/Header';
+// import Tabs from '../../components/Tabs';
+// import DateSelector from '../../components/DateSelector';
+// import Image from '../../components/Image';
+// import Button from '../../components/Button';
+// import Link from '../../components/Link';
+// import LinkButton from '../../components/LinkButton';
+// import Textarea from '../../components/Textarea';
+// import Radio from '../../components/Radio';
+// import ReCaptcha from '../../components/ReCaptcha';
+// import Select from '../../components/Select';
+// import Autocomplete from '../../components/Autocomplete';
+// import CheckboxField from '../../components/Checkbox';
+// import Alert from '../../components/Alert';
+// import CheckboxList from '../../components/CheckboxList';
+// import HeroContent from '../../components/HeroContent';
+// import Pricing from '../../components/Pricing';
+// import ImageWithSlide from '../../components/ImageWithSlide';
+// import UsefulLinks from '../../components/UsefulLinks';
+// import Disclaimer from '../../components/Disclaimer';
+// import FeaturedContent from '../../components/FeaturedContent';
+// import ContactUsInfo from '../../components/ContactUsInfo';
+// import GetInTouch from '../../components/GetInTouch';
+// import CodeHighlight from '../../components/CodeHighlight';
+// import Team from '../../components/Team';
+// import ImageBlockWithText from '../../components/ImageBlockWithText';
+// import ImageWithHeaderBody from '../../components/ImageWithHeaderBody';
+// import HTML from '../../components/HTML';
 
 const compList = {
   Form: {
-    Component: Form,
+    Component: 'Form',
     group: 'Form',
     hasPlaceholder: true,
     type: ItemTypes.FORM,
@@ -93,7 +93,7 @@ const compList = {
   },
 
   Address: {
-    Component: Form,
+    Component: 'Form',
     name: 'Form',
     group: 'Pre-defined Elements',
     hasPlaceholder: true,
@@ -135,7 +135,7 @@ const compList = {
     },
   },
   Name: {
-    Component: Form,
+    Component: 'Form',
     name: 'Form',
     group: 'Pre-defined Elements',
     hasPlaceholder: true,
@@ -168,7 +168,7 @@ const compList = {
     },
   },
   Input: {
-    Component: Input,
+    Component: 'Input',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: InputEdit,
@@ -177,7 +177,7 @@ const compList = {
     },
   },
   RichText: {
-    Component: RichText,
+    Component: 'RichText',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: RichTextEdit,
@@ -186,7 +186,7 @@ const compList = {
     },
   },
   Text: {
-    Component: Text,
+    Component: 'Text',
     group: 'Content',
     type: ItemTypes.COMPONENT,
     editData: TextEdit,
@@ -195,14 +195,14 @@ const compList = {
     },
   },
   LaunchTimer: {
-    Component: LaunchTimer,
+    Component: 'LaunchTimer',
     group: 'Content',
     sampleData: {},
     type: ItemTypes.COMPONENT,
     editData: LaunchTimerEdit,
   },
   FormText: {
-    Component: Text,
+    Component: 'Text',
     name: 'Text',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
@@ -212,7 +212,7 @@ const compList = {
     },
   },
   FormHeader: {
-    Component: Header,
+    Component: 'Header',
     name: 'Header',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
@@ -223,14 +223,14 @@ const compList = {
     },
   },
   Tabs: {
-    Component: Tabs,
+    Component: 'Tabs',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: TabsEdit,
     sampleData: {},
   },
   DateSelector: {
-    Component: DateSelector,
+    Component: 'DateSelector',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: DateSelectorEdit,
@@ -241,7 +241,7 @@ const compList = {
     },
   },
   Progress: {
-    Component: Progress,
+    Component: 'Progress',
     group: 'Content',
     type: ItemTypes.COMPONENT,
     editData: ProgressEdit,
@@ -251,7 +251,7 @@ const compList = {
     },
   },
   Header: {
-    Component: Header,
+    Component: 'Header',
     group: 'Content',
     sampleData: {
       header: 'Header',
@@ -260,14 +260,14 @@ const compList = {
     editData: HeaderEdit,
   },
   Image: {
-    Component: Image,
+    Component: 'Image',
     group: 'Content',
     type: ItemTypes.COMPONENT,
     editData: ImageEdit,
     sampleData: {},
   },
   Button: {
-    Component: Button,
+    Component: 'Button',
     group: 'Actions',
     type: ItemTypes.COMPONENT,
     editData: ButtonEdit,
@@ -276,7 +276,7 @@ const compList = {
     },
   },
   Link: {
-    Component: Link,
+    Component: 'Link',
     group: 'Actions',
     type: ItemTypes.COMPONENT,
     editData: ButtonEdit,
@@ -285,7 +285,7 @@ const compList = {
     },
   },
   LinkButton: {
-    Component: LinkButton,
+    Component: 'LinkButton',
     group: 'Actions',
     type: ItemTypes.COMPONENT,
     editData: ButtonEdit,
@@ -294,7 +294,7 @@ const compList = {
     },
   },
   Textarea: {
-    Component: Textarea,
+    Component: 'Textarea',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: TextareaEdit,
@@ -304,7 +304,7 @@ const compList = {
     },
   },
   Radio: {
-    Component: Radio,
+    Component: 'Radio',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: RadioEdit,
@@ -313,14 +313,14 @@ const compList = {
     },
   },
   ReCaptcha: {
-    Component: ReCaptcha,
+    Component: 'ReCaptcha',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: ReCaptchaEdit,
     sampleData: {},
   },
   Select: {
-    Component: Select,
+    Component: 'Select',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: SelectEdit,
@@ -329,7 +329,7 @@ const compList = {
     },
   },
   Autocomplete: {
-    Component: Autocomplete,
+    Component: 'Autocomplete',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: AutocompleteEdit,
@@ -338,7 +338,7 @@ const compList = {
     },
   },
   CheckboxField: {
-    Component: CheckboxField,
+    Component: 'CheckboxField',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: CheckboxEdit,
@@ -347,7 +347,7 @@ const compList = {
     },
   },
   AlertElement: {
-    Component: Alert,
+    Component: 'Alert',
     name: 'Alert',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
@@ -357,7 +357,7 @@ const compList = {
     },
   },
   Alert: {
-    Component: Alert,
+    Component: 'Alert',
     group: 'Content',
     type: ItemTypes.COMPONENT,
     editData: AlertEdit,
@@ -366,7 +366,7 @@ const compList = {
     },
   },
   CheckboxList: {
-    Component: CheckboxList,
+    Component: 'CheckboxList',
     group: 'Form Elements',
     type: ItemTypes.FORM_ELEMENT,
     editData: CheckboxListEdit,
@@ -375,7 +375,7 @@ const compList = {
     },
   },
   Wrapper: {
-    Component: Wrapper,
+    Component: 'Wrapper',
     group: 'Layout',
     accept: [ItemTypes.COMPONENT, ItemTypes.FORM],
     hasPlaceholder: true,
@@ -388,7 +388,7 @@ const compList = {
     },
   },
   'Center-Layout': {
-    Component: Wrapper,
+    Component: 'Wrapper',
     name: 'Wrapper',
     group: 'Layout',
     accept: [ItemTypes.COMPONENT, ItemTypes.FORM],
@@ -403,7 +403,7 @@ const compList = {
     },
   },
   '2-ColumnLayout': {
-    Component: Wrapper,
+    Component: 'Wrapper',
     name: 'Wrapper',
     group: 'Layout',
     accept: [ItemTypes.COMPONENT, ItemTypes.FORM],
@@ -434,7 +434,7 @@ const compList = {
     },
   },
   '3-ColumnLayout': {
-    Component: Wrapper,
+    Component: 'Wrapper',
     name: 'Wrapper',
     group: 'Layout',
     accept: [ItemTypes.COMPONENT, ItemTypes.FORM],
@@ -490,7 +490,7 @@ const compList = {
   },
   HeroContent: {
     group: 'Content',
-    Component: HeroContent,
+    Component: 'HeroContent',
     sampleData: {
       header: 'Awesome header content',
       subHeader: 'Reprehenderit laborum in ut enim Lorem minim ea ex dolore eiusmod id consequat pariatur amet. Id Lorem id et elit.',
@@ -499,7 +499,7 @@ const compList = {
   },
   Pricing: {
     group: 'Content',
-    Component: Pricing,
+    Component: 'Pricing',
     sampleData: {
       header: 'Pricing Plan',
       subHeader: 'Choose your own plan',
@@ -655,7 +655,7 @@ const compList = {
   },
   ImageWithSlide: {
     group: 'Content',
-    Component: ImageWithSlide,
+    Component: 'ImageWithSlide',
     sampleData: {
       eyebrow: 'eybrow',
       header: 'Header',
@@ -667,7 +667,7 @@ const compList = {
   },
   UsefulLinks: {
     group: 'Content',
-    Component: UsefulLinks,
+    Component: 'UsefulLinks',
     sampleData: {
       header: 'Header goes here',
       links: [
@@ -682,7 +682,7 @@ const compList = {
   },
   Disclaimer: {
     group: 'Content',
-    Component: Disclaimer,
+    Component: 'Disclaimer',
     sampleData: {
       text: 'Reprehenderit minim non id dolor fugiat amet. Esse ea aliquip eu ex duis id et reprehenderit sint non elit cillum fugiat. Quis cupidatat adipisicing magna tempor occaecat minim. Culpa duis deserunt laboris ad voluptate laboris est laboris duis nostrud. Mollit incididunt esse Lorem pariatur dolor nulla ea aute sit sunt occaecat.',
     },
@@ -690,7 +690,7 @@ const compList = {
   },
   FeaturedContent: {
     group: 'Content',
-    Component: FeaturedContent,
+    Component: 'FeaturedContent',
     sampleData: {
       className: 'text-center',
       items: [
@@ -718,7 +718,7 @@ const compList = {
   },
   TextColumnWithLinks: {
     group: 'Content',
-    Component: TextColumnWithLinks,
+    Component: 'TextColumnWithLinks',
     sampleData: {
       items: [
         {
@@ -743,7 +743,7 @@ const compList = {
   },
   ContactUsInfo: {
     group: 'Content',
-    Component: ContactUsInfo,
+    Component: 'ContactUsInfo',
     sampleData: {
       items: [
         {
@@ -788,7 +788,7 @@ const compList = {
 
   GetInTouch: {
     group: 'Content',
-    Component: GetInTouch,
+    Component: 'GetInTouch',
     sampleData: {
       header: 'Get in touch',
       info: [
@@ -816,7 +816,7 @@ const compList = {
   },
   CodeHighlight: {
     group: 'Content',
-    Component: CodeHighlight,
+    Component: 'CodeHighlight',
     sampleData: {
       code: 'funciton(a, b) {\n return a + b; \n }',
       language: 'javscript',
@@ -826,7 +826,7 @@ const compList = {
 
   Team: {
     group: 'Content',
-    Component: Team,
+    Component: 'Team',
     sampleData: {
       header: 'Meet the team',
       items: [
@@ -848,7 +848,7 @@ const compList = {
   },
   ImageBlockWithText: {
     group: 'Content',
-    Component: ImageBlockWithText,
+    Component: 'ImageBlockWithText',
     sampleData: {
       header: 'Meet the team',
       subHeader: 'Ipsum eu consequat nostrud nisi ut commodo anim labore labore exercitation dolore qui amet consequat. Anim amet laborum occaecat est aute occaecat. Velit anim adipisicing nostrud dolore quis. Laborum labore eu ad nisi est duis Lorem nulla aliquip tempor nisi.',
@@ -858,7 +858,7 @@ const compList = {
   },
   ImageWithHeaderBody: {
     group: 'Content',
-    Component: ImageWithHeaderBody,
+    Component: 'ImageWithHeaderBody',
     sampleData: {
       header: 'Mission',
       styleName: 'shadow',
@@ -869,7 +869,7 @@ const compList = {
   },
   Iframe: {
     group: 'Content',
-    Component: Iframe,
+    Component: 'Iframe',
     sampleData: {
       url: 'https://www.google.com',
     },
@@ -877,7 +877,7 @@ const compList = {
   },
   ImageWithSpotlight: {
     group: 'Content',
-    Component: ImageWithSpotlight,
+    Component: 'ImageWithSpotlight',
     sampleData: {
       header: 'Grow with us',
       bgImageUrl: 'https://img.freepik.com/free-photo/new-york-city-central-park-panorama_649448-89.jpg?w=2000&t=st=1683292030~exp=1683292630~hmac=b87b9d4a48fea6a2b3ed84f236b7f9213fc24948ed32023d554ff3e9c31d4315',
@@ -903,7 +903,7 @@ const compList = {
   },
   HTML: {
     group: 'Content',
-    Component: HTML,
+    Component: 'HTML',
     sampleData: {
       html: '<p>Here pu<span style="background-color: rgb(236, 202, 250);">t your ht</span>ml</p>',
     },

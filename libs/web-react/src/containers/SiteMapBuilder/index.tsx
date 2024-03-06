@@ -14,9 +14,6 @@ import {
 } from '../../redux/common';
 import { getPage, savePageDraft } from '../../redux/admin';
 import DynamicContentRoot from '../DynamicContent';
-
-import Button from '../../components/Button';
-import Switch from '../../components/Switch';
 import * as utils from '../../utils';
 import editData from './editConfig';
 import {
@@ -96,6 +93,7 @@ class SiteMapBuilder extends Component {
   render() {
     const { className = '' } = this.props;
     const editfinalData = editData(utils.storage.pageBuilder.get());
+    const { Button, Switch } = utils.storage.components.get();
     return (
       <div
         className={`sq-sitemap-builder sq-v-screen sq-v-screen--fixed ${className}`}

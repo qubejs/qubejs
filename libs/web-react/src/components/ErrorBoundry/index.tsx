@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Alert from '../Alert';
+import { storage } from '../../utils';
 
 class ErrorBoundry extends React.Component {
   props: any;
@@ -20,11 +20,13 @@ class ErrorBoundry extends React.Component {
   }
 
   render() {
+    const { Alert } = storage.components.get();
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
         <div className="error-boundry mt-wide mb-wide">
-          <Alert type="error" message="Some error has occured" />
+          {Alert && <Alert type="error" message="Some error has occured" />}
+          {!Alert && <div className='sq-error'>Some error has occured</div>}
         </div>
       );
     }

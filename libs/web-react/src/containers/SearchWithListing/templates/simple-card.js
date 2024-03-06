@@ -1,5 +1,4 @@
-import React from 'react';
-import { object, storage, format, redirect } from '../../../utils';
+import { storage, format, redirect } from '../../../utils';
 const DefaulSearch = ({
   iconName,
   header,

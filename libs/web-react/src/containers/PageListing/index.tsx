@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import * as utils from '../../utils';
 import { loadPageTree, loadPagesByPath, deletePage, clonePage } from '../../redux/admin';

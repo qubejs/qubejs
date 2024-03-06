@@ -14,8 +14,8 @@ import PageListing from './PageListing';
 import RoleDetails from './RoleDetails';
 import RolesList from './RolesList';
 import SearchWithListing from './SearchWithListing';
-// import PageBuilder from './PageBuilder';
-// import SiteMapBuilder from './SiteMapBuilder';
+import PageBuilder from './PageBuilder';
+import SiteMapBuilder from './SiteMapBuilder';
 import TocIndex from './TocIndex';
 import UsersList from './UsersList';
 
@@ -32,12 +32,12 @@ export {
   LayoutContent,
   MediaGallery,
   MultiView,
-  // PageBuilder,
+  PageBuilder,
   PageListing,
   RoleDetails,
   RolesList,
   SearchWithListing,
-  // SiteMapBuilder,
+  SiteMapBuilder,
   TocIndex,
   UsersList,
 };

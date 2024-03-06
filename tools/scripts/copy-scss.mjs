@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
-import paths from './paths.mjs';
+import { resolveApp } from './paths.mjs';
 
 function copyFolderRecursiveSync(source, target = '.scss', targetFolder, ignore = ['node_modules', 'coverage', '.storybook', '.nyc_output', 'package-lock.json'], createFolder = true) {
     if (!fs.existsSync(source)) {
@@ -20,7 +20,7 @@ function copyFolderRecursiveSync(source, target = '.scss', targetFolder, ignore 
         copyFolderRecursiveSync(curSource, target, targetFolder);
       } else {
         if (path.extname(curSource) === target && ignore.indexOf(path.basename(curSource)) === -1) {
-          const targetPath = path.relative(paths.webreactSrc, curSource);
+          const targetPath = path.relative(resolveApp(process.argv[2]), curSource);
         //   console.log(curSource)
         //   console.log(`>>`)
         //   console.log(`${targetFolder}/${targetPath}`)
@@ -57,9 +57,9 @@ function copyFileSync(source, target) {
 
 let folders = ['components', 'styles', 'containers', 'templates'];
 
-let targetFolder = `${paths.dist}/libs/web-react/src`;
+let targetFolder = `${resolveApp(process.argv[3])}/src`;
 
 folders.forEach((folProcess) => {
-  copyFolderRecursiveSync(`${paths.webreactSrc}/${folProcess}`, '.scss', targetFolder);
+  copyFolderRecursiveSync(`${resolveApp(process.argv[2])}/${folProcess}`, '.scss', targetFolder);
 });
 console.log(chalk.cyan('-> copy scss done'))
