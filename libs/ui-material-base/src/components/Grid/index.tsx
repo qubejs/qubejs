@@ -11,7 +11,6 @@ import ButtonSelection from '../ButtonSelection';
 import Dialog from '../Dialog';
 import Button from '../Button';
 import Pagination from '../Pagination';
-
 const { translate } = utils.translate;
 const { getValue } = utils.properties;
 
@@ -71,14 +70,6 @@ class Grid extends React.Component {
     this.onViewTypeChange = this.onViewTypeChange.bind(this);
     this.onColResize = this.onColResize.bind(this);
   }
-  onLeftBody_Scroll(e) {
-    this.bodyRef.current.scrollTop = this.fixedLBodyRef.current.scrollTop;
-    this.fixedRBodyRef.current.scrollTop = this.fixedLBodyRef.current.scrollTop;
-  }
-  onRightBody_Scroll(e) {
-    this.bodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
-    this.fixedLBodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
-  }
 
   componentDidUpdate(prevProps) {
     const { dataGroup = {}, groupColumnProps = {} } = this.props;
@@ -128,16 +119,39 @@ class Grid extends React.Component {
       this.setState({ firstCols, groupedData, activatedGroups: {} });
     }
   }
+  
+  onLeftBody_Scroll(e) {
+    if (this.bodyRef.current) {
+      this.bodyRef.current.scrollTop = this.fixedLBodyRef.current.scrollTop;
+      if (this.fixedRBodyRef.current) {
+        this.fixedRBodyRef.current.scrollTop = this.fixedLBodyRef.current.scrollTop;
+      }
+    }
+  }
+  onRightBody_Scroll(e) {
+    if (this.fixedRBodyRef.current) {
+      this.bodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
+      if (this.fixedLBodyRef.current) {
+        this.fixedLBodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
+      }
+    }
+  }
 
   onBody_Scroll(e) {
-    this.headerRef.current.scrollLeft = this.bodyRef.current.scrollLeft;
-    this.fixedLBodyRef.current.scrollTop = this.bodyRef.current.scrollTop;
-    this.fixedRBodyRef.current.scrollTop = this.bodyRef.current.scrollTop;
-    if (!(this.bodyRef.current.scrollLeft > 0 && this.state.hasLeftScrolled === true)) {
-      if (!(this.bodyRef.current.scrollLeft === 0 && this.state.hasLeftScrolled === false)) {
-        this.setState({
-          hasLeftScrolled: this.bodyRef.current.scrollLeft > 0,
-        });
+    if (this.bodyRef.current) {
+      this.headerRef.current.scrollLeft = this.bodyRef.current.scrollLeft;
+      if (this.fixedLBodyRef.current) {
+        this.fixedLBodyRef.current.scrollTop = this.bodyRef.current.scrollTop;
+      }
+      if (this.fixedRBodyRef.current) {
+        this.fixedRBodyRef.current.scrollTop = this.bodyRef.current.scrollTop;
+      }
+      if (!(this.bodyRef.current.scrollLeft > 0 && this.state.hasLeftScrolled === true)) {
+        if (!(this.bodyRef.current.scrollLeft === 0 && this.state.hasLeftScrolled === false)) {
+          this.setState({
+            hasLeftScrolled: this.bodyRef.current.scrollLeft > 0,
+          });
+        }
       }
     }
   }

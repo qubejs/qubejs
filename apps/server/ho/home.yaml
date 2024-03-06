@@ -10,11 +10,6 @@ reset:
 merge:
   currentError : .lastError.key
 items:
-  - component: Form
-    name: teset
-    fields:
-      - type: Input
-        name: test
   - component: Carousel
     className: sq-home__carousel
     carouselClassName: sq-home__carousel-1
