@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import Form from '../Form';
 import IconButton from '../IconButton';
@@ -50,29 +52,31 @@ const FormList = ({
   const renderCard = useCallback(
     (itemVal, idx) => {
       return (
-        <div className="sq-form-list__item" key={itemVal.value}>
-          <Orderable
-            key={itemVal.value}
-            index={idx}
-            id={itemVal.value}
-            moveCard={moveCard}
-          >
-            <div className="sq-form-list__item-wrap">
-              <Form
-                className={`pb-0 ${formClassName}`}
-                fields={fields}
-                value={itemVal}
-                onChange={(data) => valueOnChange(data, idx)}
-              />
-              <IconButton
-                iconName="Delete"
-                color="error"
-                size="small"
-                onClick={() => removeItem(idx)}
-              />
-            </div>
-          </Orderable>
-        </div>
+        <DndProvider backend={HTML5Backend}>
+          <div className="sq-form-list__item" key={itemVal.value}>
+            <Orderable
+              key={itemVal.value}
+              index={idx}
+              id={itemVal.value}
+              moveCard={moveCard}
+            >
+              <div className="sq-form-list__item-wrap">
+                <Form
+                  className={`pb-0 ${formClassName}`}
+                  fields={fields}
+                  value={itemVal}
+                  onChange={(data) => valueOnChange(data, idx)}
+                />
+                <IconButton
+                  iconName="Delete"
+                  color="error"
+                  size="small"
+                  onClick={() => removeItem(idx)}
+                />
+              </div>
+            </Orderable>
+          </div>
+        </DndProvider>
       );
     },
     [value]
