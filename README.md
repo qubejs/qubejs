@@ -26,6 +26,7 @@ npm install @qubejs/web-react
 
 At present, we officially aim to support 3 modules
 
+- @qubejs/ui-material-base
 - @qubejs/web-react
 - @qubejs/cms
 - @qubejs/core
