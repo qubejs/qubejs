@@ -26,5 +26,5 @@ jobs:
         run: |
           npm install
           npm install --legacy-peer-deps
-          npx nx run-many -t test --codeCoverage -p core cms scripts web-react
-          npx nx run-many -t dist -p core scripts cms web-react
+          npx nx run-many -t test --codeCoverage -p core cms scripts web-react ui-material-base
+          npx nx run-many -t dist -p core scripts cms web-react ui-material-base
