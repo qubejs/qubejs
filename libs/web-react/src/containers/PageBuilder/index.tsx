@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
-import Form from '../../components/Form';
-import IconButton from '../../components/IconButton';
-import Button from '../../components/Button';
-import Switch from '../../components/Switch';
 import { ComponentList } from './ComponentList';
 import Panel from './Panel';
 import { withEditTabsConfig } from './edits/Common';
@@ -383,7 +379,8 @@ class PageBuilder extends Component {
 
   render() {
     const { className = '', pageData, store } = this.props;
-    const compList = {...utils.storage.dynamicComponents.get()};
+    const compList = { ...utils.storage.dynamicComponents.get() };
+    const { Form, IconButton, Button, Switch } = utils.storage.components.get();
     return (
       <div
         className={`sq-page-builder sq-v-screen sq-v-screen--fixed ${className}`}

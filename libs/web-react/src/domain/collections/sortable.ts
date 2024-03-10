@@ -1,4 +1,3 @@
-import Queryable from './queryable';
 
 class DefaultE {
 
@@ -7,11 +6,13 @@ class DefaultE {
 class Sortable {
   rData: any[];
   entityType: any;
+  Queryable: any;
   _sortOrder: any[];
-  constructor(data:any[] = [], { entityType = DefaultE } = {}) {
+  constructor(data:any[] = [], { entityType = DefaultE, Queryable = DefaultE } = {}) {
     this.rData = data;
     this.entityType = entityType;
     this._sortOrder = [];
+    this.Queryable = Queryable;
   }
 
   sortOrder(field, order = 'asc') {
@@ -50,7 +51,7 @@ class Sortable {
       return idx;
     });
     this._sortOrder = [];
-    return new Queryable(data, { entityType: this.entityType });
+    return new this.Queryable(data, { entityType: this.entityType });
   }
 }
 

@@ -7,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import uniq from 'lodash/uniq';
 import * as utils from '../../utils';
-import Skeleton from '../../components/Skeleton';
+
 import {
   loadPermissions,
   getPermissionsByRole,
@@ -183,7 +183,7 @@ class RoleDetails extends BaseContainer {
       : undefined;
     const { currentRole } = this.props.store.authentication;
     const viewOnly = !!pageData?.viewOnly;
-    const { Grid, Tabs, LinkButton, CheckboxList, Autocomplete, Button } =
+    const { Grid, Tabs, LinkButton, CheckboxList, Autocomplete, Button, Skeleton } =
       utils.storage.components.get();
     return (
       <div className="sq-role-details container-med">

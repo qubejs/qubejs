@@ -23,7 +23,7 @@
       "@qubejs/cms": ["libs/cms/src/index.ts"],
       "@qubejs/core": ["libs/core/src/index.ts"],
       "@qubejs/scripts": ["libs/scripts/src/index.ts"],
-      "@qubejs/ui-material": ["libs/ui-material/src/index.ts"],
+      "@qubejs/ui-material-base": ["libs/ui-material-base/src/index.ts"],
       "@qubejs/web-react": ["libs/web-react/src/index.ts"]
     }
   },

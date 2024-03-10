@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../components/Header';
-import LinkButton from '../../components/LinkButton';
+import { Component } from 'react';
+import { components } from '../../utils/storage';
 import './_toc-index.scss';
 
 class TableOfContent extends Component {
@@ -23,6 +22,7 @@ class TableOfContent extends Component {
   render() {
     const { metaData = {}, pageData = {}, ...rest } = this.props;
     const { className = '' } = pageData;
+    const { Header, LinkButton } = components.get();
     const categories = Object.keys(metaData.siblingPages || {});
     return (
       <div className={`sq-content-toc sq-content-page__body ${className}`}>

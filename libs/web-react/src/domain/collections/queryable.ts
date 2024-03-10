@@ -1,6 +1,7 @@
 import Filterbale from './filterable';
 import Sortable from './sortable';
 
+
 class Queryable {
   rData: any[];
   entityType: any;
@@ -10,20 +11,20 @@ class Queryable {
   }
 
   filterBy(options) {
-    return new Filterbale(this.rData, { entityType: this.entityType }).filterBy(
+    return new Filterbale(this.rData, { entityType: this.entityType, Queryable }).filterBy(
       options
     );
   }
 
   sortBy(field, asc?) {
-    return new Sortable(this.rData, { entityType: this.entityType }).sortBy(
+    return new Sortable(this.rData, { entityType: this.entityType, Queryable }).sortBy(
       field,
       asc
     );
   }
 
   sortOrder(field, asc?) {
-    return new Sortable(this.rData, { entityType: this.entityType }).sortOrder(
+    return new Sortable(this.rData, { entityType: this.entityType, Queryable }).sortOrder(
       field,
       asc
     );

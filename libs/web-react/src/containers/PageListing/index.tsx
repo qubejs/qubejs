@@ -1,11 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import * as utils from '../../utils';
 import { loadPageTree, loadPagesByPath, deletePage, clonePage } from '../../redux/admin';
 import { updateUserData, processParams } from '../../redux/content';
 import BaseContainer from '../BaseContainer';
-import Dialog from '../../components/Dialog';
-import Form from '../../components/Form';
 import clonePageConfig from './ClonePage';
 import { GLOBAL_OPTIONS } from '../../globals';
 
@@ -233,7 +230,7 @@ class PageListing extends BaseContainer {
   render() {
     const { store, pageData = {}, userData } = this.props;
     const { isLoading } = this.state;
-    const { Grid, Actions } = utils.storage.components.get();
+    const { Form, Dialog, Grid, Actions } = utils.storage.components.get();
     return (
       <div className="sq-page-listing sq-v-screen sq-v-screen--fixed">
         <>

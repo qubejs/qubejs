@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../../../components/IconButton';
+import { storage } from '../../../utils';
 const Panel = ({
   className,
   theme = 'default',
@@ -10,6 +10,7 @@ const Panel = ({
   onClose,
 }: any) => {
   const [fullscreen, setFullScreen] = React.useState(false);
+  const { IconButton } = storage.components.get();
   const toggleFullscreen = () => {
     setFullScreen(!fullscreen);
   };

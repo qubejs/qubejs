@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GlobalNavigation from '../../components/GlobalNavigation';
-import Footer from '../../components/Footer';
 import BaseContainer from '../../containers/BaseContainer';
+import { storage } from '../../utils';
 
 class Homepage extends BaseContainer {
   constructor(props) {
@@ -12,6 +11,7 @@ class Homepage extends BaseContainer {
   render() {
     const { children, pageData = {}, data = {}, store } = this.props;
     const { metaData = {}, siteMap = {} } = data;
+    const { GlobalNavigation, Footer } = storage.components.get();
     let props = {};
     if (!store.authentication?.currentUser) {
       props = { ...siteMap.siteMap.globalNavigation };

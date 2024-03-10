@@ -31,7 +31,7 @@ storage.containers.set({
 
 export function App() {
   const navigate = useNavigate();
-  const { Snackbar } = storage.components.get();
+  // const { Snackbar } = storage.components.get();
   const { Application } = storage.containers.get();
   useEffect(() => {
     setNavigate(navigate);

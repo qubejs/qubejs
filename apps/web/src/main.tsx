@@ -1,8 +1,11 @@
-import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import * as ReactDOM from 'react-dom/client';
-
+import * as uiMaterial from '@qubejs/ui-material-base';
+// import * as uiMaterial from '@qubejs/ui-material-base';
+import { plugins } from '@qubejs/web-react';
 import App from './app/app';
+
+plugins.register(uiMaterial);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

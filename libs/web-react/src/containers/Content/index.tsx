@@ -128,6 +128,9 @@ class Content extends Component {
             const { component, ...restBlock } = block;
             const Comp = compMap[component];
             block = object.processBlock(block, { userData });
+            if (!Comp) {
+              console.warn(`${component} component not found`);
+            }
             return Comp && isValid ? (
               <ErrorBoundary key={idx}>
                 <Comp

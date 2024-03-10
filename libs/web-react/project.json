@@ -13,11 +13,11 @@
       }
     },
     "copy-css": {
-      "command": "node tools/scripts/copy-scss.mjs",
+      "command": "node tools/scripts/copy-scss.mjs libs/web-react/src dist/libs/web-react",
       "dependsOn": ["build"]
     },
     "build-css": {
-      "command": "node tools/scripts/build-scss.mjs"
+      "command": "node tools/scripts/build-scss.mjs libs/web-react/src"
     },
     "dist": {
       "command": "node -v",
@@ -60,10 +60,6 @@
         ],
         "extractCss": true
       }
-    },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs web-react {args.ver} {args.tag}",
-      "dependsOn": ["dist"]
     },
     "test": {
       "executor": "@nx/jest:jest",
