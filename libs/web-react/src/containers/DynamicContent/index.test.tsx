@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import * as uiMaterial from '@qubejs/ui-material-base';
+import * as uiMaterial from '../../../../ui-material-base/src/components/index';
 import { fake } from '../../../tests/ui';
 import '../../index';
 import { DynamicContent } from './index';
 import { redirectTo } from '../../utils/redirect';
 import { containers } from '../../utils/storage';
-import { utils, plugins } from '../../index';
+import { utils } from '../../index';
 
-plugins.register(uiMaterial);
+utils.storage.components.set(uiMaterial);
 
 jest.mock('../../utils/redirect');
 
@@ -1385,7 +1385,6 @@ describe('DynamicContent', () => {
           target: { value: 'India222' },
         });
         jest.advanceTimersByTime(200);
-
       });
       expect(mockProps.contentActions.postApi).toHaveBeenCalledWith(
         {
@@ -1403,7 +1402,6 @@ describe('DynamicContent', () => {
           target: { value: 'India222' },
         });
         jest.advanceTimersByTime(200);
-
       });
       expect(mockProps.contentActions.postApi).toHaveBeenCalledWith(
         {
