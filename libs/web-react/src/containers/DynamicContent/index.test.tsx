@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import * as uiMaterial from '../../../../ui-material-base/src/components/index';
+// import * as uiMaterial from '../../../../ui-material-base/src/components/index';
 import { fake } from '../../../tests/ui';
 import '../../index';
 import { DynamicContent } from './index';
@@ -9,7 +9,7 @@ import { redirectTo } from '../../utils/redirect';
 import { containers } from '../../utils/storage';
 import { utils } from '../../index';
 
-utils.storage.components.set(uiMaterial);
+// utils.storage.components.set(uiMaterial);
 
 jest.mock('../../utils/redirect');
 
