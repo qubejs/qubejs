@@ -1,0 +1,98 @@
+{
+  "name": "ui-material-base",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-material-base/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/ui-material-base/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "copy-scss": {
+      "command": "node tools/scripts/copy-scss.mjs libs/ui-material-base/src dist/libs/ui-material-base",
+      "dependsOn": ["build"]
+    },
+    "build-scss": {
+      "command": "node tools/scripts/build-scss.mjs libs/ui-material-base/src"
+    },
+    "build-imports": {
+      "command": "node tools/scripts/build-imports.mjs libs/ui-material-base/src"
+    },
+
+    "dist": {
+      "command": "node -v",
+      "dependsOn": ["build-imports", "build-scss", "build", "copy-scss"]
+    },
+
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui-material-base",
+        "tsConfig": "libs/ui-material-base/tsconfig.lib.json",
+        "project": "libs/ui-material-base/package.json",
+        "entryFile": "libs/ui-material-base/src/index.ts",
+        "additionalEntryPoints": [
+          "libs/ui-material-base/src/components.lazy.tsx",
+          "libs/ui-material-base/src/advanced.tsx",
+          "libs/ui-material-base/src/basic.tsx",
+          "libs/ui-material-base/src/content.tsx",
+          "libs/ui-material-base/src/data.tsx",
+          "libs/ui-material-base/src/editing.tsx",
+          "libs/ui-material-base/src/files.tsx",
+          "libs/ui-material-base/src/theme.tsx",
+          "libs/ui-material-base/src/visualization.tsx"
+        ],
+        "external": [
+          "react",
+          "react-dom",
+          "react/jsx-runtime",
+          "react-router-dom",
+          "react-html-parser",
+          "@qubejs/core",
+          "d3"
+        ],
+        "rollupConfig": "libs/ui-material-base/rollup.config.js",
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/ui-material-base/src/styles"]
+        },
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/ui-material-base/README.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/ui-material-base/LICENCE",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "extractCss": true
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs ui-material-base {args.ver} {args.tag}",
+      "dependsOn": ["dist"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/ui-material-base/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  }
+}

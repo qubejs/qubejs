@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import * as ui from '@qubejs/ui-material-base';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { plugins } from '@qubejs/web-react';
 import App from './app';
 
@@ -8,10 +9,11 @@ plugins.register(ui);
 
 describe('App', () => {
   it('should render successfully', () => {
+    const history = createMemoryHistory({ initialEntries: ['/ho/home'] });
     const { baseElement } = render(
-      <BrowserRouter>
+      <Router location={history.location} navigator={history}>
         <App />
-      </BrowserRouter>
+      </Router>
     );
     expect(baseElement).toBeTruthy();
   });

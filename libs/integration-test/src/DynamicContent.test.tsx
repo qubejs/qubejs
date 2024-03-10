@@ -1,18 +1,16 @@
-import React from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import * as uiMaterial from '../../../../ui-material-base/src/components/index';
-import { fake } from '../../../tests/ui';
-import '../../index';
-import { DynamicContent } from './index';
-import { redirectTo } from '../../utils/redirect';
-import { containers } from '../../utils/storage';
-import { utils } from '../../index';
-
+import * as uiMaterial from '@qubejs/ui-material-base';
+import { utils, plugins, storage } from '@qubejs/web-react';
+import { DynamicContent } from '../../web-react/src/containers/DynamicContent';
+import { fake } from '../tests/ui';
+// import { redi } from '../../web-react/src/containers/DynamicContent';
+plugins.register(uiMaterial);
 utils.storage.components.set(uiMaterial);
-
-jest.mock('../../utils/redirect');
-
+const { containers } = storage;
+const { redirectTo } = utils.redirect;
+jest.mock('../../web-react/src/utils/redirect');
+// const { DynamicContent } = containers.get();
 describe('DynamicContent', () => {
   describe('Loading page from server', () => {
     let mockProps;
