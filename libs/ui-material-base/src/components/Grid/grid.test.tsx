@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Grid from './index';
-import '../../ui.material';
+import './test-comps';
+
 const columns = [
   {
     name: 'test',
@@ -56,7 +57,9 @@ describe('Grid', () => {
         wrapper = container;
       });
       test('should render header', () => {
-        expect(wrapper.getElementsByClassName('sq-grid__header').length).toBe(1);
+        expect(wrapper.getElementsByClassName('sq-grid__header').length).toBe(
+          1
+        );
       });
 
       test('should render root wrapper', () => {
@@ -72,10 +75,16 @@ describe('Grid', () => {
   });
   describe('Action tests', () => {
     let wrapper;
-    const onAction = jest.fn((value, action, column) => ({ value, action, column }));
+    const onAction = jest.fn((value, action, column) => ({
+      value,
+      action,
+      column,
+    }));
     describe('Basic Data View', () => {
       beforeEach(() => {
-        const { container } = render(<Grid columns={columns} data={data1} onAction={onAction} />);
+        const { container } = render(
+          <Grid columns={columns} data={data1} onAction={onAction} />
+        );
         wrapper = container;
       });
       test('should render header', () => {
@@ -86,13 +95,23 @@ describe('Grid', () => {
       });
       test('should trigger onAction with row and action', () => {
         fireEvent.click(screen.getAllByText('Cancel')[0]);
-        expect(onAction).toHaveBeenCalledWith(data1[0], { actionType: 'cancel', buttonText: 'Cancel', className: 'can-action' }, columns[1]);
+        expect(onAction).toHaveBeenCalledWith(
+          data1[0],
+          {
+            actionType: 'cancel',
+            buttonText: 'Cancel',
+            className: 'can-action',
+          },
+          columns[1]
+        );
       });
     });
   });
   describe('Custom wrapper class', () => {
     test('should have button to add', () => {
-      const { container } = render(<Grid className="custom-class" columns={columns} data={data1} />);
+      const { container } = render(
+        <Grid className="custom-class" columns={columns} data={data1} />
+      );
       expect(container.getElementsByClassName('custom-class').length).toBe(1);
     });
   });

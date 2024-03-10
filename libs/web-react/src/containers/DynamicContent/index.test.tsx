@@ -1,12 +1,16 @@
 import React from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import * as uiMaterial from '@qubejs/ui-material-base';
 import { fake } from '../../../tests/ui';
 import '../../index';
 import { DynamicContent } from './index';
 import { redirectTo } from '../../utils/redirect';
 import { containers } from '../../utils/storage';
-import { utils } from '../../index';
+import { utils, plugins } from '../../index';
+
+plugins.register(uiMaterial);
+
 jest.mock('../../utils/redirect');
 
 describe('DynamicContent', () => {

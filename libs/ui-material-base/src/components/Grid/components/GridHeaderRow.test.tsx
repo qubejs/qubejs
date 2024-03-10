@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import GridHeaderRow from './GridHeaderRow';
+import '../test-comps';
 
 const columns = [
   {

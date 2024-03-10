@@ -1,6 +1,6 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import GridRow from './GridRow';
+import '../test-comps';
 
 const columns = [
   {
