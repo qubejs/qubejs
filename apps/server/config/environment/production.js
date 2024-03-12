@@ -1,5 +1,9 @@
 export default {
-  
+  apiPrefix: {
+    '/api/v1': {
+      prefix: process.env.API_PREFIX || 'https://api.test.com',
+    },
+  },
   db: {
     connection: 'mongodb://',
     username: '',

@@ -5,7 +5,7 @@ export default  {
   },
   apiPrefix: {
     '/api/v1': {
-      prefix: process.env.API_PREFIX || 'https://dev.homeowner.service.hlrapp.com',
+      prefix: process.env.API_PREFIX || 'https://api.test.com',
     },
   },
   server: {
