@@ -92,7 +92,7 @@ export class ApiBridge {
     return response;
   }
 
-  get(url, params = {}, headers = {}, query = {}, { plain = false }:any = {}) {
+  get(url, params = {}, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body: params }) +
         encodeURI(url) +
@@ -104,7 +104,7 @@ export class ApiBridge {
           ...this.getCustomHeaders(),
           ...headers,
         },
-        signal: AbortSignal.timeout(TIMEOUT),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -124,7 +124,7 @@ export class ApiBridge {
     body,
     headers = {},
     query = {},
-    { method = 'POST', plain = false }:any = {}
+    { method = 'POST', plain = false, signal }:any = {}
   ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
@@ -137,7 +137,7 @@ export class ApiBridge {
           ...headers,
         },
         body,
-        signal: AbortSignal.timeout(TIMEOUT),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -152,7 +152,7 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  post(url, body, headers = {}, query = {}, { plain = false }:any = {}) {
+  post(url, body, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(url) +
@@ -165,7 +165,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(TIMEOUT),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -180,7 +180,7 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  update(url, body, headers = {}, query = {}, { plain = false }:any = {}) {
+  update(url, body, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(url) +
@@ -193,7 +193,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(TIMEOUT),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -208,7 +208,7 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  patch(url, body = {}, headers = {}, query = {}, { plain = false }:any = {}) {
+  patch(url, body = {}, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(url) +
@@ -221,7 +221,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(TIMEOUT),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
@@ -236,7 +236,7 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  delete(url, body = {}, headers = {}, query?, { plain = false }:any = {}) {
+  delete(url, body = {}, headers = {}, query?, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(url) +
@@ -249,7 +249,7 @@ export class ApiBridge {
           ...headers,
         },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(TIMEOUT),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
       }
     );
     if (plain) {
