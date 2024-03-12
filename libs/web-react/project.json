@@ -24,7 +24,7 @@
       "dependsOn": ["build-css", "build", "copy-css"]
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs ui-material-base {args.ver} {args.tag}",
+      "command": "node tools/scripts/publish.mjs web-react {args.ver} {args.tag}",
       "dependsOn": ["dist"]
     },
     "build": {
