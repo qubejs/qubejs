@@ -101,10 +101,14 @@ class PreferenceStorage {
   helpers: any;
   defaultPrefData: any;
   namedPrefData: any;
+  preferenceName: string;
+  userKey: string;
   _win: any;
   events: any;
   constructor() {
     this.helpers = {};
+    this.preferenceName = 'preference_';
+    this.userKey = '';
     this.defaultPrefData = null;
     this.namedPrefData = {};
     this._win = window;
@@ -113,6 +117,10 @@ class PreferenceStorage {
 
   setData(data) {
     this.defaultPrefData = data;
+  }
+
+  setUserKey(key) {
+    this.userKey = key;
   }
 
   setNamedData(data) {
@@ -265,6 +273,11 @@ class PreferenceStorage {
   clearData() {
     if (this.defaultPrefData) {
       this.defaultPrefData = null;
+      Object.keys(this._win.localStorage.localStorage).forEach((key) => {
+        if (key.startsWith(this.preferenceName)) {
+          this._win.localStorage.localStorage.localStorage.removeItem(key);
+        }
+      });
     }
   }
 }
