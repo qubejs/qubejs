@@ -7,8 +7,8 @@ React framework for web apps
 
 ## Demos
 
-- **Basic demo**: https://www.qubejs.com/content/in/examples/basic
-- **Full list**: https://www.qubejs.com/content/in/examples/special
+- **Basic demo**: https://qubejs.github.io/content/in/examples/basic
+- **Full list**: https://qubejs.github.io/content/in/examples/special
 
 
 ## Issues Report
