@@ -148,7 +148,7 @@ class PreferenceStorage {
   }
 
   getKey(prefix) {
-    return `${prefix || 'default'}_${this.nameString(
+    return `${this.preferenceName}${this.userKey ? `${this.userKey}_` : ''}${prefix || 'default'}_${this.nameString(
       this.ensureNoSlashStart(this.preferenceKey())
     )}`;
   }
