@@ -108,7 +108,7 @@ describe('utils:comp-storage', () => {
       const fakeSpy = jest.fn();
       storage.events.subscribe('onWrite', fakeSpy);
       storage.write('current', { a: 'b1' });
-      expect(fakeSpy).toHaveBeenCalledWith(`current_content_en_super`, { a: 'b1' }, '/content/en/super', 'default');
+      expect(fakeSpy).toHaveBeenCalledWith(`preference_current_content_en_super`, { a: 'b1' }, '/content/en/super', 'default');
       storage.events.unsubscribe('onWrite');
       expect(storage.read('current')).toEqual({ a: 'b1' });
     });
@@ -122,7 +122,7 @@ describe('utils:comp-storage', () => {
       const fakeSpy = jest.fn();
       storage.events.subscribe('onWriteAll', fakeSpy);
       storage.writeAll({ current: { a: 'b1' }, b: ['a', 'b'] });
-      expect(fakeSpy).toHaveBeenCalledWith({ current_content_en_event: { a: 'b1' }, b_content_en_event: ['a', 'b'] }, '/content/en/event', 'default');
+      expect(fakeSpy).toHaveBeenCalledWith({ preference_current_content_en_event: { a: 'b1' }, preference_b_content_en_event: ['a', 'b'] }, '/content/en/event', 'default');
       storage.events.unsubscribe('onWriteAll');
     });
   });
@@ -134,7 +134,7 @@ describe('utils:comp-storage', () => {
       storage.setNamedData({
         '/content/task': {
           'Park Users': {
-            stored_content_task: {
+            preference_stored_content_task: {
               v: 1,
             },
           },
@@ -155,6 +155,7 @@ describe('utils:comp-storage', () => {
       expect(storage.readNamed('parkingviwe', 'Lowes Users', true)).not.toBeDefined();
     });
     test('PreferenceStorage.readNamed(key, viewName) return preloaded data', async () => {
+      console.log(storage);
       expect(storage.readNamed('stored', 'Park Users')).toEqual({ v: 1 });
     });
     test('PreferenceStorage.readNamed(key, viewName) return blank data if not found', async () => {
@@ -225,10 +226,10 @@ describe('utils:comp-storage', () => {
       );
       expect(fakeFn).toBeCalledWith(
         {
-          taken_content_parking22_state: {
+          preference_taken_content_parking22_state: {
             p1: 1,
           },
-          taken2_content_parking22_state: {
+          preference_taken2_content_parking22_state: {
             p1: 1,
           },
         },
