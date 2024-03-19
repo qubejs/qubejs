@@ -439,7 +439,7 @@ class GenericListing extends Component {
   }
 
   render() {
-    const { pageData = {}, userData } = this.props;
+    const { pageData = {}, userData, store } = this.props;
     const { className = '' } = pageData;
     const { Actions, Dialog, Form, Grid, Skeleton } = storage.components.get();
     const currentSort = userData[this.getKey('currentSort')];
@@ -448,6 +448,11 @@ class GenericListing extends Component {
     const topFilter = userData[this.getKey('topFilter')];
     const selectedColumns = userData[this.getKey('selectedColumns')];
     const columnsOrder = userData[this.getKey('columnsOrder')];
+    const groupDataMaker = pageData.groupMaker ? (key: string, data: any) => {
+      return {
+        ...processParams({ ...userData, ...data[0], _key: key, collection: data, _dataCount: data.length }, pageData.groupMaker, undefined, store),
+      };
+    } : undefined;
     return (
       <div className={`sq-generic-listing sq-v-screen sq-v-screen--fixed ${className}`}>
         <div className="sq-v-screen__container">
@@ -499,6 +504,10 @@ class GenericListing extends Component {
                 disabled={this.state.isLoading}
                 className="sq-basic-grid sq-grid--fixed"
                 loader={<Skeleton styleName={`grid-tran`} rows={4} />}
+                dataGroup={pageData.dataGroup ? {
+                  ...pageData.dataGroup,
+                  groupDataMaker
+                } : undefined}
                 onChange={this.onGridChange}
                 onColFilterChange={this.onEditColumnChange}
                 selectedColumns={selectedColumns}
