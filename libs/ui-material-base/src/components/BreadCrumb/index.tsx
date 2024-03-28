@@ -89,7 +89,7 @@ const findNode = (data, path, permissions, parents = [], userData, appStore) => 
   return returnItems;
 };
 
-const BreadCrumb = ({ navigation, currentPath, permissions = [], breadcrumb, userData, appStore }:any) => {
+const BreadCrumb = ({ showGroupHeader = true, navigation, currentPath, permissions = [], breadcrumb, userData, appStore }:any) => {
   if (breadcrumb && breadcrumb.root) {
     currentPath = breadcrumb.root;
   }
@@ -121,14 +121,14 @@ const BreadCrumb = ({ navigation, currentPath, permissions = [], breadcrumb, use
     <div className="sq-bread-crumbs">
       {finalData?.length > 0 && <div className="sq-bread-crumbs__container">
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-            {finalData.map((item:any) => {
+            {finalData.map((item:any, idx: number) => {
               const finalUserData:any = { ...userData, ...urlForParams, ...query.get() };
               const finalItem = processParams(finalUserData, item, undefined, appStore);
               const finalParams:any = finalItem.urlParams;
               if (item.cmpType === 'Link') {
-                return <LinkButton key={finalItem.href} buttonText={finalItem.title} to={finalItem.href} urlParams={finalParams}></LinkButton>;
+                return [showGroupHeader && finalItem.header && idx === 0 && <Typography key={finalItem.href}>{finalItem.header}</Typography>, <LinkButton key={finalItem.href} buttonText={finalItem.title} to={finalItem.href} urlParams={finalParams}></LinkButton>];
               }
-              return <Typography key={item.href}>{item.title}</Typography>;
+              return [showGroupHeader && finalItem.header && idx === 0 && <Typography key={finalItem.href}>{finalItem.header}</Typography>, <Typography key={item.href}>{item.title}</Typography>];
             })}
         </Breadcrumbs>
       </div>}
