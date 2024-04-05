@@ -23,7 +23,7 @@ const GetInTouch = ({ className = '', header, info = [], footerText, bgColor, te
               <div className="sq-get-in-touch__info-item col col-md-4" key={idx}>
                 <Icon className="" size={item.iconSize || "normal"} variant={item.iconColor || "normal"} name={item.iconName} />
                 {!item.href && item.text}
-                {item.href && <LinkButton className='sq-get-in-touch__info__link' href={item.href} buttonText={item.text} target={item.target} />}
+                {item.href && <LinkButton className='sq-get-in-touch__info__link' to={item.href} href={item.href} buttonText={item.text} target={item.target} />}
               </div>
             );
           })}
