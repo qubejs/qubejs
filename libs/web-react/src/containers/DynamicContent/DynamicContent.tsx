@@ -244,7 +244,7 @@ class DynamicContent extends Component {
 
   async onChange(value, field, block) {
     if ((field || block)?.beforeChangeAction) {
-      await this.onAction({ }, field.beforeChangeAction, block);
+      await this.onAction({ value }, (field || block)?.beforeChangeAction, block);
     }
     const { onContentChange, contentParams } = this.props;
     let obj = {};
@@ -300,7 +300,7 @@ class DynamicContent extends Component {
     window.setTimeout(() => {
       onContentChange && onContentChange(processParams(this.props.store.content.userData, contentParams));
       if ((field || block)?.changeAction) {
-        this.onAction({ value: currentValue }, field.changeAction, block);
+        this.onAction({ value: currentValue }, (field || block)?.changeAction, block);
       }
     }, 300);
   }
