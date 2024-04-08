@@ -243,8 +243,9 @@ class DynamicContent extends Component {
   }
 
   async onChange(value, field, block) {
-    if ((field || block)?.beforeChangeAction) {
-      await this.onAction({ value }, (field || block)?.beforeChangeAction, block);
+    const actionFiieldCheck = (value.orignField || field || block);
+    if (actionFiieldCheck?.beforeChangeAction) {
+      await this.onAction({ value }, actionFiieldCheck.beforeChangeAction, block);
     }
     const { onContentChange, contentParams } = this.props;
     let obj = {};
@@ -299,8 +300,8 @@ class DynamicContent extends Component {
     this.props.contentActions.mergeUserData(this.state.pageData.pageData.merge);
     window.setTimeout(() => {
       onContentChange && onContentChange(processParams(this.props.store.content.userData, contentParams));
-      if ((field || block)?.changeAction) {
-        this.onAction({ value: currentValue }, (field || block)?.changeAction, block);
+      if (actionFiieldCheck?.changeAction) {
+        this.onAction({ value: currentValue }, actionFiieldCheck.changeAction, block);
       }
     }, 300);
   }
