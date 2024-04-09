@@ -125,7 +125,7 @@ class Content extends Component {
               isValid = validator.validateAll();
             }
             
-            const { component, ...restBlock } = block;
+            const { component } = block;
             const Comp = compMap[component];
             block = object.processBlock(block, { userData });
             if (!Comp) {

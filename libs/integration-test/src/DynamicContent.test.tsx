@@ -1500,6 +1500,153 @@ describe('DynamicContent', () => {
     });
   });
 
+  describe('Injectable Blocks', () => {
+    let mockProps;
+    let _container;
+    const pageResponse = {
+      pageData: {
+        items: [
+          {
+            injectBlock: 'user.changelang',
+          },
+          {
+            injectBlock: 'conent.subscribe',
+          },
+          {
+            component: 'Wrapper',
+            items:[
+              {
+                injectBlock: 'conent.check',
+              },
+            ]
+          },
+          {
+            component: 'Form',
+            name: 'marking',
+            fields: [
+              {
+                injectBlock: 'user.parking',
+              },
+            ],
+          },
+        ],
+      },
+    };
+    beforeEach(async () => {
+      mockProps = {
+        location: fake.location.create({
+          pathname: '/content/en',
+        }),
+        commonActions: fake.commonActions.create(),
+        contentActions: fake.contentActions.create({
+          fetchContentPage: {
+            data: pageResponse,
+          },
+          executeHook: {
+            status: 'success',
+            data: {
+              executionHook: 1,
+            },
+          },
+          postApi: {
+            status: 'success',
+            data: {
+              executionHook: 1,
+            },
+          },
+          checkAndPostApi: {
+            status: 'success',
+            data: {
+              executionHook: 1,
+            },
+          },
+        }),
+        store: fake.store.create({
+          userData: {
+            root: {
+              namedBlocks: {
+                'user.changelang': {
+                  component: 'Form',
+                  name: 'form',
+                  fields: [
+                    {
+                      cmpType: 'Input',
+                      label: 'Language',
+                      name: 'language',
+                      actionType: 'api',
+                    },
+                  ],
+                },
+                'user.parking': {
+                  cmpType: 'Input',
+                  label: 'Parking',
+                  name: 'parking',
+                  actionType: 'api',
+                },
+                'conent.subscribe': {
+                  component: 'ImageBlockWithText',
+                  header: 'Subscribe',
+                },
+                'conent.check': {
+                  component: 'ImageBlockWithText',
+                  header: 'Check the content',
+                },
+              },
+            },
+          },
+        }),
+      };
+      jest.useFakeTimers();
+      await act(() => {
+        const { container } = render(<DynamicContent {...mockProps} />);
+        jest.advanceTimersByTime(2000);
+        _container = container;
+      });
+    });
+
+    test('should call to postApi() via language', async () => {
+      await act(() => {
+        fireEvent.change(screen.getByTestId('language_input'), {
+          target: { value: 'India222' },
+        });
+        jest.advanceTimersByTime(200);
+      });
+      expect(mockProps.contentActions.postApi).toHaveBeenCalledWith(
+        {
+          cmpType: 'Input',
+          label: 'Language',
+          name: 'language',
+          actionType: 'api',
+        },
+        pageResponse
+      );
+    });
+
+    test('should call to postApi() via parking', async () => {
+      await act(() => {
+        fireEvent.change(screen.getByTestId('parking_input'), {
+          target: { value: 'India222' },
+        });
+        jest.advanceTimersByTime(200);
+      });
+      expect(mockProps.contentActions.postApi).toHaveBeenCalledWith(
+        {
+          cmpType: 'Input',
+          label: 'Parking',
+          name: 'parking',
+          actionType: 'api',
+        },
+        pageResponse
+      );
+    });
+    test('should have content rendered', async () => {
+      expect(screen.getByText('Subscribe')).toHaveTextContent('Subscribe');
+    });
+    test('should have content.check', async () => {
+      expect(screen.getByText('Check the content')).toHaveTextContent('Check the content')
+    });
+  });
+
   describe('Register Custom Containers', () => {
     test('should be able to register custom container', () => {
       containers.set({
