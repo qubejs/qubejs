@@ -31,7 +31,7 @@ const NavigationList = ({ links = {}, className, headerTag = 'h4' }:any) => {
               {category.map((data, cIdx) => {
                 return (
                   <div key={cIdx} className={`sq-navigation-list__link ${data.path === currentPath ? 'sq-navigation-list__link--active' : ''}`}>
-                    <LinkButton to={data.path} buttonText={data.title} />
+                    <LinkButton to={data.path} buttonText={extractCatName(data.title)} />
                   </div>
                 );
               })}
