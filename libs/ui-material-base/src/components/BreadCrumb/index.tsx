@@ -126,9 +126,9 @@ const BreadCrumb = ({ showGroupHeader = true, navigation, currentPath, permissio
               const finalItem = processParams(finalUserData, item, undefined, appStore);
               const finalParams:any = finalItem.urlParams;
               if (item.cmpType === 'Link') {
-                return [showGroupHeader && finalItem.header && idx === 0 && <Typography key={finalItem.href}>{finalItem.header}</Typography>, <LinkButton key={finalItem.href} buttonText={finalItem.title} to={finalItem.href} urlParams={finalParams}></LinkButton>];
+                return [showGroupHeader && finalItem.header && idx === 0 && <Typography key={finalItem.href}>{finalItem.header}</Typography>, finalItem.href && <LinkButton key={finalItem.href} buttonText={finalItem.title} to={finalItem.href} urlParams={finalParams}></LinkButton>];
               }
-              return [showGroupHeader && finalItem.header && idx === 0 && <Typography key={finalItem.href}>{finalItem.header}</Typography>, <Typography key={item.href}>{item.title}</Typography>];
+              return [showGroupHeader && finalItem.header && idx === 0 && <Typography key={finalItem.href}>{finalItem.header}</Typography>, finalItem.href && <Typography key={item.href}>{item.title}</Typography>];
             })}
         </Breadcrumbs>
       </div>}
