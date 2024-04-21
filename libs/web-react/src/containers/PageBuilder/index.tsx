@@ -143,7 +143,7 @@ class PageBuilder extends Component {
         getFieldsMeta({}, pageData.fieldsMetaConfig)
       ));
     this.setState({
-      contentData: this.props.store.admin.contentData,
+      contentData: JSON.parse(JSON.stringify(this.props.store.admin.contentData)),
     });
     this.props.commonActions.stopLoading();
   }
