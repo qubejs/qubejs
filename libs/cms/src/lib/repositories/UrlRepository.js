@@ -1,6 +1,5 @@
-const utils = require('../utils');
+const utils = require('@qubejs/core');
 var { getSettings } = require('../settings');
-const tokenManager = require('../tokenManager');
 const settings = getSettings();
 const URL_CONFIG = {
   LOGIN: settings.urlMapping['login'],

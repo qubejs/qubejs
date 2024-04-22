@@ -1,0 +1,19 @@
+title: Create new page
+template: apps/core/templates/page
+contentBodyClass: container-fluid container-ultrawide
+layout: apps/layouts/spa
+bodyClassName: bg-gray
+containerTemplate: Dashboard
+container: SiteMapBuilder
+
+
+getPageConfig:
+  url: /api/v1/dynamic/form/search
+  params:
+    path: .query.path
+  hook: data.extractResult
+savePageConfig:
+  url: /api/v1/dynamic/form
+  params:
+    pageData: .pageData
+    pageId: .query.pageId

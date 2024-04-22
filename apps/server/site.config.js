@@ -15,10 +15,10 @@ export default {
     appVersion: '1.0.0',
     title: 'Qubejs: A react based framework',
     dynamicContentConfig: {
-      '/content/dynamic/*': {
+      '/ho/pages/*': {
         url: '/api/v1/dynamic/form/public/search',
         params: {
-          path: '.url',
+          path: '::test.name::.url',
         },
         method: 'post',
       },

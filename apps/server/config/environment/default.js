@@ -67,7 +67,7 @@ export default {
     username: '',
     password: '',
     port: '27017',
-    dbname: 'crm-homeowner-local',
+    dbname: 'crm-local',
     host: 'localhost',
   },
   log: 'debug',

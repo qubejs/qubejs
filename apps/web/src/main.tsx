@@ -4,7 +4,7 @@ import * as uiMaterial from '@qubejs/ui-material-base';
 // import * as uiMaterial from '@qubejs/ui-material-base';
 import { plugins } from '@qubejs/web-react';
 import App from './app/app';
-
+import './global-events';
 plugins.register(uiMaterial);
 
 const root = ReactDOM.createRoot(

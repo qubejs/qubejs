@@ -5,10 +5,11 @@
 
 import express from 'express';
 import * as path from 'path';
-import { ContentServer } from '@qubejs/cms';
+import { ContentServer, features } from '@qubejs/cms';
 import siteConfig from '../site.config';
 import config from '../config/environment';
 import appConfig from '../config/app-config';
+import db from './database';
 
 const app = express();
 
@@ -18,6 +19,7 @@ const cmsSever = new ContentServer(
   {
     contentPath: path.resolve('./apps/server/ho'),
     serverPath: '/ho/*',
+    db: db,
     rootApp: path.resolve('./apps/server'),
     internalDevPath: path.resolve('./libs/cms'),
     damAssets: path.resolve('./apps/server/dam'),
