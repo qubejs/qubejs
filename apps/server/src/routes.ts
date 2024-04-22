@@ -4,18 +4,22 @@ import db from './database';
 const { AdminPanel } = features.default.adminPanel;
 const version = 'v1';
 const prefix = 'api';
+// const router = express.Router();
 
-const apis = {
-  ...new AdminPanel({
-    db,
-  }).get(),
+let apis = {
   //   '/hooks': require('./' + prefix + '/' + version + '/hooks')
 };
 
 export default function (app) {
-  console.log(apis);
+  apis = {
+    ...new AdminPanel({
+      db,
+    }).get(),
+    ...apis,
+  };
+
   Object.keys(apis).forEach(function (routerName) {
     const apiRoutes = apis[routerName]();
-    app.use('/'+ prefix + '/' + version + routerName, middleWare, apiRoutes);
+    app.use('/' + prefix + '/' + version + routerName, middleWare, apiRoutes);
   });
 }

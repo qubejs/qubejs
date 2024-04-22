@@ -17,7 +17,7 @@ import containers from '../containers';
 import templates from '../templates';
 import '../styles/themes/main/index.scss';
 import config from '../config';
-
+import Content from '../templates/Content';
 const {
   redirect: { setUrlMapping, setNavigate },
 } = utils;
@@ -44,7 +44,10 @@ export function App() {
     utils.redirect.setNavigate(navigate);
     utils.apiBridge.events.subscribeOnce('onUnauthroized', onUnauthroized);
     const token = utils.cookie.get('token');
-    utils.apiBridge.addHeader('tenantCode', utils.win.getWindow().APP_CONFIG.tenantCode);
+    utils.apiBridge.addHeader(
+      'tenantCode',
+      utils.win.getWindow().APP_CONFIG.tenantCode
+    );
     if (token) {
       utils.apiBridge.addHeader('Authorization', `Bearer ${token}`);
     }
@@ -53,17 +56,19 @@ export function App() {
   useEffect(() => {
     setNavigate(navigate);
   }, []);
-  
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Application>
-          <Routes>
-            {routes.map((item) => {
-              return <Route key={item.path} {...item}></Route>;
-            })}
-            <Route path="*" element={<Navigate to="/ho/home" />} />
-          </Routes>
+          <Content>
+            <Routes>
+              {routes.map((item) => {
+                return <Route key={item.path} {...item}></Route>;
+              })}
+              <Route path="*" element={<Navigate to="/ho/home" />} />
+            </Routes>
+          </Content>
         </Application>
       </ThemeProvider>
     </Provider>

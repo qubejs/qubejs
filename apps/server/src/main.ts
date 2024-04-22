@@ -42,9 +42,9 @@ const cmsSever = new ContentServer(
 cmsSever.init();
 routes(app);
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to server!' });
-});
+// app.post('/api/v1/admin/login', (req, res) => {
+//   res.send({ message: 'Welcome to server!' });
+// });
 
 const port = process.env.PORT || 4602;
 const server = app.listen(port, () => {

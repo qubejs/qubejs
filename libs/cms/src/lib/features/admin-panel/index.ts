@@ -55,7 +55,7 @@ class AdminPanel {
         /* email template */
         emailtemplateApi({ context: that });
 
-        return router;
+        return that.router;
       },
     };
   }
