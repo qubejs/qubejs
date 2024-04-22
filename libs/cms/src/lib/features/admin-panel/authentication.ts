@@ -1,6 +1,6 @@
-const { Response } = require('@qubejs/core');
-var tokenManager = require('../../tokenManager');
-var settings = require('../../settings').getSettings();
+import { Response } from '@qubejs/core';
+import tokenManager from '../../tokenManager';
+import settings from '../../settings';
 const permissions = [
   {
     roleCode: 'admin',
@@ -36,7 +36,7 @@ const permissions = [
     ],
   },
 ];
-module.exports = ({ context } = {}) => {
+export default ({ context }: any = {}) => {
   context.router.post('/users/all', function (req, res) {
     context.userRepo
       .getAll()
@@ -125,8 +125,8 @@ module.exports = ({ context } = {}) => {
         if (validResponse.loginStatus === 'ok') {
           const user = validResponse.user;
           req.session.userData = user;
-          var infoToStore = context.userRepo.info(user);
-          var token = tokenManager.encrypt(infoToStore);
+          const infoToStore = context.userRepo.info(user);
+          const token = tokenManager.encrypt(infoToStore);
           res.cookie(settings.cookie.tokenKey, token, {
             maxAge: settings.cookie.maxAge,
           });

@@ -1,22 +1,30 @@
-const { ContentRepository } = require('../../repositories/ContentRepository');
-const UserRepository = require('../../repositories/UserRepository');
-const UserSessionRepository = require('../../repositories/UserSessionRepository');
-const UserPreferenceRepository = require('../../repositories/UserPreferenceRepository');
-const EmailTemplateRepository = require('../../repositories/EmailTemplateRepository');
-const { Response, utils } = require('@qubejs/core');
-var express = require('express');
-var router = express.Router();
-var settings = require('../../settings').getSettings();
-var tokenManager = require('../../tokenManager');
-var contentApi = require('./content');
-var moduleApi = require('./module');
-var emailtemplateApi = require('./emailtemplate');
-const authenticationApi = require('./authentication');
+import express from 'express';
+import { Response, utils } from '@qubejs/core';
+import { ContentRepository } from '../../repositories/ContentRepository';
+import UserRepository from '../../repositories/UserRepository';
+import UserSessionRepository from '../../repositories/UserSessionRepository';
+import UserPreferenceRepository from '../../repositories/UserPreferenceRepository';
+import EmailTemplateRepository from '../../repositories/EmailTemplateRepository';
+import _settings from '../../settings';
+import tokenManager from '../../tokenManager';
+import contentApi from './content';
+import moduleApi from './module';
+import emailtemplateApi from './emailtemplate';
+import authenticationApi from './authentication';
+
+const router = express.Router();
 
 const { logger } = utils;
-
+const settings = _settings.getSettings();
 class AdminPanel {
-  constructor({ router: m_router, ...config } = {}) {
+  config: any;
+  router: any;
+  contentRepo: any;
+  userRepo: any;
+  userSessionRepo: any;
+  userPrefRepo: any;
+  emailTemplateRepo: any;
+  constructor({ router: m_router, ...config }: any = {}) {
     this.config = config;
     this.router = m_router || router;
     this.contentRepo = new ContentRepository(config);
@@ -32,7 +40,7 @@ class AdminPanel {
   }
 
   get() {
-    var that = this;
+    const that = this;
     return {
       '/admin': function (bridge) {
         /* content api  */
@@ -43,7 +51,7 @@ class AdminPanel {
 
         /* authentication */
         authenticationApi({ context: that });
-        
+
         /* email template */
         emailtemplateApi({ context: that });
 
@@ -54,22 +62,23 @@ class AdminPanel {
 }
 const middleware = () => {
   return function (req, res, next) {
-    var isFeatureAdmin = false;
-    var isPublic = false;
-    var tokenValidated = false;
-    var websettings = settings;
+    let isFeatureAdmin = false;
+    let isPublic = false;
+    let tokenValidated = false;
+    const websettings = settings;
 
     logger.log('Admin Middleware:' + req.method + req.originalUrl);
     websettings.api?.admin?.forEach(function (urlReg) {
       logger.log(
-        'Admin Middleware:checking for admin api:' + req.originalUrl,
-        ' -> ',
-        urlReg
+        'Admin Middleware:checking for admin api:' +
+          req.originalUrl +
+          ' -> ' +
+          urlReg
       );
       if (req.originalUrl.match(urlReg)) {
         logger.log(
-          'Admin Middleware:match found for admin api:' + req.originalUrl,
-          ' -> ',
+          'Admin Middleware:match found for admin api:' + req.originalUrl + 
+          ' -> ' +
           urlReg
         );
         isFeatureAdmin = true;
@@ -77,14 +86,14 @@ const middleware = () => {
     });
     websettings.api?.adminPublic?.forEach(function (urlReg) {
       logger.log(
-        'Admin Middleware:checking for public api:' + req.originalUrl,
-        ' -> ',
+        'Admin Middleware:checking for public api:' + req.originalUrl + 
+        ' -> ' +
         urlReg
       );
       if (req.originalUrl.match(urlReg)) {
         logger.log(
-          'Admin Middleware:match found for public api:' + req.originalUrl,
-          ' -> ',
+          'Admin Middleware:match found for public api:' + req.originalUrl + 
+          ' -> ' +
           urlReg
         );
         isPublic = true;
@@ -105,11 +114,11 @@ const middleware = () => {
     const tokenValue =
       req.cookies[websettings.cookie.tokenKey] ||
       req.headers[websettings.cookie.tokenKey];
-
+    let info;
     if (!isPublic && isFeatureAdmin && tokenValue) {
       logger.log('Token:' + tokenValue);
       try {
-        var info = tokenManager.decrypt(tokenValue);
+        info = tokenManager.decrypt(tokenValue);
         tokenValidated = true;
         logger.log('Admin Middleware:Token validated');
       } catch (err) {
@@ -166,4 +175,4 @@ const middleware = () => {
     }
   };
 };
-module.exports = { AdminPanel, middleware };
+export { AdminPanel, middleware };

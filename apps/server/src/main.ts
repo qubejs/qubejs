@@ -5,11 +5,12 @@
 
 import express from 'express';
 import * as path from 'path';
-import { ContentServer, features } from '@qubejs/cms';
+import { ContentServer } from '@qubejs/cms';
 import siteConfig from '../site.config';
 import config from '../config/environment';
 import appConfig from '../config/app-config';
 import db from './database';
+import routes from './routes';
 
 const app = express();
 
@@ -39,6 +40,7 @@ const cmsSever = new ContentServer(
 );
 
 cmsSever.init();
+routes(app);
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to server!' });

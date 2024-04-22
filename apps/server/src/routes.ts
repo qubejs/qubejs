@@ -1,15 +1,21 @@
-const middleWare = require('./middleware');
-
+import middleWare from './middleware';
+import { features } from '@qubejs/cms';
+import db from './database';
+const { AdminPanel } = features.default.adminPanel;
 const version = 'v1';
 const prefix = 'api';
 
 const apis = {
-  '/hooks': require('./' + prefix + '/' + version + '/hooks')
+  ...new AdminPanel({
+    db,
+  }).get(),
+  //   '/hooks': require('./' + prefix + '/' + version + '/hooks')
 };
 
-module.exports = function (app) {
+export default function (app) {
+  console.log(apis);
   Object.keys(apis).forEach(function (routerName) {
-    var apiRoutes = apis[routerName]();
-    app.use('/api/' + version + routerName, middleWare, apiRoutes);
+    const apiRoutes = apis[routerName]();
+    app.use('/'+ prefix + '/' + version + routerName, middleWare, apiRoutes);
   });
-};
+}

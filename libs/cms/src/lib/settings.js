@@ -1,7 +1,12 @@
 let _settings = {
   api: {
     admin: ['/admin/.*'],
-    adminPublic: ['/admin/login','/admin/signup','/admin/forgotpassword', '/admin/module'],
+    adminPublic: [
+      '/admin/login',
+      '/admin/signup',
+      '/admin/forgotpassword',
+      '/admin/module',
+    ],
   },
   session: {
     secure: true,
@@ -32,7 +37,7 @@ let _settings = {
   },
 };
 
-module.exports = {
+export default {
   setSettings: (newSettings) => {
     _settings = {
       ..._settings,

@@ -1,12 +1,19 @@
 import _bcrypt from 'bcryptjs';
 import { Errors, utils } from '@qubejs/core';
+import * as dbutils from '../dbutils';
 import BaseRepository from './BaseRepository';
 // import MailRepository from './MailRepository';
 import UserSessionRepository from './UserSessionRepository';
 import UrlRepository from './UrlRepository';
-import { getSettings } from '../settings';
+import _settings from '../settings';
 
 class UserRepository extends BaseRepository {
+  settings: any;
+  sessionRepo: any;
+  urlRepo: any;
+  bcrypt: any;
+  mailRepo: any;
+  countryRepo: any;
   constructor({
     urlRepo = new UrlRepository(),
     bcrypt = _bcrypt,
@@ -16,7 +23,7 @@ class UserRepository extends BaseRepository {
       ...options,
       collection: 'users',
     });
-    this.settings = getSettings();
+    this.settings = _settings.getSettings();
     this.sessionRepo = new UserSessionRepository(options);
     this.urlRepo = urlRepo;
     this.bcrypt = bcrypt;
@@ -38,7 +45,7 @@ class UserRepository extends BaseRepository {
   }
   getUserByEmail(email) {
     return this.findOne({
-      email: utils.filter.ignoreCase(email),
+      email: dbutils.filter.ignoreCase(email),
     });
   }
 
@@ -61,7 +68,7 @@ class UserRepository extends BaseRepository {
   }
 
   resetPassword(uid, password) {
-    var hashedPassword = this.bcrypt.hashSync(password, 10);
+    const hashedPassword = this.bcrypt.hashSync(password, 10);
     return this.update({
       uid,
       password: hashedPassword,
@@ -78,7 +85,7 @@ class UserRepository extends BaseRepository {
       this.find({
         $or: [
           { phone: userName },
-          { email: utils.filter.ignoreCase(userName) },
+          { email: dbutils.filter.ignoreCase(userName) },
         ],
       }).then(async (users) => {
         if (users && users.length > 0) {
@@ -101,7 +108,7 @@ class UserRepository extends BaseRepository {
       this.find({
         $or: [
           { phone: userName },
-          { email: utils.filter.ignoreCase(userName) },
+          { email: dbutils.filter.ignoreCase(userName) },
         ],
       }).then(async (users) => {
         if (users && users.length > 0) {
@@ -122,7 +129,7 @@ class UserRepository extends BaseRepository {
   validate(userName, password) {
     return new Promise((resolve, reject) => {
       this.find({
-        $or: [{ email: utils.filter.ignoreCase(userName) }],
+        $or: [{ email: dbutils.filter.ignoreCase(userName) }],
       }).then(async (users) => {
         if (!users || users.length === 0) {
           reject(Errors.invalidcred());
@@ -185,7 +192,7 @@ class UserRepository extends BaseRepository {
     var that = this;
     return new Promise((resolve, reject) => {
       this.find({
-        $or: [{ email: utils.filter.ignoreCase(userObj.email) }],
+        $or: [{ email: dbutils.filter.ignoreCase(userObj.email) }],
       }).then(async (users) => {
         if (!userObj.password) {
           userObj.password = utils.number.getRandomS6();
@@ -244,4 +251,4 @@ class UserRepository extends BaseRepository {
   }
 }
 
-module.exports = UserRepository;
+export default UserRepository;

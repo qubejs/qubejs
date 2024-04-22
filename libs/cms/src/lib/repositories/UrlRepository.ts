@@ -1,6 +1,7 @@
-const utils = require('@qubejs/core');
-var { getSettings } = require('../settings');
-const settings = getSettings();
+import {utils} from '@qubejs/core';
+import _settings from '../settings';
+
+const settings = _settings.getSettings();
 const URL_CONFIG = {
   LOGIN: settings.urlMapping['login'],
 };
@@ -19,4 +20,4 @@ class UrlRepository {
   }
 }
 
-module.exports = UrlRepository;
+export default UrlRepository;

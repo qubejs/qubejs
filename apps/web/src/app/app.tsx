@@ -33,9 +33,27 @@ export function App() {
   const navigate = useNavigate();
   // const { Snackbar } = storage.components.get();
   const { Application } = storage.containers.get();
+  const onUnauthroized = () => {
+    // appActions.clearUser();
+    const url = window.location.pathname + window.location.search;
+    if (url.indexOf('/login') === -1) {
+      utils.redirect.redirectTo('login', { returnUrl: url });
+    }
+  };
+  useEffect(() => {
+    utils.redirect.setNavigate(navigate);
+    utils.apiBridge.events.subscribeOnce('onUnauthroized', onUnauthroized);
+    const token = utils.cookie.get('token');
+    utils.apiBridge.addHeader('tenantCode', utils.win.getWindow().APP_CONFIG.tenantCode);
+    if (token) {
+      utils.apiBridge.addHeader('Authorization', `Bearer ${token}`);
+    }
+    // appActions.initApplication(config).then(() => appActions.setAppLoaded());
+  }, []);
   useEffect(() => {
     setNavigate(navigate);
   }, []);
+  
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
