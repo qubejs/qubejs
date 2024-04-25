@@ -227,7 +227,6 @@ class BaseRepository {
   }
 
   aggregate({ match, sort, addFields, group, lookup }: any):any  {
-    console.log(sort);
     const filter = [];
     if (sort) {
       filter.push({ $sort: sort });
@@ -248,7 +247,6 @@ class BaseRepository {
         $lookup: lookup,
       });
     }
-    console.log(filter);
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .aggregate(filter)

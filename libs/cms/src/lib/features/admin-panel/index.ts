@@ -116,7 +116,7 @@ const middleware = () => {
       req.headers[websettings.cookie.tokenKey];
     let info;
     if (!isPublic && isFeatureAdmin && tokenValue) {
-      logger.log('Token:' + tokenValue);
+      logger.log('Token:****');
       try {
         info = tokenManager.decrypt(tokenValue);
         tokenValidated = true;
