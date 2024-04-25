@@ -137,65 +137,59 @@ class ContentServer {
     return filePath;
   }
 
-  searchSiteMaps() {
+  async searchSiteMaps() {
     const siteMaps = {};
     [this.rootContentPath, this.config.contentPath].forEach((path) => {
       console.log('searching site maps in:' + path);
       console.log(path);
-      this.fse.readdir(path, (err, list) => {
-        if (this.fse.existsSync(path)) {
-          if (err) throw err;
-          for (let i = 0; i < list.length; i++) {
-            if (this.fse.existsSync(`${path}${list[i]}/sitemap.yaml`)) {
-              console.log(`${path}${list[i]}/sitemap.yaml`);
-              let contents;
-              try {
-                const fileContents = this.fse.readFileSync(
-                  `${path}${list[i]}/sitemap.yaml`,
-                  'utf8'
-                );
-                contents = yaml.loadAll(fileContents);
-              } catch (ex) {
-                contents = '';
-              }
-              if (contents) {
-                siteMaps[list[i]] = contents[0];
-                console.log('added site map:' + list[i]);
-              }
-            } else if (
-              this.fse.existsSync(`${path}${list[i]}/site.config.js`)
-            ) {
-              let contents;
-              try {
-                const fileContents = import(`${path}${list[i]}/site.config.js`);
-                contents = fileContents;
-              } catch (ex) {
-                contents = '';
-              }
-              if (contents) {
-                siteMaps[list[i]] = contents;
-                console.log('added site map:' + list[i]);
-              }
-            } else if (
-              this.fse.existsSync(`${path}${list[i]}/site.config.json`)
-            ) {
-              let contents;
-              try {
-                const fileContents = import(
-                  `${path}${list[i]}/site.config.json`
-                );
-                contents = fileContents;
-              } catch (ex) {
-                contents = '';
-              }
-              if (contents) {
-                siteMaps[list[i]] = contents;
-                console.log('added site map:' + list[i]);
-              }
+      const list = this.fse.readdirSync(path);
+      if (this.fse.existsSync(path)) {
+        for (let i = 0; i < list.length; i++) {
+          if (this.fse.existsSync(`${path}${list[i]}/sitemap.yaml`)) {
+            // console.log(`${path}${list[i]}/sitemap.yaml`);
+            let contents;
+            try {
+              const fileContents = this.fse.readFileSync(
+                `${path}${list[i]}/sitemap.yaml`,
+                'utf8'
+              );
+              contents = yaml.loadAll(fileContents);
+            } catch (ex) {
+              contents = '';
+            }
+            if (contents) {
+              siteMaps[list[i]] = contents[0];
+              console.log('added site map:' + list[i]);
+            }
+          } else if (this.fse.existsSync(`${path}${list[i]}/site.config.js`)) {
+            let contents;
+            try {
+              const fileContents = import(`${path}${list[i]}/site.config.js`);
+              contents = fileContents;
+            } catch (ex) {
+              contents = '';
+            }
+            if (contents) {
+              siteMaps[list[i]] = contents;
+              console.log('added site map:' + list[i]);
+            }
+          } else if (
+            this.fse.existsSync(`${path}${list[i]}/site.config.json`)
+          ) {
+            let contents;
+            try {
+              const fileContents = import(`${path}${list[i]}/site.config.json`);
+              contents = fileContents;
+            } catch (ex) {
+              contents = '';
+            }
+            if (contents) {
+              siteMaps[list[i]] = contents;
+              console.log('added site map:' + list[i]);
             }
           }
         }
-      });
+      }
     });
     this.allSiteMaps = siteMaps;
     console.log(this.allSiteMaps);

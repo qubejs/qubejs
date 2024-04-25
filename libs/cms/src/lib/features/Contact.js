@@ -2,7 +2,7 @@ const { Response } = require('@qubejs/core');
 const {
   MailRepository,
   setTemplates,
-} = require('../repositories/MailRepository');
+} = require('../repositories/MailRepository').default;
 var express = require('express');
 var router = express.Router();
 
