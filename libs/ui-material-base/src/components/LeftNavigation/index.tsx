@@ -9,8 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import LeftDrawer from './LeftDrawer';
-import { hasActive, hasMatchingRoles, hasPermission } from './helpers';
-// const { Dialog, Icon } = root;
+import { hasActive, hasPermission } from './helpers';
 
 const LeftNavigation = ({
   logo = {},
@@ -23,6 +22,7 @@ const LeftNavigation = ({
   onCloseDrawer,
   userData = {},
 }: any) => {
+  console.log(items);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [menuItems, setMenuItems] = React.useState([]);
   const [currentItem, setCurrentItem]: [any, any] = React.useState();

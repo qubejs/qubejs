@@ -141,10 +141,12 @@ class ContentServer {
     const siteMaps = {};
     [this.rootContentPath, this.config.contentPath].forEach((path) => {
       console.log('searching site maps in:' + path);
+      console.log(path);
       this.fse.readdir(path, (err, list) => {
         if (this.fse.existsSync(path)) {
           if (err) throw err;
           for (let i = 0; i < list.length; i++) {
+            console.log('@@@@@@' + list[i]);
             if (this.fse.existsSync(`${path}${list[i]}/sitemap.yaml`)) {
               console.log(`${path}${list[i]}/sitemap.yaml`);
               let contents;
@@ -164,10 +166,25 @@ class ContentServer {
             } else if (
               this.fse.existsSync(`${path}${list[i]}/site.config.js`)
             ) {
-              console.log(`${path}${list[i]}/site.config.js`);
               let contents;
               try {
                 const fileContents = import(`${path}${list[i]}/site.config.js`);
+                contents = fileContents;
+              } catch (ex) {
+                contents = '';
+              }
+              if (contents) {
+                siteMaps[list[i]] = contents;
+                console.log('added site map:' + list[i]);
+              }
+            } else if (
+              this.fse.existsSync(`${path}${list[i]}/site.config.json`)
+            ) {
+              let contents;
+              try {
+                const fileContents = import(
+                  `${path}${list[i]}/site.config.json`
+                );
                 contents = fileContents;
               } catch (ex) {
                 contents = '';
@@ -182,6 +199,7 @@ class ContentServer {
       });
     });
     this.allSiteMaps = siteMaps;
+    console.log(this.allSiteMaps);
   }
 
   init() {
@@ -470,6 +488,14 @@ class ContentServer {
     const appPath = this.getAppNameFromUrl(srcFile);
     const siteMaps = this.generateSiteMapPaths(fullPath);
     let currentSiteConfig = this.allSiteMaps[appPath] || config.siteConfig;
+    currentSiteConfig = {
+      ...config.siteConfig,
+      ...currentSiteConfig,
+      siteMap: {
+        ...config.siteConfig.siteMap,
+        ...currentSiteConfig.siteMap,
+      },
+    };
     if (this.contentRepo) {
       const result = await this.contentRepo.searchSiteMaps(siteMaps);
       if (result.length > 0) {
@@ -499,7 +525,8 @@ class ContentServer {
       });
     }
 
-    let { filePath, rootPath, isFile, contentFolder } = this.getFileLocation(fullPath);
+    let { filePath, rootPath, isFile, contentFolder } =
+      this.getFileLocation(fullPath);
     rootPath = `${rootPath || ''}`;
     if (isLaunchMatch) {
       let timeToLaunch;
@@ -535,7 +562,9 @@ class ContentServer {
 
     let fileContents;
     let fileFound = true;
-    const pathPlain = utils.path.ensureSlashAtStart(this.getPathWithoutAppName(fullPath));
+    const pathPlain = utils.path.ensureSlashAtStart(
+      this.getPathWithoutAppName(fullPath)
+    );
     if (!this.fse.existsSync(filePath)) {
       filePath = this.get404Page(currentSiteConfig, fullPath);
       status = 404;

@@ -1,10 +1,11 @@
 import middleWare from './middleware';
 import { features } from '@qubejs/cms';
+import express from 'express';
 import db from './database';
-const { AdminPanel } = features.default.adminPanel;
+const { AdminPanel } = features.adminPanel;
 const version = 'v1';
 const prefix = 'api';
-// const router = express.Router();
+const router = express.Router();
 
 let apis = {
   //   '/hooks': require('./' + prefix + '/' + version + '/hooks')
@@ -13,6 +14,7 @@ let apis = {
 export default function (app) {
   apis = {
     ...new AdminPanel({
+      router,
       db,
     }).get(),
     ...apis,

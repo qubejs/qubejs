@@ -6,7 +6,8 @@ $sq-global-navigation-sub-navcolor-hover:$sq-color-slate-darkest !default;
 
 .sq-global-navigation {
   width: 100%;
-
+  z-index: $z-index-level-4;
+  
   &__wrapper {
     padding: 8px 15px;
     @media (min-width: $screen-sm) {

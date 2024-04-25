@@ -71,6 +71,7 @@ class AdminDashboard extends AdminContainer {
       utils.storage.components.get();
     const { data = {}, store } = this.props;
     const { pageData = {}, metaData = {}, siteMap = {} } = data;
+    console.log(siteMap);
     const { templateClasses = {} } = pageData;
     const listOfActions = [
       {
@@ -105,6 +106,7 @@ class AdminDashboard extends AdminContainer {
     ].filter((i) => !!i);
     const { currentUser } = this.props.store.authentication;
     const logo = siteMap.siteMap.logo;
+    console.log(siteMap, currentUser, this.props.store.authentication)
     return (
       <>
         <div

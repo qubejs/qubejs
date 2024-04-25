@@ -36,10 +36,10 @@
       window.APP_CONFIG.MODE = 'development';
       window.targetTheme = '<%=siteMap.theme %>';
     </script>
-    <script src="<%= publicUrl %>/runtime.js" type="module"></script>
-    <script src="<%= publicUrl %>/styles.js" type="module"></script>
-    <script src="<%= publicUrl %>/vendor.js" type="module"></script>
-    <script src="<%= publicUrl %>/main.js" type="module"></script>
+    <script src="<%= publicUrl %>/runtime.<%= siteMap.appVersion %>.js" type="module"></script>
+    <script src="<%= publicUrl %>/styles.<%= siteMap.appVersion %>.js" type="module"></script>
+    <script src="<%= publicUrl %>/vendor.<%= siteMap.appVersion %>.js" type="module"></script>
+    <script src="<%= publicUrl %>/main.<%= siteMap.appVersion %>.js" type="module"></script>
     <% }%>
   </body>
 </html>

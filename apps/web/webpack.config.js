@@ -1,9 +1,24 @@
+require('dotenv').config();
 const path = require('path');
+// const chalk = require('chalk');
 const { composePlugins, withNx } = require('@nx/webpack');
 const { withReact } = require('@nx/react');
+const packageJson = require('../../package.json');
 
+const VERSION = process.env.VERSION || packageJson.version;
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withReact(), (config) => {
+  if (VERSION) {
+    console.log('building for version:' + VERSION);
+    config.output.filename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
+    config.output.chunkFilename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
+    config.plugins[5].options.filename = `[name]${
+      VERSION ? `.${VERSION}` : ''
+    }.css`;
+    config.plugins[5].options.chunkFilename = `[name]${
+      VERSION ? `.${VERSION}` : ''
+    }.css`;
+  }
   // Update the webpack config as needed here.
   // e.g. `config.plugins.push(new MyPlugin())`
   const typescss = config.module.rules.filter((i) => '.scss'.match(i.test))[0];
@@ -13,6 +28,7 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
   // scssMod.use[1].options.modules = {
   //   compileType: 'icss',
   // };
+  // console.log(config.module.rules);
   // console.log(scssMod.use[1]);
   const typeWeb = scssMod.use[3].options;
   typeWeb.additionalData = (content, loaderContext) => {
@@ -32,7 +48,6 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
     ${content}
   `;
   };
-  console.log(path.resolve('apps/web/src/styles'));
   // console.log(path.resolve('apps/web/src/styles'));
   typeWeb.sassOptions.includePaths.push(path.resolve('apps/web/src/styles'));
   // typeWeb.sassOptions.includePaths = [path.resolve('apps/web/src/styles')];

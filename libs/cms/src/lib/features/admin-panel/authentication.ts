@@ -1,6 +1,6 @@
 import { Response } from '@qubejs/core';
 import tokenManager from '../../tokenManager';
-import settings from '../../settings';
+import _settings from '../../settings';
 const permissions = [
   {
     roleCode: 'admin',
@@ -37,6 +37,7 @@ const permissions = [
   },
 ];
 export default ({ context }: any = {}) => {
+  const settings = _settings.getSettings();
   context.router.post('/users/all', function (req, res) {
     context.userRepo
       .getAll()

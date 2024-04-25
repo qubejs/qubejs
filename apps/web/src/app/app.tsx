@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import {
   Route,
   Routes,
@@ -8,10 +9,9 @@ import {
   // RouterProvider,
   // createHashRouter,
 } from 'react-router-dom';
-import { storage, utils, ThemeProvider } from '@qubejs/web-react';
-import { Provider } from 'react-redux';
+import { storage, utils, ThemeProvider, reducers } from '@qubejs/web-react';
+
 import theme from '../styles/themes/main/main.theme';
-import { store } from '../redux';
 import routes from '../routes';
 import containers from '../containers';
 import templates from '../templates';
@@ -22,6 +22,10 @@ const {
   redirect: { setUrlMapping, setNavigate },
 } = utils;
 
+const { closeNotification, closePopup, closePopupScreen } = reducers.common;
+const { initApplication, selectUserData } = reducers.content;
+
+const { DynamicContent, Application } = containers;
 setUrlMapping(config.urlMapping);
 
 storage.containers.set({
@@ -29,8 +33,9 @@ storage.containers.set({
   ...templates,
 });
 
-export function App() {
+export function App({ appActions }) {
   const navigate = useNavigate();
+  const [loaded, setAppLoaded] = useState(false);
   // const { Snackbar } = storage.components.get();
   const { Application } = storage.containers.get();
   const onUnauthroized = () => {
@@ -51,28 +56,47 @@ export function App() {
     if (token) {
       utils.apiBridge.addHeader('Authorization', `Bearer ${token}`);
     }
-    // appActions.initApplication(config).then(() => appActions.setAppLoaded());
+    appActions.initApplication(config).then(() => setAppLoaded(true));
   }, []);
   useEffect(() => {
     setNavigate(navigate);
   }, []);
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Application>
-          <Content>
-            <Routes>
-              {routes.map((item) => {
-                return <Route key={item.path} {...item}></Route>;
-              })}
-              <Route path="*" element={<Navigate to="/ho/home" />} />
-            </Routes>
-          </Content>
-        </Application>
-      </ThemeProvider>
-    </Provider>
+    <>
+      {loaded && (
+        <ThemeProvider theme={theme}>
+          <Application>
+            <Content>
+              <Routes>
+                {routes.map((item) => {
+                  return <Route key={item.path} {...item}></Route>;
+                })}
+                <Route path="*" element={<Navigate to="/content/home" />} />
+              </Routes>
+            </Content>
+          </Application>
+        </ThemeProvider>
+      )}
+    </>
   );
 }
+const mapStateToProps = (state: any) => {
+  return {
+    appStore: state,
+  };
+};
 
-export default App;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    appActions: {
+      initApplication: (data: any) => dispatch(initApplication(data)),
+      closeNotification: () => dispatch(closeNotification()),
+      closePopup: () => dispatch(closePopup()),
+      closePopupScreen: () => dispatch(closePopupScreen()),
+    },
+    raiseAction: dispatch,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

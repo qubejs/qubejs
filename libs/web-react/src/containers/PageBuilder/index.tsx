@@ -114,8 +114,8 @@ class PageBuilder extends Component {
   }
 
   async componentDidUpdate() {
-    if (!this.state.pageFetched && utils.queryString.query.get().path) {
-      this.checkPageLoad();
+    if (!this.state.pageFetched && utils.queryString.query.get().path && this.state.pathFetched !== utils.queryString.query.get().path) {
+      await this.checkPageLoad();
     }
   }
 
@@ -134,6 +134,7 @@ class PageBuilder extends Component {
       this.setState({
         pageFetched: true,
         autoSave: true,
+        pathFetched: utils.queryString.query.get().path
       });
     } else {
       await this.props.raiseAction(createPage());

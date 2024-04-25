@@ -8,7 +8,7 @@ import siteConfig from '../../apps/server/site.config.js';
 new StaticContentBuilder({
   serverConfig: {
     contentPath: path.resolve('apps/server/ho'),
-    serverPath: '/ho/*',
+    serverPath: '/content/*',
     siteConfig,
     appConfig: {
       ...appConfig,

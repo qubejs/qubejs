@@ -1,0 +1,4 @@
+init:
+  sys_options:
+    inputVariant: ::globals.options::inputVariant
+  moduleFilter: false

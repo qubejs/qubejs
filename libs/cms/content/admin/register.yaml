@@ -80,6 +80,10 @@ items:
         url:  /api/v1/admin/signup
         method: post
         rootErrorKey: register
+        defaultResponse:
+          success:
+            data:
+              redirect: /content/admin/sucess-registered
         params:
           firstName: .register.firstName
           lastName: .register.lastName

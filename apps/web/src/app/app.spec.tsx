@@ -9,7 +9,7 @@ plugins.register(ui);
 
 describe('App', () => {
   it('should render successfully', () => {
-    const history = createMemoryHistory({ initialEntries: ['/ho/home'] });
+    const history = createMemoryHistory({ initialEntries: ['/content/home'] });
     const { baseElement } = render(
       <Router location={history.location} navigator={history}>
         <App />

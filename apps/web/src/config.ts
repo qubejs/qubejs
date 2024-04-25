@@ -1,16 +1,18 @@
 export default {
   globals: {
-    path: '/ho/root',
+    path: '/content/admin/root',
   },
   urls: {
-    protected: [ '/content/dynamic/app/*'],
+    protected: [ '/content/dynamic/app/*', '/content/admin/*'],
   },
   urlMapping: {
-    homeDashboard: '/ho/app/dashboard',
-    home: '/ho/home',
-    '/ho/(.*)': {
+    homeDashboard: '/content/app/dashboard',
+    home: '/content/home',
+    login: '/content/admin/login',
+    register: '/content/admin/register',
+    '/content/(.*)': {
       type: 'regex',
-      target: '/ho/$1',
+      target: '/content/$1',
     },
   },
 };
