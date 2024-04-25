@@ -5,3 +5,4 @@ utils.processor.add('test', {
     return value.replace('/content/', '/');
   },
 });
+

@@ -5,11 +5,11 @@ containerTemplate: AdminDashboard
 templateClassName: container-max
 contentBodyClass: container p-3
 merge:
-  manageUser: ::authPermission.hasPermission::listUsers
-  manageRole: ::authPermission.hasPermission::listRoles
-  manageDynamic: ::authPermission.hasPermission::listDynamic
-  manageAppConfig: ::authPermission.hasPermission::dataImport
-  importPermission: ::authPermission.hasPermission::dataImport
+  manageUser: ::authentication.hasPermission::listUsers
+  manageRole: ::authentication.hasPermission::listRoles
+  manageDynamic: ::authentication.hasPermission::listDynamic
+  manageAppConfig: ::authentication.hasPermission::dataImport
+  importPermission: ::authentication.hasPermission::dataImport
 items:
   - component: Header
     header: Users and Permissions
