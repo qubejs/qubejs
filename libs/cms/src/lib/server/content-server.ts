@@ -146,7 +146,6 @@ class ContentServer {
         if (this.fse.existsSync(path)) {
           if (err) throw err;
           for (let i = 0; i < list.length; i++) {
-            console.log('@@@@@@' + list[i]);
             if (this.fse.existsSync(`${path}${list[i]}/sitemap.yaml`)) {
               console.log(`${path}${list[i]}/sitemap.yaml`);
               let contents;

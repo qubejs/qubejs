@@ -351,7 +351,6 @@ class Users extends React.Component {
     const { Grid, Tabs, Form, Pagination, Dialog, Actions, Skeleton } =
       utils.storage.components.get();
     const { fieldMapping = {} } = pageData;
-    // console.log('@@@@userstore', store);
     return (
       <div className="sq-auth-users sq-v-screen sq-v-screen--fixed">
         <div className="sq-v-screen__container">

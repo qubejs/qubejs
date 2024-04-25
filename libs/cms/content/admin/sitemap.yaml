@@ -37,11 +37,12 @@ siteMap:
       - title: Edit SiteMap
         hideInMenu: true
         href: "/content/admin/portal/pages/editmap"
-    - title: Admin Settings
-      iconName: Settings
-      href: "/content/admin/portal/adminsettings"
+    - iconName: Settings
       header: Admin Settings
       children:
+      - title: Settings
+        iconName: Settings
+        href: "/content/admin/portal/adminsettings"
       - title: Manage Users
         iconName: people
         href: "/content/admin/portal/users"
