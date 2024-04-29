@@ -106,7 +106,7 @@ class AdminDashboard extends AdminContainer {
     ].filter((i) => !!i);
     const { currentUser } = this.props.store.authentication;
     const logo = siteMap.siteMap.logo;
-    console.log(siteMap, currentUser, this.props.store.authentication)
+    
     return (
       <>
         <div

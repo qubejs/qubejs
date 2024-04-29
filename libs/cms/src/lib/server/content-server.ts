@@ -192,7 +192,6 @@ class ContentServer {
       }
     });
     this.allSiteMaps = siteMaps;
-    console.log(this.allSiteMaps);
   }
 
   init() {

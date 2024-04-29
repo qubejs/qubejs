@@ -115,7 +115,6 @@ export const loadPageTree =
       params
         ? processParams(
             {
-              ...selectContentData(getState()),
               ...selectUserData(getState()),
               ...payload,
             },
@@ -127,7 +126,6 @@ export const loadPageTree =
       undefined,
       processParams(
         {
-          ...selectContentData(getState()),
           ...selectUserData(getState()),
           ...payload,
         },
@@ -149,7 +147,6 @@ export const loadPagesByPath =
       params
         ? processParams(
             {
-              ...selectContentData(getState()),
               ...selectUserData(getState()),
               ...payload,
             },
@@ -162,7 +159,6 @@ export const loadPagesByPath =
       {
         ...processParams(
           {
-            ...selectContentData(getState()),
             ...selectUserData(getState()),
             ...payload,
           },

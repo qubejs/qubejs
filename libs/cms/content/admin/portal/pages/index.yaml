@@ -5,3 +5,39 @@ layout: apps/core/layouts/spa
 bodyClassName: 
 containerTemplate: AdminDashboard
 container: PageListing
+id: pagelist
+enableTree: false
+actionInBreadCrumb: true
+
+getPagesConfig:
+  url: /api/v1/admin/content/page/getbypath
+  method: post
+  hook: contentPages.extractDataArray
+  query:
+    pageSize: 1000
+  params:
+    type: .type
+    pageName: .pageName
+    path: .path
+    formType:
+      - MESSAGE
+      - WORKSHEET
+      - WEBHOOK
+# contentPageConfig:
+#   url: /api/v1/dynamic/form
+#   params:
+#     pageId: .pageId
+# clonePageConfig:
+#   url: /api/v1/dynamic/form/clone
+#   params:
+#     from: .from
+#     to: .to
+#     pageName: .name
+# cloneConfig:
+#   init:
+#     to: /content/dynamic/
+#   targetPath:
+#     required:
+#       defaultValue: /content/dynamic/
+#     starts:
+#       startsWith: /content/dynamic/

@@ -1,4 +1,5 @@
 title: Create new page
+id: pageEdit
 template: apps/core/templates/page
 contentBodyClass: container-fluid container-ultrawide
 layout: apps/core/layouts/spa

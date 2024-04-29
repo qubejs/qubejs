@@ -22,7 +22,6 @@ const LeftNavigation = ({
   onCloseDrawer,
   userData = {},
 }: any) => {
-  console.log(items);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [menuItems, setMenuItems] = React.useState([]);
   const [currentItem, setCurrentItem]: [any, any] = React.useState();
