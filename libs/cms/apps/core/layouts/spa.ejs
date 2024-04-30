@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="shortcut icon" href="/favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="home owner" />
-    <meta
-      name="keywords"
-      content="web components library js lib date range slider expense app"
-    />
-    <meta name="author" content="home owner" />
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= siteMap.title %></title>
-    <% if (mode=='production' ) { %>
+    <link rel="shortcut icon" href="/favicon-32x32.png" />
 
+    <title><%= siteMap.title %></title>
+    <% if (['development', 'local'].indexOf(mode) === -1) { %>
     <link
-      href="/static/css/main.<%= siteMap.appVersion %>.css"
+      href="<%= publicUrl %>/static/css/<%=siteMap.theme %>.<%= siteMap.appVersion %>.css"
       rel="stylesheet"
     />
+    <% } else { %>
+      <link rel="stylesheet" href="<%= publicUrl %>/styles.css"><link rel="stylesheet" href="<%= publicUrl %>/main.css"></head>
     <% } %>
     <script
       src="/client/libs/tinymce/tinymce.min.js"
       referrerpolicy="origin"
     ></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-   
   </head>
 
   <body>
     <div id="root" class="content"></div>
-    <script type="text/javascript" src="/env/app-config.js?_cb=<%= siteMap.appVersion %>"></script>
 
-    <% if (mode=='production' ) { %>
-    <script src="/static/js/main.<%= siteMap.appVersion %>.js"></script>
+    <script
+      type="text/javascript"
+      src="<%= publicUrl %>/env/app-config.js?_cb=<%= siteMap.appVersion %>"
+    ></script>
+
+    <% if (['development', 'local'].indexOf(mode) === -1) { %>
+    <script src="<%= publicUrl %>/static/js/main.<%= siteMap.appVersion %>.js"></script>
     <% } else { %>
-    <script src="/static/js/bundle.js"></script>
     <script>
       window.APP_CONFIG.MODE = 'development';
+      window.targetTheme = '<%=siteMap.theme %>';
     </script>
+    <script src="<%= publicUrl %>/runtime.<%= siteMap.appVersion %>.js" type="module"></script>
+    <script src="<%= publicUrl %>/styles.<%= siteMap.appVersion %>.js" type="module"></script>
+    <script src="<%= publicUrl %>/vendor.<%= siteMap.appVersion %>.js" type="module"></script>
+    <script src="<%= publicUrl %>/main.<%= siteMap.appVersion %>.js" type="module"></script>
     <% }%>
   </body>
 </html>

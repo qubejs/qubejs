@@ -1,0 +1,86 @@
+---
+siteMap:
+  maxNavigationLevel: 2
+  title: 'QubeJS: Admin Panel'
+  errorRedirects:
+    '404': "/content/pages/404"
+    '500': "/content/pages/error"
+    launchSoon: "/content/pages/wait"
+    launchEnded: "/content/pages/ended"
+    "/content/admin/*":
+      '404': "/content/admin/common/404"
+      '500': "/content/admin/common/error"
+  globalNavigation:
+    className: sq-global-navigation--bordered daneil-navigation--site
+    navPosition: fixed
+    classes:
+      wrapper: container
+  globalNavigationLoggedIn:
+    className: sq-global-navigation--bordered daneil-navigation--site
+    navPosition: fixed
+    navigation:
+    - title: Dashboard
+      iconName: dashboard
+      href: "/content/admin/portal/dashboard"
+      header: Dashboard Module
+    - title: Pages
+      iconName: Pages
+      href: "/content/admin/portal/pages"
+      header: Content Pages
+      children:
+      - title: Create new
+        iconName: AddBox
+        href: "/content/admin/portal/pages/create"
+      - title: Edit page
+        hideInMenu: true
+        href: "/content/admin/portal/pages/edit"
+      - title: Edit SiteMap
+        hideInMenu: true
+        href: "/content/admin/portal/pages/editmap"
+    - iconName: Settings
+      header: Admin Settings
+      children:
+      - title: Settings
+        iconName: Settings
+        href: "/content/admin/portal/adminsettings"
+      - title: Manage Users
+        iconName: people
+        href: "/content/admin/portal/users"
+        children:
+        - title: Create new
+          iconName: AddBox
+          href: "/content/admin/portal/users/create"
+        - title: Edit user
+          hideInMenu: true
+          href: "/content/admin/portal/users/edit"
+      - title: Email Templates
+        iconName: people
+        href: "/content/admin/portal/emailtemplates"
+        children:
+        - title: Create new
+          iconName: AddBox
+          href: "/content/admin/portal/emailtemplates/new"
+        - title: Edit Template
+          hideInMenu: true
+          href: "/content/admin/portal/emailtemplates/edit"
+  globalFooter:
+    classes:
+      item: col-xs-12 col-sm-6
+    className: sq-footer--light
+    copyrights: "© QUbeJS, All Rights Reserved"
+  logo:
+    text: ''
+    imgAlt: logo image
+    mobileName: logo-wide
+    topName: logo-wide
+    size: dan-wide
+    className: ''
+    variant: primary
+    href: home
+  children:
+  - title: Docs
+    href: "/content/admin/knowledge-base"
+  - title: Documents
+    href: "/content/admin/documents"
+  - title: Service Requests
+    href: "/content/admin/tickets"

@@ -13,8 +13,8 @@
   @include b4-style();
   text-align: center;
   &--wide {
-    width: 140px;
-    height: auto;
+    width: auto;
+    height: 50px;
   }
 
   &--text-icon {

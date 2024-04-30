@@ -1,4 +1,5 @@
 import envConfig from './config/environment';
+import packJson from '../../package.json';
 
 export default {
   analytics: envConfig.analytics,
@@ -12,27 +13,27 @@ export default {
   siteMap: {
     theme: 'main',
     maxNavigationLevel: 2,
-    appVersion: '1.0.0',
+    appVersion: packJson.version,
     title: 'Qubejs: A react based framework',
     dynamicContentConfig: {
-      '/content/dynamic/*': {
+      '/content/pages/*': {
         url: '/api/v1/dynamic/form/public/search',
         params: {
-          path: '.url',
+          path: '::test.name::.url',
         },
         method: 'post',
       },
     },
     defaultRedirect: {
-      '.*premium.com': '/ho/premium',
-      '.*basic.com': '/ho/basic',
+      '.*premium.com': '/content/premium',
+      '.*basic.com': '/content/basic',
     },
     errorRedirects: {
-      500: '/ho/error',
-      404: '/ho/404',
-      '/ho/app/*': {
-        500: '/ho/error-d',
-        404: '/ho/404-d',
+      500: '/content/error',
+      404: '/content/404',
+      '/content/app/*': {
+        500: '/content/error-d',
+        404: '/content/404-d',
       },
     },
     globalNavigation: {
@@ -45,18 +46,34 @@ export default {
         {
           title: 'Dashboard',
           iconName: 'dashboard',
-          href: '/ho/app/dashboard',
+          href: '/content/app/dashboard',
         },
         {
-          title: 'Select Prospect',
-          href: '/ho/app/prospect/select-prospect',
+          title: 'About us',
+          href: '/content/app/aboutus',
           showInMenu: false,
           children: [
             {
-              title: 'Add New Prospect',
-              href: '/ho/app/prospect/addnewprospect',
+              title: 'Contact us',
+              href: '/content/app/contact',
             },
           ],
+        },
+      ],
+      mobileItems: [],
+      rightItems: [],
+    },
+    globalNavigationLoggedIn: {
+      className: 'sq-global-navigation--bordered sq-global-navigation--blured',
+      navPosition: 'sticky',
+      classes: {
+        wrapper: 'container',
+      },
+      navigation: [
+        {
+          title: 'Dashboard',
+          iconName: 'dashboard',
+          href: '/content/app/dashboard',
         },
       ],
       mobileItems: [],

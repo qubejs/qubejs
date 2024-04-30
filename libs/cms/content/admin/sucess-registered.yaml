@@ -1,0 +1,23 @@
+title: Thank you
+template: apps/core/templates/page
+layout: apps/core/layouts/spa
+containerTemplate: AdminPlainPage
+templateClassName: 
+inject:
+  rootClassName: .moduleData.moduleName 
+contentBodyClass: container container-form
+isAuthLayout: true
+reset:
+  type: clearAll
+merge:
+  currentError : .lastError.key
+items:
+  # First image with home content
+  - header: Thank you
+    component: Header
+    className: mt-xtrawide
+    subHeader: You have been successfully registered.
+  - component: Button
+    actionType: redirect
+    to: login
+    buttonText: Login now

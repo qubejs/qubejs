@@ -34,9 +34,7 @@ class Homepage extends BaseContainer {
           pageData.templateClassName || ''
         }`}
       >
-        <header>
-          <GlobalNavigation logo={siteMap.siteMap.logo} {...props} />
-        </header>
+        <GlobalNavigation logo={siteMap.siteMap.logo} {...props} />
         <div className={'sq-content-page__body-wrapper '}>{children}</div>
         <footer className="sq-template__footer"></footer>
       </div>

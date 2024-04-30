@@ -6,18 +6,33 @@
 import express from 'express';
 import * as path from 'path';
 import { ContentServer } from '@qubejs/cms';
+import bodyParser from 'body-parser';
+import session from 'express-session';
 import siteConfig from '../site.config';
 import config from '../config/environment';
 import appConfig from '../config/app-config';
+import cookieParser from 'cookie-parser';
+import db from './database';
+import routes from './routes';
 
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(session({
+  secret: 'keyboardcat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+app.use(cookieParser())
+app.use(bodyParser.json())
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 const cmsSever = new ContentServer(
   {
-    contentPath: path.resolve('./apps/server/ho'),
-    serverPath: '/ho/*',
+    contentPath: path.resolve('./apps/server/content'),
+    serverPath: '/content/*',
+    db: db,
     rootApp: path.resolve('./apps/server'),
     internalDevPath: path.resolve('./libs/cms'),
     damAssets: path.resolve('./apps/server/dam'),
@@ -37,10 +52,11 @@ const cmsSever = new ContentServer(
 );
 
 cmsSever.init();
+routes(app);
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to server!' });
-});
+// app.post('/api/v1/admin/login', (req, res) => {
+//   res.send({ message: 'Welcome to server!' });
+// });
 
 const port = process.env.PORT || 4602;
 const server = app.listen(port, () => {

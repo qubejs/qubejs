@@ -113,10 +113,12 @@ class PageBuilder extends Component {
     this.advFormOnChange = this.advFormOnChange.bind(this);
   }
 
-  async componentDidUpdate() {
-    if (!this.state.pageFetched && utils.queryString.query.get().path) {
-      this.checkPageLoad();
-    }
+  async componentDidUpdate(prevProps) {
+    // console.log('@@@@', prevProps);
+    // console.log('> store', this.props.store.common);
+    // if (!this.props.store.common.isLoading && !this.state.pageFetched && utils.queryString.query.get().path && this.state.pathFetched !== utils.queryString.query.get().path) {
+    //   await this.checkPageLoad();
+    // }
   }
 
   async checkPageLoad() {
@@ -134,6 +136,7 @@ class PageBuilder extends Component {
       this.setState({
         pageFetched: true,
         autoSave: true,
+        pathFetched: utils.queryString.query.get().path
       });
     } else {
       await this.props.raiseAction(createPage());
@@ -149,7 +152,7 @@ class PageBuilder extends Component {
   }
 
   async componentDidMount() {
-    this.checkPageLoad();
+    await this.checkPageLoad();
   }
   async savePageAsNew() {
     const { pageData } = this.props;

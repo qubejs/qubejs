@@ -1,13 +1,19 @@
-const _bcrypt = require('bcryptjs');
-var utils = require('../utils');
-const BaseRepository = require('../BaseRepository');
-// const MailRepository = require('./MailRepository');
-const UserSessionRepository = require('./UserSessionRepository');
-const UrlRepository = require('./UrlRepository');
-const errors = require('../Error');
-const appConfig = require('../settings');
+import _bcrypt from 'bcryptjs';
+import { Errors, utils } from '@qubejs/core';
+import * as dbutils from '../dbutils';
+import BaseRepository from './BaseRepository';
+// import MailRepository from './MailRepository';
+import UserSessionRepository from './UserSessionRepository';
+import UrlRepository from './UrlRepository';
+import _settings from '../settings';
 
 class UserRepository extends BaseRepository {
+  settings: any;
+  sessionRepo: any;
+  urlRepo: any;
+  bcrypt: any;
+  mailRepo: any;
+  countryRepo: any;
   constructor({
     urlRepo = new UrlRepository(),
     bcrypt = _bcrypt,
@@ -17,6 +23,7 @@ class UserRepository extends BaseRepository {
       ...options,
       collection: 'users',
     });
+    this.settings = _settings.getSettings();
     this.sessionRepo = new UserSessionRepository(options);
     this.urlRepo = urlRepo;
     this.bcrypt = bcrypt;
@@ -38,7 +45,7 @@ class UserRepository extends BaseRepository {
   }
   getUserByEmail(email) {
     return this.findOne({
-      email: utils.filter.ignoreCase(email),
+      email: dbutils.filter.ignoreCase(email),
     });
   }
 
@@ -46,7 +53,7 @@ class UserRepository extends BaseRepository {
     return new Promise(async (resolve, reject) => {
       const user = await this.getUserById(uid).catch(reject);
       if (user.emailVerified === true) {
-        reject(errors.emailalreadyverified());
+        reject(Errors.emailalreadyverified());
         return;
       }
       await this.update({
@@ -61,7 +68,7 @@ class UserRepository extends BaseRepository {
   }
 
   resetPassword(uid, password) {
-    var hashedPassword = this.bcrypt.hashSync(password, 10);
+    const hashedPassword = this.bcrypt.hashSync(password, 10);
     return this.update({
       uid,
       password: hashedPassword,
@@ -78,7 +85,7 @@ class UserRepository extends BaseRepository {
       this.find({
         $or: [
           { phone: userName },
-          { email: utils.filter.ignoreCase(userName) },
+          { email: dbutils.filter.ignoreCase(userName) },
         ],
       }).then(async (users) => {
         if (users && users.length > 0) {
@@ -101,7 +108,7 @@ class UserRepository extends BaseRepository {
       this.find({
         $or: [
           { phone: userName },
-          { email: utils.filter.ignoreCase(userName) },
+          { email: dbutils.filter.ignoreCase(userName) },
         ],
       }).then(async (users) => {
         if (users && users.length > 0) {
@@ -122,19 +129,19 @@ class UserRepository extends BaseRepository {
   validate(userName, password) {
     return new Promise((resolve, reject) => {
       this.find({
-        $or: [{ email: utils.filter.ignoreCase(userName) }],
+        $or: [{ email: dbutils.filter.ignoreCase(userName) }],
       }).then(async (users) => {
         if (!users || users.length === 0) {
-          reject(errors.invalidcred());
+          reject(Errors.invalidcred());
         } else {
           var result = this.bcrypt.compareSync(password, users[0].password);
           if (result === true) {
             if (users[0].active === false) {
-              reject(errors.inactive());
+              reject(Errors.inactive());
             } else if (
               (users[0].emailVerified === true &&
-                appConfig.verifyEmailFeature) ||
-              !appConfig.verifyEmailFeature
+                this.settings.verifyEmailFeature) ||
+              !this.settings.verifyEmailFeature
             ) {
               await this.sessionRepo.logSession(users[0].uid, true);
               resolve({
@@ -152,7 +159,7 @@ class UserRepository extends BaseRepository {
             }
           } else {
             await this.sessionRepo.logSession(users[0].uid, false);
-            reject(errors.invalidcred());
+            reject(Errors.invalidcred());
           }
         }
       });
@@ -165,7 +172,7 @@ class UserRepository extends BaseRepository {
         _id: userId,
       }).then(async (users) => {
         if (!users || users.length === 0) {
-          reject(errors.nodata());
+          reject(Errors.nodata());
         } else {
           var result = await this.update({
             firstName: user.firstName,
@@ -185,7 +192,7 @@ class UserRepository extends BaseRepository {
     var that = this;
     return new Promise((resolve, reject) => {
       this.find({
-        $or: [{ email: utils.filter.ignoreCase(userObj.email) }],
+        $or: [{ email: dbutils.filter.ignoreCase(userObj.email) }],
       }).then(async (users) => {
         if (!userObj.password) {
           userObj.password = utils.number.getRandomS6();
@@ -218,7 +225,7 @@ class UserRepository extends BaseRepository {
           });
         } else {
           var errorSend = {
-            ...errors.duprecord(),
+            ...Errors.duprecord(),
             errors: {},
           };
           if (users[0].email.toLowerCase() === userObj.email.toLowerCase()) {
@@ -244,4 +251,4 @@ class UserRepository extends BaseRepository {
   }
 }
 
-module.exports = UserRepository;
+export default UserRepository;

@@ -1,4 +1,4 @@
-const BaseRepository = require('../BaseRepository');
+import BaseRepository from '../repositories/BaseRepository';
 
 class UserSessionRepository extends BaseRepository {
   constructor(options) {
@@ -17,4 +17,4 @@ class UserSessionRepository extends BaseRepository {
 }
 
 
-module.exports = UserSessionRepository;
+export default UserSessionRepository;

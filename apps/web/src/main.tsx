@@ -1,10 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
 import * as ReactDOM from 'react-dom/client';
 import * as uiMaterial from '@qubejs/ui-material-base';
+import { Provider } from 'react-redux';
 // import * as uiMaterial from '@qubejs/ui-material-base';
 import { plugins } from '@qubejs/web-react';
+import { store } from './redux';
 import App from './app/app';
-
+import './global-events';
 plugins.register(uiMaterial);
 
 const root = ReactDOM.createRoot(
@@ -12,7 +14,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
 

@@ -46,6 +46,6 @@ items:
               size: large
               iconName: arrow-right
               iconDirection: right
-              to: dashboard
+              to: homeDashboard
 
       

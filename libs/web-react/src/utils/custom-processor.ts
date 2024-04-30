@@ -1,13 +1,13 @@
 import { utils } from '@qubejs/core';
 import accent from './accent-colors';
 import _string from './string';
-import { CONSTANTS } from '../globals'
+import { CONSTANTS } from '../globals';
 const object = utils.object;
 const common = utils.common;
 
 class CustomProcessor {
-  processor:any;
-  globalOptions:any;
+  processor: any;
+  globalOptions: any;
   constructor() {
     this.processor = {
       compare: {
@@ -90,15 +90,15 @@ class CustomProcessor {
         options: (value) => {
           return this.globalOptions[value]?.toArray();
         },
-        optionsText: (value, { name }:any = {}) => {
+        optionsText: (value, { name }: any = {}) => {
           const option = this.globalOptions[name]?.getText(value);
           return option || '';
         },
-        optionsKey: (value, { name, keyName }:any = {}) => {
+        optionsKey: (value, { name, keyName }: any = {}) => {
           const option = this.globalOptions[name].get(value);
           return (option && option[keyName]) || '';
         },
-        filterOptions: (value, { optionsName, ...params }:any) => {
+        filterOptions: (value, { optionsName, ...params }: any) => {
           if (this.globalOptions[optionsName]) {
             return this.globalOptions[optionsName].fromData(value, params);
           }
@@ -117,7 +117,7 @@ class CustomProcessor {
             options,
             textField = 'text',
             valueField = 'value',
-          }:any = {}
+          }: any = {}
         ) => {
           if (options) {
             const filterOpt = options.filter((i) => i[valueField] === value);
@@ -132,6 +132,14 @@ class CustomProcessor {
             return this.globalOptions[optionsName].get(value);
           }
           return value;
+        },
+      },
+      authentication: {
+        restrictedPermission: (value, options, { state }) => {
+          return state.authentication.currentUser?.allPermissions?.indexOf(value) === -1;
+        },
+        hasPermission: (value, options, { state }) => {
+          return state.authentication.currentUser?.allPermissions?.indexOf(value) > -1;
         },
       },
     };

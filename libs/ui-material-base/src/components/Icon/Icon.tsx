@@ -337,7 +337,7 @@ icons.set(
     MarkUnreadChatAlt,
     Shield,
     deactivate: Block,
-    NoIcon: Article,
+    NoIcon: ChevronRight,
     expand: ExpandMore,
     collapse: ExpandLess,
     HighlightOff,

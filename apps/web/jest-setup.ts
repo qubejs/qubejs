@@ -35,6 +35,7 @@ Object.defineProperty(window, 'URL', {
 
 delete window.location;
 window.location = {};
+window.APP_CONFIG = {};
 let _url = '/test';
 Object.defineProperty(window.location, 'href', {
   get: () => _url,

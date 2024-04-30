@@ -85,7 +85,7 @@ const ComponentList = ({ onDrop, compList = {}, filter }: any) => {
 
 ComponentList.propTypes = {
   onDrop: PropTypes.func,
-  compList: PropTypes.array,
+  compList: PropTypes.object,
   filter: PropTypes.array,
 };
 

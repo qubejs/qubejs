@@ -8,6 +8,12 @@ export default {
     siteKey: process.env.RECAPTCHA_SITE_KEY,
     secretKey: process.env.RECAPTCHA_SERVER_KEY,
   },
+
+  apiPrefix: {
+    '/crm/api': {
+      prefix: process.env.API_PREFIX || 'https://api.test.com',
+    },
+  },
   email: {
     enabled: false,
     loggerEnabled: false,
@@ -67,7 +73,7 @@ export default {
     username: '',
     password: '',
     port: '27017',
-    dbname: 'crm-homeowner-local',
+    dbname: 'crm-local',
     host: 'localhost',
   },
   log: 'debug',

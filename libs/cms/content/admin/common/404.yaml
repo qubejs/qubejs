@@ -9,10 +9,9 @@ items:
       header: Sorry, unable to find page
       subHeader: The page you are looking for doesn't exists
       component: HeroContent
-      imageUrl: /dam/qubejs/svg/404.svg
       className: sq-hero-content--right-aligned sq-hero-content--image-on-top
       links:
         - buttonText: Back to Dashboard
           type: Button
           variant: outlined
-          to: adminDashboard
+          to: /content/admin/dashboard

@@ -55,7 +55,8 @@ class ContentServer {
     );
     this.app = app;
     this.config.rootPath = utils.path.ensureSlashAtEnd(this.config.rootPath);
-    this.config.publicUrl = utils.path.ensureSlashAtEnd(this.config.appConfig.publicUrl) || '/';
+    this.config.publicUrl =
+      utils.path.ensureSlashAtEnd(this.config.appConfig.publicUrl) || '/';
     this.config.contentPath = utils.path.ensureSlashAtEnd(
       this.config.contentPath
     );
@@ -78,27 +79,57 @@ class ContentServer {
     this.searchSiteMaps();
   }
 
-  getFileLocation(path) {
-    const pathToSeach = [this.config.rootApp, this.config.rootPath];
-    let filePath = path;
-    path = utils.path.ensureNoSlashAtStart(path);
+  getPathWithoutAppName(path) {
+    const array = utils.path
+      .ensureNoSlashAtStart(path)
+      .split('/')
+      .slice(1)
+      .join('/');
+    return `${array}`;
+  }
+
+  getFileLocation(mainPath) {
+    const appName = this.getAppNameFromUrl(mainPath);
+    // console.log('appName:' + appName);
+    // console.log('mainPath:' + mainPath);
+    const pathToSeach = [
+      {
+        folderPath: this.config.rootApp,
+        contentFolder: appName,
+      },
+      {
+        folderPath: this.config.rootPath,
+        contentFolder: 'content',
+      },
+    ];
+    // console.log(mainPath);
+    let path = this.getPathWithoutAppName(mainPath);
+    // console.log('path>>>' + path);
+    let filePath = mainPath;
+    let contentFolder = appName;
+    path = utils.path.ensureSlashAtStart(path);
     let rootPath;
     let isFile = true;
     for (let i = 0; i < pathToSeach.length; i++) {
-      const currentPath = pathToSeach[i];
-      // console.log('>>checking' + currentPath);
-      if (this.fse.existsSync(`${currentPath}${path}.yaml`)) {
-        filePath = `${currentPath}${path}.yaml`;
+      const currentPath = pathToSeach[i].folderPath;
+      const folder = pathToSeach[i].contentFolder;
+      // console.log('>>checking' + currentPath + ':' +  folder + ':' + path);
+      if (this.fse.existsSync(`${currentPath}${folder}${path}.yaml`)) {
         rootPath = currentPath;
+        filePath = `${currentPath}${folder}${path}.yaml`;
+        contentFolder = folder;
         break;
-      } else if (this.fse.existsSync(`${currentPath}${path}/index.yaml`)) {
-        filePath = `${currentPath}${path}/index.yaml`;
+      } else if (
+        this.fse.existsSync(`${currentPath}${folder}${path}/index.yaml`)
+      ) {
+        filePath = `${currentPath}${folder}${path}/index.yaml`;
         isFile = false;
+        contentFolder = folder;
         rootPath = currentPath;
         break;
       }
     }
-    return { filePath, rootPath, isFile };
+    return { filePath, rootPath, isFile, contentFolder };
   }
 
   getFilePath(path) {
@@ -106,49 +137,59 @@ class ContentServer {
     return filePath;
   }
 
-  searchSiteMaps() {
+  async searchSiteMaps() {
     const siteMaps = {};
     [this.rootContentPath, this.config.contentPath].forEach((path) => {
       console.log('searching site maps in:' + path);
-      this.fse.readdir(path, (err, list) => {
-        if (this.fse.existsSync(path)) {
-          if (err) throw err;
-          for (let i = 0; i < list.length; i++) {
-            if (this.fse.existsSync(`${path}${list[i]}/sitemap.yaml`)) {
-              console.log(`${path}${list[i]}/sitemap.yaml`);
-              let contents;
-              try {
-                const fileContents = this.fse.readFileSync(
-                  `${path}${list[i]}/sitemap.yaml`,
-                  'utf8'
-                );
-                contents = yaml.loadAll(fileContents);
-              } catch (ex) {
-                contents = '';
-              }
-              if (contents) {
-                siteMaps[list[i]] = contents[0];
-                console.log('added site map:' + list[i]);
-              }
-            } else if (
-              this.fse.existsSync(`${path}${list[i]}/site.config.js`)
-            ) {
-              console.log(`${path}${list[i]}/site.config.js`);
-              let contents;
-              try {
-                const fileContents = import(`${path}${list[i]}/site.config.js`);
-                contents = fileContents;
-              } catch (ex) {
-                contents = '';
-              }
-              if (contents) {
-                siteMaps[list[i]] = contents;
-                console.log('added site map:' + list[i]);
-              }
+      console.log(path);
+      const list = this.fse.readdirSync(path);
+      if (this.fse.existsSync(path)) {
+        for (let i = 0; i < list.length; i++) {
+          if (this.fse.existsSync(`${path}${list[i]}/sitemap.yaml`)) {
+            // console.log(`${path}${list[i]}/sitemap.yaml`);
+            let contents;
+            try {
+              const fileContents = this.fse.readFileSync(
+                `${path}${list[i]}/sitemap.yaml`,
+                'utf8'
+              );
+              contents = yaml.loadAll(fileContents);
+            } catch (ex) {
+              contents = '';
+            }
+            if (contents) {
+              siteMaps[list[i]] = contents[0];
+              console.log('added site map:' + list[i]);
+            }
+          } else if (this.fse.existsSync(`${path}${list[i]}/site.config.js`)) {
+            let contents;
+            try {
+              const fileContents = import(`${path}${list[i]}/site.config.js`);
+              contents = fileContents;
+            } catch (ex) {
+              contents = '';
+            }
+            if (contents) {
+              siteMaps[list[i]] = contents;
+              console.log('added site map:' + list[i]);
+            }
+          } else if (
+            this.fse.existsSync(`${path}${list[i]}/site.config.json`)
+          ) {
+            let contents;
+            try {
+              const fileContents = import(`${path}${list[i]}/site.config.json`);
+              contents = fileContents;
+            } catch (ex) {
+              contents = '';
+            }
+            if (contents) {
+              siteMaps[list[i]] = contents;
+              console.log('added site map:' + list[i]);
             }
           }
         }
-      });
+      }
     });
     this.allSiteMaps = siteMaps;
   }
@@ -173,7 +214,9 @@ class ContentServer {
       this.app.use('/clientlibs', express.static(this.config.clientLibs));
     }
     this.app.use('/env/app-config.js', (req, res) => {
-      res.send(` window.APP_CONFIG = ${JSON.stringify(this.config.appConfig)};`);
+      res.send(
+        ` window.APP_CONFIG = ${JSON.stringify(this.config.appConfig)};`
+      );
     });
   }
 
@@ -240,7 +283,6 @@ class ContentServer {
     } else {
       folder = path;
     }
-
     const pages = [];
     if (this.fse.lstatSync(folder).isDirectory()) {
       this.fse.readdirSync(folder).forEach((file) => {
@@ -416,7 +458,7 @@ class ContentServer {
   }
 
   getAppNameFromUrl(url) {
-    return url.substr(0, url.indexOf('/'));
+    return utils.path.ensureNoSlashAtStart(url).split('/').shift();
   }
 
   generateSiteMapPaths(path) {
@@ -438,6 +480,14 @@ class ContentServer {
     const appPath = this.getAppNameFromUrl(srcFile);
     const siteMaps = this.generateSiteMapPaths(fullPath);
     let currentSiteConfig = this.allSiteMaps[appPath] || config.siteConfig;
+    currentSiteConfig = {
+      ...config.siteConfig,
+      ...currentSiteConfig,
+      siteMap: {
+        ...config.siteConfig.siteMap,
+        ...currentSiteConfig.siteMap,
+      },
+    };
     if (this.contentRepo) {
       const result = await this.contentRepo.searchSiteMaps(siteMaps);
       if (result.length > 0) {
@@ -467,7 +517,8 @@ class ContentServer {
       });
     }
 
-    let { filePath, rootPath, isFile } = this.getFileLocation(fullPath);
+    let { filePath, rootPath, isFile, contentFolder } =
+      this.getFileLocation(fullPath);
     rootPath = `${rootPath || ''}`;
     if (isLaunchMatch) {
       let timeToLaunch;
@@ -503,13 +554,16 @@ class ContentServer {
 
     let fileContents;
     let fileFound = true;
+    const pathPlain = utils.path.ensureSlashAtStart(
+      this.getPathWithoutAppName(fullPath)
+    );
     if (!this.fse.existsSync(filePath)) {
       filePath = this.get404Page(currentSiteConfig, fullPath);
       status = 404;
       fileFound = false;
     } else if (!isLaunchMatch) {
       siblingData = this.getAllSiblings(
-        `${rootPath}${fullPath}`,
+        `${rootPath}${contentFolder}${pathPlain}`,
         isFile,
         fullPath
       );
@@ -614,7 +668,6 @@ class ContentServer {
         // }, 3000);
       })
       .catch((response) => {
-        console.log(response);
         res.status(response.status).send(response.data);
       });
   }

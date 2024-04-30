@@ -9,8 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import LeftDrawer from './LeftDrawer';
-import { hasActive, hasMatchingRoles, hasPermission } from './helpers';
-// const { Dialog, Icon } = root;
+import { hasActive, hasPermission } from './helpers';
 
 const LeftNavigation = ({
   logo = {},

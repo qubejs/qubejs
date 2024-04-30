@@ -23,15 +23,15 @@ class BaseRepository {
     this._db.connect();
   }
 
-  createObject(params) {
+  createObject(params):any  {
     return new this._entityType(params);
   }
 
-  createCollection(data) {
+  createCollection(data):any  {
     return new this._collectionEntity(data, this._entityType);
   }
 
-  find(filter, { sort }: any = {}) {
+  find(filter?, { sort }: any = {}):any  {
     return new Promise((resolve) => {
       let objFind = this._db.collections[this._collection].find(filter);
       if (sort) {
@@ -44,7 +44,7 @@ class BaseRepository {
     });
   }
 
-  findOne(filter) {
+  findOne(filter):any  {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .findOne(filter)
@@ -54,7 +54,7 @@ class BaseRepository {
         .catch(reject);
     });
   }
-  findById({ uid, ...filter }) {
+  findById({ uid, ...filter }) :any {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .findOne({ _id: uid, ...filter })
@@ -65,7 +65,7 @@ class BaseRepository {
     });
   }
 
-  deleteMany(filter) {
+  deleteMany(filter):any  {
     return new Promise(async (resolve, reject) => {
       if (filter) {
         const result = await this._db.collections[this._collection]
@@ -78,7 +78,7 @@ class BaseRepository {
     });
   }
 
-  deleteById(uid, filter?) {
+  deleteById(uid, filter?):any  {
     return new Promise(async (resolve, reject) => {
       let records;
       if (filter) {
@@ -96,7 +96,7 @@ class BaseRepository {
     // return this._db.collections[this._collection].deleteOne({ _id: uid });
   }
 
-  update(data) {
+  update(data):any  {
     const { uid, ...rest } = data;
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
@@ -109,7 +109,7 @@ class BaseRepository {
         });
     });
   }
-  updateBulk(filter, data?) {
+  updateBulk(filter, data?):any  {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .updateAll({ ...filter }, { updatedOn: datetime.new().date(), ...data })
@@ -122,7 +122,7 @@ class BaseRepository {
     });
   }
 
-  insert(data) {
+  insert(data):any {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .insert(data)
@@ -135,7 +135,7 @@ class BaseRepository {
     });
   }
 
-  mustExists(filter) {
+  mustExists(filter):any  {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection].find(filter).then((res) => {
         if (res.length === 0) {
@@ -147,7 +147,7 @@ class BaseRepository {
     });
   }
 
-  checkExists(_filter, errorKeys = []) {
+  checkExists(_filter, errorKeys = []):any  {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection].find(_filter).then((res) => {
         const buildErrors = {};
@@ -171,7 +171,7 @@ class BaseRepository {
     });
   }
 
-  aggregateMongo(filter, options?) {
+  aggregateMongo(filter, options?) :any {
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .aggregate(filter, options)
@@ -184,7 +184,7 @@ class BaseRepository {
     });
   }
 
-  convertToBasicList(data) {
+  convertToBasicList(data) :any {
     return data.map((res) => {
       return {
         ...res._doc,
@@ -193,21 +193,21 @@ class BaseRepository {
     });
   }
 
-  mFind(filter, fields?, options?) {
+  mFind(filter, fields?, options?):any  {
     return this._db.collections[this._collection].mFind(
       filter,
       fields,
       options
     );
   }
-  count(filter) {
+  count(filter):any  {
     return this._db.collections[this._collection].count(filter);
   }
 
   async search(
     payload,
     { sortBy = 'createdOn', sortDir = 'ASC', pageSize = 25, pageNo = 1 } = {}
-  ) {
+  ):Promise<any>  {
     pageSize = pageSize * 1;
     pageNo = pageNo * 1;
     const count = await this.count(payload);
@@ -226,8 +226,7 @@ class BaseRepository {
     };
   }
 
-  aggregate({ match, sort, addFields, group, lookup }: any) {
-    console.log(sort);
+  aggregate({ match, sort, addFields, group, lookup }: any):any  {
     const filter = [];
     if (sort) {
       filter.push({ $sort: sort });
@@ -248,7 +247,6 @@ class BaseRepository {
         $lookup: lookup,
       });
     }
-    console.log(filter);
     return new Promise((resolve, reject) => {
       this._db.collections[this._collection]
         .aggregate(filter)
