@@ -56,7 +56,6 @@ class PageListing extends BaseContainer {
         parentPath: store.admin.contentTree?.path,
       });
     }
-    console.log(utils.storage.preference.read('currentFilter'));
     await this.setState({
       currentFilter: utils.storage.preference.read('currentFilter'),
     });

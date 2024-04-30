@@ -6,23 +6,23 @@ bodyClassName:
 containerTemplate: AdminDashboard
 container: PageListing
 id: pagelist
-enableTree: false
+enableTree: true
 actionInBreadCrumb: true
 
-getPagesConfig:
-  url: /api/v1/admin/content/page/getbypath
-  method: post
-  hook: contentPages.extractDataArray
-  query:
-    pageSize: 1000
-  params:
-    type: .type
-    pageName: .pageName
-    path: .path
-    formType:
-      - MESSAGE
-      - WORKSHEET
-      - WEBHOOK
+# getPagesConfig:
+#   url: /api/v1/admin/content/page/getbypath
+#   method: post
+#   hook: contentPages.extractDataArray
+#   query:
+#     pageSize: 1000
+#   params:
+#     type: .type
+#     pageName: .pageName
+#     path: .path
+#     formType:
+#       - MESSAGE
+#       - WORKSHEET
+#       - WEBHOOK
 # contentPageConfig:
 #   url: /api/v1/dynamic/form
 #   params:
