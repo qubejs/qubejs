@@ -30,9 +30,7 @@
             "glob": "**/*.!(ts)",
             "output": "./content"
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true,
-        "buildableProjectDepsInPackageJsonType": "dependencies"
+        ]
       }
     },
     "publish": {

@@ -173,6 +173,7 @@ const middleware = () => {
         return true;
       }
     }
+    return undefined;
   };
 };
 export { AdminPanel, middleware };
