@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import * as utils from '../../utils';
 import ErrorBoundry from '../../components/ErrorBoundry';
 import AdminContainer from '../AdminContainer';
-import { clearUser } from '../../redux/authentication';
+import { clearUser, logout } from '../../redux/authentication';
 
 import './_admin-dashboard.scss';
 
@@ -46,6 +46,7 @@ class AdminDashboard extends AdminContainer {
     switch (action.actionType) {
       case 'logout':
         utils.redirect.redirectTo('login');
+        this.props.raiseAction(logout());
         this.props.raiseAction(clearUser());
         break;
       case 'redirect':

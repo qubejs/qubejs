@@ -138,6 +138,13 @@ export const loadUserProfile = (userProfile?) => async (dispatch) => {
   }
 };
 
+export const logout = () => (dispatch) => {
+  dispatch(
+    updateProtectedUserData({
+      isLoggedOut: true,
+    })
+  );
+};
 export const clearUser = () => (dispatch) => {
   utils.cookie.remove('qjs-token');
   utils.apiBridge.removeHeader('qjs-token');

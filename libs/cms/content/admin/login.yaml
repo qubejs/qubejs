@@ -37,6 +37,15 @@ items:
                 - type: equals
                   matchValue: INVALID_CREDENTIALS
       - component: Alert
+        type: info
+        className: mb-wide
+        message: You have been successfully logged out from application
+        match:
+            isLoggedOut:
+              validators:
+                - type: equals
+                  matchValue: true
+      - component: Alert
         type: error
         className: mb-wide
         message: User is inactive please contact your administrator
