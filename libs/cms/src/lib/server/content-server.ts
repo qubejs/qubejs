@@ -141,7 +141,6 @@ class ContentServer {
     const siteMaps = {};
     [this.rootContentPath, this.config.contentPath].forEach((path) => {
       console.log('searching site maps in:' + path);
-      console.log(path);
       const list = this.fse.readdirSync(path);
       if (this.fse.existsSync(path)) {
         for (let i = 0; i < list.length; i++) {
