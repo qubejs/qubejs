@@ -130,7 +130,9 @@ class Grid extends React.Component {
   }
   onRightBody_Scroll(e) {
     if (this.fixedRBodyRef.current) {
-      this.bodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
+      if (this.bodyRef.current) {
+        this.bodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
+      }
       if (this.fixedLBodyRef.current) {
         this.fixedLBodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
       }
@@ -139,7 +141,9 @@ class Grid extends React.Component {
 
   onBody_Scroll(e) {
     if (this.bodyRef.current) {
-      this.headerRef.current.scrollLeft = this.bodyRef.current.scrollLeft;
+      if (this.headerRef.current) {
+        this.headerRef.current.scrollLeft = this.bodyRef.current.scrollLeft;
+      }
       if (this.fixedLBodyRef.current) {
         this.fixedLBodyRef.current.scrollTop = this.bodyRef.current.scrollTop;
       }
