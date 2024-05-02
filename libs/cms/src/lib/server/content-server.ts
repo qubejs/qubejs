@@ -23,6 +23,7 @@ class ContentServer {
       fse = our_fse,
       dirname = `${process.cwd()}/node_modules/${pkgName.name}`,
       internalDevPath,
+      ContentRepository,
       ...options
     }: any = {},
     app?
@@ -54,6 +55,7 @@ class ContentServer {
       options
     );
     this.app = app;
+    this.ContentRepository = ContentRepository;
     this.config.rootPath = utils.path.ensureSlashAtEnd(this.config.rootPath);
     this.config.publicUrl =
       utils.path.ensureSlashAtEnd(this.config.appConfig.publicUrl) || '/';
@@ -570,13 +572,16 @@ class ContentServer {
 
     let contents;
     if (this.contentRepo && !fileFound) {
+      console.log(this.contentRepo)
       const test = await this.contentRepo.getByPath(fullPath);
+      console.log(test);
       if (test && !fileFound) {
         status = 200;
         contents = [test.pageData];
         console.log('served from db=' + fullPath);
       }
     }
+    console.log(contents);
     if (!contents) {
       if (this.fse.existsSync(filePath)) {
         fileContents = this.fse.readFileSync(`${filePath}`, 'utf8');
@@ -591,6 +596,7 @@ class ContentServer {
     if (!currentNode) {
       currentNode = currentSiteConfig.siteMap;
     }
+    console.log(contents);
     try {
       contents = !contents ? yaml.loadAll(fileContents) : contents;
     } catch (ex) {
@@ -613,6 +619,7 @@ class ContentServer {
     if (contents.length === 1) {
       contents = contents[0];
     }
+    console.log(merged);
     const data: any = {
       mode: config.mode,
       status,

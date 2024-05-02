@@ -16,13 +16,14 @@ export default {
     appVersion: packJson.version,
     title: 'Qubejs: A react based framework',
     dynamicContentConfig: {
-      '/content/pages/*': {
-        url: '/api/v1/dynamic/form/public/search',
-        params: {
-          path: '::test.name::.url',
-        },
-        method: 'post',
-      },
+      //enable pages from other cms
+      // '/content/test/*': {
+      //   url: '/api/v1/dynamic/form/public/search',
+      //   params: {
+      //     path: '::test.name::.url',
+      //   },
+      //   method: 'post',
+      // },
     },
     defaultRedirect: {
       '.*premium.com': '/content/premium',
