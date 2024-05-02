@@ -17,7 +17,7 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs cms {args.ver} {args.tag}",
+      "command": "node tools/scripts/publish.mjs cms-admin {args.ver} {args.tag}",
       "dependsOn": ["dist"]
     },
     "dist": {
