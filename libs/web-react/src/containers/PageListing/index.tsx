@@ -109,6 +109,7 @@ class PageListing extends BaseContainer {
   async onGridAction(row, value, column) {
     const { pageData, store } = this.props;
     let currentPage;
+    let params;
     switch (value.action) {
       case 'clone':
         this.setState({
@@ -133,6 +134,19 @@ class PageListing extends BaseContainer {
         );
         break;
       case 'preview':
+        params = {
+          path: row.path,
+          ...processParams({
+            ...this.props.userData,
+            ...this.props.pageData,
+            ...row,
+          }, this.props.pageData.preview || {}, undefined, this.props.store)
+        };
+        utils.redirect.redirectTo(
+          params.path,
+          params.urlParams,
+          { target: '_blank' }
+        );
         utils.redirect.redirectTo(row.path, {}, { target: '_blank' });
         break;
     }

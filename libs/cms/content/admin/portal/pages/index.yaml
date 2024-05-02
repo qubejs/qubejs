@@ -9,6 +9,11 @@ id: pagelist
 enableTree: true
 actionInBreadCrumb: true
 
+preview:
+  path: ::test.previewPath::.path
+  urlParams:
+    tenantCode: .tenantCode
+
 # getPagesConfig:
 #   url: /api/v1/admin/content/page/getbypath
 #   method: post

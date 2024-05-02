@@ -581,7 +581,6 @@ class ContentServer {
         console.log('served from db=' + fullPath);
       }
     }
-    console.log(contents);
     if (!contents) {
       if (this.fse.existsSync(filePath)) {
         fileContents = this.fse.readFileSync(`${filePath}`, 'utf8');
@@ -596,7 +595,6 @@ class ContentServer {
     if (!currentNode) {
       currentNode = currentSiteConfig.siteMap;
     }
-    console.log(contents);
     try {
       contents = !contents ? yaml.loadAll(fileContents) : contents;
     } catch (ex) {
