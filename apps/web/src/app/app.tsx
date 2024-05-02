@@ -51,7 +51,7 @@ export function App({ appActions }) {
     const token = utils.cookie.get('token');
     utils.apiBridge.addHeader(
       'tenantCode',
-      utils.win.getWindow().APP_CONFIG.tenantCode
+     utils.queryString.query.get().tenantCode || utils.win.getWindow().APP_CONFIG.tenantCode
     );
     if (token) {
       utils.apiBridge.addHeader('Authorization', `Bearer ${token}`);

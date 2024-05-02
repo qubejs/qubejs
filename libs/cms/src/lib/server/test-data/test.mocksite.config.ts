@@ -12,7 +12,7 @@ export default {
   siteMap: {
     maxNavigationLevel: 2,
     appVersion: '0.1.0',
-    title: 'CRM Daniels',
+    title: 'CRM',
 
     globalNavigation: {
       className: 'sq-global-navigation--bordered',
@@ -31,7 +31,7 @@ export default {
         item: 'col-xs-12 col-sm-6'
       },
       className: 'sq-footer--light',
-      copyrights: '© Daniels, All Rights Reserved'
+      copyrights: '©CRM All Rights Reserved'
     },
     logo: {
       text: '',

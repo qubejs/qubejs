@@ -41,6 +41,7 @@ import {
   updateErrorData,
   resetUserData,
   sendContact,
+  processParams,
 } from '../../redux/content';
 utils.storage.pageBuilder.setHelpers({
   withEditTabsConfig,
@@ -105,6 +106,7 @@ class PageBuilder extends Component {
     this.onContentChange = this.onContentChange.bind(this);
     this.onContentDelete = this.onContentDelete.bind(this);
     this.savePageAsDraft = this.savePageAsDraft.bind(this);
+    this.showPreview = this.showPreview.bind(this);
     this.toggleAdvPageConfig = this.toggleAdvPageConfig.bind(this);
     this.formOnChange = this.formOnChange.bind(this);
     this.onMoveItemDown = this.onMoveItemDown.bind(this);
@@ -294,9 +296,17 @@ class PageBuilder extends Component {
     });
   }
   showPreview() {
+    const params = {
+      path: utils.queryString.query.get().path,
+      ...processParams({
+        ...this.props.userData,
+        path: utils.queryString.query.get().path,
+        ...this.props.pageData,
+      }, this.props.pageData.preview || {}, undefined, this.props.store)
+    };
     utils.redirect.redirectTo(
-      utils.queryString.query.get().path,
-      {},
+      params.path,
+      params.urlParams,
       { target: '_blank' }
     );
   }

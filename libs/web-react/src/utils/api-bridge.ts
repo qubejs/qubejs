@@ -79,6 +79,10 @@ export class ApiBridge {
     const result = this.events.emit('onPrefix', data);
     return result || _window.API_SERVER || '';
   }
+  getUrl(url) {
+    const result = this.events.emit('onRequestUrl', url);
+    return result || url;
+  }
 
   handleCatch(ex) {
     const response = {
@@ -95,7 +99,7 @@ export class ApiBridge {
   get(url, params = {}, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body: params }) +
-        encodeURI(url) +
+        encodeURI(this.getUrl(url)) +
         new QueryString({ ...params, ...query }).toString(),
       {
         method: 'GET',
@@ -118,6 +122,7 @@ export class ApiBridge {
       .then(this.responseReader.bind(this))
       .catch(this.handleCatch.bind(this));
   }
+  
 
   rawPost(
     url,
@@ -128,7 +133,7 @@ export class ApiBridge {
   ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
-        encodeURI(url) +
+        encodeURI(this.getUrl(url)) +
         new QueryString(query).toString(),
       {
         method: method,
@@ -155,7 +160,7 @@ export class ApiBridge {
   post(url, body, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
-        encodeURI(url) +
+        encodeURI(this.getUrl(url)) +
         new QueryString(query).toString(),
       {
         method: 'POST',
@@ -183,7 +188,7 @@ export class ApiBridge {
   update(url, body, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
-        encodeURI(url) +
+        encodeURI(this.getUrl(url)) +
         new QueryString(query).toString(),
       {
         method: 'PUT',
@@ -211,7 +216,7 @@ export class ApiBridge {
   patch(url, body = {}, headers = {}, query = {}, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
-        encodeURI(url) +
+        encodeURI(this.getUrl(url)) +
         new QueryString(query).toString(),
       {
         method: 'PATCH',
@@ -239,7 +244,7 @@ export class ApiBridge {
   delete(url, body = {}, headers = {}, query?, { plain = false, signal }:any = {}) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
-        encodeURI(url) +
+        encodeURI(this.getUrl(url)) +
         new QueryString(query).toString(),
       {
         method: 'DELETE',

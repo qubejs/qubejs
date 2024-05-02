@@ -16,14 +16,13 @@ export default {
     appVersion: packJson.version,
     title: 'Qubejs: A react based framework',
     dynamicContentConfig: {
-      //enable pages from other cms
-      // '/content/test/*': {
-      //   url: '/api/v1/dynamic/form/public/search',
-      //   params: {
-      //     path: '::test.name::.url',
-      //   },
-      //   method: 'post',
-      // },
+      '/content/pages/*': {
+        url: '/crm/api/v1/dynamic/form/public/search',
+        params: {
+          path: '::test.name::.url',
+        },
+        method: 'post',
+      },
     },
     defaultRedirect: {
       '.*premium.com': '/content/premium',
@@ -90,7 +89,6 @@ export default {
     logo: {
       text: '',
       // image: envConfig.publicUrl + '/assets/imgs/rise-white.png',
-      // mobileImage: envConfig.publicUrl + '/daniels-logo-blue.png',
       name: 'home',
       imgAlt: 'logo image',
       size: 'dan-wide',
