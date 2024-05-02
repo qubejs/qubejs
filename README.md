@@ -7,9 +7,9 @@ Core framework for web, plugin, cms &amp; nodejs server
 
 
 ## Demos
-- **Home page**: https://qubejs.github.io
-- **Basic demo**: https://qubejs.github.io/content/en/qubejs/docs/intro
-- **Full list**: https://qubejs.github.io/content/en/qubejs/examples
+- **Home page**: https://www.qubejs.com
+- **Basic demo**: https://www.qubejs.com/content/en/qubejs/docs/intro
+- **Full list**: https://www.qubejs.com/content/en/qubejs/examples
 
 
 ## Issues Report
