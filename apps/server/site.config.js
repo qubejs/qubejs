@@ -17,7 +17,7 @@ export default {
     title: 'Qubejs: A react based framework',
     dynamicContentConfig: {
       '/content/pages/*': {
-        url: '/api/v1/dynamic/form/public/search',
+        url: '/crm/api/v1/dynamic/form/public/search',
         params: {
           path: '::test.name::.url',
         },
@@ -89,7 +89,6 @@ export default {
     logo: {
       text: '',
       // image: envConfig.publicUrl + '/assets/imgs/rise-white.png',
-      // mobileImage: envConfig.publicUrl + '/daniels-logo-blue.png',
       name: 'home',
       imgAlt: 'logo image',
       size: 'dan-wide',

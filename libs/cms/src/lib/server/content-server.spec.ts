@@ -345,7 +345,7 @@ describe('CMS::ContentServer', function () {
         expect(result.siteConfig).toEqual(mockSiteConfig);
       });
       it('should return currentNode', () => {
-        expect(result.currentNode.title).toBe('CRM Daniels');
+        expect(result.currentNode.title).toBe('CRM');
       });
       it('should return merged', () => {
         expect(result.merged).toBeDefined();

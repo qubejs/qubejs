@@ -1,7 +1,6 @@
 import { utils } from '@qubejs/web-react';
 import './utils';
 
-utils.apiBridge.addHeader('tenantCode', 'Daniel');
 utils.apiBridge.events.subscribeOnce('onPrefix', function (data: any) {
   let url = '';
   Object.keys(utils.win.getWindow().APP_CONFIG.apiPrefix).forEach((item) => {
@@ -10,4 +9,10 @@ utils.apiBridge.events.subscribeOnce('onPrefix', function (data: any) {
     }
   });
   return url;
+});
+
+utils.apiBridge.events.subscribeOnce('onRequestUrl', function (url: string) {
+  if (url.startsWith('/crm')) {
+    return url.replace('/crm', '');
+  }
 });

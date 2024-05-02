@@ -6,3 +6,8 @@ layout: apps/core/layouts/spa
 bodyClassName: bg-gray
 containerTemplate: AdminDashboard
 container: PageBuilder
+
+preview:
+  path: ::test.previewPath::.path
+  urlParams:
+    tenantCode: .tenantCode
