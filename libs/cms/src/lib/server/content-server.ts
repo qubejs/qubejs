@@ -5,7 +5,6 @@ import yaml from 'js-yaml';
 import groupBy from 'lodash/groupBy';
 import { utils, Response } from '@qubejs/core';
 import PageBuilder from './builder/page-builder';
-import { ContentRepository } from '../repositories/ContentRepository';
 
 import pkgName from '../../../package.json';
 
@@ -13,6 +12,7 @@ class ContentServer {
   config: any;
   app: any;
   contentRepo: any;
+  ContentRepository: any;
   fse: any;
   rootContentPath: any;
   contentFolder: any;
@@ -60,8 +60,8 @@ class ContentServer {
     this.config.contentPath = utils.path.ensureSlashAtEnd(
       this.config.contentPath
     );
-    if (this.config.db) {
-      this.contentRepo = new ContentRepository({ db: this.config.db });
+    if (this.config.db && this.ContentRepository) {
+      this.contentRepo = new this.ContentRepository({ db: this.config.db });
     }
     this.config.srcPath = utils.path.ensureSlashAtEnd(this.config.srcPath);
     this.rootContentPath = `${this.config.rootPath}content/`;

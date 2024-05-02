@@ -6,6 +6,7 @@
 import express from 'express';
 import * as path from 'path';
 import { ContentServer } from '@qubejs/cms';
+import { repositories } from '@qubejs/cms-admin';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import siteConfig from '../site.config';
@@ -32,7 +33,9 @@ const cmsSever = new ContentServer(
   {
     contentPath: path.resolve('./apps/server/content'),
     serverPath: '/content/*',
+    // to enable fetch data from db-content
     db: db,
+    ContentRepository: repositories.ContentRepository,
     rootApp: path.resolve('./apps/server'),
     internalDevPath: path.resolve('./libs/cms'),
     damAssets: path.resolve('./apps/server/dam'),

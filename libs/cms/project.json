@@ -12,9 +12,7 @@
         "tsConfig": "libs/cms/tsconfig.lib.json",
         "packageJson": "libs/cms/package.json",
         "main": "libs/cms/src/index.ts",
-        "additionalEntryPoints": [
-          "libs/cms/src/features.ts"
-        ],
+        "additionalEntryPoints": [],
         "external": ["@qubejs/core"],
         "assets": [
           "libs/cms/*.md",
