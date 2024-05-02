@@ -35,14 +35,14 @@ items:
           links:
             - buttonText: Login
               type: Button
-              color: secondary
+              color: primary
               size: large
               iconName: arrow-right
               iconDirection: right
               to: login
             - buttonText: Dashboard
               type: Button
-              color: secondary
+              color: primary
               size: large
               iconName: arrow-right
               iconDirection: right

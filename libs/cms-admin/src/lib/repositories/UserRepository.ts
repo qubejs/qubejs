@@ -1,13 +1,14 @@
 import _bcrypt from 'bcryptjs';
 import { Errors, utils } from '@qubejs/core';
+import { domain } from '@qubejs/cms';
 import * as dbutils from '../dbutils';
-import BaseRepository from './BaseRepository';
-// import MailRepository from './MailRepository';
 import UserSessionRepository from './UserSessionRepository';
+import EmailTemplateRepository from './EmailTemplateRepository';
 import UrlRepository from './UrlRepository';
 import _settings from '../settings';
 
-class UserRepository extends BaseRepository {
+
+class UserRepository extends domain.BaseRepository {
   settings: any;
   sessionRepo: any;
   urlRepo: any;
@@ -25,6 +26,7 @@ class UserRepository extends BaseRepository {
     });
     this.settings = _settings.getSettings();
     this.sessionRepo = new UserSessionRepository(options);
+    this.mailRepo = new EmailTemplateRepository(options);
     this.urlRepo = urlRepo;
     this.bcrypt = bcrypt;
   }

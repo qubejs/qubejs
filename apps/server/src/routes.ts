@@ -1,5 +1,5 @@
 import middleWare from './middleware';
-import { features } from '@qubejs/cms';
+import { features } from '@qubejs/cms-admin';
 import express from 'express';
 import db from './database';
 const { AdminPanel } = features.adminPanel;

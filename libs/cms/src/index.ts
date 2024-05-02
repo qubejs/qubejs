@@ -6,7 +6,7 @@ import Collection from './lib/datalayer/collection';
 import DynamoCollection from './lib/datalayer/dynamo-collection';
 
 export * as email from './lib/email';
-
+export { default as constants } from './lib/constants';
 export const domain = {
   BaseEntity,
   BaseRepository,

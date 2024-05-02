@@ -1,4 +1,5 @@
-import { dataLayer, database } from '@qubejs/cms';
+import { dataLayer } from '@qubejs/cms';
+import { database } from '@qubejs/cms-admin';
 
 //dataLayer.Collection
 export default (allModels, db) => {

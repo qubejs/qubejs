@@ -1,6 +1,6 @@
-import BaseRepository from '../repositories/BaseRepository';
+import { domain } from '@qubejs/cms';
 
-class UserSessionRepository extends BaseRepository {
+class UserSessionRepository extends domain.BaseRepository {
   constructor(options) {
     super({
       ...options,

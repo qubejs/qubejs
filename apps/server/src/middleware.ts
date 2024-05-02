@@ -1,5 +1,5 @@
 import { utils, Response } from '@qubejs/core';
-import { features } from '@qubejs/cms';
+import { features } from '@qubejs/cms-admin';
 import settings from './settings';
 import apiConfig from './api.config';
 import apiValidationRules from './api.validation.rules';

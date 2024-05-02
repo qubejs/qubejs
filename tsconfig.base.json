@@ -21,6 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@qubejs/cms": ["libs/cms/src/index.ts"],
+      "@qubejs/cms-admin": ["libs/cms-admin/src/index.ts"],
       "@qubejs/core": ["libs/core/src/index.ts"],
       "@qubejs/scripts": ["libs/scripts/src/index.ts"],
       "@qubejs/ui-material-base": ["libs/ui-material-base/src/index.ts"],

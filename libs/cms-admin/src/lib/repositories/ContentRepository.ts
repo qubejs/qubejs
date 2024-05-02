@@ -1,9 +1,9 @@
-import BaseRepository from './BaseRepository';
+import { domain } from '@qubejs/cms';
 import constants from '../constants';
 import { utils, Errors as Error } from '@qubejs/core';
 const { datetime, path } = utils;
 
-class ContentRepository extends BaseRepository {
+class ContentRepository extends domain.BaseRepository {
   constructor(options) {
     super({
       ...options,

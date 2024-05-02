@@ -5,7 +5,6 @@ import yaml from 'js-yaml';
 import groupBy from 'lodash/groupBy';
 import { utils, Response } from '@qubejs/core';
 import PageBuilder from './builder/page-builder';
-import { ContentRepository } from '../repositories/ContentRepository';
 
 import pkgName from '../../../package.json';
 
@@ -13,6 +12,7 @@ class ContentServer {
   config: any;
   app: any;
   contentRepo: any;
+  ContentRepository: any;
   fse: any;
   rootContentPath: any;
   contentFolder: any;
@@ -23,6 +23,7 @@ class ContentServer {
       fse = our_fse,
       dirname = `${process.cwd()}/node_modules/${pkgName.name}`,
       internalDevPath,
+      ContentRepository,
       ...options
     }: any = {},
     app?
@@ -54,14 +55,15 @@ class ContentServer {
       options
     );
     this.app = app;
+    this.ContentRepository = ContentRepository;
     this.config.rootPath = utils.path.ensureSlashAtEnd(this.config.rootPath);
     this.config.publicUrl =
       utils.path.ensureSlashAtEnd(this.config.appConfig.publicUrl) || '/';
     this.config.contentPath = utils.path.ensureSlashAtEnd(
       this.config.contentPath
     );
-    if (this.config.db) {
-      this.contentRepo = new ContentRepository({ db: this.config.db });
+    if (this.config.db && this.ContentRepository) {
+      this.contentRepo = new this.ContentRepository({ db: this.config.db });
     }
     this.config.srcPath = utils.path.ensureSlashAtEnd(this.config.srcPath);
     this.rootContentPath = `${this.config.rootPath}content/`;
@@ -570,13 +572,16 @@ class ContentServer {
 
     let contents;
     if (this.contentRepo && !fileFound) {
+      console.log(this.contentRepo)
       const test = await this.contentRepo.getByPath(fullPath);
+      console.log(test);
       if (test && !fileFound) {
         status = 200;
         contents = [test.pageData];
         console.log('served from db=' + fullPath);
       }
     }
+    console.log(contents);
     if (!contents) {
       if (this.fse.existsSync(filePath)) {
         fileContents = this.fse.readFileSync(`${filePath}`, 'utf8');
@@ -591,6 +596,7 @@ class ContentServer {
     if (!currentNode) {
       currentNode = currentSiteConfig.siteMap;
     }
+    console.log(contents);
     try {
       contents = !contents ? yaml.loadAll(fileContents) : contents;
     } catch (ex) {
@@ -613,6 +619,7 @@ class ContentServer {
     if (contents.length === 1) {
       contents = contents[0];
     }
+    console.log(merged);
     const data: any = {
       mode: config.mode,
       status,

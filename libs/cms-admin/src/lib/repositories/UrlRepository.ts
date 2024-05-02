@@ -1,4 +1,4 @@
-import {utils} from '@qubejs/core';
+import { utils } from '@qubejs/core';
 import _settings from '../settings';
 
 const settings = _settings.getSettings();

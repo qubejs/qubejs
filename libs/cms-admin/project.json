@@ -1,37 +1,19 @@
 {
-  "name": "cms",
+  "name": "cms-admin",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/cms/src",
+  "sourceRoot": "libs/cms-admin/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/cms",
-        "tsConfig": "libs/cms/tsconfig.lib.json",
-        "packageJson": "libs/cms/package.json",
-        "main": "libs/cms/src/index.ts",
-        "additionalEntryPoints": [],
-        "external": ["@qubejs/core"],
-        "assets": [
-          "libs/cms/*.md",
-          {
-            "input": "./libs/cms/apps",
-            "glob": "**/*.!(ts)",
-            "output": "./apps"
-          },
-          {
-            "input": "./libs/cms/client",
-            "glob": "**/*.!(ts)",
-            "output": "./client"
-          },
-          {
-            "input": "./libs/cms/content",
-            "glob": "**/*.!(ts)",
-            "output": "./content"
-          }
-        ]
+        "outputPath": "dist/libs/cms-admin",
+        "tsConfig": "libs/cms-admin/tsconfig.lib.json",
+        "packageJson": "libs/cms-admin/package.json",
+        "main": "libs/cms-admin/src/index.ts",
+        "external": ["@qubejs/core", "@qubejs/cms"],
+        "assets": []
       }
     },
     "publish": {
@@ -46,14 +28,17 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/cms/**/*.ts", "libs/cms/package.json"]
+        "lintFilePatterns": [
+          "libs/cms-admin/**/*.ts",
+          "libs/cms-admin/package.json"
+        ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/cms/jest.config.ts",
+        "jestConfig": "libs/cms-admin/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

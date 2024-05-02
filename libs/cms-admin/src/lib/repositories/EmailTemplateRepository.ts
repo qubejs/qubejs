@@ -1,8 +1,8 @@
 import { Errors as Error } from '@qubejs/core';
-import BaseRepository from './BaseRepository';
+import { domain } from '@qubejs/cms';
 import helpers from '../email/helpers';
 
-class EmailTemplateRepository extends BaseRepository {
+class EmailTemplateRepository extends domain.BaseRepository {
   mailRepo: any;
   constructor({ mailRepo, ...options }: any = {}) {
     super({

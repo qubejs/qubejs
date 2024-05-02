@@ -1,6 +1,6 @@
-import BaseRepository from '../repositories/BaseRepository';
+import { domain } from '@qubejs/cms';
 
-class UserPreferenceRepository extends BaseRepository {
+class UserPreferenceRepository extends domain.BaseRepository {
   constructor(options) {
     super({
       ...options,
@@ -17,8 +17,7 @@ class UserPreferenceRepository extends BaseRepository {
   }
 
   save(preference, userId) {
-    var newPref;
-    var that = this;
+    let newPref;
     return new Promise((resolve) => {
       this.find({
         createdBy: userId
@@ -28,12 +27,12 @@ class UserPreferenceRepository extends BaseRepository {
             ...preference,
             createdBy: userId
           };
-          const insertedCat = await that.insert(newPref);
+          const insertedCat = await this.insert(newPref);
           resolve({
             ...insertedCat
           });
         } else {
-          var result = await this.update({
+          const result = await this.update({
             ...preference,
             uid: prefs[0].uid
           });
