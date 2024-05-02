@@ -1,4 +1,4 @@
-import { database } from '@qubejs/cms';
+import { database } from '@qubejs/cms-admin';
 import DbVersin from './dbversion';
 import EmailQueue from './email-queue';
 
