@@ -147,7 +147,6 @@ class PageListing extends BaseContainer {
           params.urlParams,
           { target: '_blank' }
         );
-        utils.redirect.redirectTo(row.path, {}, { target: '_blank' });
         break;
     }
   }
