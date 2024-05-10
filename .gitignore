@@ -44,3 +44,7 @@ Thumbs.db
 .docusaurus/
 .cache-loader/
 .env
+
+# Next.js
+.next
+out
