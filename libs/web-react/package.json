@@ -25,7 +25,6 @@
     "@nx/express": "^16.7.1",
     "@nx/jest": "16.7.1",
     "@nx/js": "16.7.1",
-    "@nx/linter": "16.7.0",
     "@nx/node": "16.7.1",
     "@nx/react": "16.7.0",
     "@nx/webpack": "16.7.1",
@@ -67,6 +66,7 @@
     "url-loader": "^4.1.1",
     "verdaccio": "^5.0.4",
     "webpack": "^5.80.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "@nx/eslint": "16.7.0"
   }
 }

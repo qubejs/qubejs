@@ -8,14 +8,15 @@ const packageJson = require('../../package.json');
 const VERSION = process.env.VERSION || packageJson.version;
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withReact(), (config) => {
+  console.log(config.plugins);
   if (VERSION) {
     console.log('building for version:' + VERSION);
     config.output.filename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
     config.output.chunkFilename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
-    config.plugins[5].options.filename = `[name]${
+    config.plugins[6].options.filename = `[name]${
       VERSION ? `.${VERSION}` : ''
     }.css`;
-    config.plugins[5].options.chunkFilename = `[name]${
+    config.plugins[6].options.chunkFilename = `[name]${
       VERSION ? `.${VERSION}` : ''
     }.css`;
   }

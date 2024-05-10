@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "localserver",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/server/src",
+  "sourceRoot": "apps/localserver/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -12,12 +12,11 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/server",
-        "main": "apps/server/src/main.ts",
-        "tsConfig": "apps/server/tsconfig.app.json",
-        "assets": ["apps/server/src/assets"],
-        "webpackConfig": "apps/server/webpack.config.js",
-        "generatePackageJson": true
+        "outputPath": "dist/apps/localserver",
+        "main": "apps/localserver/src/main.ts",
+        "tsConfig": "apps/localserver/tsconfig.app.json",
+        "assets": ["apps/localserver/src/assets"],
+        "webpackConfig": "apps/localserver/webpack.config.js"
       },
       "configurations": {
         "development": {},
@@ -28,14 +27,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "server:build"
+        "buildTarget": "localserver:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "server:build:development"
+          "buildTarget": "localserver:build:development"
         },
         "production": {
-          "buildTarget": "server:build:production"
+          "buildTarget": "localserver:build:production"
         }
       }
     },
@@ -46,7 +45,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/server/jest.config.ts"
+        "jestConfig": "apps/localserver/jest.config.ts"
       }
     }
   }
