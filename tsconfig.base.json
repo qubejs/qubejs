@@ -25,6 +25,8 @@
       "@qubejs/core": ["libs/core/src/index.ts"],
       "@qubejs/scripts": ["libs/scripts/src/index.ts"],
       "@qubejs/ui-material-base": ["libs/ui-material-base/src/index.ts"],
+      "@qubejs/web-next": ["libs/web-next/src/index.ts"],
+      "@qubejs/web-next/server": ["libs/web-next/src/server.ts"],
       "@qubejs/web-react": ["libs/web-react/src/index.ts"]
     }
   },
