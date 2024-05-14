@@ -1,6 +1,7 @@
 import { utils } from '@qubejs/core';
 import accent from './accent-colors';
 import _string from './string';
+import * as translate from './translate';
 import { CONSTANTS } from '../globals';
 const object = utils.object;
 const common = utils.common;
@@ -19,6 +20,11 @@ class CustomProcessor {
         },
         exists: (value) => {
           return !!value;
+        },
+      },
+      i18n: {
+        translate: (value) => {
+          return translate.translate(value);
         },
       },
       dataType: {
