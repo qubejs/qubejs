@@ -572,9 +572,7 @@ class ContentServer {
 
     let contents;
     if (this.contentRepo && !fileFound) {
-      console.log(this.contentRepo)
       const test = await this.contentRepo.getByPath(fullPath);
-      console.log(test);
       if (test && !fileFound) {
         status = 200;
         contents = [test.pageData];
@@ -617,7 +615,6 @@ class ContentServer {
     if (contents.length === 1) {
       contents = contents[0];
     }
-    console.log(merged);
     const data: any = {
       mode: config.mode,
       status,
