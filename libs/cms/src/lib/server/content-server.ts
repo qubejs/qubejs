@@ -196,6 +196,11 @@ class ContentServer {
   }
 
   init() {
+    this.app.use(this.config.publicUrl + 'env/app-config.js', (req, res) => {
+      res.send(
+        ` window.APP_CONFIG = ${JSON.stringify(this.config.appConfig)};`
+      );
+    });
     this.app.get(
       this.config.serverPath,
       this.config.middleware,
@@ -206,7 +211,6 @@ class ContentServer {
       this.config.middleware,
       this.serveJson.bind(this)
     );
-    console.log('initialing using publicUrl=' + this.config.publicUrl);
     this.app.use('/client', express.static(this.clientLibs));
     if (this.config.damAssets) {
       this.app.use('/dam', express.static(this.config.damAssets));
@@ -214,11 +218,6 @@ class ContentServer {
     if (this.config.clientLibs) {
       this.app.use('/clientlibs', express.static(this.config.clientLibs));
     }
-    this.app.use(this.config.publicUrl + 'env/app-config.js', (req, res) => {
-      res.send(
-        ` window.APP_CONFIG = ${JSON.stringify(this.config.appConfig)};`
-      );
-    });
   }
 
   mapVanity(config, options: any = {}) {

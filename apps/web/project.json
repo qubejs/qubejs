@@ -20,7 +20,8 @@
         "compiler": "babel",
         "outputPath": "dist/apps/web",
         "index": "apps/web/src/index.html",
-        "baseHref": "/",
+        "baseHref": "/content/",
+        "deployUrl": "/content/",
         "main": "apps/web/src/main.tsx",
         "tsConfig": "apps/web/tsconfig.app.json",
         "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
@@ -30,7 +31,6 @@
         },
         "extractCss": true,
         "scripts": [],
-        "isolatedConfig": true,
         "webpackConfig": "apps/web/webpack.config.js"
       },
       "configurations": {
