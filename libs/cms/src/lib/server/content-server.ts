@@ -214,7 +214,7 @@ class ContentServer {
     if (this.config.clientLibs) {
       this.app.use('/clientlibs', express.static(this.config.clientLibs));
     }
-    this.app.use('/env/app-config.js', (req, res) => {
+    this.app.use(this.config.publicUrl + 'env/app-config.js', (req, res) => {
       res.send(
         ` window.APP_CONFIG = ${JSON.stringify(this.config.appConfig)};`
       );
