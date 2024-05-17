@@ -311,7 +311,7 @@ describe('CMS::ContentServer', function () {
     it('should call app.post to server json', () => {
       expect(app.post.mock.calls[0][0]).toBe('/content/*');
     });
-    it('should call app.use to /client libs', () => {
+    it('should call app.use to /env/app-config.js', () => {
       expect(app.use.mock.calls[0][0]).toBe('/env/app-config.js');
     });
 
