@@ -311,15 +311,18 @@ describe('CMS::ContentServer', function () {
     it('should call app.post to server json', () => {
       expect(app.post.mock.calls[0][0]).toBe('/content/*');
     });
+    it('should call app.use to /client libs', () => {
+      expect(app.use.mock.calls[0][0]).toBe('/env/app-config.js');
+    });
 
     it('should call app.use to /client libs', () => {
-      expect(app.use.mock.calls[0][0]).toBe('/client');
+      expect(app.use.mock.calls[1][0]).toBe('/client');
     });
     it('should call app.use to dam assets', () => {
-      expect(app.use.mock.calls[1][0]).toBe('/dam');
+      expect(app.use.mock.calls[2][0]).toBe('/dam');
     });
     it('should call app.use to clientLibs', () => {
-      expect(app.use.mock.calls[2][0]).toBe('/clientlibs');
+      expect(app.use.mock.calls[3][0]).toBe('/clientlibs');
     });
   });
 
