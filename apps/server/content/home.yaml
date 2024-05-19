@@ -7,6 +7,9 @@ hook:
   load:
 reset:
   type: clearAll
+init:
+  message: | 
+    ::i18n.translate:: Welcome to Market
 merge:
   currentError : .lastError.key
 items:
@@ -23,8 +26,8 @@ items:
           component: HeroContent
           template: large-background
           className: 
-          header: | 
-            <span> Welcome</span> <span> to Market</span>
+          inject:
+            header: message
           background: /dam/alpha-market/imgs/home-bg.png
           subHeader: |
             Follow the experts with ease

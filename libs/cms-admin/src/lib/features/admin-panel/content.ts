@@ -1,10 +1,10 @@
-const { Response, utils } = require('@qubejs/core');
+import { Response, utils } from '@qubejs/core';
 const { path } = utils;
 
-module.exports = ({ context } = {}) => {
+export default ({ context }: any = {}) => {
   context.router.post('/content/page', function (req, res) {
     const paths = context.contentRepo.extractPath(req.body.path, req.body.type);
-    let data = {};
+    const data:any = {};
     if (req.body.importDefault === 'Y' && req.body.type === 'SITE_MAP') {
       data.pageData = context.config.siteConfig;
     }

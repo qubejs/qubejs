@@ -30,6 +30,7 @@ let _settings = {
     forgotPassword: '/content/admin/forgotpassword',
   },
   cookie: {
+    checkLoginKey: 'qjs-token',
     secret: 'adminsecret',
     tokenKey: 'qjs-token',
     secretKey: 'qujssecret',

@@ -65,7 +65,7 @@ const middleware = () => {
     let isFeatureAdmin = false;
     let isPublic = false;
     let tokenValidated = false;
-    const websettings = settings;
+    const websettings:any = settings;
 
     logger.log('Admin Middleware:' + req.method + req.originalUrl);
     websettings.api?.admin?.forEach(function (urlReg) {
