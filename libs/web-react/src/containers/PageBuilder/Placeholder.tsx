@@ -32,10 +32,9 @@ const Placeholder = ({
           allowedDropEffect,
         };
       },
-      collect: (monitor) => ({
-        isOver: monitor.isOver(),
-        canDrop: monitor.canDrop(),
-      }),
+      collect: (monitor) => {
+        return { isOver: monitor.isOver(), canDrop: monitor.canDrop() };
+      },
     }),
     [allowedDropEffect]
   );
@@ -46,9 +45,10 @@ const Placeholder = ({
   return (
     <div
       className={`sq-placeholder-drop ${backgroundCSS} sq-placeholder-drop-style-${plaecHolderStyle}`}
-      ref={drop}
       style={{}}
     >
+      <div className="sq-placeholder-drop__dropper" ref={drop} style={{}}></div>
+
       <div className="sq-placeholder-drop__hover-text">
         {plaecHolderStyle === 'line' ? hoverText : ''}
       </div>

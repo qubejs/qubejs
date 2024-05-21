@@ -17,8 +17,6 @@ if (!evnv[enviroment]) {
 }
 const config = evnv[enviroment];
 
-console.log(enviroment);
-
 export default _.merge(
   {
     env: enviroment,

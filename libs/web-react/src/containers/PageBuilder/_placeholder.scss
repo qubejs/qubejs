@@ -24,6 +24,11 @@
   }
   &-style-line {
     padding: 0px;
+    .sq-placeholder-drop__dropper {
+      height: 100px;
+      width: 100%;
+      position: absolute;
+    }
     .sq-placeholder-drop__content {
       display: none;
     }
