@@ -208,7 +208,7 @@ class PreferenceStorage {
       return;
     }
     Object.keys(objToSend).forEach((itemKey) => {
-      const data = obj[itemKey] || {};
+      const data = objToSend[itemKey] || {};
       this._win.localStorage.setItem(itemKey, JSON.stringify(data));
     });
   }
