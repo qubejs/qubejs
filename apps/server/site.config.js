@@ -90,6 +90,7 @@ export default {
       text: '',
       // image: envConfig.publicUrl + '/assets/imgs/rise-white.png',
       name: 'home',
+      topName: 'Computer',
       imgAlt: 'logo image',
       size: 'dan-wide',
       className: '',

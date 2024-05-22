@@ -1,10 +1,10 @@
 title: Sender List
 template: apps/core/templates/page
 layout: apps/layouts/spa
-containerTemplate: Homepage
+containerTemplate: AdminDashboard
 wrapperClassName: sq-content-page--full-width
 container: GenericListing
-styleCode: static
+styleCode: fixed
 dataKey: sender_list
 merge:
   addSender: true
@@ -36,6 +36,7 @@ columns:
   - name: icon
     cmpType: Icon
     customize: false
+    sort: false
     className: col-icon
     componentProps:
       className: sq-icon--square sq-icon--text-icon-accent
@@ -58,6 +59,7 @@ columns:
     headerText: Address
   - cmpType: MoreActions
     customize: false
+    sort: false
     fixed: true
     direction: right
     className: col-medium-actions
