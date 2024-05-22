@@ -44,9 +44,9 @@ export default {
       },
       items: [
         {
-          title: 'Dashboard',
+          title: 'PageListing',
           iconName: 'dashboard',
-          href: '/content/app/dashboard',
+          href: '/content/pagelisting',
         },
         {
           title: 'About us',

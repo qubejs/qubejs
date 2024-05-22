@@ -1,0 +1,933 @@
+{
+    "status": "success",
+    "statusCode": 200,
+    "message": {
+        "key": "GET",
+        "message": "Get Successfully"
+    },
+    "data": {
+        "totalPages": 1,
+        "totalItems": 24,
+        "currentPage": 1,
+        "first": true,
+        "last": true,
+        "itemsPerPage": 24,
+        "pageSize": 25,
+        "data": [
+            {
+                "creationDate": "2023-07-31T16:41:30.473+00:00",
+                "modifiedDate": "2023-08-01T15:39:35.607+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "Diversity, Equity & Inclusion Committee"
+                },
+                "reply_to": {
+                    "email": "dei@greenscorp.com"
+                },
+                "id": "5180005",
+                "objectId": "64c7e43a0f0bf04d1c89ceb7",
+                "sendGridId": "5180005",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                "nickname": "DEI - Diversity, Equity & Inclusion Committee",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-08T14:08:27.068+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": "Diversity, Equity & Inclusion Committee"
+                },
+                "reply_to": {
+                    "email": "dei@greenscorp.com"
+                },
+                "id": "5193705",
+                "objectId": "64d24c5b7979bb4043520285",
+                "sendGridId": "5193705",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "DEI eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-08T14:09:40.231+00:00",
+                "modifiedDate": "2023-09-23T04:31:57.574+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": "Greens on Parliament"
+                },
+                "reply_to": {
+                    "email": "Greensonparliament@greenscorp.com"
+                },
+                "id": "5193708",
+                "objectId": "64d24ca47979bb4043520286",
+                "sendGridId": "5193708",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "DOP - eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-08T14:15:04.527+00:00",
+                "modifiedDate": "2023-09-19T21:42:49.002+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "Greensdish@greenscorp.com"
+                },
+                "id": "5193721",
+                "objectId": "64d24de87979bb404352028b",
+                "sendGridId": "5193721",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "Greens Dish - eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-09T18:59:51.491+00:00",
+                "modifiedDate": "2023-08-24T13:03:32.007+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": "Greens MPV"
+                },
+                "reply_to": {
+                    "email": "customercare@greenscorp.com"
+                },
+                "id": "5196378",
+                "objectId": "64d3e2271666c4714ffbaee9",
+                "sendGridId": "5196378",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "Greens MPV - eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-28T15:17:43.465+00:00",
+                "modifiedDate": "2023-07-21T17:43:47.344+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "Greens on Parliament"
+                },
+                "reply_to": {
+                    "email": "Greensonparliament@greenscorp.com"
+                },
+                "id": "5126251",
+                "objectId": "649c4f17ea60f642ca6acb07",
+                "sendGridId": "5126251",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "8th Floor",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                "nickname": "Greens on Parliament",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-08T18:13:36.466+00:00",
+                "modifiedDate": "2023-06-13T21:10:32.570+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "digitalsalestool@greenscorp.com",
+                    "name": "Payment Department"
+                },
+                "reply_to": {
+                    "email": "payment@greenscorp.com"
+                },
+                "id": "5087385",
+                "objectId": "64821a50c4e7f17bd1e4343f",
+                "sendGridId": "5087385",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East 8th Floor West Tower ON Toronto M5A 0P6 Canada ",
+                "nickname": "Digital Sales Tool",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2024-05-13T05:45:47.982+00:00",
+                "modifiedDate": "2024-05-15T09:11:39.991+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "info@homejrny.com",
+                    "name": "Homejnry Info"
+                },
+                "reply_to": {
+                    "email": "no-reply@homejrny.com"
+                },
+                "id": "5826112",
+                "objectId": "6641a90b52866c6759ca4fd3",
+                "sendGridId": "5826112",
+                "senderId": "00010",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by homejrny",
+                "nickname": "Homejnry Info",
+                "mailingAddress": {
+                    "address": "Message sent by homejrny",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by homejrny\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by homejrny, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-13T17:49:12.403+00:00",
+                "modifiedDate": "2023-07-28T19:59:27.446+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "Greens MPV2"
+                },
+                "reply_to": {
+                    "email": "mpv@greenscorp.com"
+                },
+                "id": "5097803",
+                "objectId": "6488ac18bd91034cda9e7d01",
+                "sendGridId": "5097803",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6",
+                "nickname": "MPV2",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-08T14:12:33.471+00:00",
+                "modifiedDate": "2023-09-22T14:37:07.360+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": " Greens MPV2"
+                },
+                "reply_to": {
+                    "email": "mpv@greenscorp.com"
+                },
+                "id": "5193713",
+                "objectId": "64d24d517979bb4043520288",
+                "sendGridId": "5193713",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "MPV2 - eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-07T17:53:42.737+00:00",
+                "modifiedDate": "2023-06-29T17:15:18.934+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "sales@greenscorp.com"
+                },
+                "id": "5084674",
+                "objectId": "6480c426a2266246cd828df8",
+                "sendGridId": "5084674",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                "nickname": "Marketing",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-14T15:59:16.887+00:00",
+                "modifiedDate": "2023-08-10T14:33:15.889+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "digitalsalestool@greenscorp.com",
+                    "name": "Payment Department"
+                },
+                "reply_to": {
+                    "email": "vsundar@greenscorp.com"
+                },
+                "id": "5099987",
+                "objectId": "6489e3d4bd91034cda9f3736",
+                "sendGridId": "5099987",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, Ontario, Canada M5A 0P6.",
+                "nickname": "Payment Department",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "Ontario",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nOntario\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, Ontario, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-08T14:13:49.197+00:00",
+                "modifiedDate": "2023-09-15T18:25:46.046+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "sales@greenscorp.com"
+                },
+                "id": "5193718",
+                "objectId": "64d24d9d7979bb404352028a",
+                "sendGridId": "5193718",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "Sales - eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-12-29T06:43:58.789+00:00",
+                "modifiedDate": "2024-01-12T13:41:27.908+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "skiss@greenscorp.com",
+                    "name": "Steven Kiss"
+                },
+                "reply_to": {
+                    "email": "bkumar@digitalft.com"
+                },
+                "id": "5487299",
+                "objectId": "658e6aaee9753a40e0d2b7f0",
+                "sendGridId": "5487299",
+                "senderId": "00001",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "The Greens realty Corporation, Brokerage ",
+                "address": "SALES TEAM LEAD",
+                "nickname": "Steven Kiss",
+                "mailingAddress": {
+                    "address": "SALES TEAM LEAD",
+                    "addressLineTwo": "The Greens realty Corporation, Brokerage ",
+                    "addressLineThree": "Greens Keelsdale",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "SALES TEAM LEAD\nThe Greens realty Corporation, Brokerage \nGreens Keelsdale\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "SALES TEAM LEAD, The Greens realty Corporation, Brokerage , Greens Keelsdale, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-07-10T16:22:41.403+00:00",
+                "modifiedDate": "2023-07-24T15:59:59.209+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "customercare@greenscorp.com"
+                },
+                "id": "5144895",
+                "objectId": "64ac3051e02ff0210a6e0c73",
+                "sendGridId": "5144895",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "8th Floor",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                "nickname": "TDC",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-07-28T00:06:23.546+00:00",
+                "modifiedDate": "2023-08-03T12:49:19.234+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eblasts@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "digitalsalestool@greenscorp.com"
+                },
+                "id": "5175632",
+                "objectId": "64c3067f8f24e36e2ae066b4",
+                "sendGridId": "5175632",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "8th Floor",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                "nickname": "TDC eBlast 1",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-07-06T11:43:16.600+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "communications@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "communications@greenscorp.com"
+                },
+                "id": "5139145",
+                "objectId": "64a6a8d43746f41f28d02bc3",
+                "sendGridId": "5139145",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "8th Floor",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                "nickname": "TDC2",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2024-05-06T07:11:14.371+00:00",
+                "modifiedDate": "2024-05-21T11:52:32.019+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "tkarimi@homejrny.com",
+                    "name": "TK Sender"
+                },
+                "reply_to": {
+                    "email": "tkarimi@digitalft.com"
+                },
+                "id": "5801720",
+                "objectId": "6638829254bad71517e6677d",
+                "sendGridId": "5801720",
+                "senderId": "00009",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by homejrny",
+                "nickname": "TK_TST",
+                "mailingAddress": {
+                    "address": "Message sent by homejrny",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by homejrny\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by homejrny, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "modifiedDate": "2023-12-28T14:07:17.196+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "The Greens Corporation "
+                },
+                "reply_to": {
+                    "email": "bkumar@digitalft.com"
+                },
+                "id": "4978551",
+                "objectId": "647febbe22dbea266de3a7c3",
+                "sendGridId": "4978551",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                "nickname": "Testing New Sender",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "modifiedDate": "2023-07-10T15:24:49.719+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "The Greens Corporation"
+                },
+                "reply_to": {
+                    "email": "Greensdish@greenscorp.com"
+                },
+                "id": "5084594",
+                "objectId": "647ff0bc22dbea266de3a7e1",
+                "sendGridId": "5084594",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                "nickname": "The Greens Corporation",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower,, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-08-08T14:10:56.117+00:00",
+                "modifiedDate": "2023-09-22T19:19:32.251+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "eBlasts@greenscorp.com",
+                    "name": "The Kith Condominiums"
+                },
+                "reply_to": {
+                    "email": "thekith@greenscorp.com"
+                },
+                "id": "5193709",
+                "objectId": "64d24cf07979bb4043520287",
+                "sendGridId": "5193709",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                "nickname": "The Kith - eblasts",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower",
+                    "addressLineTwo": "",
+                    "addressLineThree": "",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-22T15:09:10.652+00:00",
+                "modifiedDate": "2023-07-27T15:08:33.540+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "The Kith Condominiums "
+                },
+                "reply_to": {
+                    "email": "thekith@greenscorp.com"
+                },
+                "id": "5115799",
+                "objectId": "649464169ddc3b3d9f5d6330",
+                "sendGridId": "5115799",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6",
+                "nickname": "The Kith Condominiums ",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-08T18:14:35.972+00:00",
+                "modifiedDate": "2023-09-07T12:20:14.205+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "digitalsalestool@greenscorp.com",
+                    "name": "The New Age"
+                },
+                "reply_to": {
+                    "email": "vsundar@greenscorp.com"
+                },
+                "id": "5087388",
+                "objectId": "64821a8bc4e7f17bd1e43441",
+                "sendGridId": "5087388",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, Ontario, Canada M5A 0P6",
+                "nickname": "The New Age",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "Ontario",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nOntario\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, Ontario, Canada M5A 0P6"
+                },
+                "active": true
+            },
+            {
+                "creationDate": "2023-06-29T15:51:07.184+00:00",
+                "modifiedDate": "2023-07-17T20:04:39.802+00:00",
+                "tenantCode": "Green",
+                "from": {
+                    "email": "marketing@greenscorp.com",
+                    "name": "The Thornhill"
+                },
+                "reply_to": {
+                    "email": "info@thethornhill.com"
+                },
+                "id": "5128861",
+                "objectId": "649da86b251f1c3f3d36d6c1",
+                "sendGridId": "5128861",
+                "city": "Toronto",
+                "zip": "",
+                "country": "Canada",
+                "state": "ON",
+                "address_2": "",
+                "address": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6",
+                "nickname": "The Thornhill",
+                "mailingAddress": {
+                    "address": "Message sent by The Greens Corporation at 130 Queens Quay East",
+                    "addressLineTwo": "8th Floor",
+                    "addressLineThree": "West Tower",
+                    "suiteNumber": null,
+                    "city": "Toronto",
+                    "province": "ON",
+                    "postalCode": "M5A 0P6",
+                    "emailId": null,
+                    "faxNumber": null,
+                    "country": "Canada",
+                    "phoneNumber": null,
+                    "addressAsString": "Message sent by The Greens Corporation at 130 Queens Quay East\n8th Floor\nWest Tower\nToronto\nON\nM5A 0P6\n",
+                    "addressForDisplay": "Message sent by The Greens Corporation at 130 Queens Quay East, 8th Floor, West Tower, Toronto, ON, Canada M5A 0P6"
+                },
+                "active": true
+            }
+        ],
+        "singleData": null,
+        "pageTotal": null,
+        "pageTotalResponse": null
+    }
+}
