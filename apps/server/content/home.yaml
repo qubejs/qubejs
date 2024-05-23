@@ -1,54 +1,931 @@
-title: Sandbox Home
+title: Homepage
 template: apps/core/templates/page
-className: sq-content-page--full-width
+rootClassName: sq-content-page--full-width sq-content-page--top-0
 layout: apps/layouts/spa
 containerTemplate: Homepage
-hook:
-  load:
-reset:
-  type: clearAll
-init:
-  message: | 
-    ::i18n.translate:: Welcome to Market
-merge:
-  currentError : .lastError.key
 items:
+  # First image with home content
   - component: Carousel
-    className: sq-home__carousel
-    carouselClassName: sq-home__carousel-1
+    className: xpentro__carousel
+    carouselClassName: xpentro__carousel-1
     template: full-bg
     animation: fade
-    interval: 6000
+    interval: 6000000000
     items:
-     
       - component: MagicHeroContent
         content:
           component: HeroContent
           template: large-background
-          className: 
-          inject:
-            header: message
-          background: /dam/alpha-market/imgs/home-bg.png
+          templateClassName: sq-hero-content--large-background-none
+          header: | 
+            <span> Advance </span> <span>Financial </span> <span> Planning </span>
+          background: /dam/xpentro/img/art-home-1.png
           subHeader: |
-            Follow the experts with ease
+             Enter the world of advanced financial planning through comfort of few clicks
           headerTag: h1
           classes:
-            innerWrapper: container-max
+            wrapper: container-max
             links: mb-xtrawide
           links:
-            - buttonText: Login
+            - buttonText: Sign up free
               type: Button
-              color: primary
-              size: large
+              color: secondary
               iconName: arrow-right
               iconDirection: right
-              to: login
-            - buttonText: Dashboard
+              to: /content/in/register
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: register
+                  label: Register
+                  category: Content
+                  section: Homepage
+          links2:
+            - type: LinkButton
+              className: badge-link
+              img: /dam/xpentro/img/apple-store-badge.png
+              target: _blank
+              to: https://apps.apple.com/us/app/xpentro/id1583904854
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: iOS
+                  category: Content
+                  section: Homepage
+            - type: LinkButton
+              target: _blank
+              className: badge-link
+              img: /dam/xpentro/img/google-play-badge.png
+              to: https://play.google.com/store/apps/details?id=com.swishqube.xpentro
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: Android
+                  category: Content
+                  section: Homepage
+        name: anim-home-2
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+      - component: MagicHeroContent
+        content:
+          component: HeroContent
+          template: large-background
+          templateClassName: sq-hero-content--large-background-none
+          header: | 
+            <span> Swift </span> <span>Split Bills </span>
+          background: /dam/xpentro/img/art-split-bills.png
+          subHeader: |
+             Split expenses with your friends by easily by trip wise.
+          headerTag: h1
+          classes:
+            wrapper: container-max
+            links: mb-xtrawide
+          links:
+            - buttonText: Sign up free
               type: Button
-              color: primary
-              size: large
+              color: secondary
               iconName: arrow-right
               iconDirection: right
-              to: homeDashboard
+              to: /content/in/register
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: register
+                  label: Register
+                  category: Content
+                  section: Homepage
+          links2:
+            - type: LinkButton
+              className: badge-link
+              img: /dam/xpentro/img/apple-store-badge.png
+              target: _blank
+              href: https://apps.apple.com/us/app/xpentro/id1583904854
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: iOS
+                  category: Content
+                  section: Homepage
+            - type: LinkButton
+              target: _blank
+              className: badge-link
+              img: /dam/xpentro/img/google-play-badge.png
+              href: https://play.google.com/store/apps/details?id=com.swishqube.xpentro
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: Android
+                  category: Content
+                  section: Homepage
+        name: anim-home-21
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+      - component: MagicHeroContent
+        content:
+          component: HeroContent
+          template: large-background
+          templateClassName: sq-hero-content--large-background-none
+          header: | 
+            <span> Easy </span> <span>Setup </span> <span> How? </span>
+          background: /dam/xpentro/img/art-budget.png
+          subHeader: |
+             Through smart planning, monthly tracking and powerful forecasts customized as per your spending!!
+          headerTag: h1
+          classes:
+            wrapper: container-max
+            links: mb-xtrawide
+          links:
+            - buttonText: Explore More
+              type: Button
+              color: primary
+              iconName: arrow-right
+              iconDirection: right
+              to: /content/in/register
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: register
+                  label: Register
+                  category: Content
+                  section: Homepage
+          links2:
+            - type: LinkButton
+              className: badge-link
+              img: /dam/xpentro/img/apple-store-badge.png
+              target: _blank
+              href: https://apps.apple.com/us/app/xpentro/id1583904854
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: iOS
+                  category: Content
+                  section: Homepage
+            - type: LinkButton
+              target: _blank
+              className: badge-link
+              img: /dam/xpentro/img/google-play-badge.png
+              href: https://play.google.com/store/apps/details?id=com.swishqube.xpentro
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: Android
+                  category: Content
+                  section: Homepage
+        name: anim-home-3
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                y: 30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                y: 30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+      - component: MagicHeroContent
+        content:
+          component: HeroContent
+          template: large-background
+          templateClassName: sq-hero-content--large-background-none
+          header: | 
+            <span> Time </span> <span>is </span> <span> Money </span>
+          background: /dam/xpentro/img/art-analysis.png
+          subHeader: |
+             Time consuming financial planning cut down to your few clicks. Big savings
+          headerTag: h1
+          classes:
+            wrapper: container-max
+            links: mb-xtrawide
+          links:
+            - buttonText: Start Saving
+              type: Button
+              color: secondary
+              iconName: arrow-right
+              iconDirection: right
+              to: /content/in/register
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: register
+                  label: Register
+                  category: Content
+                  section: Homepage
+          links2:
+            - type: LinkButton
+              className: badge-link
+              img: /dam/xpentro/img/apple-store-badge.png
+              target: _blank
+              href: https://apps.apple.com/us/app/xpentro/id1583904854
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: iOS
+                  category: Content
+                  section: Homepage
+            - type: LinkButton
+              target: _blank
+              className: badge-link
+              img: /dam/xpentro/img/google-play-badge.png
+              href: https://play.google.com/store/apps/details?id=com.swishqube.xpentro
+              analytics:
+                click:
+                  type: event
+                  eventName: link_click
+                  action: download_app
+                  label: Android
+                  category: Content
+                  section: Homepage
+        name: anim-home-4
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                x: 30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                x: 30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+  # - component: MagicHeroContent
+  #   content:
+  #     component: HeroContent
+  #     template: large-background
+  #     header: | 
+  #       <span> Financial </span> <span>Planning </span> <span> Remastered </span>
+  #     background: /dam/xpentro/img/ecommerce-2607114_1920.jpg
+  #     subHeader: |
+  #       Easy management with custom budgets, spend tracking, and forecast for free.
+  #     headerTag: h1
+  #     classes:
+  #       root: container-max
+  #       links: mb-xtrawide
+  #     links:
+  #       - buttonText: Count me in
+  #         type: Button
+  #         color: secondary
+  #         iconName: arrow-right
+  #         iconDirection: right
+  #         to: /content/in/register
+  #         analytics:
+  #           click:
+  #             type: event
+  #             eventName: link_click
+  #             action: register
+  #             label: Register
+  #             category: Content
+  #             section: Homepage
+  #     links2:
+  #       - type: LinkButton
+  #         className: badge-link
+  #         img: /dam/xpentro/img/apple-store-badge.png
+  #         target: _blank
+  #         href: https://apps.apple.com/us/app/xpentro/id1583904854
+  #         analytics:
+  #           click:
+  #             type: event
+  #             eventName: link_click
+  #             action: download_app
+  #             label: iOS
+  #             category: Content
+  #             section: Homepage
+  #       - type: LinkButton
+  #         target: _blank
+  #         className: badge-link
+  #         img: /dam/xpentro/img/google-play-badge.png
+  #         href: https://play.google.com/store/apps/details?id=com.swishqube.xpentro
+  #         analytics:
+  #           click:
+  #             type: event
+  #             eventName: link_click
+  #             action: download_app
+  #             label: Android
+  #             category: Content
+  #             section: Homepage
+  #   name: anim-home-1
+  #   timeline:
+  #     defaults:
+  #       duration: .7
+  #     tweens:
+  #       - from:
+  #           y: -30
+  #           stagger: 0.3
+  #           opacity: 0
+  #         target: .sq-hero-content__header span
+  #         start: -=0.3
+  #       - from:
+  #           y: -30
+  #           stagger: 0.3
+  #           opacity: 0
+  #         target: .sq-hero-content__body > *
+  #         start: -=0.5
 
-      
+  # get 1st month free
+  - component: MagicHeroContent
+    content:
+      component: HeroContent
+      eyebrow: | 
+        PREMIUM
+      className: sq-hero-content--bg-gray
+      header: | 
+        Don’t Wait! Try the free premium version of Xpentro 
+      subHeader: |
+        Whole new world of financial freedom is waiting for you
+      classes:
+        root: container
+        Xheader: reveal
+      links:
+        - buttonText: Give it a try
+          type: Button
+          color: secondary
+          variant: outlined
+          iconName: arrow-right
+          iconDirection: right
+          to: /content/in/register
+          analytics:
+            click:
+              type: event
+              eventName: link_click
+              action: register
+              label: Register
+              category: Content
+              section: Homepage
+    name: anim-1
+    timeline:
+      defaults:
+        duration: .7
+      tweens:
+        - from:
+            y: 30
+            stagger: 0.4
+            opacity: 0
+          target: .sq-hero-content__content-col > *
+
+  # # start image slider
+  # - component: MagicHeroContent
+  #   content: 
+  #     component: ImageWithSlideList
+  #     className: pin-container container-max
+  #     header: Awesome features
+  #     items: 
+  #       - header: Save upto 70% on interest
+  #         className: panel
+  #         classes:
+  #           innerPanel: panel-bg-success
+  #         image:
+  #           imageUrl: /dam/xpentro/img/frog-money.png
+  #         eyebrow: LOANS
+          
+  #       - header: Plan years ahead
+  #         className: panel
+  #         classes:
+  #           innerPanel: panel-bg-primary
+  #         align: right
+  #         image:
+  #           imageUrl: /dam/xpentro/img/analytics.png
+  #         eyebrow: FORECAST
+  #       - header: Log your transactions 10x faster
+  #         className: panel
+  #         classes:
+  #           innerPanel: panel-bg-info
+  #         align: left
+  #         image:
+  #           imageUrl: /dam/xpentro/img/money.png
+  #         eyebrow: QUICK
+  #       - header: Improved spending
+  #         className: panel
+  #         classes:
+  #           innerPanel: panel-bg-warning
+  #         align: right
+  #         image:
+  #           imageUrl: /dam/xpentro/img/credit-cards.png
+  #         eyebrow: BALANCE
+          
+  #   name: XX-save-block
+  #   timeline:
+  #     scrollTrigger:
+  #       trigger: .XX-save-block
+  #       start: top top
+  #       stagger: 0.3
+  #       pin: true
+  #       end: +=7800px center
+  #       markers: true
+  #       scrub: 1
+  #     tweens:
+  #       - to:
+  #           x: -100vw
+  #           opacity: 0
+  #         target: .slide-1 
+  #       - from:
+  #           x: 100vw
+  #         to:
+  #           x: 0%
+  #         target: .slide-2 
+  #         start: -=0.5
+  #       - to:
+  #           x: 100vw
+  #           opacity: 0.5
+  #         target: .slide-2 
+  #       - from:
+  #           x: -100vw
+  #         to:
+  #           x: 0%
+  #         target: .slide-3
+  #         start: -=0.5
+  #       - to:
+  #           x: -100vw
+  #           opacity: 0.5
+  #         target: .slide-3
+  #       - from:
+  #           x: 100vw
+  #         to:
+  #           x: 0%
+  #         target: .slide-4
+  #         start: -=0.5
+        
+          
+       
+
+  # - component: XMagicHeroContent
+  #   content:
+  #     component: ImageWithSlide
+  #     className: container
+  #     classes:
+  #       innerPanel: panel-bg-primary
+  #     align: right
+  #     image:
+  #       imageUrl: /dam/xpentro/img/analytics.png
+  #     eyebrow: FORECAST
+  #     header: Plan years ahead
+  #   name: fore-block
+  #   timeline:
+  #     defaults:
+  #       duration: 1
+  #     scrollTrigger:
+  #       trigger: .fore-block
+  #       scrub: 1
+  #       start: top center
+  #       end: 400px center
+        
+  #     tweens:
+  #       - from:
+  #           y: 50
+  #         target: .sq-image-with-slide__image
+  #       - from:
+  #           y: 30
+  #         target: .sq-image-with-slide__panel
+  #         start: -=0.8
+  #       - from:
+  #           opacity: 0.3
+  #         target: .sq-image-with-slide__panel-inner > *
+  #         start: -=0.8
+  
+  - component: MagicHeroContent
+    content:
+      component: ImageWithSlide
+      className: container
+      classes:
+        innerPanel: panel-bg-info
+      align: left
+      image:
+        imageUrl: /dam/xpentro/img/money.png
+      eyebrow: QUICK
+      header: Log transactions 10x faster
+    name: quick-block
+    timeline:
+      defaults:
+        duration: 1
+      scrollTrigger:
+        trigger: .quick-block
+        scrub: 1
+        start: top center
+        end: 400px center
+        
+      tweens:
+        - from:
+            y: 50
+          target: .sq-image-with-slide__image
+        - from:
+            y: 30
+          target: .sq-image-with-slide__panel
+          start: -=0.8
+        - from:
+            opacity: 0.3
+          target: .sq-image-with-slide__panel-inner > *
+          start: -=0.8
+
+  - component: MagicHeroContent
+    content:
+      component: ImageWithSlide
+      className: container
+      classes:
+        innerPanel: panel-bg-warning
+      align: right
+      image:
+        imageUrl: /dam/xpentro/img/credit-cards.png
+      eyebrow: BALANCE
+      header: Improved spending
+    name: spending-block
+    timeline:
+      defaults:
+        duration: 1
+      scrollTrigger:
+        trigger: .spending-block
+        scrub: 1
+        start: top center
+        end: 400px center
+        
+      tweens:
+        - from:
+            y: 50
+          target: .sq-image-with-slide__image
+        - from:
+            y: 30
+          target: .sq-image-with-slide__panel
+          start: -=0.8
+        - from:
+            opacity: 0.3
+          target: .sq-image-with-slide__panel-inner > *
+          start: -=0.8
+  
+  # end  image slider
+  
+  # feature listing with box
+  - component: TextColumnWithLinks
+    classes:
+      root: container
+    className: sq-text-column-links--center sq-text-column-links--3-cols
+    items:
+      - header: Budget
+        iconName: budget
+        iconSize: large
+        iconColor: success
+        subHeader: Budget your categories and cut down un-neccessary expenses
+      - header: Loans
+        iconName: recurring
+        iconColor: warning
+        iconSize: large
+        subHeader: Explore loan with interest rates get clear idea what you will be paying
+      - header: Pre-payments
+        iconColor: info
+        iconName: power
+        iconSize: large
+        subHeader: Analyze loan interest impact with pre-payments
+      - header: Recurring
+        iconName: recurring
+        iconColor: info
+        iconSize: large
+        subHeader: Add recurring for fixed and unlimited time
+      - header: Forecast
+        iconName: trendingup
+        iconColor: primary
+        iconSize: large
+        subHeader: You can easily forcast years ahead and add those future expense/payments/transfers quickly
+      - header: Execute
+        iconName: power
+        iconColor: secondary
+        iconSize: large
+        subHeader: Execute finanacial planning just with one tap
+    imageUrl: /dam/xpentro/svg/content-one-touch.svg
+    
+  - component: MagicHeroContent
+    content:
+      eyebrow: | 
+        One Swift Tap
+      component: HeroContent
+      header: Log transaction in flash
+      subHeader: Get automated generated transactions for each month
+      className: sq-hero-content--left-aligned  sq-hero-content--top-padder panel
+      classes:
+        root: container
+      image:
+        cmpType: ImageOnDevice
+        device: iphone11
+        images:
+          - /dam/xpentro/help/dashboard-projected-success.png
+          - /dam/xpentro/help/dashboard-projected.png
+          - /dam/xpentro/help/market-one-touch.png
+    className: pin-container pin-container--sticky
+    name: feature-gold
+    timeline:
+      scrollTrigger:
+        trigger: .feature-gold
+        start: top top
+        end: +=2800px bottom
+        scrub: 1
+        pin: true
+        toggleActions: play none none reverse
+      tweens:
+        - from:
+            x: -250px
+          target: .sq-hero-content__content-image
+        - from:
+            y: -30px
+            opacity: 0
+          target: .sq-hero-content__eyebrow
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__header
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__sub-header
+        - to:
+            opacity: 0
+            x: -550px
+          target: .image-2
+        - to:
+            x: -550px
+            opacity: 0
+          target: .image-1
+
+  
+  - component: MagicHeroContent
+    content:
+      eyebrow: | 
+        POWERFUL INSIGHTS
+      component: HeroContent
+      header: Forecast years ahead
+      classes:
+        root: container
+      subHeader: While you work on your dreams, let forecasts find a way to turn them into reality
+      className: sq-hero-content--right-aligned panel
+      image:
+        cmpType: ImageOnDevice
+        images:
+          - /dam/xpentro/help/forecast-report-1.png
+          - /dam/xpentro/help/forecast-chart-1.png
+          - /dam/xpentro/help/market-powerful-insights.png
+    
+    
+    className: pin-container pin-container--sticky panel-bg-gray
+    name: fea23
+    timeline:
+      scrollTrigger:
+        trigger: .fea23
+        start: top top
+        end: +=1800px top
+        scrub: 1
+        pin: true
+        toggleActions: play none none reverse
+      tweens:
+        - from:
+            x: 250px
+          target: .sq-hero-content__content-image
+        - from:
+            y: -30px
+            opacity: 0
+          target: .sq-hero-content__eyebrow
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__header
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__sub-header
+        - to:
+            opacity: 0
+            x: -550px
+          target: .image-2
+        - to:
+            opacity: 0
+            x: -550px
+          target: .image-1
+  
+  - component: MagicHeroContent
+    content:
+      eyebrow: | 
+        SMART RECURRING
+      component: HeroContent
+      header: Smart way to go
+      classes:
+        root: container
+      subHeader: With smart recurring you can define repeated transactions easy
+      className: sq-hero-content--left-aligned panel
+      image:
+        cmpType: ImageOnDevice
+        images:
+          - /dam/xpentro/help/recurring-list-2.png
+          - /dam/xpentro/help/recurring-list-1.png
+          - /dam/xpentro/help/recurring-add-1.png
+    
+    
+    className: pin-container pin-container--sticky
+    name: feat24
+    timeline:
+      scrollTrigger:
+        trigger: .feat24
+        start: top top
+        end: +=1800px top
+        scrub: 1
+        pin: true
+        toggleActions: play none none reverse
+      tweens:
+        - from:
+            x: -250px
+          target: .sq-hero-content__content-image
+        - from:
+            y: -30px
+            opacity: 0
+          target: .sq-hero-content__eyebrow
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__header
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__sub-header
+        - to:
+            opacity: 0
+            x: -550px
+          target: .image-2
+        - to:
+            x: -550px
+            opacity: 0
+          target: .image-1
+
+  - component: MagicHeroContent
+    content:
+      eyebrow: | 
+        SAVE INTEREST
+      component: HeroContent
+      header: Loan Repayment Analysis
+      classes:
+        root: container
+      subHeader: Well, “Loan Repayment Analysis” will do this herculean task for you. Analyzing your loan and balance thoroughly, the feature will offer you biggest savings in interest.
+      className: sq-hero-content--right-aligned panel
+      image:
+        cmpType: ImageOnDevice
+        images:
+          - /dam/xpentro/help/loan-interest-pay.png
+          - /dam/xpentro/help/loan-saver.png
+          - /dam/xpentro/help/market-save-interest.png
+    
+    
+    className: pin-container pin-container--sticky panel-bg-gray
+    name: loan-feature
+    timeline:
+      scrollTrigger:
+        trigger: .loan-feature
+        start: top top
+        end: +=1800px top
+        scrub: 1
+        pin: true
+        toggleActions: play none none reverse
+      tweens:
+        - from:
+            x: 250px
+          target: .sq-hero-content__content-image
+        - from:
+            y: -30px
+            opacity: 0
+          target: .sq-hero-content__eyebrow
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__header
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__sub-header
+        - to:
+            opacity: 0
+            x: -550px
+          target: .image-2
+        - to:
+            opacity: 0
+            x: -550px
+          target: .image-1
+  
+
+  - component: MagicHeroContent
+    content:
+      eyebrow: | 
+        Multi Platform
+      component: HeroContent
+      classes:
+        root: container
+      header: Access anywhere
+      subHeader: Flexible accessible on any device with any resolution. Web, Mobile & Tablet
+      className: sq-hero-content--center-aligned sq-hero-content--full-image panel sq-hero-content--landscape
+      image:
+        cmpType: ImageOnDevice
+        device: ipad
+        imageUrl: /dam/xpentro/help/dashboard-ipad.jpg
+    
+    className: pin-container pin-container--sticky
+    name: feature-gol22
+    timeline:
+      defaults: 
+        duration: 0.7
+      scrollTrigger:
+        trigger: .feature-gol22
+        start: top top
+        end: +=1800px center
+        scrub: 1
+        pin: true
+        toggleActions: play none none reverse
+      tweens:
+        - from:
+            y: -60px
+          target: .sq-hero-content__content-image
+          start: -=0.3
+        - from:
+            y: -30px
+            opacity: 0
+          target: .sq-hero-content__eyebrow
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__header
+          start: -=0.3
+        - from:
+            y: 30px
+            opacity: 0
+          target: .sq-hero-content__sub-header
+          start: -=0.3
+        
+        
+  - component: MagicHeroContent
+    content:
+      component: HeroContent
+      className: sq-hero-content--dark sq-hero-content--bg-black
+      imageUrl: /dam/xpentro/img/recurring-view.png
+      header: | 
+        Let’s the app do the financial planning.
+      subHeader: |
+        While you enjoy your time with your loved ones with hassle free management of expenses by Xpentro.
+      classes:
+        root: container
+    name: home-last
+    timeline:
+      defaults:
+        duration: 1
+      scrub: 1
+      trigger: .home-last
+      tweens:
+        - from:
+            y: -30
+            stagger: 0.6
+            opacity: 0
+          target: .sq-hero-content__content-col > *
