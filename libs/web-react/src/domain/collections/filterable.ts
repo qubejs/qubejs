@@ -12,7 +12,7 @@ class Filterable {
         return data;
       },
       Queryable = DefaultE,
-    }
+    } = {}
   ) {
     this.rData = data;
     this.entityType = entityType;
