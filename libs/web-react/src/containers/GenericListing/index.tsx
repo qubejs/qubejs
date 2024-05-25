@@ -183,6 +183,7 @@ class GenericListing extends Component {
     });
     const objToSave = {
       lastQuery: query.get(),
+      pagination: { ...(preference.read('pagination', true) || {}) },
       currentSort: { ...(pageData.currentSort || {}), ...preference.read('currentSort') },
       currentFilter: { ...(queryParams.savedFilter === undefined ? preference.read('currentFilter') : {}), ...overrideParams.filterParams },
       currentQuickFilter: { ...(queryParams.savedFilter === undefined ? preference.read('quickFilter') : {}), ...overrideParams.topFilterParams },
@@ -193,6 +194,7 @@ class GenericListing extends Component {
     await this.props.raiseAction(
       updateUserData({
         lastQuery: objToSave.lastQuery,
+        [`${this.getKey('pagination')}`]: objToSave.pagination,
         [`${this.getKey('currentSort')}`]: objToSave.currentSort,
         [`${this.getKey('currentFilter')}`]: objToSave.currentFilter,
         [`${this.getKey('currentQuickFilter')}`]: objToSave.currentQuickFilter,
@@ -316,6 +318,7 @@ class GenericListing extends Component {
   async handlePageChange(data) {
     const pageNo = data.value.currentPage,
       pageSize = data.value.pageSize;
+    preference.write('pagination', { pageSize });
     this.props.raiseAction(startLoading());
     await this.refreshData({ pageNo, pageSize });
     this.props.raiseAction(stopLoading());
@@ -440,7 +443,7 @@ class GenericListing extends Component {
 
   render() {
     const { pageData = {}, userData, store } = this.props;
-    const { className = '' } = pageData;
+    const { className = '', styleCode = 'fixed' } = pageData;
     const { Actions, Dialog, Form, Grid, Skeleton } = storage.components.get();
     const currentSort = userData[this.getKey('currentSort')];
     const currentFilter = userData[this.getKey('currentFilter')];
@@ -448,13 +451,14 @@ class GenericListing extends Component {
     const topFilter = userData[this.getKey('topFilter')];
     const selectedColumns = userData[this.getKey('selectedColumns')];
     const columnsOrder = userData[this.getKey('columnsOrder')];
+    
     const groupDataMaker = pageData.groupMaker ? (key: string, data: any) => {
       return {
         ...processParams({ ...userData, ...data[0], _key: key, collection: data, _dataCount: data.length }, pageData.groupMaker, undefined, store),
       };
     } : undefined;
     return (
-      <div className={`sq-generic-listing sq-v-screen sq-v-screen--fixed ${className}`}>
+      <div className={`sq-generic-listing sq-v-screen sq-v-screen--${styleCode} ${className}`}>
         <div className="sq-v-screen__container">
           <div className="sq-v-screen__sub-header">
             {pageData.showPageTitle && <div className='sq-generic-listing__header'>{pageData.title}</div>}

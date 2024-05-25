@@ -1,7 +1,6 @@
-const { Response, utils } = require('@qubejs/core');
-// const { path } = utils;
+import { Response } from '@qubejs/core';
 
-module.exports = ({ context } = {}) => {
+export default ({ context }:any = {}) => {
   context.router.post('/emailtemplate/search', function (req, res) {
     context.emailTemplateRepo
       .search(req.body, req.query)

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import domain from '../../domain';
+import * as domain from '../../domain';
 import {
   processParams,
   selectUserData,
@@ -355,7 +355,7 @@ export const loadPermissions =
       url || adminConfig.apis.getAllPermissions,
       {}
     );
-    const filterable = new domain.collection.Filterable(response.data);
+    const filterable = new domain.Filterable(response.data);
     const obj: any = {
       [GLOBAL_OPTIONS.permissionTypes.keys.PERMISSIONS]: groupBy(
         filterable

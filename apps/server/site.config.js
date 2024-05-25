@@ -44,9 +44,9 @@ export default {
       },
       items: [
         {
-          title: 'Dashboard',
+          title: 'PageListing',
           iconName: 'dashboard',
-          href: '/content/app/dashboard',
+          href: '/content/pagelisting',
         },
         {
           title: 'About us',
@@ -90,6 +90,7 @@ export default {
       text: '',
       // image: envConfig.publicUrl + '/assets/imgs/rise-white.png',
       name: 'home',
+      topName: 'Computer',
       imgAlt: 'logo image',
       size: 'dan-wide',
       className: '',

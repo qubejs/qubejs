@@ -14,7 +14,6 @@ class Database {
   models: any;
   collections: any;
   constructor() {
-    console.log(config);
     this.databaseUrl =
       config.db.connection +
       (config.db.username && config.db.password ? config.db.username + ':' + config.db.password + '@' : '') +

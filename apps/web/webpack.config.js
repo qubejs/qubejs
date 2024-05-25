@@ -13,12 +13,11 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
     console.log('building for version:' + VERSION);
     config.output.filename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
     config.output.chunkFilename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
-    config.plugins[6].options.filename = `[name]${
-      VERSION ? `.${VERSION}` : ''
-    }.css`;
-    config.plugins[6].options.chunkFilename = `[name]${
-      VERSION ? `.${VERSION}` : ''
-    }.css`;
+    const plugin = config.plugins.find(
+      (item) => item?.constructor?.name === 'MiniCssExtractPlugin'
+    );
+    plugin.options.filename = `[name]${VERSION ? `.${VERSION}` : ''}.css`;
+    plugin.options.chunkFilename = `[name]${VERSION ? `.${VERSION}` : ''}.css`;
   }
   // Update the webpack config as needed here.
   // e.g. `config.plugins.push(new MyPlugin())`

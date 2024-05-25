@@ -86,6 +86,11 @@
       max-width: $screen-max;
     }
   }
+  &--static {
+    .sq-v-screen__sub-header {
+      position: static;
+    }
+  }
   &--fixed {
     position: absolute;
     width: 100%;
