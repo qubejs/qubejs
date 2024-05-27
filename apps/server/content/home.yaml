@@ -707,7 +707,7 @@ items:
       classes:
         root: container
       subHeader: While you work on your dreams, let forecasts find a way to turn them into reality
-      className: sq-hero-content--right-aligned panel
+      className: sq-hero-content--right-aligned  sq-hero-content--top-padder panel
       image:
         cmpType: ImageOnDevice
         images:
@@ -760,7 +760,7 @@ items:
       classes:
         root: container
       subHeader: With smart recurring you can define repeated transactions easy
-      className: sq-hero-content--left-aligned panel
+      className: sq-hero-content--left-aligned  sq-hero-content--top-padder panel
       image:
         cmpType: ImageOnDevice
         images:
@@ -813,7 +813,7 @@ items:
       classes:
         root: container
       subHeader: Well, “Loan Repayment Analysis” will do this herculean task for you. Analyzing your loan and balance thoroughly, the feature will offer you biggest savings in interest.
-      className: sq-hero-content--right-aligned panel
+      className: sq-hero-content--right-aligned  sq-hero-content--top-padder panel
       image:
         cmpType: ImageOnDevice
         images:

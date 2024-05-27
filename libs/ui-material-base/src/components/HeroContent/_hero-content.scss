@@ -242,10 +242,13 @@
     text-align: center;
     @media (min-width: $screen-sm) {
       .sq-hero-content__wrapper {
+        padding: 20px 40px;
       }
       text-align: left;
       .sq-hero-content__content-image {
         order: 1;
+        padding: 0 50px;
+
       }
       .sq-hero-content__content-col {
         order: 2;
