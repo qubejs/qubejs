@@ -79,7 +79,7 @@ class GenericListing extends Component {
       label: processEachParam(userData, field.label, undefined, store),
       beforeRender: (field, val, row) => {
         return {
-          ...(field.componentProps ? processParams({ ...userData, ...row }, field.componentProps, undefined, store) : {}),
+          ...(field.componentProps ? processParams({ ...this.props.userData, ...row }, field.componentProps, undefined, store) : {}),
         };
       },
       fields: field.fields
@@ -131,7 +131,7 @@ class GenericListing extends Component {
             return false;
           }
           return {
-            ...(action.componentProps ? processParams({ ...userData, ...row }, action.componentProps, undefined, store) : {}),
+            ...(action.componentProps ? processParams({ ...this.props.userData, ...row }, action.componentProps, undefined, store) : {}),
           }
         },
       };
@@ -143,7 +143,7 @@ class GenericListing extends Component {
         beforeRender: (col, val, row) => {
           return {
             component: {
-              ...(item.componentProps ? processParams({ ...userData, ...row }, item.componentProps, undefined, store) : {}),
+              ...(item.componentProps ? processParams({ ...this.props.userData, ...row }, item.componentProps, undefined, store) : {}),
               fields: item.fields
                 ? item.fields.map((field) => {
                     return {
@@ -151,7 +151,7 @@ class GenericListing extends Component {
                       beforeRender: (col, val, row) => {
                         return field.componentProps
                           ? {
-                              component: processParams({ ...userData, ...row }, field.componentProps, undefined, store),
+                              component: processParams({ ...this.props.userData, ...row }, field.componentProps, undefined, store),
                             }
                           : {};
                       },
@@ -162,7 +162,7 @@ class GenericListing extends Component {
                 ? item.actions.map((action) => {
                     return {
                       ...action,
-                      ...processParams({ ...userData, ...row }, action, undefined, store),
+                      ...processParams({ ...this.props.userData, ...row }, action, undefined, store),
                       render: (row) => {
                         if (action.renderMatch) {
                           const vald = new Validator(action.renderMatch);
@@ -292,13 +292,13 @@ class GenericListing extends Component {
         postApi(
           {
             ...pageData.apiConfig?.search,
-            params: object.extendData(processParams(userData, pageData.apiConfig?.search.params, undefined, store), {
-              ...(filter || userData[this.getKey('currentFilter')] || {}),
-              ...(userData[this.getKey('currentQuickFilter')] || {}),
-              ...(userData[this.getKey('topFilter')] || {}),
+            params: object.extendData(processParams(this.props.userData, pageData.apiConfig?.search.params, undefined, store), {
+              ...(filter || this.props.userData[this.getKey('currentFilter')] || {}),
+              ...(this.props.userData[this.getKey('currentQuickFilter')] || {}),
+              ...(this.props.userData[this.getKey('topFilter')] || {}),
             }),
             query: pageData.apiConfig?.search.query
-              ? processParams({ ...userData, sortBy: `${sortBy}|${sortDir}`, pageSize: pageSize, pageNo: pageNo }, pageData.apiConfig?.search.query)
+              ? processParams({ ...this.props.userData, sortBy: `${sortBy}|${sortDir}`, pageSize: pageSize, pageNo: pageNo }, pageData.apiConfig?.search.query)
               : {
                   sortBy: sortBy && sortDir ? `${sortBy}|${sortDir}` : undefined,
                   pageSize: pageSize,
