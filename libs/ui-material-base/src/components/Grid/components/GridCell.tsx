@@ -27,6 +27,7 @@ const GridCell = ({ column = {}, row, value, onChange, style, onClick, onAction,
   };
   const focusedProps = column.beforeRender && column.beforeRender(column, value, row);
   const { cmpType, className = '', component, render, tooltip = {} }: any = { ...column, ...focusedProps, component: {...column.component, ...(focusedProps?.component || {}), } };
+  const { isRender = true } = component || {};
   const CellComponent = CompMap[cmpType] || CompMap.Text;
   const { type, ...restFormatter }:any = formatter;
   let customValue = value;
@@ -39,12 +40,12 @@ const GridCell = ({ column = {}, row, value, onChange, style, onClick, onAction,
   const finalValTitle = getValue(this, title, row);
   return (
     <div className={`sq-grid__data-cell ${getValue(this, className, row)}`} role="grid-cell" style={style}>
-      {finalValTitle && <Tooltip disableFocusListener disableTouchListener title={finalValTitle} {...tooltipProps}>
+      {isRender && finalValTitle && <Tooltip disableFocusListener disableTouchListener title={finalValTitle} {...tooltipProps}>
         <span>
           <CellComponent {...errors} value={newValue} {...component} row={row} column={column} onClick={_onClick} onChange={_onChange} onAnalytics={onAnalytics} onAction={_onAction} onKeyPress={_onKeyPress} onBlur={_Blur} />
         </span>
       </Tooltip>}
-      {!finalValTitle &&
+      {isRender && !finalValTitle &&
         <CellComponent {...errors} value={newValue} {...component} row={row} column={column} onClick={_onClick} onChange={_onChange} onAnalytics={onAnalytics} onAction={_onAction} onKeyPress={_onKeyPress} onBlur={_Blur} />
       }
     </div>

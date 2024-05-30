@@ -33,7 +33,7 @@ storage.containers.set({
   ...templates,
 });
 
-export function App({ appActions }) {
+export function App({ appActions, appStore }) {
   const navigate = useNavigate();
   const [loaded, setAppLoaded] = useState(false);
   // const { Snackbar } = storage.components.get();
@@ -61,7 +61,7 @@ export function App({ appActions }) {
   useEffect(() => {
     setNavigate(navigate);
   }, []);
-
+  console.log('@@@appStore', appStore)
   return (
     <>
       {loaded && (

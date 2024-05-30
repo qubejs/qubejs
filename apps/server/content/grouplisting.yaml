@@ -7,6 +7,8 @@ container: GenericListing
 styleCode: fixed
 enableSelect: true
 dataKey: sender_list
+dataGroup:
+  field: city
 merge:
   addSender: true
   editSender: true
@@ -37,6 +39,7 @@ columns:
   - name: icon
     cmpType: Icon
     customize: false
+    fixed: true
     sort: false
     className: col-icon
     componentProps:

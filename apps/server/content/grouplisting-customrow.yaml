@@ -7,6 +7,10 @@ container: GenericListing
 styleCode: fixed
 enableSelect: true
 dataKey: sender_list
+dataGroup:
+  field: city
+groupMaker:
+  nickname: .city
 merge:
   addSender: true
   editSender: true

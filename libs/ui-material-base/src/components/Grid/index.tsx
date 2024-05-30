@@ -19,22 +19,24 @@ const RowTypes = {
 };
 
 class Grid extends React.Component {
-  static propTypes:any;
-  props:any;
-  state:any;
-  viewOptions:any;
-  headerRef:any;
-  bodyRef:any;
-  fixedHeaderRef:any;
-  fixedRHeaderRef:any;
-  fixedLBodyRef:any;
-  fixedRBodyRef:any;
-  bodyWrapperRef:any;
+  static propTypes: any;
+  props: any;
+  state: any;
+  viewOptions: any;
+  headerRef: any;
+  bodyRef: any;
+  fixedHeaderRef: any;
+  fixedRHeaderRef: any;
+  fixedLBodyRef: any;
+  fixedRBodyRef: any;
+  bodyWrapperRef: any;
   constructor(props) {
     super(props);
     this.state = {
       updatedIndex: 0,
       firstCols: [],
+      selectionIndexes: {},
+      rootCols: [],
       activatedGroups: {},
       data: [],
       validated: false,
@@ -70,11 +72,59 @@ class Grid extends React.Component {
     this.onViewTypeChange = this.onViewTypeChange.bind(this);
     this.onColResize = this.onColResize.bind(this);
   }
+  checkRootCols() {
+    const { enableSelect, columns } = this.props;
+    const hasFixed = columns?.find(
+      (i) => i.fixed === true && (!i.direction || i.direction === 'left')
+    );
+    // console.log(hasFixed, columns, !!hasFixed);
+    const rootCols = [
+      enableSelect && {
+        name: '_check',
+        cmpType: 'Checkbox',
+        className: 'col-selection',
+        fixed: !!hasFixed,
+        sort: false,
+        customize: false,
+        beforeRender: (col, value, row) => {
+          if (row._makerRow === true) {
+            return {
+              component: {
+                isRender: false,
+              },
+            };
+          }
+          const index = this.state.groupedData
+            ? row._dataIndex
+            : this.props.data.indexOf(row);
+          return {
+            component: {
+              checked: !!this.state.selectionIndexes[index],
+            },
+          };
+        },
+      },
+    ].filter((i) => !!i);
+    this.setState({
+      rootCols,
+    });
+  }
 
   componentDidUpdate(prevProps) {
-    const { dataGroup = {}, groupColumnProps = {} } = this.props;
-    if (this.props.data !== prevProps.data || dataGroup.field !== prevProps.dataGroup?.field || (dataGroup.field && !this.state.groupedData)) {
-      const { field: groupByField, groupDataMaker = (key, items) => items[0] } = dataGroup;
+    const { dataGroup = {}, groupColumnProps = {}, columns } = this.props;
+    if (this.props.enableSelect !== prevProps.enableSelect || this.props.columns !== prevProps.columns) {
+      this.checkRootCols();
+    }
+    if (
+      this.props.data !== prevProps.data ||
+      dataGroup.field !== prevProps.dataGroup?.field ||
+      (dataGroup.field && !this.state.groupedData)
+    ) {
+      const { field: groupByField, groupDataMaker = (key, items) => items[0] } =
+        dataGroup;
+      const hasFixed = columns?.find(
+        (i) => i.fixed === true && (!i.direction || i.direction === 'left')
+      );
       const firstCols = dataGroup.field
         ? [
             {
@@ -83,13 +133,15 @@ class Grid extends React.Component {
               className: 'col-selection',
               sort: false,
               customize: false,
-              fixed: false,
+              fixed: !!hasFixed,
               ...groupColumnProps,
               beforeRender: (col, value, row) => {
                 return row._groupRow
                   ? {
                       component: {
-                        name: this.state.activatedGroups[row._index] ? 'arrow-down' : 'arrow-right',
+                        name: this.state.activatedGroups[row._index]
+                          ? 'arrow-down'
+                          : 'arrow-right',
                       },
                     }
                   : { cmpType: 'Text' };
@@ -99,32 +151,58 @@ class Grid extends React.Component {
         : [];
       let groupedData;
       if (groupByField) {
+        let _dataIndex = 0;
         groupedData = [];
         const _tempGroup = groupBy(this.props.data, groupByField);
         Object.keys(_tempGroup).forEach((itemGroupKey, index) => {
-          groupedData.push({ ...groupDataMaker(itemGroupKey, _tempGroup[itemGroupKey], groupByField), _index: index, _groupRow: true });
+          const selectedRow = groupDataMaker(
+            itemGroupKey,
+            _tempGroup[itemGroupKey],
+            groupByField
+          );
+          const _makerRow = selectedRow !== _tempGroup[itemGroupKey][0];
+          groupedData.push({
+            ...selectedRow,
+            _makerRow,
+            _index: index,
+            _dataIndex: _makerRow ? undefined : _dataIndex,
+            _groupRow: true,
+          });
+          if (!_makerRow) {
+            _dataIndex++;
+          }
           groupedData = groupedData.concat(
-            _tempGroup[itemGroupKey].map((item:any) => {
-              if (groupDataMaker(itemGroupKey, _tempGroup[itemGroupKey], groupByField) === item) {
-                return undefined;
-              }
-              return {
-                ...item,
-                _groupKey: index,
-              };
-            }).filter((i) => !!i)
+            _tempGroup[itemGroupKey]
+              .map((item: any) => {
+                if (
+                  groupDataMaker(
+                    itemGroupKey,
+                    _tempGroup[itemGroupKey],
+                    groupByField
+                  ) === item
+                ) {
+                  return undefined;
+                }
+                return {
+                  ...item,
+                  _dataIndex: _dataIndex++,
+                  _groupKey: index,
+                };
+              })
+              .filter((i) => !!i)
           );
         });
       }
       this.setState({ firstCols, groupedData, activatedGroups: {} });
     }
   }
-  
+
   onLeftBody_Scroll(e) {
     if (this.bodyRef.current) {
       this.bodyRef.current.scrollTop = this.fixedLBodyRef.current.scrollTop;
       if (this.fixedRBodyRef.current) {
-        this.fixedRBodyRef.current.scrollTop = this.fixedLBodyRef.current.scrollTop;
+        this.fixedRBodyRef.current.scrollTop =
+          this.fixedLBodyRef.current.scrollTop;
       }
     }
   }
@@ -134,7 +212,8 @@ class Grid extends React.Component {
         this.bodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
       }
       if (this.fixedLBodyRef.current) {
-        this.fixedLBodyRef.current.scrollTop = this.fixedRBodyRef.current.scrollTop;
+        this.fixedLBodyRef.current.scrollTop =
+          this.fixedRBodyRef.current.scrollTop;
       }
     }
   }
@@ -150,8 +229,18 @@ class Grid extends React.Component {
       if (this.fixedRBodyRef.current) {
         this.fixedRBodyRef.current.scrollTop = this.bodyRef.current.scrollTop;
       }
-      if (!(this.bodyRef.current.scrollLeft > 0 && this.state.hasLeftScrolled === true)) {
-        if (!(this.bodyRef.current.scrollLeft === 0 && this.state.hasLeftScrolled === false)) {
+      if (
+        !(
+          this.bodyRef.current.scrollLeft > 0 &&
+          this.state.hasLeftScrolled === true
+        )
+      ) {
+        if (
+          !(
+            this.bodyRef.current.scrollLeft === 0 &&
+            this.state.hasLeftScrolled === false
+          )
+        ) {
           this.setState({
             hasLeftScrolled: this.bodyRef.current.scrollLeft > 0,
           });
@@ -168,9 +257,16 @@ class Grid extends React.Component {
   }
 
   componentDidMount() {
+    this.checkRootCols();
     this.bodyRef.current.addEventListener('scroll', this.onBody_Scroll);
-    this.fixedLBodyRef.current.addEventListener('scroll', this.onLeftBody_Scroll);
-    this.fixedRBodyRef.current.addEventListener('scroll', this.onRightBody_Scroll);
+    this.fixedLBodyRef.current.addEventListener(
+      'scroll',
+      this.onLeftBody_Scroll
+    );
+    this.fixedRBodyRef.current.addEventListener(
+      'scroll',
+      this.onRightBody_Scroll
+    );
   }
 
   addNewRow(evt) {
@@ -199,12 +295,18 @@ class Grid extends React.Component {
     const { onColFilterChange } = this.props;
     if (action.actionType === 'apply') {
       this.setState({
-        selectedColumns: this.state.tempColSelection || this.props.selectedColumns || this.props.columns.map((i) => i.name),
+        selectedColumns:
+          this.state.tempColSelection ||
+          this.props.selectedColumns ||
+          this.props.columns.map((i) => i.name),
         colOrder: this.state.tempColOrder,
       });
       onColFilterChange &&
         onColFilterChange({
-          value: this.state.tempColSelection || this.props.selectedColumns || this.props.columns.map((i) => i.name),
+          value:
+            this.state.tempColSelection ||
+            this.props.selectedColumns ||
+            this.props.columns.map((i) => i.name),
           columnsOrder: this.state.tempColOrder,
         });
     } else {
@@ -226,24 +328,61 @@ class Grid extends React.Component {
   }
 
   render() {
-    const { columns = [], enableViewSelection = true, paginationProps, editColumnPane = {}, showColSelection = false, addSpacer = true, data = [], className = '', showAdd = false, showHeader = true, rowConfig = {}, onRowClick, gridStyle = 'default', viewType = 'default' } = this.props;
-    const actionsClassName = this.hasActionClickRow() ? 'sq-grid--has-action' : '';
+    const {
+      columns = [],
+      enableViewSelection = true,
+      paginationProps,
+      editColumnPane = {},
+      showColSelection = false,
+      addSpacer = true,
+      data = [],
+      className = '',
+      showAdd = false,
+      showHeader = true,
+      rowConfig = {},
+      gridStyle = 'default',
+      viewType = 'default',
+    } = this.props;
+    const actionsClassName = this.hasActionClickRow()
+      ? 'sq-grid--has-action'
+      : '';
     const colOrder = this.props.columnsOrder || this.state.colOrder;
 
-    const finalColumns = this.state.firstCols.concat(
-      columns
-        .sort((a, b) => {
-          return colOrder && (colOrder[a.name] > colOrder[b.name] ? 1 : colOrder[a.name] < colOrder[b.name] ? -1 : 0);
-        })
-        .filter((col) => {
-          return col.customize === false || !Array.isArray(this.props.selectedColumns) ? true : this.props.selectedColumns.indexOf(col.name) > -1;
-        })
+    const finalColumns = this.state.rootCols
+      .concat(this.state.firstCols)
+      .concat(
+        columns
+          .sort((a, b) => {
+            return (
+              colOrder &&
+              (colOrder[a.name] > colOrder[b.name]
+                ? 1
+                : colOrder[a.name] < colOrder[b.name]
+                ? -1
+                : 0)
+            );
+          })
+          .filter((col) => {
+            return col.customize === false ||
+              !Array.isArray(this.props.selectedColumns)
+              ? true
+              : this.props.selectedColumns.indexOf(col.name) > -1;
+          })
+      );
+      console.log(finalColumns);
+    const fixedLeftColumns = finalColumns.filter(
+      (i) => i.fixed === true && (!i.direction || i.direction === 'left')
     );
-    const fixedLeftColumns = finalColumns.filter((i) => i.fixed === true && (!i.direction || i.direction === 'left'));
-    const fixedRightColumns = finalColumns.filter((i) => i.fixed === true && i.direction === 'right');
+    const fixedRightColumns = finalColumns.filter(
+      (i) => i.fixed === true && i.direction === 'right'
+    );
     const otherColumns = finalColumns.filter((i) => !i.fixed);
     return (
-      <div className={`sq-grid ${className} ${actionsClassName} sq-grid--${gridStyle} sq-grid--view-${this.state.viewType || viewType}`}>
+      <div
+        className={`sq-grid ${className} ${actionsClassName} sq-grid--${gridStyle} sq-grid--view-${
+          this.state.viewType || viewType
+        }`}
+      >
         <Dialog
           open={showColSelection}
           transitionDir="left"
@@ -269,53 +408,123 @@ class Grid extends React.Component {
           onAction={(data, action) => this.handleApplySelection(action)}
         >
           <DndProvider backend={HTML5Backend}>
-            <ColFilters colOrder={this.state.colOrder} onColumReorder={this.onColumReorder} columns={columns} value={this.state.tempColSelection || this.props.selectedColumns || columns.map((i) => i.name)} onChange={this.handleColSelChange} />
+            <ColFilters
+              colOrder={this.state.colOrder}
+              onColumReorder={this.onColumReorder}
+              columns={columns}
+              value={
+                this.state.tempColSelection ||
+                this.props.selectedColumns ||
+                columns.map((i) => i.name)
+              }
+              onChange={this.handleColSelChange}
+            />
           </DndProvider>
         </Dialog>
         <div className="sq-grid__top-bar">
-          <div className="sq-grid__switch-views">{enableViewSelection && this.hasData() && <ButtonSelection options={this.viewOptions} value={this.state.viewType || viewType} onChange={this.onViewTypeChange} disabled={this.isDisabled() || this.isLoading()} />}</div>
+          <div className="sq-grid__switch-views">
+            {enableViewSelection && this.hasData() && (
+              <ButtonSelection
+                options={this.viewOptions}
+                value={this.state.viewType || viewType}
+                onChange={this.onViewTypeChange}
+                disabled={this.isDisabled() || this.isLoading()}
+              />
+            )}
+          </div>
           {paginationProps?.value && this.hasData() && (
             <div className="sq-grid__pagination-view">
-              <Pagination {...paginationProps} value={paginationProps?.value} disabled={paginationProps.disabled || this.isDisabled() || this.isLoading()} />
+              <Pagination
+                {...paginationProps}
+                value={paginationProps?.value}
+                disabled={
+                  paginationProps.disabled ||
+                  this.isDisabled() ||
+                  this.isLoading()
+                }
+              />
             </div>
           )}
         </div>
         <div className="sq-grid__root">
-          <div className={`sq-grid__left-fixed ${this.state.hasLeftScrolled > 0 ? 'has-scrolled' : ''}`}>
+          <div
+            className={`sq-grid__left-fixed ${
+              this.state.hasLeftScrolled > 0 ? 'has-scrolled' : ''
+            }`}
+          >
             {this.hasData() && fixedLeftColumns.length > 0 && showHeader && (
               <div className="sq-grid__header" ref={this.fixedHeaderRef}>
-                {!this.isLoading() && this.renderHeader('lfix', fixedLeftColumns)}
+                {!this.isLoading() &&
+                  this.renderHeader('lfix', fixedLeftColumns)}
               </div>
             )}
             <div className="sq-grid__body" ref={this.fixedLBodyRef}>
-              {this.hasData() && !this.isLoading() && fixedLeftColumns.length > 0 && <div className="sq-grid-body__wrapper">{this.renderData('lfix', fixedLeftColumns, data, rowConfig, undefined)}</div>}
+              {this.hasData() &&
+                !this.isLoading() &&
+                fixedLeftColumns.length > 0 && (
+                  <div className="sq-grid-body__wrapper">
+                    {this.renderData(
+                      'lfix',
+                      fixedLeftColumns,
+                      data,
+                      rowConfig,
+                      undefined
+                    )}
+                  </div>
+                )}
             </div>
           </div>
           <div className="sq-grid__center">
             {this.hasData() && showHeader && (
               <div className="sq-grid__header" ref={this.headerRef}>
-                {!this.isLoading() && this.renderHeader('center', otherColumns, addSpacer)}
+                {!this.isLoading() &&
+                  this.renderHeader('center', otherColumns, addSpacer)}
               </div>
             )}
             <div className="sq-grid__body" ref={this.bodyRef}>
               {this.isLoading() && this.renderLoadingView()}
               <div className="sq-grid-body__wrapper" ref={this.bodyWrapperRef}>
-                {!this.isLoading() && this.renderData('center', otherColumns, data, rowConfig, addSpacer)}
+                {!this.isLoading() &&
+                  this.renderData(
+                    'center',
+                    otherColumns,
+                    data,
+                    rowConfig,
+                    addSpacer
+                  )}
               </div>
             </div>
           </div>
           <div className={`sq-grid__right-fixed`}>
             {this.hasData() && fixedRightColumns.length > 0 && showHeader && (
               <div className="sq-grid__header" ref={this.fixedRHeaderRef}>
-                {!this.isLoading() && this.renderHeader('rfix', fixedRightColumns)}
+                {!this.isLoading() &&
+                  this.renderHeader('rfix', fixedRightColumns)}
               </div>
             )}
             <div className="sq-grid__body" ref={this.fixedRBodyRef}>
-              {this.hasData() && fixedRightColumns.length > 0 && <div className="sq-grid-body__wrapper">{!this.isLoading() && this.renderData('rfix', fixedRightColumns, data, rowConfig, undefined)}</div>}
+              {this.hasData() && fixedRightColumns.length > 0 && (
+                <div className="sq-grid-body__wrapper">
+                  {!this.isLoading() &&
+                    this.renderData(
+                      'rfix',
+                      fixedRightColumns,
+                      data,
+                      rowConfig,
+                      undefined
+                    )}
+                </div>
+              )}
             </div>
           </div>
         </div>
-        {this.hasActions() && <div className="sq-grid__actions">{showAdd && <Button buttonText={translate('Add')} onClick={this.addNewRow} />}</div>}
+        {this.hasActions() && (
+          <div className="sq-grid__actions">
+            {showAdd && (
+              <Button buttonText={translate('Add')} onClick={this.addNewRow} />
+            )}
+          </div>
+        )}
       </div>
     );
   }
@@ -335,12 +544,31 @@ class Grid extends React.Component {
   }
 
   renderHeader(name, columns, spacer?) {
-    const { allowResizeCols, sortColumn, sortOrder, enableSort = false }:any = this.props;
+    const {
+      allowResizeCols,
+      sortColumn,
+      sortOrder,
+      enableSort = false,
+    }: any = this.props;
     let scrollbarWidth = 0;
     if (this.bodyRef?.current) {
-      scrollbarWidth = this.bodyRef.current.offsetWidth - this.bodyRef.current.clientWidth;
+      scrollbarWidth =
+        this.bodyRef.current.offsetWidth - this.bodyRef.current.clientWidth;
     }
-    return <GridHeaderRow allowResizeCols={allowResizeCols} onColResize={(w) => this.onColResize(w, name)} spacer={spacer} columns={columns} sortColumn={sortColumn} dynamicWidth={this.state.dynamicWidth} sortOrder={sortOrder} enableSort={enableSort} spacerWidth={scrollbarWidth} onSort={this.handleSort} />;
+    return (
+      <GridHeaderRow
+        allowResizeCols={allowResizeCols}
+        onColResize={(w) => this.onColResize(w, name)}
+        spacer={spacer}
+        columns={columns}
+        sortColumn={sortColumn}
+        dynamicWidth={this.state.dynamicWidth}
+        sortOrder={sortOrder}
+        enableSort={enableSort}
+        spacerWidth={scrollbarWidth}
+        onSort={this.handleSort}
+      />
+    );
   }
 
   renderData(name, columns, data, rowConfig, spacer?) {
@@ -353,7 +581,14 @@ class Grid extends React.Component {
         });
       } else {
         return data.map((rowData, index) => {
-          return this.renderRow(name, columns, rowData, rowConfig, index, spacer);
+          return this.renderRow(
+            name,
+            columns,
+            rowData,
+            rowConfig,
+            index,
+            spacer
+          );
         });
       }
     }
@@ -376,15 +611,24 @@ class Grid extends React.Component {
 
   renderLoadingView(disable = false) {
     const { loader } = this.props;
-    return disable === false && <div className="sq-grid__body container-fluid sq-grid__loading-data">{loader}</div>;
+    return (
+      disable === false && (
+        <div className="sq-grid__body container-fluid sq-grid__loading-data">
+          {loader}
+        </div>
+      )
+    );
   }
   renderNoDataView() {
     const { noDataMessage = 'No Data Found' } = this.props;
-    return <div className="sq-grid__body sq-grid__no-data">{noDataMessage}</div>;
+    return (
+      <div className="sq-grid__body sq-grid__no-data">{noDataMessage}</div>
+    );
   }
 
   handleRowChange(column, value, row) {
     const { onChange, onRowValidate } = this.props;
+
     const result = onRowValidate && onRowValidate(column, value, row);
     if (result === false) {
       return;
@@ -409,7 +653,7 @@ class Grid extends React.Component {
     onFieldChange && onFieldChange(value, column, row);
   }
 
-  handleRowClick(columns, row) {
+  handleRowClick(columns, row, e) {
     const { onRowClick, analytics = {}, onAnalytics } = this.props;
     const { rowClick } = analytics;
     onRowClick && onRowClick(row, columns);
@@ -430,7 +674,22 @@ class Grid extends React.Component {
   }
 
   handleFieldClick(column, value, row) {
-    const { onFieldClick } = this.props;
+    const { onFieldClick, onSelectionChange } = this.props;
+    if (column.name === '_check') {
+      const index = this.state.groupedData
+        ? row._dataIndex
+        : this.props.data.indexOf(row);
+      const updatedIndexes = {
+        ...this.state.selectionIndexes,
+        [index]: !this.state.selectionIndexes[index],
+      };
+      this.setState({
+        selectionIndexes: updatedIndexes,
+      });
+      onSelectionChange && onSelectionChange(column, updatedIndexes, row);
+      value.preventDefault();
+      value.stopPropagation();
+    }
     onFieldClick && onFieldClick(value, column, row);
   }
   handleFieldAction(column, action, row) {
@@ -439,11 +698,16 @@ class Grid extends React.Component {
   }
 
   renderRow(name, columns, data, rowConfig = {}, index, spacer) {
-    const { rowType, className = '', wrapperClassName = '' }:any = rowConfig;
+    const { rowType, className = '', wrapperClassName = '' }: any = rowConfig;
     const RowComp = RowTypes[rowType] || RowTypes.GridRow;
     const finalClassName = getValue(this, className, data, columns);
-    const finalWrapperClassName = getValue(this, wrapperClassName, data, columns);
-    const hoverEvents:any = {};
+    const finalWrapperClassName = getValue(
+      this,
+      wrapperClassName,
+      data,
+      columns
+    );
+    const hoverEvents: any = {};
     if (this.hasActionClickRow()) {
       hoverEvents.onMouseOver = () =>
         this.setState({
@@ -454,9 +718,17 @@ class Grid extends React.Component {
           hoverIndex: undefined,
         });
     }
-    if (data._groupKey !== undefined && !this.state.activatedGroups[data._groupKey]) {
+    if (
+      data._groupKey !== undefined &&
+      !this.state.activatedGroups[data._groupKey]
+    ) {
       return undefined;
     }
+    // console.log(this.state.selectionIndexes);
+    const finalIndex = this.state.groupedData ? data._dataIndex : index;
+    const selectedClassName = this.state.selectionIndexes[finalIndex]
+      ? 'selected'
+      : '';
     return (
       <RowComp
         key={`${index}${this.state.updatedIndex}`}
@@ -464,7 +736,11 @@ class Grid extends React.Component {
         spacer={spacer}
         isGrouper={data._groupRow}
         dynamicWidth={this.state.dynamicWidth && this.state.dynamicWidth[name]}
-        className={`${finalClassName} ${this.hasActionClickRow() && this.state.hoverIndex === index ? 'hover' : ''}`}
+        className={`${finalClassName} ${selectedClassName} ${
+          this.hasActionClickRow() && this.state.hoverIndex === index
+            ? 'hover'
+            : ''
+        }`}
         wrapperClassName={finalWrapperClassName}
         data={data}
         errors={data.validators && data.validators.errors}

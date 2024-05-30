@@ -36,6 +36,7 @@ class GenericListing extends Component {
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleOnSortChange = this.handleOnSortChange.bind(this);
     this.onGridAction = this.onGridAction.bind(this);
+    this.onSelectionChange = this.onSelectionChange.bind(this);
     this.onEditColumnChange = this.onEditColumnChange.bind(this);
     this.onFilterAction = this.onFilterAction.bind(this);
     this.onGridChange = this.onGridChange.bind(this);
@@ -71,6 +72,14 @@ class GenericListing extends Component {
       this.componentDidMount();
     }
   }
+  onSelectionChange(col, value, row) {
+    this.props.raiseAction(
+      updateUserData({
+        [`${this.getKey('selectedRows')}`]: value,
+      })
+    );
+  }
+
 
   processField(field) {
     const { userData, store } = this.props;
@@ -497,6 +506,8 @@ class GenericListing extends Component {
             </div>
             <div className="sq-generic-listing__grid-wrapper sq-v-screen-grow">
               <Grid
+                enableSelect={pageData.enableSelect}
+                onSelectionChange={this.onSelectionChange}
                 paginationProps={{
                   onChange: this.handlePageChange,
                   count: userData[this.getKey('results')]?.totalPages,

@@ -20,6 +20,7 @@ const CheckboxField = ({
   checked = false,
   label = '',
   text = '',
+  onClick,
   onChange,
   errorMessage,
   analytics = {},
@@ -73,6 +74,7 @@ const CheckboxField = ({
             <Checkbox
               disabled={disabled}
               checked={stateChecked}
+              onClick={onClick}
               onChange={handleChange}
               name={name}
             />

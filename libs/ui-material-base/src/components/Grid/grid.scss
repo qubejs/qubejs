@@ -15,6 +15,12 @@
   &__cell {
     position: relative;
   }
+  .sq-grid__body .sq-grid__row.selected {
+    cursor: pointer;
+    .sq-grid__data-cell {
+      background-color: $sq-color-gray-lightest;
+    }
+  }
   &--has-action {
     .sq-grid__body .sq-grid__row {
       cursor: pointer;
@@ -212,6 +218,9 @@
     }
   }
   .col-selection {
+    .MuiFormControlLabel-root {
+      margin: 0;
+    }
     flex-basis: 60px !important;
     min-width: 60px !important;
     flex-grow: 0!important;
