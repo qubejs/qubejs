@@ -583,7 +583,9 @@ export const uploadApi = (payload, pageResponse?) => async (dispatch, getState) 
     dispatch(mergeUserData(pageResponse?.pageData?.merge));
   }
   if (payload.after) {
-    dispatch(checkAndPostApi(payload.after, pageResponse, payload));
+    setTimeout(() => {
+      dispatch(checkAndPostApi(payload.after, pageResponse, payload));
+    }, 10);
   }
 
   return response;
