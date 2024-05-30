@@ -369,7 +369,6 @@ class Grid extends React.Component {
               : this.props.selectedColumns.indexOf(col.name) > -1;
           })
       );
-      console.log(finalColumns);
     const fixedLeftColumns = finalColumns.filter(
       (i) => i.fixed === true && (!i.direction || i.direction === 'left')
     );
