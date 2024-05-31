@@ -2,7 +2,7 @@ import common from './common';
 
 const string = {
   titleCase: (val) => {
-    return !common.isNullOrUndefined(val?.trim()) && typeof val === 'string' ? (val.trim()[0].toUpperCase() + val.trim().substr(1).toLowerCase()) : '';
+    return typeof val === 'string' && val.length > 0 && !common.isNullOrUndefined(val?.trim()) ? (val.trim()[0].toUpperCase() + val.trim().substr(1).toLowerCase()) : '';
   },
   getFirstChar: (val) => {
     return !common.isNullOrUndefined(val) && typeof val === 'string' ? val.trim()[0] : '';
