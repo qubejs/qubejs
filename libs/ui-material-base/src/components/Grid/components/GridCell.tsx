@@ -42,11 +42,11 @@ const GridCell = ({ column = {}, row, value, onChange, style, onClick, onAction,
     <div className={`sq-grid__data-cell ${getValue(this, className, row)}`} role="grid-cell" style={style}>
       {isRender && finalValTitle && <Tooltip disableFocusListener disableTouchListener title={finalValTitle} {...tooltipProps}>
         <span>
-          <CellComponent {...errors} value={newValue} {...component} row={row} column={column} onClick={_onClick} onChange={_onChange} onAnalytics={onAnalytics} onAction={_onAction} onKeyPress={_onKeyPress} onBlur={_Blur} />
+          <CellComponent {...errors} value={newValue} editValue={customValue} {...component} row={row} column={column} onClick={_onClick} onChange={_onChange} onAnalytics={onAnalytics} onAction={_onAction} onKeyPress={_onKeyPress} onBlur={_Blur} />
         </span>
       </Tooltip>}
       {isRender && !finalValTitle &&
-        <CellComponent {...errors} value={newValue} {...component} row={row} column={column} onClick={_onClick} onChange={_onChange} onAnalytics={onAnalytics} onAction={_onAction} onKeyPress={_onKeyPress} onBlur={_Blur} />
+        <CellComponent {...errors} value={newValue} editValue={customValue} {...component} row={row} column={column} onClick={_onClick} onChange={_onChange} onAnalytics={onAnalytics} onAction={_onAction} onKeyPress={_onKeyPress} onBlur={_Blur} />
       }
     </div>
   );

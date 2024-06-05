@@ -9,7 +9,7 @@ import Icon from '../Icon';
 const { getValue } = utils.properties;
 const { storage } = utils;
 
-const EditableField = ({ column, row, viewType = 'Default', editType = 'Input', value, classes = {}, viewProps = {}, editProps = {}, className = '', onChange, onClick, onAction, onAnalytics, onBlur, onKeyPress, formatter = {}, ...rest } :any) => {
+const EditableField = ({ column, row, viewType = 'Default', editType = 'Input', value, editValue, classes = {}, viewProps = {}, editProps = {}, className = '', onChange, onClick, onAction, onAnalytics, onBlur, onKeyPress, formatter = {}, ...rest } :any) => {
   const editableRef = useRef();
   const CompMap = {
     ...storage.components.get(),
@@ -82,7 +82,7 @@ const EditableField = ({ column, row, viewType = 'Default', editType = 'Input', 
                 horizontal: 'left',
               }}
             >
-              {<CmpToEdit {...editProps} value={changedValue?.value !== undefined ? changedValue?.value : value} onChange={handleChange} onKeyPress={onKeyPress} onAnalytics={onAnalytics} />}
+              {<CmpToEdit {...editProps} value={changedValue?.value !== undefined ? changedValue?.value : editValue || value} onChange={handleChange} onKeyPress={onKeyPress} onAnalytics={onAnalytics} />}
               <div className="sq-editable-field__actions">
                 <IconButton
                   onClick={() => {
