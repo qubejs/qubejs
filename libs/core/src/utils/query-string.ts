@@ -3,9 +3,11 @@ import common from "./common";
 class QueryString {
   input: any;
   isString: boolean;
+  forceArray: boolean;
   isObject: boolean;
-  constructor(params: any = {}) {
+  constructor(params: any = {}, forceArray = false) {
     this.input = params;
+    this.forceArray = forceArray;
     this.isString = !!params && typeof params === 'string';
     this.isObject = !!params && typeof params === 'object';
   }
@@ -14,7 +16,7 @@ class QueryString {
     let str = '';
     if (this.isObject) {
       Object.keys(this.input).forEach((key) => {
-        if (Array.isArray(this.input[key]) && this.input[key].length === 1) {
+        if (Array.isArray(this.input[key]) && this.input[key].length === 1 && this.forceArray) {
           str +=
             (str ? '&' : '') + key + '=' + encodeURIComponent('o:' + JSON.stringify(this.input[key]));
         } else if (Array.isArray(this.input[key])) {

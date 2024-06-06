@@ -39,7 +39,7 @@ export const redirectTo = (screen, params:any = {}, { target = '', ...options } 
     customHandlers[params.handlerType] && customHandlers[params.handlerType](screen, params, { target, ...options });
   } else {
     const url = urlMapping[screen];
-    const query = new QueryString(params).toString();
+    const query = new QueryString(params, true).toString();
     let matchedRegex;
     Object.keys(urlMapping).forEach((key) => {
       if (typeof urlMapping[key] === 'object') {

@@ -39,7 +39,7 @@ describe('utils:QueryString', () => {
       });
     });
     test('should return string with separated', async () => {
-      expect(qs.toString()).toBe('?ok=1&talk=o%3A%5B%22got%22%5D');
+      expect(qs.toString()).toBe('?ok=1&talk=got');
     });
   });
   describe('toString() as object', function () {
