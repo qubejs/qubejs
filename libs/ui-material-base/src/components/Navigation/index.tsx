@@ -62,6 +62,7 @@ class SQNavigation extends React.Component {
           <Drawer
             logoUrl=""
             logo={logo}
+            classes={classes}
             className={common.toStringBlank(classes.drawer)}
             logoIcon={this.props.logoIcon}
             open={this.state.open}

@@ -1,0 +1,8 @@
+.sq-template--dashobard {
+  .sq-template__header {
+    background-color: #f5f5f5;
+    &.primary {
+      background-color: $sq-color-primary;
+    }
+  }
+}

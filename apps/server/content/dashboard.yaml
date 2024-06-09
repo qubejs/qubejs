@@ -1,0 +1,105 @@
+title: Dashoard
+template: apps/core/templates/page
+layout: apps/layouts/spa
+containerTemplate: Dashboard
+wrapperClassName: sq-content-page--full-width
+container: GenericListing
+styleCode: fixed
+enableSelect: true
+dataKey: sender_list
+merge:
+  addSender: true
+  editSender: true
+  deleteSender: true
+currentSort:
+  sortColumn: nickname
+  sortOrder: asc
+topActions:
+  - cmpType: Button
+    iconName: add
+    renderMatch:
+      addSender:
+        validators:
+          - type: equals
+            matchValue: true
+    buttonText: Create new list
+    actionType: redirect
+    to: /newpage
+filterFields:
+  - name: nickname
+    label: Nick Name
+    cmpType: AdvancedAutoComplete
+    componentProps:
+      textField: name
+      valueField: name
+      url: /api/v1/marketing/list/search
+columns:
+  - name: icon
+    cmpType: Icon
+    customize: false
+    sort: false
+    className: col-icon
+    componentProps:
+      className: sq-icon--square sq-icon--text-icon-accent
+      variant: ::common.accentByChar::.nickname
+      textIcon: ::common.getTwoChars::.nickname
+  - name: nickname
+    className: col-large-grow
+    headerText: Nick Name
+  - name: from.name
+    className: col-large-medium
+    headerText: From Name
+  - name: from.email
+    className: col-large-medium
+    headerText: From Email
+  - name: reply_to.email
+    className: col-large-medium
+    headerText: Reply to email
+  - name: mailingAddress.addressForDisplay
+    className: col-large-medium
+    headerText: Address
+  - cmpType: MoreActions
+    customize: false
+    sort: false
+    fixed: true
+    direction: right
+    className: col-medium-actions
+    actions:
+      - cmpType: IconButton
+        iconSize: small
+        iconName: edit
+        buttonText: Edit Sender
+        actionType: redirect
+        to: /marketing/app/senders/edit
+        urlParams:
+          id: .id
+        disabled:
+          match:
+            editSender:
+              validators:
+                - type: equals
+                  matchValue: false
+      - cmpType: IconButton
+        iconSize: small
+        iconName: delete
+        buttonText: Delete Sender
+        color: error
+        actionType: api
+        confirm:
+          title: Delete?
+          content: Are you sure you want to delete this sender?
+        url: /api/v1/sender
+        method: delete
+        params:
+          from: .from
+        refreshAfter: true
+        disabled:
+          match:
+            deleteSender:
+              validators:
+                - type: equals
+                  matchValue: false
+apiConfig:
+  search:
+    url: /content/assets/data.json
+    method: get
