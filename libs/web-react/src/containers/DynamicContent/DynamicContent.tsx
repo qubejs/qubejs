@@ -72,6 +72,7 @@ class DynamicContent extends Component {
     this.setState(
       {
         url: overrideUrl || location.pathname,
+        locationKey: location.key,
       },
       () => {
         this.fetchPage(true, pageConfig);
@@ -278,7 +279,7 @@ class DynamicContent extends Component {
   }
 
   async componentDidUpdate() {
-    const { location = {}, url: overrideUrl, onThemeChange } = this.props;
+    const { location = {}, url: overrideUrl, onThemeChange, pageConfig } = this.props;
     const activeTheme = this.state.activeTheme;
     const pageDataTheme =
       this.state.pageData?.pageData?.theme ||
@@ -286,13 +287,14 @@ class DynamicContent extends Component {
     if (activeTheme && pageDataTheme && activeTheme !== pageDataTheme) {
       onThemeChange && onThemeChange(pageDataTheme);
     }
-    if (this.state.url != (overrideUrl || location.pathname)) {
+    if (this.state.locationKey !== location.key) {
       this.setState(
         {
           url: overrideUrl || location.pathname,
+          locationKey: location.key,
         },
         () => {
-          this.fetchPage();
+          this.fetchPage(false, pageConfig);
         }
       );
     }

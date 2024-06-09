@@ -49,6 +49,16 @@ export default {
           href: '/content/pagelisting',
         },
         {
+          title: 'Login',
+          iconName: 'dashboard',
+          href: '/login',
+        },
+        {
+          title: 'Register',
+          iconName: 'dashboard',
+          href: '/register',
+        },
+        {
           title: 'About us',
           href: '/content/app/aboutus',
           showInMenu: false,

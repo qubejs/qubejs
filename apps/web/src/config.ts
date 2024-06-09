@@ -9,6 +9,8 @@ export default {
     homeDashboard: '/content/app/dashboard',
     home: '/content/home',
     login: '/content/admin/login',
+    '/login': '/login',
+    '/register': '/register',
     register: '/content/admin/register',
     '/content/(.*)': {
       type: 'regex',

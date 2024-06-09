@@ -18,6 +18,7 @@ import templates from '../templates';
 import '../styles/themes/main/index.scss';
 import config from '../config';
 import Content from '../templates/Content';
+import uiRoutes from './ui-routes';
 const {
   redirect: { setUrlMapping, setNavigate },
 } = utils;
