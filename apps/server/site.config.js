@@ -39,39 +39,88 @@ export default {
     globalNavigation: {
       className: 'sq-global-navigation--bordered sq-global-navigation--blured',
       navPosition: 'sticky',
-      classes: {
-        wrapper: 'container',
-      },
-      items: [
+      items:[
         {
-          title: 'PageListing',
-          iconName: 'dashboard',
-          href: '/content/pagelisting',
-        },
-        {
-          title: 'Login',
-          iconName: 'dashboard',
-          href: '/login',
-        },
-        {
-          title: 'Register',
-          iconName: 'dashboard',
-          href: '/register',
+          title: 'Features',
+          href: '/content/in/xpentro',
+          children: [
+            {
+              title: 'Generic Listing',
+              href: '/content/pagelisting',
+            },
+            {
+              title: 'Page Editor',
+              href: '/content/trynow',
+            },
+            {
+              title: 'Dashboard',
+              href: '/content/dashboard',
+            },
+          ],
         },
         {
           title: 'About us',
-          href: '/content/app/aboutus',
-          showInMenu: false,
+          href: '/content/in/aboutus',
+          always: true,
           children: [
             {
-              title: 'Contact us',
-              href: '/content/app/contact',
+              title: 'Overview',
+              href: '/content/in/aboutus',
+            },
+            {
+              title: 'Contact',
+              href: '/content/in/aboutus/contact',
             },
           ],
         },
       ],
-      mobileItems: [],
-      rightItems: [],
+      mobileItems: [
+        {
+          type: 'LinkButton',
+          color: 'secondary',
+          iconName: 'login',
+          iconSize: 'small',
+          buttonText: 'Login',
+          to: '/login',
+        },
+      ],
+      rightItems: [
+        {
+          type: 'LinkButton',
+          color: 'none',
+          buttonText: '',
+          className: 'sq-link--button mr-4',
+          iconName: 'email',
+          to: '/contact',
+          analytics: {
+            click: {
+              type: 'event',
+              eventName: 'link_click',
+              action: 'contact',
+              label: 'Contact',
+              category: 'Content',
+              section: 'Homepage',
+            },
+          },
+        },
+        {
+          type: 'LinkButton',
+          iconName: 'login',
+          color: 'secondary',
+          size: 'small',
+          iconSize: 'small',
+          buttonText: 'Login',
+          to: '/login',
+        },
+        {
+          type: 'Button',
+          size: 'small',
+          color: 'secondary',
+          variant: 'outlined',
+          buttonText: 'Register',
+          to: '/content/in/register',
+        },
+      ],
     },
     globalNavigationLoggedIn: {
       className: 'sq-global-navigation--bordered sq-global-navigation--blured',
