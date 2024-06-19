@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, Fragment } from 'react';
+import { useState, useRef, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { utils, cordova } from '@qubejs/web-react';
 import Icon from '../Icon';
@@ -17,6 +17,7 @@ const GlobalNavigationV2 = ({
   className = '',
   logo = {},
   rightItems,
+  onAction,
   mobileItems,
   onAnalytics,
   navPosition = 'sticky',
@@ -80,11 +81,12 @@ const GlobalNavigationV2 = ({
           <ul className="sq-global-navigation-v2__nav sq-global-navigation-v2__nav--left">
             {mobileItems &&
               mobileItems.map((ritem, idx) => {
-                let Comp = linksComps.LinkButton;
+                const Comp = linksComps.LinkButton;
                 return idx === 0 ? (
                   <li key={idx}>
                     <Comp
                       {...ritem}
+                      onAction={onAction}
                       onAnalytics={onAnalytics}
                       onClick={() => {
                         setOpen(false);

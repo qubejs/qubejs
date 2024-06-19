@@ -9,6 +9,7 @@ export {default as ButtonSelection } from './ButtonSelection';
 export {default as Checkbox } from './Checkbox';
 export {default as CheckboxList } from './CheckboxList';
 export {default as DataField } from './DataField';
+export {default as ItemList } from './ItemList';
 export {default as DataFieldList } from './DataFieldList';
 export {default as DateSelector } from './DateSelector';
 export {default as Default } from './Default';

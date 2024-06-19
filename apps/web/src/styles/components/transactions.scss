@@ -1,0 +1,153 @@
+.transactions-grid {
+  .sq-grid__data-row {
+    flex-wrap: wrap;
+    flex: 1 1 30%;
+    @media (min-width: $screen-sm) {
+    }
+  }
+
+  .sq-grid__data-cell {
+    overflow: auto;
+  }
+  .col-icon {
+    flex-basis: 46px;
+    flex: 0 1 46px;
+    align-items: flex-start;
+    padding: 0 0 0 10px;
+    @media (min-width: $screen-sm) {
+    }
+  }
+  .col-icon-no-padding {
+    flex-basis: 36px;
+    flex: 0 1 36px;
+    align-items: flex-start;
+    padding: 0px;
+    @media (min-width: $screen-sm) {
+    }
+  }
+  .col-amount {
+    padding: 0;
+    overflow: hidden;
+    &.med {
+      @include b4-style();
+      @media (min-width: $screen-sm) {
+        @include b3-style();
+      }
+    }
+
+    text-align: right;
+    flex: 0 1 125px;
+    @media (min-width: $screen-sm) {
+      flex: 0 1 200px;
+    }
+  }
+
+  .col-category {
+    @include b3-style();
+    flex: 1 1 70px;
+    @media (min-width: $screen-sm) {
+      flex: 1 1 100px;
+    }
+    div.sq-text {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      overflow: hidden;
+      display: block;
+    }
+  }
+  .start-col-info {
+    @include b3-style();
+    flex: 1 1 70px;
+    @media (min-width: $screen-sm) {
+      flex: 1 1 100px;
+    }
+    padding-left: 0;
+    div.sq-text {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      overflow: hidden;
+      display: block;
+    }
+  }
+  .col-actions {
+    flex: 1 1 100%;
+    padding: 0;
+    align-items: flex-start;
+    min-height: auto;
+  }
+  .col-more-actions {
+    flex-basis: 50px;
+    padding: 0;
+    &--center {
+      justify-content: center;
+    }
+  }
+
+  .expense {
+    .col-amount,
+    &.col-amount {
+      color: $sq-color-error-light;
+    }
+  }
+  .transfer {
+    .col-amount {
+      color: $sq-color-info-light;
+    }
+  }
+  .income {
+    .col-amount,
+    &.col-amount {
+      color: $sq-color-success;
+    }
+  }
+  &--nowrap {
+    .sq-grid__data-row {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &--all-center {
+    .col-icon {
+      align-items: center;
+    }
+  }
+}
+.expense-field {
+  color: $sq-color-error-light;
+}
+.transfer-field {
+  color: $sq-color-info-light;
+}
+.income-field {
+  color: $sq-color-success;
+}
+.interest-field {
+  color: $sq-color-warning;
+}
+
+.sq-tabs--transaction {
+  .loan.Mui-selected {
+    color: $white;
+    background: $sq-color-warning-darker;
+  }
+  .transfer.Mui-selected {
+    color: $white;
+    background: $sq-color-info-darker;
+  }
+  .years,
+  .months {
+    color: $white;
+    background: $sq-color-success-darker;
+  }
+  .cr.Mui-selected {
+    color: $white;
+    background: $sq-color-success-light;
+    border-color: $sq-color-success-light;
+  }
+  .dr.Mui-selected {
+    color: $white;
+    background: $sq-color-error-light;
+  }
+}

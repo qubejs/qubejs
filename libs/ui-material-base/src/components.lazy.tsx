@@ -630,6 +630,15 @@ return (
     </React.Suspense>
 );
 };
+const ItemListComp = React.lazy(() => import('./components/ItemList'));
+
+const ItemList = (props) => {
+return (
+    <React.Suspense fallback={<Loading />}>
+        <ItemListComp {...props} />
+    </React.Suspense>
+);
+};
 const LabelComp = React.lazy(() => import('./components/Label'));
 
 const Label = (props) => {
@@ -1133,6 +1142,7 @@ const components = {
   InProgress,
   Input,
   InputWithOptions,
+  ItemList,
   Label,
   LabelValue,
   LaunchTimer,

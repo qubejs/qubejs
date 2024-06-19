@@ -14,7 +14,7 @@ import {
 } from '../../redux/authentication';
 import './_users-list.scss';
 
-const { formatters } = utils.format;
+const { getFormatters } = utils.format;
 const { translate } = utils.translate;
 const defaultPageSize = GLOBAL_OPTIONS.noOfResultsDropdown.toArray()[0]?.value;
 
@@ -343,6 +343,7 @@ class Users extends React.Component {
   }
 
   render() {
+    const formatters = getFormatters();
     const { store, pageData } = this.props;
     const { isLoading } = this.state;
     const createUserPerm = hasPermission('createUser', store);

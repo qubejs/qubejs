@@ -1,0 +1,9 @@
+.disclaimer {
+  @include b6-style();
+  color: $sq-color-gray-dark;
+  display: block;
+
+  &--default {
+
+  }
+}

@@ -221,7 +221,7 @@ class DynamicContent extends Component {
         };
       }
     } else {
-      pageResponse = dataForPage;
+      pageResponse = { ...dataForPage };
     }
     pageResponse.pageData = this.prcessInjectableBlocks(pageResponse.pageData);
     if (pageResponse.pageData.updatePageTitle) {
@@ -891,6 +891,7 @@ class DynamicContent extends Component {
             metaData={metaData}
             data={this.state.pageData}
             pageState={this.state.page}
+            onAction={this.onAction}
             userData={userData}
           >
             <div

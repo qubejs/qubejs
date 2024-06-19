@@ -8,7 +8,10 @@ inject:
 contentBodyClass: container container-form
 isAuthLayout: true
 reset:
-  type: clearAll
+  type: keys
+  keys:
+    - register
+    - register_errors
 merge:
   currentError : .lastError.key
 items:

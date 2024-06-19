@@ -60,6 +60,7 @@ const GlobalNavigation = ({
   logo = {},
   rightItems,
   mobileItems,
+  onAction,
   onAnalytics,
   navPosition = 'sticky',
   placeHolderspace = false,
@@ -80,6 +81,7 @@ const GlobalNavigation = ({
   };
   const handleAction = (item) => {
     redirectTo(item.href || item.to, { ...item.params }, { ...item.options });
+    onAction && onAction({}, item);
   };
   const linksComps = { Button, LinkButton };
   const finalSticky = navPosition === 'sticky' && isSticky;

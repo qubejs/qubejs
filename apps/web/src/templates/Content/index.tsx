@@ -10,7 +10,7 @@ class Content extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div className={`sq-template sq-template-content`}>
+      <div className={`sq-layout`}>
         <div className="container-fluid">{children}</div>
       </div>
     );

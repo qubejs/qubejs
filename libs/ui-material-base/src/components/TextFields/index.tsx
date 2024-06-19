@@ -3,7 +3,7 @@ import { utils } from '@qubejs/web-react';
 import Link from '../Link';
 import LinkButton from '../LinkButton';
 import Text from '../Text';
-const { formatters } = utils.format;
+const { getFormatters } = utils.format;
 const { getValue } = utils.properties;
 const common = utils.common;
 
@@ -14,6 +14,7 @@ const compMap = {
 };
 
 const TextFields = ({ className = '', fields = [], row }: any) => {
+  const formatters = getFormatters();
   return (
     <div className={`sq-text-fields ${className}`}>
       {fields.map((itemField, index) => {

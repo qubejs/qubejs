@@ -261,6 +261,7 @@ export const initApplication = (data) => async (dispatch) => {
 };
 
 export const executeHook = (payload, pageData?) => async (dispatch, getState) => {
+  const currentData = payload.currentData || {};
   let response:any = {};
   if (payload.preCall) {
     await dispatch(
@@ -274,11 +275,11 @@ export const executeHook = (payload, pageData?) => async (dispatch, getState) =>
       state: getState(),
       payload,
       data: {
-        params: processParams(getState().content.userData, payload.params, undefined, getState()),
-        headers: processParams(getState().content.userData, payload.headers, undefined, getState()),
-        query: processParams(getState().content.userData, payload.query, undefined, getState()),
+        params: processParams({ ...getState().content.userData, ...currentData }, payload.params, undefined, getState()),
+        headers: processParams({ ...getState().content.userData, ...currentData }, payload.headers, undefined, getState()),
+        query: processParams({ ...getState().content.userData, ...currentData }, payload.query, undefined, getState()),
       },
-      userData: getState().content.userData,
+      userData: { ...getState().content.userData, ...currentData },
       dispatch,
       getState,
     });
