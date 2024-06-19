@@ -20,7 +20,7 @@ class EventManager {
     }
   }
 
-  unsubscribe(evtName, fn) {
+  unsubscribe(evtName, fn?) {
     if (this.events[evtName] && fn) {
       const idx = this.events[evtName].indexOf(fn);
       if (idx > -1) {

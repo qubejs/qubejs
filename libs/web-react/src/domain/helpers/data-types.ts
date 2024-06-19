@@ -1,27 +1,27 @@
 import moment from 'moment-timezone';
 
 class DataTypes {
-  isNullOrUndefined(value) {
+  isNullOrUndefined(value?) {
     return value === null || value === undefined;
   }
 
-  isObject(value) {
+  isObject(value?) {
     return value && typeof value === 'object';
   }
 
-  bool(defaultValue) {
+  bool(defaultValue?) {
     return (value) => {
       return Boolean(value) || defaultValue;
     };
   }
 
-  string(defaultValue) {
+  string(defaultValue?) {
     return (value) => {
       return (!this.isNullOrUndefined(value) && value.toString()) || defaultValue;
     };
   }
 
-  number(defaultValue) {
+  number(defaultValue?) {
     return (value) => {
       const numRegex = /^\s*[+-]?(\d+|\.\d+|\d+\.\d+|\d+\.)(e[+-]?\d+)?\s*$/;
       const finalValue = !this.isNullOrUndefined(value) ? value.toString() : '';
@@ -39,30 +39,30 @@ class DataTypes {
     };
   }
 
-  any(defaultValue) {
+  any(defaultValue?) {
     return (value) => {
       return this.isNullOrUndefined(value) ? defaultValue : value;
     };
   }
-  array(defaultValue) {
+  array(defaultValue?) {
     return (value) => {
       return this.isNullOrUndefined(value) ? defaultValue : value;
     };
   }
 
-  object(defaultValue) {
+  object(defaultValue?) {
     return (value) => {
       return value === undefined ? defaultValue : value;
     };
   }
 
-  date(defaultValue) {
+  date(defaultValue?) {
     return (value) => {
       return (value && new Date(value)) || defaultValue;
     };
   }
 
-  dateISOString(defaultValue) {
+  dateISOString(defaultValue?) {
     return (value) => {
       return this.isNullOrUndefined(value)
         ? defaultValue && new Date(defaultValue).toISOString()

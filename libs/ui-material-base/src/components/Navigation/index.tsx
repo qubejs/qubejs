@@ -40,7 +40,7 @@ class SQNavigation extends React.Component {
     const { click } = analytics;
     onMenuItemClick && onMenuItemClick(item);
     if (item.to) {
-      redirectTo(item.to);
+      redirectTo(item.to, item.urlParams);
     }
     click && onAnalytics && onAnalytics(click);
   }
