@@ -243,6 +243,15 @@ return (
     </React.Suspense>
 );
 };
+const DateNavigatorComp = React.lazy(() => import('./components/DateNavigator'));
+
+const DateNavigator = (props) => {
+return (
+    <React.Suspense fallback={<Loading />}>
+        <DateNavigatorComp {...props} />
+    </React.Suspense>
+);
+};
 const DateSelectorComp = React.lazy(() => import('./components/DateSelector'));
 
 const DateSelector = (props) => {
@@ -1099,6 +1108,7 @@ const components = {
   DataField,
   DataFieldList,
   DataList,
+  DateNavigator,
   DateSelector,
   Default,
   Dialog,

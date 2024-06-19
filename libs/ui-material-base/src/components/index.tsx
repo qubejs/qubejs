@@ -25,6 +25,7 @@ export {default as CustomMenu } from './CustomMenu';
 export {default as DataField } from './DataField';
 export {default as DataFieldList } from './DataFieldList';
 export {default as DataList } from './DataList';
+export {default as DateNavigator } from './DateNavigator';
 export {default as DateSelector } from './DateSelector';
 export {default as Default } from './Default';
 export {default as Dialog } from './Dialog';
