@@ -8,9 +8,9 @@ class Content extends Component {
   componentDidUpdate(prevprops) {}
 
   render() {
-    const { children } = this.props;
+    const { children, pageData = {} } = this.props;
     return (
-      <div className={`sq-layout`}>
+      <div className={`sq-layout ${pageData.wrapperClassName || 'sq-layout--default'}`}>
         <div className="container-fluid">{children}</div>
       </div>
     );

@@ -22,3 +22,13 @@
     }
   }
 }
+
+.sq-layout {
+  position: relative;
+  &--default {
+    height: 100vh;
+     > .container-fluid {
+      height: 100%;
+     }
+  }
+}
