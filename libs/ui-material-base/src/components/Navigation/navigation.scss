@@ -3,12 +3,21 @@
   &__right-menu {
     margin-right: 10px;
   }
-  
+}
+.sq-dash-drawer {
+  .MuiPaper-root {
+    min-width: 320px;
+  }
 }
 .sq-global-navigation-drawer {
   &__app-version {
     @include b4-style();
     padding: 15px;
     color:$sq-color-gray;
+  }
+  &__nested-list {
+    .MuiButtonBase-root {
+      padding-left: 30px;
+    }
   }
 }

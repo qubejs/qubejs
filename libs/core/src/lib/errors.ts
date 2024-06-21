@@ -67,11 +67,12 @@ const errors = {
       key: 'INVALID_OPERATION',
     };
   },
-  dbfailed: () => {
+  dbfailed: (exception: any) => {
     return {
       code: 400,
       message: 'db operation failed',
       key: 'DB_FAILED',
+      exception
     };
   },
   subscriptionRequired: () => {

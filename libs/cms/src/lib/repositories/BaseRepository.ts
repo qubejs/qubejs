@@ -104,8 +104,8 @@ class BaseRepository {
         .then((doc) => {
           resolve(new this._entityType(doc));
         })
-        .catch(() => {
-          reject(errors.dbfailed());
+        .catch((ex) => {
+          reject(errors.dbfailed(ex));
         });
     });
   }
@@ -116,8 +116,8 @@ class BaseRepository {
         .then((data) => {
           resolve(new this._collectionEntity(data, this._entityType));
         })
-        .catch(() => {
-          reject(errors.dbfailed());
+        .catch((ex) => {
+          reject(errors.dbfailed(ex));
         });
     });
   }
@@ -129,8 +129,8 @@ class BaseRepository {
         .then((res) => {
           resolve(new this._entityType(res));
         })
-        .catch(() => {
-          reject(errors.dbfailed());
+        .catch((ex) => {
+          reject(errors.dbfailed(ex));
         });
     });
   }
@@ -178,8 +178,8 @@ class BaseRepository {
         .then((data) => {
           resolve(data);
         })
-        .catch(() => {
-          reject(errors.dbfailed());
+        .catch((ex) => {
+          reject(errors.dbfailed(ex));
         });
     });
   }
@@ -253,8 +253,8 @@ class BaseRepository {
         .then((data) => {
           resolve(data);
         })
-        .catch(() => {
-          reject(errors.dbfailed());
+        .catch((ex) => {
+          reject(errors.dbfailed(ex));
         });
     });
   }

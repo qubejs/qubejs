@@ -103,7 +103,7 @@ class TemporaryDrawer extends React.Component {
                       </ListItem>
                       <Collapse in={this.state.open[index]} timeout="auto" unmountOnExit>
                         <Divider />
-                        <List component="div" disablePadding>
+                        <List className="sq-global-navigation-drawer__nested-list" component="div" disablePadding>
                           {item.children.map((item, index) => (
                             <ListItem
                               button
