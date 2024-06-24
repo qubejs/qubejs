@@ -7,7 +7,8 @@ items:
   - component: SelectPopup
     name: valuepopup
     multiple: true
-    value: hello3
+    label: Select Value
+
     options:
       - text: Hello
         value: hello1
@@ -19,7 +20,7 @@ items:
   
   - component: SelectPopup
     name: single
-    value: single3
+    label: Select Single
     options:
       - text: single
         value: single1

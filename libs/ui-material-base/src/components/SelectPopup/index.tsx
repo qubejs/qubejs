@@ -38,11 +38,11 @@ const SelectPopup = ({
   const handleOnSelect = (value, dataItem) => {
     if (multiple) {
       let arraNew;
-      if (currentItem.indexOf(dataItem) > -1) {
+      if (currentItem?.indexOf(dataItem) > -1) {
         arraNew = [...currentItem];
         arraNew.splice(currentItem.indexOf(dataItem), 1);
       } else {
-        arraNew = [...currentItem, dataItem];
+        arraNew = [...(currentItem || []), dataItem];
       }
       const values = arraNew.map((i) => i[valueField]);
       setCurrentItem(arraNew);
@@ -53,13 +53,15 @@ const SelectPopup = ({
           data: arraNew,
         });
     } else {
-      setCurrentItem(dataItem);
+      const currentVal = currentItem === dataItem ? null : value;
+      const finCurrentItem = currentItem === dataItem ? null : dataItem;
+      setCurrentItem(finCurrentItem);
       setOpenDialog(false);
-      setIValue(value);
+      setIValue(currentVal);
       onChange &&
         onChange({
-          value,
-          data: dataItem,
+          value: currentVal,
+          data: finCurrentItem,
         });
     }
   };
@@ -95,7 +97,7 @@ const SelectPopup = ({
       }
     } else {
       const foundOptions = filter(finalOptions, (item) => {
-        return value.indexOf(item[valueField]) > -1;
+        return value?.indexOf(item[valueField]) > -1;
       });
       const isValid = foundOptions.length > 0;
       if (isValid) {
@@ -133,7 +135,7 @@ const SelectPopup = ({
       label;
   }
   const totalItems = multiple ? currentItem?.length : null;
-  console.log(name, value, currentItem);
+  console.log(value, iValue);
   return (
     <div
       className={`sq-select-popup ${className} ${
@@ -193,7 +195,7 @@ SelectPopup.propTypes = {
   row: PropTypes.object,
   className: PropTypes.string,
   options: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   textField: PropTypes.string,
   valueField: PropTypes.string,
   onChange: PropTypes.func,
