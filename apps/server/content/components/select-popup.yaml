@@ -1,0 +1,29 @@
+title: Sandbox Home
+template: apps/core/templates/page
+className: sq-content-page--full-width sq-content-page--with-fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+items:
+  - component: SelectPopup
+    name: valuepopup
+    multiple: true
+    value: hello3
+    options:
+      - text: Hello
+        value: hello1
+      - text: Hello 2
+        value: hello2
+      - text: Hello 3
+        value: hello3
+  
+  
+  - component: SelectPopup
+    name: single
+    value: single3
+    options:
+      - text: single
+        value: single1
+      - text: single 2
+        value: single2
+      - text: single 3
+        value: single3

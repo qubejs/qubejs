@@ -10,12 +10,18 @@
     font-size: 11px;
   }
   &__selected-text {
+    width: 100%;
+    display: flex;
     &.default {
       color: $sq-color-gray-dark;
     }
     &.selected {
       color: $sq-color-primary;
     }
+    &-main {
+      flex-grow: 1;
+    }
+
     flex-grow: 1;
     font-size: 14px;
     font-weight: 400;

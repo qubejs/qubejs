@@ -32,16 +32,19 @@ const ItemList = ({
   title,
   textField,
   labelSearch,
+  multiple = false,
   valueField,
   itemTemplate,
   iconField,
   iconProps = {},
   iconType = 'img',
+  value,
   onSelect,
   noDataMessage = 'No data found',
 }: any) => {
   const [timer, setTimerData] = useState(undefined);
   const [filterData, setData] = useState(data); // applyFilter(data, filterText, [textField, valueField]);
+
   return (
     <div className="sq-select-popup-item-list">
       <Input
@@ -72,6 +75,9 @@ const ItemList = ({
         {filterData && filterData.length === 0 && noDataMessage}
         {filterData &&
           filterData.map((dataItem, index) => {
+            const isSelected = multiple && Array.isArray(value)
+              ? value.indexOf(dataItem[valueField]) > -1
+              : value === dataItem[valueField];
             return (
               <ListItem
                 key={index}
@@ -83,15 +89,18 @@ const ItemList = ({
                 {itemTemplate && itemTemplate(dataItem)}
                 {!itemTemplate && (
                   <>
-                    {iconField && (
+                    {
                       <ListItemIcon>
-                        {iconType === 'img' && (
+                        {isSelected && (
+                          <Icon name={'check'} variant={'primary'} />
+                        )}
+                        {iconType === 'img' && iconField && (
                           <img
                             alt={dataItem[textField]}
                             src={dataItem[iconField]}
                           ></img>
                         )}
-                        {iconType === 'icon' && (
+                        {iconType === 'icon' && iconField && (
                           <Icon
                             textIcon={dataItem[textField].substr(0, 1)}
                             name={dataItem[iconField]}
@@ -99,7 +108,7 @@ const ItemList = ({
                           />
                         )}
                       </ListItemIcon>
-                    )}
+                    }
                     <ListItemText primary={dataItem[textField]} />
                   </>
                 )}
@@ -119,7 +128,9 @@ ItemList.propTypes = {
   labelSearch: PropTypes.string,
   valueField: PropTypes.string,
   itemTemplate: PropTypes.string,
+  multiple: PropTypes.bool,
   iconField: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   iconProps: PropTypes.object,
   iconType: PropTypes.string,
   noDataMessage: PropTypes.string,
