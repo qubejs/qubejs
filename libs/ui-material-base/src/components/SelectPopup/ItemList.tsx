@@ -92,8 +92,8 @@ const ItemList = ({
                   <>
                     {
                       <ListItemIcon>
-                        {isSelected && (
-                          <Icon name={'checkcircle'} variant={'primary'} />
+                        {(multiple || isSelected) && (
+                          <Icon name={ isSelected ? multiple ?  'CheckBox' : 'checkcircle' : 'CheckBoxOutlineBlank'} variant={isSelected ? 'primary' : 'default'} />
                         )}
                         {iconType === 'img' && iconField && (
                           <img

@@ -1,30 +1,37 @@
 title: Sandbox Home
 template: apps/core/templates/page
-className: sq-content-page--full-width sq-content-page--with-fixed-nav
+className: sq-content-page--full-width sq-content-page--with-fixed-nav container
 layout: apps/layouts/spa
 containerTemplate: Homepage
 items:
-  - component: SelectPopup
-    name: valuepopup
-    multiple: true
-    label: Select Value
+  - component: Form
+    name: form
+    fields:
+      - cmpType: SelectPopup
+        name: valuepopup
+        multiple: true
+        label: Select Value
 
-    options:
-      - text: Hello
-        value: hello1
-      - text: Hello 2
-        value: hello2
-      - text: Hello 3
-        value: hello3
-  
-  
-  - component: SelectPopup
-    name: single
-    label: Select Single
-    options:
-      - text: single
-        value: single1
-      - text: single 2
-        value: single2
-      - text: single 3
-        value: single3
+        options:
+          - text: America
+            value: hello1
+          - text: Los Angles
+            value: hello2
+          - text: California
+            value: hello3
+          - text: Parkinston
+            value: park
+          - text: Lui Hills
+            value: lhis
+      
+      
+      - cmpType: SelectPopup
+        name: single
+        label: Select Single
+        options:
+          - text: single
+            value: single1
+          - text: single 2
+            value: single2
+          - text: single 3
+            value: single3

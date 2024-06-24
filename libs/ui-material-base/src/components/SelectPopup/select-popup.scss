@@ -16,10 +16,16 @@
       color: $sq-color-gray-dark;
     }
     &.selected {
-      color: $sq-color-primary;
+      color: $text-color;
     }
     &-main {
       flex-grow: 1;
+    }
+    &-more {
+      flex-grow: 1;
+      justify-content: flex-end;
+      display: flex;
+      align-items: center;
     }
 
     flex-grow: 1;

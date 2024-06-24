@@ -224,6 +224,10 @@ import DataArray from '@mui/icons-material/DataArray';
 import Shield from '@mui/icons-material/Shield';
 import FindInPage from '@mui/icons-material/FindInPage';
 import Tv from '@mui/icons-material/Tv';
+import CheckBox from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank';
+import IndeterminateCheckBox from '@mui/icons-material/IndeterminateCheckBox';
+import LibraryAddCheck from '@mui/icons-material/LibraryAddCheck';
 
 import Info from '@mui/icons-material/Info';
 import WarningAmber from '@mui/icons-material/WarningAmber';
@@ -349,6 +353,10 @@ icons.set(
     Workspaces,
     close: Close,
     verifieduser: VerifiedUser,
+    CheckBoxOutlineBlank,
+    IndeterminateCheckBox,
+    LibraryAddCheck,
+    CheckBox,
     checkcircle: CheckCircle,
     groupwork: GroupWork,
     clear: Clear,

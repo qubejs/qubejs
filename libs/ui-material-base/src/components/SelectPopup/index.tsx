@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Tooltip from '@mui/material/Tooltip';
 import filter from 'lodash/filter';
 import Link from '../Link';
 import Dialog from '../Dialog';
@@ -19,6 +20,7 @@ const SelectPopup = ({
   label,
   multiple = false,
   options,
+  limitItems = 3,
   row,
   value,
   iconField,
@@ -117,7 +119,8 @@ const SelectPopup = ({
   //   : foundOptions.length > 0
   //   ? foundOptions[0]
   //   : null;
-  let finalText;
+  let finalText = '';
+  let tooltipTest;
   if (!multiple) {
     finalText =
       (currentItem &&
@@ -125,17 +128,23 @@ const SelectPopup = ({
           ? textFormatter(currentItem)
           : currentItem[textField])) ||
       label;
+    tooltipTest = finalText;
   } else {
-    finalText =
-      (currentItem &&
-        currentItem.length > 0 &&
-        (textFormatter
-          ? textFormatter(currentItem[0])
-          : currentItem[0][textField])) ||
-      label;
+    let count = 0;
+    while (count < limitItems && count < currentItem?.length) {
+      finalText += (finalText && ', ') + 
+        (currentItem &&
+          currentItem.length > 0 &&
+          (textFormatter
+            ? textFormatter(currentItem[count])
+            : currentItem[count][textField])) ||
+        '';
+      count++;
+    }
+    finalText = finalText || label;
+    tooltipTest = currentItem?.map((item) => item[textField]).join(', ');
   }
   const totalItems = multiple ? currentItem?.length : null;
-  console.log(value, iValue);
   return (
     <div
       className={`sq-select-popup ${className} ${
@@ -149,9 +158,13 @@ const SelectPopup = ({
             !currentItem ? 'default' : 'selected'
           }`}
         >
-          <div className="sq-select-popup__selected-text-main">{finalText}</div>
+          <Tooltip title={tooltipTest}>
+            <div className="sq-select-popup__selected-text-main">
+              {finalText}
+            </div>
+          </Tooltip>
           <div className="sq-select-popup__selected-text-more">
-            {totalItems > 1 ? ` +${totalItems - 1}` : ''}
+            {totalItems > limitItems ? ` +${totalItems - limitItems}` : ''}
           </div>
         </div>
         <Link size="small" onClick={handleOnClick}>
