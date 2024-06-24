@@ -81,6 +81,7 @@ const ItemList = ({
             return (
               <ListItem
                 key={index}
+                selected={isSelected}
                 button
                 onClick={() => {
                   onSelect && onSelect(dataItem[valueField], dataItem);
@@ -92,7 +93,7 @@ const ItemList = ({
                     {
                       <ListItemIcon>
                         {isSelected && (
-                          <Icon name={'check'} variant={'primary'} />
+                          <Icon name={'checkcircle'} variant={'primary'} />
                         )}
                         {iconType === 'img' && iconField && (
                           <img
