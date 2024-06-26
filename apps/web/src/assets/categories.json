@@ -1,0 +1,245 @@
+{
+    "status": "success",
+    "statusCode": 200,
+    "data": {
+        "categories": [
+            {
+                "uid": "6671275cf536773e22496606",
+                "createdBy": "system",
+                "categoryName": "Bonus",
+                "icon": "money",
+                "isSystem": true,
+                "applicableFor": "cr",
+                "createdOn": "2024-06-18T06:21:16.778Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249660b",
+                "createdBy": "system",
+                "categoryName": "Credit Card Payment",
+                "icon": "creditcard",
+                "isSystem": true,
+                "applicableFor": "transfer",
+                "createdOn": "2024-06-18T06:21:16.781Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496610",
+                "createdBy": "system",
+                "categoryName": "Dine out",
+                "icon": "food",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.786Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496615",
+                "createdBy": "system",
+                "categoryName": "Entertainment",
+                "icon": "theatres",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.788Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249661a",
+                "createdBy": "system",
+                "categoryName": "Food",
+                "icon": "food",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.792Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249661f",
+                "createdBy": "system",
+                "categoryName": "Groceries",
+                "icon": "groceries",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.795Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496624",
+                "createdBy": "system",
+                "categoryName": "Home Loan",
+                "icon": "money",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.797Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496629",
+                "createdBy": "system",
+                "categoryName": "Insurance",
+                "icon": "policy",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.801Z",
+                "__v": 0
+            },
+            {
+                "uid": "6675d323de7366a2b6860678",
+                "createdBy": "667165e3567790758265edf1",
+                "categoryName": "Medical",
+                "isSystem": false,
+                "createdOn": "2024-06-21T19:23:15.349Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249662e",
+                "createdBy": "system",
+                "categoryName": "Medical/Healthcare",
+                "icon": "hospital",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.804Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496633",
+                "createdBy": "system",
+                "categoryName": "Miscellaneous",
+                "icon": "list",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.806Z",
+                "__v": 0
+            },
+            {
+                "uid": "6675d31dde7366a2b6860674",
+                "createdBy": "667165e3567790758265edf1",
+                "categoryName": "My Expense",
+                "icon": "hospital",
+                "isSystem": false,
+                "createdOn": "2024-06-21T19:23:09.686Z",
+                "__v": 0
+            },
+            {
+                "uid": "6675d382de7366a2b6860686",
+                "createdBy": "667165e3567790758265edf1",
+                "categoryName": "Park 2",
+                "icon": "code",
+                "isSystem": false,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-21T19:24:50.242Z",
+                "__v": 0
+            },
+            {
+                "uid": "6675d300de7366a2b686066a",
+                "createdBy": "667165e3567790758265edf1",
+                "categoryName": "Parking",
+                "icon": "call",
+                "isSystem": false,
+                "applicableFor": "cr",
+                "createdOn": "2024-06-21T19:22:40.798Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496638",
+                "createdBy": "system",
+                "categoryName": "Parking fees",
+                "icon": "car",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.810Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249663d",
+                "createdBy": "system",
+                "categoryName": "Personal Loan",
+                "icon": "money",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.812Z",
+                "__v": 0
+            },
+            {
+                "uid": "6675d309de7366a2b686066e",
+                "createdBy": "667165e3567790758265edf1",
+                "categoryName": "Phone Bill",
+                "icon": "camera",
+                "isSystem": false,
+                "applicableFor": "transfer",
+                "createdOn": "2024-06-21T19:22:49.415Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496642",
+                "createdBy": "system",
+                "categoryName": "Rent",
+                "icon": "home",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.814Z",
+                "__v": 0
+            },
+            {
+                "uid": "667125192534c29313688882",
+                "createdBy": "667125192534c29313688872",
+                "categoryName": "Salary",
+                "icon": "download",
+                "isSystem": true,
+                "applicableFor": "cr",
+                "createdOn": "2024-06-18T06:11:37.397Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249664b",
+                "createdBy": "system",
+                "categoryName": "Shopping",
+                "icon": "shopping",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.820Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496650",
+                "createdBy": "system",
+                "categoryName": "Transfer",
+                "icon": "money",
+                "isSystem": true,
+                "applicableFor": "transfer",
+                "createdOn": "2024-06-18T06:21:16.822Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e22496655",
+                "createdBy": "system",
+                "categoryName": "Transportation",
+                "icon": "commute",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.824Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249665a",
+                "createdBy": "system",
+                "categoryName": "Utility Bills",
+                "icon": "power",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.828Z",
+                "__v": 0
+            },
+            {
+                "uid": "6671275cf536773e2249665f",
+                "createdBy": "system",
+                "categoryName": "Withdrawal",
+                "icon": "money",
+                "isSystem": true,
+                "applicableFor": "dr",
+                "createdOn": "2024-06-18T06:21:16.831Z",
+                "__v": 0
+            }
+        ]
+    }
+}

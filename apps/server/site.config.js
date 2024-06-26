@@ -41,12 +41,16 @@ export default {
       navPosition: 'sticky',
       items:[
         {
-          title: 'Features',
+          title: 'Containers',
           href: '/content/in/xpentro',
           children: [
             {
               title: 'Generic Listing',
               href: '/content/pagelisting',
+            },
+            {
+              title: 'Select Popup',
+              href: '/content/components/select-popup',
             },
             {
               title: 'Page Editor',
@@ -55,6 +59,17 @@ export default {
             {
               title: 'Dashboard',
               href: '/content/dashboard',
+            },
+          ],
+        },
+        {
+          title: 'Components',
+          href: '/content/in/components',
+          children: [
+           
+            {
+              title: 'Select Popup',
+              href: '/content/components/select-popup',
             },
           ],
         },

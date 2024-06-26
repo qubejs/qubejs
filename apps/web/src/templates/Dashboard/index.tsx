@@ -8,7 +8,14 @@ const { translate } = utils.translate;
 // import { translate } from 'sq-core/web/utils/translate';
 const VERSION = utils.win.getWindow().APP_CONFIG.appVersion;
 
-const Dashboard = ({ children, appBarColor = 'default', onAnalytics }: any) => {
+const Dashboard = ({
+  children,
+  appBarColor = 'default',
+  onAnalytics,
+  pageData = {},
+  data = {},
+  store,
+}: any) => {
   const [menuItems, setMenuItems] = useState([
     {
       text: translate('Dashboard'),
@@ -159,6 +166,12 @@ const Dashboard = ({ children, appBarColor = 'default', onAnalytics }: any) => {
       });
   };
   const { Navigation } = utils.storage.components.get();
+  let { siteMap = {} } = data;
+  siteMap = siteMap?.siteMap
+    ? siteMap
+    : utils.win.getWindow().APP_CONFIG?.siteMap;
+  let props: any = {};
+  props = { ...siteMap?.siteMap?.globalNavigation };
   return (
     <div className={`sq-template sq-template--dashobard`}>
       <header className={`sq-template__header ${appBarColor}`}>
@@ -180,7 +193,14 @@ const Dashboard = ({ children, appBarColor = 'default', onAnalytics }: any) => {
               },
             ]}
             appVersion={VERSION}
-            options={menuItems}
+            options={props.items.map((i) => ({
+              text: i.title,
+              to: i.href,
+              children: i.children?.map((i) => ({
+                text: i.title,
+                to: i.href,
+              })),
+            }))}
           />
         </div>
       </header>

@@ -3,6 +3,11 @@ template: apps/core/templates/page
 className: sq-content-page--full-width sq-content-page--with-fixed-nav container
 layout: apps/layouts/spa
 containerTemplate: Homepage
+hook:
+  load:
+    - url: /content/assets/categories.json
+      method: get
+      dataKey: cat
 items:
   - component: Form
     name: form
@@ -35,3 +40,18 @@ items:
             value: single2
           - text: single 3
             value: single3
+
+      - name: category
+        cmpType: SelectPopup
+        label: Popup with icon
+        inject: 
+          options: cat.categories
+        valueField: uid
+        iconField: icon
+        // textFormatter: formatter
+        defaultText: translate(Category)
+        iconType: icon
+        iconProps: 
+          variant: outline-icon
+          iconClass: sq-icon--primary
+        textField: categoryName

@@ -9,6 +9,16 @@
     left: 12px;
     font-size: 11px;
   }
+  &__select {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+  &__select-group {
+    padding-right: 8px;
+    display: flex;
+  }
   &__selected-text {
     width: 100%;
     display: flex;

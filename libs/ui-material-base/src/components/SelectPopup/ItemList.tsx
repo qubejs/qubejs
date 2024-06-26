@@ -92,22 +92,26 @@ const ItemList = ({
                   <>
                     {
                       <ListItemIcon>
-                        {(multiple || isSelected) && (
-                          <Icon name={ isSelected ? multiple ?  'CheckBox' : 'checkcircle' : 'CheckBoxOutlineBlank'} variant={isSelected ? 'primary' : 'default'} />
-                        )}
+                        <div className="sq-select-popup__select-group">
+                          <div className="sq-select-popup__select">
+                            {(multiple || isSelected) && (
+                              <Icon name={ isSelected ? multiple ?  'CheckBox' : 'checkcircle' : 'CheckBoxOutlineBlank'} variant={isSelected ? 'primary' : 'default'} />
+                            )}
+                          </div>
                         {iconType === 'img' && iconField && (
                           <img
-                            alt={dataItem[textField]}
-                            src={dataItem[iconField]}
+                          alt={dataItem[textField]}
+                          src={dataItem[iconField]}
                           ></img>
                         )}
                         {iconType === 'icon' && iconField && (
                           <Icon
-                            textIcon={dataItem[textField].substr(0, 1)}
-                            name={dataItem[iconField]}
-                            {...iconProps}
+                          textIcon={dataItem[textField].substr(0, 1)}
+                          name={dataItem[iconField]}
+                          {...iconProps}
                           />
                         )}
+                        </div>
                       </ListItemIcon>
                     }
                     <ListItemText primary={dataItem[textField]} />

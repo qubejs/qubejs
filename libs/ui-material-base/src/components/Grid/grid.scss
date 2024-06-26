@@ -332,6 +332,7 @@
       }
       .sq-grid__data-cell {
         padding: 8px 20px !important;
+        align-items: center;
         .sq-text {
           @include text-ellipsis($lines: 3);
         }

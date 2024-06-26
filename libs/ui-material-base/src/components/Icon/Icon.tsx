@@ -20,6 +20,8 @@ import ViewDay from '@mui/icons-material/ViewDay';
 import ViewHeadline from '@mui/icons-material/ViewHeadline';
 import RemoveCircleOutline from '@mui/icons-material/RemoveCircleOutline';
 import OpenWith from '@mui/icons-material/OpenWith';
+import menu from '@mui/icons-material/Menu';
+import FilterAlt from '@mui/icons-material/FilterAlt';
 import MonetizationOn from '@mui/icons-material/MonetizationOn';
 import DragHandle from '@mui/icons-material/DragHandle';
 import Money from '@mui/icons-material/AttachMoney';
@@ -301,6 +303,8 @@ icons.set(
     AddToPhotos,
     Analytics,
     HideImage,
+    menu,
+    'filter-list': FilterAlt,
     Apps,
     Assistant,
     Build,

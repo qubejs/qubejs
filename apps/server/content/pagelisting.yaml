@@ -1,7 +1,7 @@
 title: Sender List
 template: apps/core/templates/page
 layout: apps/layouts/spa
-containerTemplate: AdminDashboard
+containerTemplate: Dashboard
 wrapperClassName: sq-content-page--full-width
 container: GenericListing
 styleCode: fixed
