@@ -53,7 +53,7 @@ const _object = {
     if (!common.isNullOrUndefined(data[key])) {
       return data[key];
     }
-    if (typeof(key) === 'string' && key.toString().substr(0, 2) === '::' || key.toString().substr(0, 1) === '.') {
+    if (typeof(key) === 'string' && (key.toString().substr(0, 2) === '::' || key.toString().substr(0, 1) === '.')) {
       return _object.processEachParam(data, key, defaultValue, options);
     }
     const allItems = typeof key === 'string' ? key.split('.') : [];

@@ -16,5 +16,7 @@ items:
     fields:
       - cmpType: DataField
         name: variable
+        label: Ice Cube
+        value: park
         inject:
           value: "::common.join(fields:Test+.newVal)::"

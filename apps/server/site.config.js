@@ -68,6 +68,10 @@ export default {
           children: [
            
             {
+              title: 'Custom processor',
+              href: '/content/components/c-processor',
+            },
+            {
               title: 'Select Popup',
               href: '/content/components/select-popup',
             },
