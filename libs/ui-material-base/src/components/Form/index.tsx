@@ -180,8 +180,8 @@ class Form extends React.Component {
                 doFocus={
                   this.state.errorId === `${this.props.name}_${field.name}`
                 }
-                {...finalOptions}
                 value={value}
+                {...finalOptions}
                 row={data}
                 userData={userData}
                 onClick={(e) => {

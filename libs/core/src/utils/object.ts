@@ -1,6 +1,9 @@
 import common from './common';
+import processor from './custom-processor';
 import { getFormatters } from './format';
 import { Validator } from './validator';
+
+
 
 const _object = {
   clone: function (obj) {
@@ -25,9 +28,33 @@ const _object = {
     });
     return obj;
   },
-  getDataFromKey: function (data = {}, key, defaultValue: any = '') {
+  processEachParam : (userData, key, defaultValue, options) => {
+    let value;
+    if (key && key.toString().substr(0, 2) === '::') {
+      const moduleName = key.toString().split('::');
+      const passedKey = key.substr(key.toString().lastIndexOf('::') + 2, key.length - 4).trim();
+      const parsedModule = processor.parseCustomModule(moduleName[1]);
+      if (passedKey.substr(0, 1) === '.') {
+        value = _object.getDataFromKey(userData, passedKey.substr(1), defaultValue, options);
+      } else {
+        value = passedKey;
+      }
+      if (parsedModule) {
+        value = processor.execute(parsedModule.module, value, parsedModule.params, options);
+      }
+    } else if (key && key.toString().substr(0, 1) === '.') {
+      value = _object.getDataFromKey(userData, key.substr(1), defaultValue, options);
+    } else if (!common.isNullOrUndefined(key)) {
+      value = key;
+    }
+    return value;
+  },
+  getDataFromKey: function (data = {}, key, defaultValue: any = '', options:any = {}) {
     if (!common.isNullOrUndefined(data[key])) {
       return data[key];
+    }
+    if (typeof(key) === 'string' && key.toString().substr(0, 2) === '::' || key.toString().substr(0, 1) === '.') {
+      return _object.processEachParam(data, key, defaultValue, options);
     }
     const allItems = typeof key === 'string' ? key.split('.') : [];
     let value =
@@ -43,9 +70,12 @@ const _object = {
           ? value[nestedKey]
           : defaultValue;
     });
+    if (value === data) {
+      return defaultValue;
+    }
     return value;
   },
-  processBlock: function (block, options: any = {}) {
+  processBlock: function (block, options: any = {}, defaultValue?) {
     const { userData } = options;
     !common.isNullOrUndefined(block) &&
       Object.keys(block).forEach((keyForBlock) => {
@@ -63,7 +93,7 @@ const _object = {
       });
     if (block?.inject) {
       Object.keys(block.inject).forEach((key) => {
-        const keyDynoData = _object.getDataFromKey(userData, key);
+        const keyDynoData = _object.getDataFromKey(userData, key, defaultValue, options);
         if (
           typeof block.inject[key] === 'object' &&
           block.inject[key] !== null &&
@@ -77,7 +107,9 @@ const _object = {
         } else {
           block[key] = _object.getDataFromKey(
             { ...userData, [key]: keyDynoData },
-            block.inject[key]
+            block.inject[key],
+            defaultValue,
+            options
           );
         }
       });

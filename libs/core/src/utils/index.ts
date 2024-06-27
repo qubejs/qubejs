@@ -8,6 +8,7 @@ import common from './common';
 import path from './path';
 import mask from './mask';
 import UrlGenerator from './url-generator';
+import processor, { CustomProcessor } from './custom-processor';
 import ApiManager from './api-manager';
 import Timeunit from './time-unit';
 import * as validator from './validator';
@@ -27,6 +28,7 @@ export {
   format,
   logger,
   datetime,
+  CustomProcessor,
   object,
   number,
   common,
@@ -36,6 +38,7 @@ export {
   GlobalOptions,
   validatorCaster,
   UrlGenerator,
+  processor,
   validator,
   Timeunit,
   timer,

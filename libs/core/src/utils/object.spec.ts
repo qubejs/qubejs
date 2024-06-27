@@ -295,6 +295,32 @@ describe('utils:object', function () {
     });
   });
 
+  describe('with custom processors', function () {
+    it('should inject data from nested objects', () => {
+      const targetObj: any = {
+        component: 'Form',
+        fields: {
+          cmpType: 'Date',
+          className: 'test',
+          inject: {
+            rocketTest: '::dataType.forceArray::.like',
+            rocketTest2: '::dataType.forceArray::.like2',
+            bigB: '.oliver',
+            ram: 'ramsey',
+          },
+        },
+      };
+      object.processBlock(targetObj, {
+        userData: { ramsey: 'okay', oliver: 'queen', like2: ['1'], like: '1', form: { isSubmitting: true } },
+        state: { content: { rocky: 'rai' } },
+      });
+      expect(targetObj.fields.rocketTest).toEqual([]);
+      expect(targetObj.fields.rocketTest2).toEqual(['1']);
+      expect(targetObj.fields.ram).toBe('okay');
+      expect(targetObj.fields.bigB).toBe('queen');
+    });
+  });
+
   describe('#extendData(block, data)', function () {
     it('should inject data from nested objects', () => {
       const defaultObj = {

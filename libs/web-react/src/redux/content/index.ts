@@ -13,7 +13,7 @@ const getSystem = () => {
     currentUrl: win.getWindow().location.pathname,
   };
 };
-
+const { parseCustomModule } = processor;
 const initialState = {
   pageData: {},
   userData: {
@@ -24,32 +24,12 @@ const initialState = {
   isContentLoading: false,
 };
 
-export const parseCustomModule = (text) => {
-  const moduleName = text.indexOf('(') > -1 ? text.substr(0, text.indexOf('(')) : text;
-  const params = {};
-  const fnMatch = text.match(/[(].*[)]/);
-  if (fnMatch) {
-    const str = fnMatch[0].substr(1, fnMatch[0].length - 2);
-    const arrayParams = str.split(',');
-    arrayParams.forEach((itemParam) => {
-      const askVal = itemParam.trim();
-      const arr = [askVal.substr(0, askVal.indexOf(':')), askVal.substr(askVal.indexOf(':') + 1).trim()];
-      if (arr[0]) {
-        params[arr[0]] = arr[1]?.trim() || '';
-      }
-    });
-  }
-  return {
-    module: moduleName,
-    params,
-  };
-};
 export const processEachParam = (userData, key, defaultValue, state) => {
   let value;
   if (key && key.toString().substr(0, 2) === '::') {
     const moduleName = key.toString().split('::');
     const passedKey = key.substr(key.toString().lastIndexOf('::') + 2, key.length - 4).trim();
-    const parsedModule = parseCustomModule(moduleName[1]);
+    const parsedModule = processor.parseCustomModule(moduleName[1]);
     if (passedKey.substr(0, 1) === '.') {
       value = object.getDataFromKey(userData, passedKey.substr(1), defaultValue);
     } else {
@@ -822,5 +802,5 @@ export const resetUserData = (payload) => (dispatch, getState) => {
 };
 
 export const { updateProtectedUserData, updateUserData, clearAllUserData, clearWithFilter, updateMetaData }:any = content.actions;
-export { customHooks };
+export { customHooks, parseCustomModule };
 export default content.reducer;

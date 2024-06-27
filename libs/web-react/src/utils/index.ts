@@ -8,7 +8,6 @@ import * as storage from './storage';
 import * as datetime from './datetime';
 import * as errorMessages from './error-messages';
 import EventManager from './event-manager';
-import CustomProcessor from './custom-processor';
 import CustomModule from './custom-module';
 import accentColors from './accent-colors';
 import * as format from './format';
@@ -22,9 +21,12 @@ import cookie from './cookie-manager';
 import * as translate from './translate';
 import * as validator from './validator';
 import * as win from './window';
+import AddOnCustomProcessor from './add-on-custom-processor';
 const { path, object, timer, Timeunit } = utils;
 validator.setObject(object);
-const processor = new CustomProcessor();
+const processor = utils.processor;
+const CustomProcessor = utils.CustomProcessor;
+AddOnCustomProcessor(processor);
 
 
 

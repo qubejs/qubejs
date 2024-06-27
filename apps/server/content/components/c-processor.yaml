@@ -1,0 +1,19 @@
+title: Sandbox Home
+template: apps/core/templates/page
+className: sq-content-page--full-width sq-content-page--with-fixed-nav container
+layout: apps/layouts/spa
+containerTemplate: Homepage
+
+init:
+  newVal: 1
+  cost:
+    variable: 300
+
+items:
+  - component: Form
+    name: cost
+    fields:
+      - cmpType: DataField
+        name: variable
+        inject:
+          value: "::common.join(fields:Test+.newVal)::"
