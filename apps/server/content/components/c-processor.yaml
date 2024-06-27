@@ -6,6 +6,7 @@ containerTemplate: Homepage
 
 init:
   newVal: 1
+  bikers: 2202
   cost:
     variable: 300
 
