@@ -21,6 +21,13 @@
       border: solid 2px $sq-color-extra1-light;
       background-color: $sq-color-extra1-lighter;
     }
+    .sq-placeholder-drop__dropper {
+      height: 200%;
+      width: 100%;
+      position: absolute;
+      top: -50%;
+      left: 0;
+    }
   }
   &-style-line {
     padding: 0px;
@@ -28,6 +35,7 @@
       height: 100px;
       width: 100%;
       position: absolute;
+      top: -50px;
     }
     .sq-placeholder-drop__content {
       display: none;
