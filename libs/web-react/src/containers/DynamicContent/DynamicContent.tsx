@@ -193,6 +193,7 @@ class DynamicContent extends Component {
       initialData,
       mergePageData = {},
     } = this.props;
+    const { root = {} } = this.props.store.content?.userData || {};
     if (initialData) {
       await this.props.contentActions.updateUserData(initialData);
     }
@@ -206,7 +207,7 @@ class DynamicContent extends Component {
       this.setState({
         isLoading: true,
       });
-    }, 300);
+    }, root?.showLoadingAfter || 1000);
     let resp;
     let pageResponse;
     if (!dataForPage) {
