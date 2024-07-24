@@ -41,6 +41,24 @@ class CustomProcessor {
           }
           return [];
         },
+        forceNull: (value) => {
+          if (!common.isNullOrUndefinedBlank(value)) {
+            return value;
+          }
+          return null;
+        },
+        forceBlank: (value) => {
+          if (!common.isNullOrUndefinedBlank(value)) {
+            return value;
+          }
+          return "";
+        },
+        nonBlank: (value) => {
+          if (!common.isNullOrUndefinedBlank(value)) {
+            return value;
+          }
+          return undefined;
+        },
       },
       array: {
         join: (value) => {
