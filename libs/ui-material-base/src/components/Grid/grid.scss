@@ -482,4 +482,10 @@
       }
     }
   }
+  &.sq-grid--view-comfort {
+    .col-icon {
+      flex-basis: 80px;
+      min-width: 80px;
+    }
+  }
 }
