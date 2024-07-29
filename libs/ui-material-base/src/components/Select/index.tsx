@@ -20,9 +20,10 @@ const InputCollection = {
   outlined: OutlinedInput,
 };
 
-const SelectField = ({
+const SQSelect = ({
   row,
   name,
+  size,
   options = [],
   className = '',
   value = null,
@@ -66,6 +67,7 @@ const SelectField = ({
         {label && <InputLabel htmlFor={name}>{label}</InputLabel>}
         <Select
           id={name}
+          size={size}
           disabled={disabled}
           MenuProps={{
             autoFocus: false,
@@ -113,11 +115,12 @@ const SelectField = ({
   );
 };
 
-SelectField.propTypes = {
+SQSelect.propTypes = {
   name: PropTypes.string,
   defaultText: PropTypes.string,
   errorMessage: PropTypes.string,
   defaultValue: PropTypes.string,
+  size: PropTypes.string,
   label: PropTypes.string,
   disabled: PropTypes.bool,
   row: PropTypes.object,
@@ -129,4 +132,4 @@ SelectField.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default SelectField;
+export default SQSelect;

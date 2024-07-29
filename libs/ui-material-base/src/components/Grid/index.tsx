@@ -440,6 +440,7 @@ class Grid extends React.Component {
             <div className="sq-grid__pagination-view">
               <Pagination
                 {...paginationProps}
+                size="small"
                 value={paginationProps?.value}
                 disabled={
                   paginationProps.disabled ||
