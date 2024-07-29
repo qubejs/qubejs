@@ -317,10 +317,10 @@
         min-height: 42px !important;
       }
       .sq-grid__header-row-cell-wrapper {
-        padding: 3px 4px !important;
+        padding: 3px 3px !important;
       }
       .sq-grid__data-cell {
-        padding: 0 4px !important;
+        padding: 0 3px !important;
         .sq-text {
           display: block;
           @include text-ellipsis($lines: 1);
