@@ -16,7 +16,9 @@ const ButtonSelection = ({
   disabled,
   value,
   onChange,
+  size,
   variant = 'outlined',
+  ...rest
 }:any) => {
   const handleClick = (e, option) => {
     if (option[valueField] !== value) {
@@ -37,7 +39,7 @@ const ButtonSelection = ({
     <div className={`sq-button-selection ${className}`}>
       {label && <div className="sq-button-selection__label">{label}</div>}
       <div className="sq-button-selection__container">
-        <ButtonGroup variant={variant} aria-label={label} disabled={disabled}>
+        <ButtonGroup size={size} variant={variant} aria-label={label} disabled={disabled} {...rest}>
           {options?.map &&
             options.map((item, idx) => {
               const selectedProsp:any = {};
@@ -106,6 +108,7 @@ const ButtonSelection = ({
 ButtonSelection.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
+  size: PropTypes.string,
   options: PropTypes.array,
   disabled: PropTypes.bool,
   value: PropTypes.any,

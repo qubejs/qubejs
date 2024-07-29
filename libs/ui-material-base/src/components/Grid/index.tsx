@@ -254,7 +254,7 @@ class Grid extends React.Component {
   }
 
   onViewTypeChange(data) {
-    const { viewType = 'default' } = this.props;
+    const { viewType = settings.get().grid?.viewType || 'default' } = this.props;
     this.setState({
       viewType: data.value || viewType,
     });
@@ -428,6 +428,7 @@ class Grid extends React.Component {
           <div className="sq-grid__switch-views">
             {enableViewSelection && this.hasData() && (
               <ButtonSelection
+                size="small"
                 options={this.viewOptions}
                 value={this.state.viewType || viewType}
                 onChange={this.onViewTypeChange}

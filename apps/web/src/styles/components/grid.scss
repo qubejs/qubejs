@@ -57,7 +57,9 @@
     .sq-grid__header-row:first-child {
       border-top-left-radius: 5px;
     }
-
+    .sq-grid__cell:last-child {
+      flex-grow: 1 !important;
+    }
     .sq-grid__header-row-cell {
       background-color: #F1F0FA;
 
