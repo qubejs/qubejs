@@ -13,6 +13,7 @@ import Button from '../Button';
 import Pagination from '../Pagination';
 const { translate } = utils.translate;
 const { getValue } = utils.properties;
+const { settings } = utils.storage;
 
 const RowTypes = {
   GridRow,
@@ -112,7 +113,10 @@ class Grid extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { dataGroup = {}, groupColumnProps = {}, columns } = this.props;
-    if (this.props.enableSelect !== prevProps.enableSelect || this.props.columns !== prevProps.columns) {
+    if (
+      this.props.enableSelect !== prevProps.enableSelect ||
+      this.props.columns !== prevProps.columns
+    ) {
       this.checkRootCols();
     }
     if (
@@ -340,8 +344,8 @@ class Grid extends React.Component {
       showAdd = false,
       showHeader = true,
       rowConfig = {},
-      gridStyle = 'default',
-      viewType = 'default',
+      gridStyle = settings.get().grid?.gridStyle || 'default',
+      viewType = settings.get().grid?.viewType || 'default',
     } = this.props;
     const actionsClassName = this.hasActionClickRow()
       ? 'sq-grid--has-action'

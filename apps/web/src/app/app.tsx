@@ -26,6 +26,11 @@ const {
 const { closeNotification, closePopup, closePopupScreen } = reducers.common;
 const { initApplication, selectUserData } = reducers.content;
 
+storage.settings.set({
+  grid: {
+    viewType: 'comfort',
+  }
+})
 const { DynamicContent, Application } = containers;
 setUrlMapping(config.urlMapping);
 

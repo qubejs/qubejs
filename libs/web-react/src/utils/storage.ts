@@ -8,5 +8,6 @@ const charts = new Storage();
 const pageBuilder = new Storage();
 const richText = new Storage();
 const preference = new PreferenceStorage();
+const settings = new Storage();
 
-export { icons, components, containers, dynamicComponents, pageBuilder, preference, richText, charts };
+export { icons, components, containers, dynamicComponents, pageBuilder, preference, richText, charts, settings };

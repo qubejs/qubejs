@@ -39,6 +39,7 @@ columns:
     customize: false
     sort: false
     className: col-icon
+    fixed: true
     componentProps:
       className: sq-icon--square sq-icon--text-icon-accent
       variant: ::common.accentByChar::.nickname

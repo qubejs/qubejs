@@ -249,6 +249,9 @@
     &.has-scrolled {
       box-shadow: 4px -5px 14px -2px rgb(229 229 229 / 50%);
     }
+    .sq-grid__cell:last-child {
+      flex-grow: 1 !important;
+    }
 
     height: 100%;
     display: flex;
