@@ -264,6 +264,9 @@
     .sq-grid__cell:last-child {
       flex-grow: 1 !important;
     }
+    .sq-grid__data-cell:last-child {
+      flex-grow: 1 !important;
+    }
   }
   &__right-fixed {
     z-index: $z-index-level-2;
