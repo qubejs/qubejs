@@ -929,3 +929,76 @@ items:
             stagger: 0.6
             opacity: 0
           target: .sq-hero-content__content-col > *
+  - component: Actions
+    className: col-left
+    actions:
+      - cmpType: Button
+        buttonText: Save
+        actionType: submit
+        url: /api/v1/property
+        inject:
+          disabled: isSubmitting
+        method: patch
+        match:
+          hasEditPermission:
+            validators:
+              - type: equals
+                matchValue: true
+        params:
+          name: .projectInfo.name
+          code: .projectInfo.code
+          website: .projectInfo.website
+          imageUrl: .galleryCurrentImage.url
+          projectStatus:
+            - IN_WARRANTY
+          address: .projectAddress
+          vendorReference: ::project.nullCheck::.otherDetails.vendorReference
+          vendorCorporation: ::project.nullCheck::.otherDetails.vendorCorporation
+        defaultResponse:
+          success:
+            notification:
+              message: Project is updated
+        finally:
+          errorAction:
+            - actionType: notify-message
+              params:
+                message: .lastError.message
+                type: error
+      - cmpType: Button
+        buttonText: Cancel
+        variant: outlined
+        actionType: redirect
+        to: /warranty/app/projects
+      - cmpType: Button
+        buttonText: Delete
+        variant: outlined
+        color: error
+        confirm:
+          title: Delete Project
+          content: Are you sure you want to delete this project?
+        match:
+          hasDeletePermission:
+            validators:
+              - type: equals
+                matchValue: true
+        actionType: submit
+        url: /api/v1/property
+        inject:
+          disabled: isSubmitting
+        method: delete
+        params:
+          name: .projectInfo.name
+          code: .projectInfo.code
+        defaultResponse:
+          success:
+            notification:
+              message: Project is delete
+        finally:
+          successAction:
+            - actionType: redirect
+              to: /warranty/app/projects
+          errorAction:
+            - actionType: notify-message
+              params:
+                message: .lastError.message
+                type: error

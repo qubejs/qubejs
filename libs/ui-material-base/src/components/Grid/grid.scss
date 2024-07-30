@@ -486,6 +486,11 @@
     }
   }
   &.sq-grid--view-comfort {
+    .sq-grid__left-fixed {
+      .sq-grid__cell:last-child {
+        flex-grow: 1 !important;
+      }
+    }
     .col-icon {
       flex-basis: 80px;
       min-width: 80px;

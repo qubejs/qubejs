@@ -1,9 +1,9 @@
 title: Sender List
 template: apps/core/templates/page
 layout: apps/layouts/spa
-containerTemplate: Dashboard
+containerTemplate: Homepage
 contentBodyClass: container position-relative
-className:  m-auto
+className: sq-v-screen--static
 container: GenericListing
 styleCode: fixed
 enableSelect: true

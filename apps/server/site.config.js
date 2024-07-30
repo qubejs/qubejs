@@ -46,6 +46,10 @@ export default {
           children: [
             {
               title: 'Generic Listing',
+              href: '/content/pagelisting-home',
+            },
+            {
+              title: 'Generic Listing (Dashboard template)',
               href: '/content/pagelisting',
             },
             {

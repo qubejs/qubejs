@@ -37,15 +37,19 @@ const Actions = ({
     onAction && onAction(event, action);
     onAnalytics && click && onAnalytics(click);
   };
-  const handleAction = (dialgAction, action) => {
-    const { analytics = {} } = action;
+  const handleAction = (value, dialgAction) => {
+    const { analytics = {} } = currentAction;
     const { click, dialog } = analytics;
     onAnalytics && dialog && onAnalytics(dialog);
     if (dialgAction.action === 'ok') {
-      onClick && onClick(action);
-      onAction && onAction(dialgAction, action);
+      const curatedAction = {
+        ...currentAction,
+        confirm: undefined,
+      };
+      onClick && onClick(curatedAction);
+      onAction && onAction(dialgAction, curatedAction);
       onAnalytics && click && onAnalytics(click);
-      action.onClick && action.onClick(dialgAction, action);
+      currentAction.onClick && currentAction.onClick(dialgAction, curatedAction);
     }
     setTimeout(() => {
       setShowConfirm(false);
@@ -96,9 +100,7 @@ const Actions = ({
           }}
           closeButton={false}
           open={showConfirm}
-          onAction={(value, dialgAction) =>
-            handleAction(dialgAction, currentAction)
-          }
+          onAction={handleAction}
           actions={[
             {
               buttonText: 'Yes',

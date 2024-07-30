@@ -517,7 +517,7 @@ class GenericListing extends Component {
                   pageSizeOptions: GLOBAL_OPTIONS.noOfResultsDropdown.toArray(),
                 }}
                 disabled={this.state.isLoading}
-                className="sq-basic-grid sq-grid--fixed"
+                className={`${pageData.grid?.className || ''} sq-basic-grid sq-grid--fixed`}
                 loader={<Skeleton styleName={`grid-tran`} rows={4} />}
                 dataGroup={pageData.dataGroup ? {
                   ...pageData.dataGroup,
