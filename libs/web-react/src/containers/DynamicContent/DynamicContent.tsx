@@ -765,14 +765,14 @@ class DynamicContent extends Component {
   }
 
   checkForInlineErrors(result, action) {
-    if (action.rootErrorKey && result.error?.errors) {
+    if (action.rootErrorKey && result?.error?.errors) {
       result.error.errors = {
         [action.rootErrorKey]: {
           errors: result.error?.errors,
         },
       };
     }
-    if (result.error?.errors) {
+    if (result?.error?.errors) {
       Object.keys(result.error.errors).forEach((errorKey) => {
         if (result.error.errors[errorKey].errors) {
           this.props.contentActions.updateUserData({
