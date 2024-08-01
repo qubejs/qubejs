@@ -61,6 +61,7 @@
     &.sq-placeholder-drop--can-drop {
       display: block;
       border: solid 2px $sq-color-warning-light;
+     
       .sq-placeholder-drop__hover-text {
         display: block;
         background-color: $sq-color-warning-lighter;
@@ -73,6 +74,9 @@
       }
     }
     &.sq-placeholder-drop--default {
+      .sq-placeholder-drop__dropper {
+        display: none;
+      }
     }
   }
 }
