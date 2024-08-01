@@ -1,0 +1,68 @@
+template: apps/core/templates/page
+className: sq-page-notfound
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: LayoutContent
+title: Documentation
+rows:
+  - className: row row-cols-1
+    pageLayout:
+      left:
+        className: col col-xs-12 col-md-5
+        items:
+          - header: Documentation
+            subHeader: Learn how to use QubeJSpro starting with the quick start guide.
+            component: HeroContent
+            template: without-image
+            className: sq-hero-content--left-aligned-full
+            links:
+              - buttonText: Get Started
+                type: Button
+                size: large
+                to: /content/docs/intro
+              - buttonText: Examples
+                type: Button
+                size: large
+                variant: outlined
+                to: /content/en/qubejs/examples
+      center:
+        className: col col-xs-12 col-md-1
+        items:
+      right:
+        className: col col-xs-12 col-md-6
+        items:
+          - header: About
+            component: HeroContent
+            className: sq-hero-content--block
+          - component: Wrapper
+            bodyClassName: documentation-docs
+            items:
+              - buttonText: Pages
+                iconName: list
+                iconColor: primary
+                to: /content/docs/options
+                component: LinkBlock
+              - buttonText: Templates
+                iconName: trackchanges
+                iconColor: primary
+                to: /content/docs/methods
+                component: LinkBlock
+              - buttonText: Components
+                iconName: code
+                iconColor: primary
+                to: /content/docs/methods
+                component: LinkBlock
+      bottom: 
+        className: col col-xs-12
+        items:
+          - header: Have questions?
+            subHeader: Get quick help here
+            template: without-image
+            component: HeroContent
+            links:
+              - buttonText: Get help
+                type: Button
+                variant: outlined
+                to: /content/en/home
+                size: large

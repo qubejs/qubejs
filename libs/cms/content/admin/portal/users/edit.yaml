@@ -1,6 +1,6 @@
 title: Users
 template: apps/core/templates/page
-layout: apps/qubejs/layouts/page-spa
+layout: apps/layouts/spa
 containerTemplate: AdminDashboard
 contentBodyClass: container container-form
 hook:

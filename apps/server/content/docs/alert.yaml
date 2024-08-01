@@ -1,0 +1,77 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav 
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: Alert
+overrideTransition: true
+category: 2::Components
+items:
+  - header: |
+      Alert
+    component: Header
+  - header: Variants
+    headerTag: h3
+    component: Header
+    
+  - component: Alert
+    header: Info required
+    message: Please update your email id
+    className: mb-wide
+
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+      - component: Alert
+        header: Info required
+        message: Please update your email id
+        className: mb-wide
+        type: info # default
+  - component: Alert
+    header: Warning
+    message: You subscription is expired.
+    className: mb-wide
+    type: warning
+
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - component: Alert
+          header: Warning
+          message: You subscription is expired.
+          className: mb-wide
+          type: warning
+  - component: Alert
+    header: Congratulations!
+    message: Your request to access system is approved
+    className: mb-wide
+    type: success
+
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - component: Alert
+          header: Congratulations!
+          message: Your request to access system is approved
+          className: mb-wide
+          type: success
+
+  - component: Alert
+    header: Error
+    message: Unexpected error occured
+    className: mb-wide
+    type: error
+
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - component: Alert
+          header: Error
+          message: Unexpected error occured
+          className: mb-wide
+          type: error

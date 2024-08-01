@@ -1,0 +1,91 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: MagicHeroContent
+overrideTransition: true
+category: 2::Components
+items:
+  - header: |
+      MagicHeroContent
+    component: Header
+  - component: MagicHeroContent
+    content:
+      component: HeroContent
+      template: large-background
+      header: | 
+        <span> Headline</span> <span> Tagline</span>
+      background: /dam/qubejs/img/man.jpg
+      subHeader: |
+        Flexible and adaptable digital solutions that fits your.
+      headerTag: h1
+      classes:
+        innerWrapper: container-max
+        links: mb-xtrawide
+      links:
+        - buttonText: Get in touch
+          type: Button
+          color: secondary
+          iconName: arrow-right
+          iconDirection: right
+          to: /content/en/contact
+    name: anim-home-1
+    timeline:
+      defaults:
+        duration: .7
+      tweens:
+        - from:
+            y: -30
+            stagger: 0.3
+            opacity: 0
+          target: .sq-hero-content__header span
+          start: -=0.3
+        - from:
+            y: -30
+            stagger: 0.3
+            opacity: 0
+          target: .sq-hero-content__body > *
+          start: -=0.5
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - component: MagicHeroContent
+          content:
+            component: HeroContent
+            template: large-background
+            header: | 
+              <span> Headline</span> <span> Tagline</span>
+            background: /dam/qubejs/img/man.jpg
+            subHeader: |
+              Flexible and adaptable digital solutions that fits your.
+            headerTag: h1
+            classes:
+              innerWrapper: container-max
+              links: mb-xtrawide
+            links:
+              - buttonText: Get in touch
+                type: Button
+                color: secondary
+                iconName: arrow-right
+                iconDirection: right
+                to: /content/en/contact
+          name: anim-home-1
+          timeline:
+            defaults:
+              duration: .7
+            tweens:
+              - from:
+                  y: -30
+                  stagger: 0.3
+                  opacity: 0
+                target: .sq-hero-content__header span
+                start: -=0.3
+              - from:
+                  y: -30
+                  stagger: 0.3
+                  opacity: 0
+                target: .sq-hero-content__body > *
+                start: -=0.5

@@ -1,0 +1,191 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: Introduction
+overrideTransition: true
+order: 1
+category: _root
+items:
+  - header: |
+      Introduction 
+    component: Header
+    subHeader: QubeJS is a full stack framework which allows you to build application with react very fast our built-in CMS + App combination gives you flexibility that app can be exported on all platforms with single codebase.
+  - header: |
+      Example Repo 
+    component: Header
+    subHeader: <a href="https://github.com/qubejs/examples" target="blank">https://github.com/qubejs/examples</a>
+  - header: |
+      Part 1: Install
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    code: |
+      npm install @qubejs/web-react @qubejs/core @qubejs/cms @qubejs/scripts @qubejs/ui-material-base --save
+  - header: |
+      Part 2: Server Config
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    code: |
+      /**
+      * This is not a production server yet!
+      * This is only a minimal backend to get started.
+      */
+
+      import express from 'express';
+      import * as path from 'path';
+      import { ContentServer } from '@qubejs/cms';
+      import siteConfig from '../site.config';
+      import config from '../config/environment';
+      import appConfig from '../config/app-config';
+      const app = express();
+
+      app.use(express.static(path.join(__dirname, 'assets')));
+
+      console.log(path.join(__dirname, 'content'));
+      // Content server
+      var cmsSever = new ContentServer(
+        {
+          contentPath: path.join(__dirname, 'content'),
+          serverPath: '/content/*',
+          rootApp: path.join(__dirname),
+          damAssets: path.join(__dirname, 'dam'),
+          clientLibs: path.join(__dirname, 'clientlibs'),
+          userData: () => {
+            return {
+              tenantCode: process.env.TENANT_CODE || 'NOT_DEFINED',
+              sitekey: process.env.sitekey || 'NOT_DEFINED',
+            };
+          },
+          appConfig,
+          envConfig: config,
+          mode: config.env,
+          siteConfig: siteConfig,
+        },
+        app
+      );
+      cmsSever.init();
+
+      const port = process.env.PORT || 4610;
+      const server = app.listen(port, () => {
+        console.log(`Listening at http://localhost:${port}/content/en/home`);
+      });
+      server.on('error', console.error);
+
+  - header: |
+      Part 2: Web: Routes Config
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    code: |
+      import { useState } from 'react';
+      import { connect } from 'react-redux';
+
+      import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+      import {
+        containers,
+        storage,
+        reducers,
+        utils,
+        ThemeProvider,
+      } from '@qubejs/web-react';
+      import config from '../config';
+      import { useEffect } from 'react';
+      import theme from '../styles/themes/main/main.theme';
+      const { DynamicContent, Application } = containers;
+      const { apiBridge, redirect } = utils;
+      const { initApplication } = reducers.content;
+
+      export function App({ appActions, ...props }: any) {
+        const navigate = useNavigate();
+        const [currentTheme, setTheme] = useState('main');
+        const [inProgress, setInProgress] = useState(false);
+        useEffect(() => {
+          utils.redirect.setNavigate(navigate);
+          appActions.initApplication(config);
+        }, []);
+        const onThemeChange = (newTHeme: string) => {
+          if (newTHeme !== currentTheme) {
+            console.log(`${currentTheme} changed to : ${newTHeme}`);
+            setTheme(newTHeme);
+            setInProgress(true);
+            let itemFound;
+            let regExMatch: any;
+            for (let i = 0; i < document.head.children.length; i++) {
+              const item = document.head.children[i] as HTMLLinkElement;
+              regExMatch = item.href?.match('/(.*).([0-9].[0-9].[0-9].css)$');
+              if (item?.tagName === 'LINK' && item?.href && regExMatch) {
+                itemFound = item;
+                break;
+              }
+            }
+            if (itemFound && currentTheme !== regExMatch[2]) {
+              itemFound.setAttribute(
+                'href',
+                [`/${currentTheme}.`, regExMatch[2]].join('')
+              );
+              document.head.appendChild(itemFound);
+            } else {
+              const elem = document.createElement('link');
+              elem.setAttribute('rel', `stylesheet`);
+              elem.setAttribute(
+                'href',
+                `/${newTHeme}.${utils.win.getWindow().APP_CONFIG.appVersion}.css`
+              );
+              document.head.appendChild(elem);
+            }
+            setTimeout(() => {
+              setInProgress(false);
+            }, 500);
+          }
+        };
+        return (
+          <div>
+            <ThemeProvider theme={theme}>
+              <Content>
+                <Application>
+                  <Routes>
+                    <Route
+                      path="/content/*"
+                      element={
+                        <DynamicContent {...props} onThemeChange={onThemeChange} />
+                      }
+                    />
+                    <Route path="*" element={<Navigate to="/content/en/home" />} />
+                  </Routes>
+                </Application>
+              </Content>
+            </ThemeProvider>
+          </div>
+        );
+      }
+
+      const mapStateToProps = (state: any) => {
+        return {
+          appStore: state,
+        };
+      };
+
+      const mapDispatchToProps = (dispatch: any) => {
+        return {
+          appActions: {
+            initApplication: (data: any) => dispatch(initApplication(data)),
+            closeNotification: () => dispatch(closeNotification()),
+            closePopup: () => dispatch(closePopup()),
+            closePopupScreen: () => dispatch(closePopupScreen()),
+          },
+          raiseAction: dispatch,
+        };
+      };
+
+      export default connect(mapStateToProps, mapDispatchToProps)(App);
+

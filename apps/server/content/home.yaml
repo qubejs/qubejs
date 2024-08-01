@@ -3,6 +3,7 @@ template: apps/core/templates/page
 rootClassName: sq-content-page--full-width sq-content-page--top-0
 layout: apps/layouts/spa
 containerTemplate: Homepage
+paddingTop: false
 items:
   # First image with home content
   - component: Carousel

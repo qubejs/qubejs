@@ -1,0 +1,249 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: 1::QubeJS & React
+overrideTransition: true
+order: 2
+category: 1::Get Started
+items:
+  - header: |
+      Get Started
+    component: Header
+  - header: |
+      Folder structure
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    language: yaml
+    code: |
+      root:
+        - apps
+          - person
+          - cart
+        - content
+          - in
+            - home.yaml
+          - en
+            - home.yaml
+        - config
+        - dam
+        - clientlibs
+        - server
+          - site.config.js
+          - start.js
+
+
+  - header: |
+      Site Configuration site.config.js
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    language: javascript
+    code: |
+      const envConfig = require('../config/environment');
+      var packageJson = require('../package.json');
+      module.exports = {
+        analytics: envConfig.analytics,
+        theme: 'basic',
+        siteMap: {
+          maxNavigationLevel: 2,
+          appVersion: packageJson.version,
+          title: 'QubeJS',
+          errorRedirects: {
+            500: '/content/en/pages/500',
+            404: '/content/en/pages/404'
+          },
+          globalNavigation: {
+            className: 'sq-global-navigation--default sq-global-navigation--blured',
+            navPosition: 'fixed',
+            rightItems: [
+              {
+                type: 'LinkButton',
+                color: 'none',
+                buttonText: '',
+                className: 'sq-link--button mr-4',
+                iconName: 'email',
+                to: '/content/en/contact'
+              }
+            ]
+          },
+          globalNavigationLoggedIn: {
+            className: 'sq-global-navigation--default',
+            rightItems: [
+              {
+                type: 'Button',
+                color: 'primary',
+                buttonText: 'My Dashboard',
+                iconName: 'dashboard',
+                iconSize: 'small',
+                to: 'dashboard'
+              }
+            ]
+          },
+          globalFooter: {
+            classes: {
+              item: 'col-xs-6 col-sm-4'
+            },
+            contactus: {
+              header: 'Contact us',
+              info: [
+                {
+                  iconName: 'call',
+                  buttonText: '+91 99107 02765',
+                  href: 'tel:+919910702765'
+                },
+                {
+                  iconName: 'email',
+                  buttonText: 'navneetnaagpal@gmail.com',
+                  href: 'mailto:navneetnaagpal@gmail.com'
+                }
+              ]
+            },
+            newsletter: {
+              header: 'Newsletter',
+              label: 'Email',
+              buttonText: 'Subscribe',
+              api: {
+                type: 'POST',
+                url: '/api/v1/contact/newsletter'
+              },
+              successMessage: 'You have succesfully subscribed.'
+            },
+            socialLinks: {
+              header: 'Follow us on',
+              links: [
+                {
+                  iconName: 'facebook',
+                  href: 'https://www.facebook.com/'
+                },
+                {
+                  iconName: 'twitter',
+                  href: 'https://www.twitter.com/'
+                },
+                {
+                  iconName: 'linkedin',
+                  href: 'https://www.linkedin.com/'
+                },
+                {
+                  iconName: 'instagram',
+                  href: 'https://www.instagram.com/'
+                },
+                {
+                  iconName: 'youtube',
+                  href: 'https://www.youtube.com/'
+                }
+              ]
+            },
+            items2: [
+              {
+                title: 'Resources',
+                children: [
+                  {
+                    title: 'Privacy Policy',
+                    href: '/content/en/privacypolicy'
+                  },
+                  {
+                    title: 'Cookie Policy',
+                    href: '/content/en/cookiepolicy'
+                  }
+                ]
+              }
+            ],
+            className: 'sq-footer--light sq-footer--secondary',
+            copyrights: '©  2021, All Rights Reserved'
+          },
+          logo: {
+            name: 'logo-wide',
+            className: '',
+            size: 'wide',
+            variant: 'primary',
+            href: '/content/en/home'
+          },
+          children: [
+            {
+              title: 'QubeJs',
+              href: '/content/en/qubejs',
+              children: [
+                {
+                  title: 'Features',
+                  href: '/content/en/qubejs/features'
+                },
+                {
+                  title: 'Quick start',
+                  href: '/content/en/qubejs/quick-start'
+                },
+                {
+                  title: 'Pricing',
+                  href: '/content/en/qubejs/pricing'
+                },
+                {
+                  title: 'Docs',
+                  href: '/content/docs'
+                },
+                {
+                  title: 'Examples',
+                  href: '/content/en/qubejs/examples'
+                }
+              ]
+            }
+          ]
+        }
+      };
+
+
+
+  - header: |
+      Setup Content Server with express
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    code: |
+      require('dotenv').config();
+      var express = require('express');
+      var path = require('path');
+      var fs = require('fs');
+      var http = require('http');
+      var logger = require('morgan');
+      var cookieParser = require('cookie-parser');
+      var bodyParser = require('body-parser');
+      var session = require('express-session');
+      var utils = require('qubejs-core/server/src/utils');
+      var { ContentServer } = require('qubejs-core/cms/server');
+
+      var routes = require('./routes');
+      var config = require('../config/environment');
+      var webConfig = require('../src/config');
+      var siteConfig = require('./site.config');
+
+      var app = express();
+
+      // Content server
+      var cmsSever = new ContentServer(
+        {
+          contentPath: path.resolve('./content'),
+          serverPath: '/content/*',
+          siteConfig: siteConfig,
+          damAssets: path.resolve('./dam'),
+          clientLibs: path.resolve('./clientlibs'),
+          rootApp: path.resolve('./'),
+          envConfig: config,
+          mode: config.env,
+          siteConfig: siteConfig
+        },
+        app
+      );
+
+      cmsSever.init();
+      cmsSever.mapVanity(webConfig.urlMapping, {
+        defaultPage: '/in/reactapp'
+      });
+

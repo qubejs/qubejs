@@ -1,0 +1,173 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: HeroContent
+overrideTransition: true
+category: 2::Components
+items:
+  - header: |
+      HeroContent
+    component: Header
+  - component: HeroContent
+    className: sq-hero-content--bg-black mb-xtrawide
+    eyebrow: | 
+      Hero Eyebrow
+    header: | 
+      Hero header with content
+    classes:
+      root: container
+      Xheader: reveal
+    links:
+      - buttonText: Explore
+        type: Button
+        color: secondary
+        iconName: arrow-right
+        iconDirection: right
+        to: /content/en/accelerators
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - component: HeroContent
+          className: sq-hero-content--bg-black
+          eyebrow: | 
+            Hero Eyebrow
+          header: | 
+            Hero header with content
+          classes:
+            root: container
+            Xheader: reveal
+          links:
+            - buttonText: Explore
+              type: Button
+              color: secondary
+              iconName: arrow-right
+              iconDirection: right
+              to: /content/en/accelerators
+  - component: HeroContent
+    className: custom-class
+    eyebrow: | 
+      Product Title
+    header: | 
+      Tagline for the product
+    subHeader: | 
+      Description goes here
+    classes:
+      root: container
+      Xheader: reveal
+    links:
+      - buttonText: Click me
+        type: Button
+        color: secondary
+        iconName: arrow-right
+        iconDirection: right
+        to: /content/en/accelerators
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - component: HeroContent
+          className: custom-class
+          eyebrow: | 
+            Product Title
+          header: | 
+            Tagline for the product
+          subHeader: | 
+            Description goes here
+          classes:
+            root: container
+            Xheader: reveal
+          links:
+            - buttonText: Explore
+              type: Button
+              color: secondary
+              iconName: arrow-right
+              iconDirection: right
+              to: /content/en/accelerators
+  - component: HeroContent
+    header: Engineering Team
+    classes:
+      root: container
+    subHeader:  Hero content with left aligned content and image or right.
+    className: sq-hero-content--left-aligned
+    imageUrl: /dam/qubejs/img/methodology.jpg
+    links:
+      - buttonText: Explore More
+        type: LinkButton
+        color: primary
+        variant: outlined
+        iconName: arrow-right
+        iconDirection: right
+        to: /register
+        urlParams:
+          title: Login
+          handler: custom
+          handlerType: popup
+        analytics:
+          click:
+            type: event
+            eventName: link_click
+            action: login
+            label: Login
+            category: Content
+            section: Homepage
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+          - component: HeroContent
+            header: Engineering Team
+            classes:
+              root: container
+            subHeader:  Hero content with left aligned content and image on right.
+            className: sq-hero-content--left-aligned
+            imageUrl: /dam/qubejs/img/methodology.jpg
+            links:
+              - buttonText: Explore More
+                type: LinkButton
+                color: primary
+                variant: outlined
+                iconName: arrow-right
+                iconDirection: right
+                to: /register
+                urlParams:
+                  title: Login
+                  handler: custom
+                  handlerType: popup
+  - component: HeroContent
+    header: Engineering Team
+    classes:
+      root: container
+    subHeader:  Hero content with right aligned content and image on left.
+    className: sq-hero-content--right-aligned
+    imageUrl: /dam/qubejs/img/methodology.jpg
+    links:
+      - buttonText: Explore More
+        type: LinkButton
+        color: primary
+        variant: outlined
+        iconName: arrow-right
+        iconDirection: right
+        to: /register
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+          - component: HeroContent
+            header: Engineering Team
+            classes:
+              root: container
+            subHeader:  Hero content with right aligned content and image on left.
+            className: sq-hero-content--right-aligned
+            imageUrl: /dam/qubejs/img/methodology.jpg
+            links:
+              - buttonText: Explore More
+                type: LinkButton
+                color: primary
+                variant: outlined
+                iconName: arrow-right
+                iconDirection: right
+                to: /register

@@ -1,0 +1,61 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: Header
+overrideTransition: true
+category: 2::Components
+items:
+  - header: |
+      Header
+    component: Header
+  - header: Component Header 1
+    subHeader: lorem  ipsum content for sub header.
+    className: custom-class
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - header: Component Header 1
+          subHeader: lorem  ipsum content for sub header.
+          className: custom-class
+          headerTag: h3
+          component: Header
+  - header: |
+      <span style="color:red">Component Style </span> with html
+    subHeader: lorem  ipsum content for sub header.
+    className: custom-class
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - header: |
+            <span style="color:red">Component Style </span> with html
+          subHeader: lorem  ipsum content for sub header.
+          className: custom-class
+          headerTag: h3
+          component: Header
+  - header: |
+      Header with image
+    subHeader: lorem  ipsum content for sub header.
+    className: sq-header--center
+    imageUrl: /dam/qubejs/img/people.jpg
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+        - header: |
+            Header with image
+          subHeader: lorem  ipsum content for sub header.
+          className: sq-header--center
+          imageUrl: /dam/qubejs/img/people.jpg
+          headerTag: h3
+          component: Header

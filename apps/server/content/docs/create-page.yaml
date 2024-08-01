@@ -1,0 +1,53 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: 2::Create your first page
+overrideTransition: true
+order: 3
+category: 1::Get Started
+items:
+  - header: |
+      Create Page
+    component: Header
+  - header: |
+      Create your first page
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    language: yaml
+    code: |
+      root:
+        - content
+          - in
+            - newpage.yaml
+
+
+  - header: |
+      newpage.yaml
+    className: sq-header--blockquote sq-header--no-padding 
+    headerTag: h3
+    component: Header
+  - component: CodeHighlight
+    className: mb-xtrawide
+    language: javascript
+    code: |
+      title: Homepage
+      template: apps/core/templates/page
+      rootClassName: sq-content-page--full-width
+      layout: apps/layouts/spa
+      containerTemplate: Homepage
+      items:
+      
+        # components configuration
+        - component: HeroContent
+          header: Your component header
+          classes:
+            root: container
+          subHeader:  Lorem ipsum sub header goes here
+          className: sq-hero-content--left-aligned
+          imageUrl: /dam/qubejs/img/insights-f.png

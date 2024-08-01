@@ -35,7 +35,7 @@ class Homepage extends BaseContainer {
         }`}
       >
         <GlobalNavigation logo={siteMap.siteMap.logo} {...props} />
-        <div className={'sq-content-page__body-wrapper '}>{children}</div>
+        <div className={`sq-content-page__body-wrapper ${pageData.paddingTop === false ? '' : 'pt-4'} ${pageData.bodyClassName}`}>{children}</div>
         <footer className="sq-template__footer"></footer>
       </div>
     );

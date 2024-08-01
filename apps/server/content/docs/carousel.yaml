@@ -1,0 +1,180 @@
+template: apps/core/templates/page
+className: sq-page sq-docs-events
+bodyClassName: sq-page--fixed-nav
+layout: apps/layouts/spa
+containerTemplate: Homepage
+container: ContentWithLeftNavigation
+title: Carousel
+overrideTransition: true
+category: 2::Components
+items:
+  - header: |
+      Carousel
+    component: Header
+  - component: Carousel
+    className: sq-home__carousel
+    carouselClassName: sq-home__carousel-1
+    template: full-bg
+    animation: fade
+    interval: 6000
+    items:
+      - component: MagicHeroContent
+        content:
+          component: HeroContent
+          template: large-background
+          header: | 
+            <span> Beat</span> <span> the heat</span>
+          background: /dam/qubejs/img/man.jpg
+          subHeader: |
+            Try cool components with QubeJS
+          headerTag: h1
+          classes:
+            innerWrapper: container-max
+            links: mb-xtrawide
+          links:
+            - buttonText: Would Love to
+              type: Button
+              color: secondary
+              iconName: arrow-right
+              iconDirection: right
+              to: /content/en/contact
+        name: anim-home-1
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+      - component: MagicHeroContent
+        content:
+          component: HeroContent
+          template: large-background
+          header: | 
+            <span> QubeJs</span> <span> Unlimited possibilities</span>
+          background: /dam/qubejs/img/hands.jpg
+          subHeader: |
+            Try our powered cms with customized app development server with minimal amount of time.
+          headerTag: h1
+          classes:
+            innerWrapper: container-max
+            links: mb-xtrawide
+          links:
+            - buttonText: Explore more
+              type: Button
+              color: primary
+              iconName: arrow-right
+              iconDirection: right
+              to: /content/en/qubejs
+        name: anim-home-2
+        timeline:
+          defaults:
+            duration: .7
+          tweens:
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__header span
+              start: -=0.3
+            - from:
+                y: -30
+                stagger: 0.3
+                opacity: 0
+              target: .sq-hero-content__body > *
+              start: -=0.5
+
+  - component: CodeHighlight
+    language: yaml
+    className: mb-xtrawide
+    code: |
+          - component: Carousel
+            className: sq-home__carousel
+            carouselClassName: sq-home__carousel-1
+            template: full-bg
+            animation: fade
+            interval: 6000
+            items:
+              - component: MagicHeroContent
+                content:
+                  component: HeroContent
+                  template: large-background
+                  header: | 
+                    <span> Beat</span> <span> the heat</span>
+                  background: /dam/qubejs/img/man.jpg
+                  subHeader: |
+                    Try cool components with QubeJS
+                  headerTag: h1
+                  classes:
+                    innerWrapper: container-max
+                    links: mb-xtrawide
+                  links:
+                    - buttonText: Would Love to
+                      type: Button
+                      color: secondary
+                      iconName: arrow-right
+                      iconDirection: right
+                      to: /content/en/contact
+                name: anim-home-1
+                timeline:
+                  defaults:
+                    duration: .7
+                  tweens:
+                    - from:
+                        y: -30
+                        stagger: 0.3
+                        opacity: 0
+                      target: .sq-hero-content__header span
+                      start: -=0.3
+                    - from:
+                        y: -30
+                        stagger: 0.3
+                        opacity: 0
+                      target: .sq-hero-content__body > *
+                      start: -=0.5
+              - component: MagicHeroContent
+                content:
+                  component: HeroContent
+                  template: large-background
+                  header: | 
+                    <span> QubeJs</span> <span> Unlimited possibilities</span>
+                  background: /dam/qubejs/img/hands.jpg
+                  subHeader: |
+                    Try our powered cms with customized app development server with minimal amount of time.
+                  headerTag: h1
+                  classes:
+                    innerWrapper: container-max
+                    links: mb-xtrawide
+                  links:
+                    - buttonText: Explore more
+                      type: Button
+                      color: primary
+                      iconName: arrow-right
+                      iconDirection: right
+                      to: /content/en/qubejs
+                name: anim-home-2
+                timeline:
+                  defaults:
+                    duration: .7
+                  tweens:
+                    - from:
+                        y: -30
+                        stagger: 0.3
+                        opacity: 0
+                      target: .sq-hero-content__header span
+                      start: -=0.3
+                    - from:
+                        y: -30
+                        stagger: 0.3
+                        opacity: 0
+                      target: .sq-hero-content__body > *
+                      start: -=0.5
