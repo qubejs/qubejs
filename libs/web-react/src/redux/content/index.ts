@@ -58,12 +58,10 @@ export const processParams = (userData, params = {}, defaultValue = null, state?
     } else {
       value = processEachParam(userData, params[key], defaultValue, state);
     }
-    if (!common.isNullOrUndefined(value)) {
-      if (key.startsWith('...') && typeof value === 'object' && !Array.isArray(value)) {
-        newObj = { ...newObj, ...value };
-      } else {
-        newObj[key] = value;
-      }
+    if (key.startsWith('...') && typeof value === 'object' && !Array.isArray(value)) {
+      newObj = { ...newObj, ...value };
+    } else {
+      newObj[key] = value;
     }
   });
   return newObj;
