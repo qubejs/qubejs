@@ -27,6 +27,9 @@ processor.add('test', {
   nonBlank: (value: any) => {
     return !utils.common.isNullOrUndefinedBlank(value) ? value : undefined;
   },
+  nonBlankNull: (value: any) => {
+    return !utils.common.isNullOrUndefinedBlank(value) ? value : null;
+  },
 });
 describe('reducer:content', () => {
   beforeEach(() => {
@@ -285,6 +288,22 @@ describe('reducer:content', () => {
         ).toMatchObject({
           a: 1,
           b: undefined,
+        });
+      });
+      test('should override if given null ', () => {
+        expect(
+          processParams(
+            {
+              transaction: { a: 1, b: '' },
+            },
+            {
+              '...tr': '.transaction',
+              b: '::test.nonBlankNull::.transaction.b',
+            }
+          )
+        ).toMatchObject({
+          a: 1,
+          b: null,
         });
       });
     });
