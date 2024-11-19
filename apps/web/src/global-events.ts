@@ -1,6 +1,6 @@
 import { utils } from '@qubejs/web-react';
 import './utils';
-import { GLOBAL_OPTIONS } from 'libs/web-react/src/globals';
+import { GLOBAL_OPTIONS } from './globals';
 
 utils.apiBridge.events.subscribeOnce('onPrefix', function (data: any) {
   let url = '';
