@@ -19,7 +19,6 @@ const setApiTimeout = (timeout) => {
   TIMEOUT = timeout;
 };
 
-
 const setErrorCodes = (newCodes) => {
   CODES = {
     ...CODES,
@@ -96,7 +95,13 @@ export class ApiBridge {
     return response;
   }
 
-  get(url, params = {}, headers = {}, query = {}, { plain = false, signal }:any = {}) {
+  get(
+    url,
+    params = {},
+    headers = {},
+    query = {},
+    { plain = false, signal }: any = {}
+  ) {
     const promisObj = fetch(
       this.getPrefix({ url, body: params }) +
         encodeURI(this.getUrl(url)) +
@@ -122,14 +127,13 @@ export class ApiBridge {
       .then(this.responseReader.bind(this))
       .catch(this.handleCatch.bind(this));
   }
-  
 
   rawPost(
     url,
     body,
     headers = {},
     query = {},
-    { method = 'POST', plain = false, signal }:any = {}
+    { method = 'POST', plain = false, signal }: any = {}
   ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
@@ -157,7 +161,13 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  post(url, body, headers = {}, query = {}, { plain = false, signal }:any = {}) {
+  post(
+    url,
+    body,
+    headers = {},
+    query = {},
+    { plain = false, signal }: any = {}
+  ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(this.getUrl(url)) +
@@ -185,7 +195,13 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  update(url, body, headers = {}, query = {}, { plain = false, signal }:any = {}) {
+  update(
+    url,
+    body,
+    headers = {},
+    query = {},
+    { plain = false, signal }: any = {}
+  ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(this.getUrl(url)) +
@@ -213,7 +229,13 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  patch(url, body = {}, headers = {}, query = {}, { plain = false, signal }:any = {}) {
+  patch(
+    url,
+    body = {},
+    headers = {},
+    query = {},
+    { plain = false, signal }: any = {}
+  ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(this.getUrl(url)) +
@@ -241,7 +263,47 @@ export class ApiBridge {
       .catch(this.handleCatch.bind(this));
   }
 
-  delete(url, body = {}, headers = {}, query?, { plain = false, signal }:any = {}) {
+  put(
+    url,
+    body = {},
+    headers = {},
+    query = {},
+    { plain = false, signal }: any = {}
+  ) {
+    const promisObj = fetch(
+      this.getPrefix({ url, body }) +
+        encodeURI(this.getUrl(url)) +
+        new QueryString(query).toString(),
+      {
+        method: 'PUT',
+        headers: {
+          ...defaultHeaders,
+          ...this.getCustomHeaders(),
+          ...headers,
+        },
+        body: JSON.stringify(body),
+        signal: signal || AbortSignal.timeout(TIMEOUT),
+      }
+    );
+    if (plain) {
+      return promisObj;
+    }
+    return promisObj
+      .then(this.checkStatus.bind(this))
+      .then(this.parseJSON)
+      .then(this.processCustomParser.bind(this))
+      .then(this.messageParser.bind(this))
+      .then(this.responseReader.bind(this))
+      .catch(this.handleCatch.bind(this));
+  }
+
+  delete(
+    url,
+    body = {},
+    headers = {},
+    query?,
+    { plain = false, signal }: any = {}
+  ) {
     const promisObj = fetch(
       this.getPrefix({ url, body }) +
         encodeURI(this.getUrl(url)) +
@@ -315,6 +377,7 @@ export class ApiBridge {
         resp = response.json();
       } catch (ex) {
         resp = {
+          code: response.code || response.status,
           error: response || {},
         };
       }
@@ -323,7 +386,37 @@ export class ApiBridge {
       return response;
     }
   }
+
+  checkForOtherFormats(response) {
+    console.log('tick', response);
+    if (
+      !response.code &&
+      typeof response.status !== 'string' &&
+      !response.error
+    ) {
+      return {
+        code: 200,
+        status: 'success',
+        data: { ...response },
+      };
+    }
+    if (
+      !response.code &&
+      response.error &&
+      !response.error.error &&
+      !response.error.code
+    ) {
+      return {
+        code: 500,
+        status: 'error',
+        error: response,
+      };
+    }
+    return response;
+  }
+
   responseReader(response) {
+    response = this.checkForOtherFormats(response);
     switch (response.status) {
       case CONSTANTS.STATUS.SUCCESS:
         return response;

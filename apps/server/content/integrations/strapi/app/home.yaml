@@ -1,0 +1,25 @@
+title: Homepage
+template: apps/core/templates/page
+className: body-container-small
+layout: apps/layouts/spa
+containerTemplate: AdminDashboard
+container: PageBuilder
+
+    
+createPopupScreen:
+  url: /content/integrations/strapi/app/newpage
+  title: Save Page
+
+getPageConfig:
+  url: /strapi/api/pages
+  params:
+    path: .query.path
+  # hook: data.extractResult
+
+savePageConfig:
+  url: /strapi/api/page
+  params:
+    pageData: .pageData
+    pageId: .query.pageId
+    path: .query.path
+    name: .title

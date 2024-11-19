@@ -1,0 +1,25 @@
+title: Create new page
+template: apps/core/templates/page
+layout: apps/layouts/spa
+contentBodyClass: container-fluid container-ultrawide
+bodyClassName: bg-gray
+containerTemplate: AdminDashboard
+container: PageBuilder
+
+getPageConfig:
+  url: /strapi/api/pages
+  params:
+    filters[path][$eq]: .query.path
+    status: draft
+  method: get
+  mapper:
+    status: success
+    data: .data.data.0
+  hook: data.extractResult
+savePageConfig:
+  url: |
+    ::common.join(fields: /strapi/api/pages/ + .documentId)
+  method: put
+  params:
+    data:
+      pageData: .pageData

@@ -1,0 +1,95 @@
+title: Create Form
+template: apps/core/templates/page
+className: 
+layout: apps/layouts/spa
+contentBodyClass: container container-form
+containerTemplate: Blank
+reset:
+  type: clearAll
+
+init:
+  drop_options:
+    contentType: ::globals.options::contentType
+
+  page:
+    title: .current.pageData.title
+    type: PAGE
+    path: /content/integrations/strapi/pages/test
+merge:
+  # page:
+    # path: ::dynPaths.getAdvisorPath(fieldName:page.title)::/content/dynamic/advisor
+items:
+    - component: Progress
+      className: tp-progress--active
+      overlay: true
+      match:
+        isSubmitting:
+          validators:
+            - type: equals
+              matchValue: true
+    - component: Form
+      className: mt-wide
+      name: page
+      fields:
+        - name: title
+          label: Title
+          validators:
+            - type: required
+        - name: type
+          label: Content Type
+          cmpType: Select
+          inject:
+            options: drop_options.contentType
+          validators:
+            - type: required
+        # - name: formType
+        #   label: Form Type
+        #   cmpType: Autocomplete
+
+        #   multiple: false
+        #   textField: name
+        #   valueField: code
+        #   inject:
+        #     options: metaType.data
+        #   validators:
+        #     - type: required
+        - name: path
+          label: Path
+          
+          validators:
+            - type: required
+              defaultValue: /content/integrations/strapi/pages
+            - type: path
+            - type: startsWith
+              startsWith: /content/integrations/strapi/pages
+
+    - component: Button
+      size: large
+      buttonText: Save
+      actionType: submit
+      url: /strapi/api/pages
+      method: post
+      inject:
+        disabled: isSubmitting
+      dataKey: createPage
+      defaultResponse:
+        success:
+          notification:
+            message: Page created successfully
+          data:
+            redirect:
+              to: /content/integrations/strapi/app/editor
+              urlParams:
+                path: .createPage.data.path
+      finally:
+        successAction:
+          - actionType: close-popup-screen
+      params:
+        data:
+          pageData:
+            ...pageData1: .current.pageData 
+            title: .page.title
+            containerTemplate: Homepage
+          path: .page.path
+          title: .page.title
+          pageType: .page.type

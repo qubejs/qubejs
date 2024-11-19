@@ -4,6 +4,7 @@ import { CONSTANTS } from '../../globals';
 import * as utils from '../../utils';
 import { showNotificationMessage } from '../common';
 import { processParams, selectUserData, customHooks } from '../content';
+
 const initialState: any = {
   contentData: {
     pageData: {
@@ -46,7 +47,14 @@ export const getPage =
   (payload, { url, method = 'post', params, hook, query }: any = {}) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.getPage,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.getPage }
+      ).url,
       params
         ? processParams(
             { ...selectContentData(getState()), ...selectUserData(getState()) },
@@ -78,7 +86,14 @@ export const getFieldsMeta =
   async (dispatch, getState) => {
     if (url && method) {
       const result = await utils.apiBridge[method](
-        url,
+        processParams(
+          {
+            ...selectContentData(getState()),
+            ...selectUserData(getState()),
+            ...payload,
+          },
+          { url }
+        ).url,
         params
           ? processParams(
               {
@@ -108,10 +123,18 @@ export const getFieldsMeta =
   };
 
 export const loadPageTree =
-  (payload, { url, method = 'post', params, query }: any = {}) =>
+  (payload, options: any = {}) =>
   async (dispatch, getState) => {
+    const { url, method = 'post', hook, params, query } = options;
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.getContentTree,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.getContentTree }
+      ).url,
       params
         ? processParams(
             {
@@ -134,21 +157,39 @@ export const loadPageTree =
         getState()
       )
     );
+    if (hook) {
+      result.data = await customHooks.execute(hook, result, options);
+    }
     if (result.status === CONSTANTS.STATUS.SUCCESS) {
       await dispatch(setContentTree(result.data));
     }
   };
 
 export const loadPagesByPath =
-  (payload, { url, method = 'post', params, hook, query }: any = {}, query2?) =>
+  (payload, options: any = {}, query2?) =>
   async (dispatch, getState) => {
+    const {
+      url,
+      method = 'post',
+      params,
+      hook,
+      query = { pageNo: '.pageNo', pageSize: '.pageSize' },
+    } = options;
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.getPageByPath,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.getPageByPath }
+      ).url,
       params
         ? processParams(
             {
               ...selectUserData(getState()),
               ...payload,
+              ...query2,
             },
             params,
             undefined,
@@ -161,17 +202,17 @@ export const loadPagesByPath =
           {
             ...selectUserData(getState()),
             ...payload,
+            ...query2,
           },
           query,
           undefined,
           getState()
         ),
-        ...query2,
       }
     );
     if (result.status === CONSTANTS.STATUS.SUCCESS) {
       if (hook) {
-        result.data = await customHooks.execute(hook, result);
+        result.data = await customHooks.execute(hook, result, options);
       }
       const pageData: any = {
         total: result.data?.total || result.data?.totalItems,
@@ -199,7 +240,14 @@ export const deleteLink =
   (payload, { url, params, method = 'delete', hook }: any = {}) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.deleteMedia,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.deleteMedia }
+      ).url,
       params
         ? processParams(
             {
@@ -231,7 +279,14 @@ export const updateMedia =
   (payload, { url, params, method = 'patch', hook }: any = {}) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.updateMedia,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.updateMedia }
+      ).url,
       params
         ? processParams(
             {
@@ -281,7 +336,14 @@ export const uploadMedia =
         delete contentType['contentType'];
       }
       const result = await utils.apiBridge.rawPost(
-        url || adminConfig.apis.uploadMedia,
+        processParams(
+          {
+            ...selectContentData(getState()),
+            ...selectUserData(getState()),
+            ...payload,
+          },
+          { url: url || adminConfig.apis.uploadMedia }
+        ).url,
         formData,
         {},
         {
@@ -329,7 +391,14 @@ export const loadMedia =
   ) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.searchMedia,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...body,
+        },
+        { url: url || adminConfig.apis.searchMedia }
+      ).url,
       params
         ? processParams(
             {
@@ -373,7 +442,14 @@ export const savePageDraft =
   ) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.contentPage,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.contentPage }
+      ).url,
       params
         ? processParams(
             {
@@ -411,7 +487,14 @@ export const deletePage =
   (payload, { url, method = 'delete', params, hook, query }: any = {}) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.contentPage,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.contentPage }
+      ).url,
       params
         ? processParams(
             {
@@ -432,6 +515,13 @@ export const deletePage =
         getState()
       )
     );
+    if (result.status === CONSTANTS.STATUS.ERROR) {
+      dispatch(
+        showNotificationMessage({
+          message: 'Can\'t delete page',
+        })
+      );
+    }
     if (result.status === CONSTANTS.STATUS.SUCCESS) {
       dispatch(
         showNotificationMessage({
@@ -452,7 +542,14 @@ export const clonePage =
   ) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
-      url || adminConfig.apis.clonePage,
+      processParams(
+        {
+          ...selectContentData(getState()),
+          ...selectUserData(getState()),
+          ...payload,
+        },
+        { url: url || adminConfig.apis.clonePage }
+      ).url,
       params
         ? processParams(
             {
@@ -491,6 +588,7 @@ export const clonePage =
 export const selectContentData = (state) => {
   return state.admin.contentData;
 };
+
 
 customHooks.add('admin', {
   afterPageCreate: (result, { dispatch }) => {

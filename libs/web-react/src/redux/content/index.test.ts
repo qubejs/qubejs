@@ -332,7 +332,7 @@ describe('reducer:content', () => {
       pageData: {},
       metaData: {},
       protectedData: {},
-      userData: { currentUrl: '/test', query: {} },
+      userData: { currentUrl: '/test', space: ' ', query: {} },
     });
   });
 
@@ -345,7 +345,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 1 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 1 },
+        },
       });
     });
     test('should override whole data in userData', () => {
@@ -363,7 +368,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 1 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 1 },
+        },
       });
     });
   });
@@ -376,7 +386,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: { test: { nodata: 1 } },
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 1 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 1 },
+        },
       });
     });
   });
@@ -390,7 +405,7 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {} },
+        userData: { currentUrl: '/test', space: ' ', query: {} },
       });
     });
     test('should clear the data except protected data', () => {
@@ -406,7 +421,7 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: { protect: { nodata: 1 } },
-        userData: { currentUrl: '/test', protect: { nodata: 1 }, query: {} },
+        userData: { currentUrl: '/test', space: ' ', protect: { nodata: 1 }, query: {} },
       });
     });
   });
@@ -441,7 +456,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 2 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 2 },
+        },
       };
       const { store, invoke } = fake.thunk.create({
         content: {

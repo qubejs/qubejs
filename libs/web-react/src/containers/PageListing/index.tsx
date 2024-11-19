@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import * as utils from '../../utils';
-import { loadPageTree, loadPagesByPath, deletePage, clonePage } from '../../redux/admin';
+import {
+  loadPageTree,
+  loadPagesByPath,
+  deletePage,
+  clonePage,
+} from '../../redux/admin';
 import { updateUserData, processParams } from '../../redux/content';
 import BaseContainer from '../BaseContainer';
 import clonePageConfig from './ClonePage';
@@ -15,7 +20,7 @@ class PageListing extends BaseContainer {
   props: any;
   state: any;
   filterFields: any;
-  static propTypes:any;
+  static propTypes: any;
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +41,14 @@ class PageListing extends BaseContainer {
       ...field,
       beforeRender: (field, val, row) => {
         return {
-          ...(field.componentProps ? processParams({ ...userData, ...row }, field.componentProps, undefined, store) : {}),
+          ...(field.componentProps
+            ? processParams(
+                { ...userData, ...row },
+                field.componentProps,
+                undefined,
+                store
+              )
+            : {}),
         };
       },
       fields: field.fields
@@ -51,7 +63,9 @@ class PageListing extends BaseContainer {
     const { pageData, store } = this.props;
     this.props.commonActions.startLoading();
     if (pageData.enableTree !== false) {
-      await this.props.raiseAction(loadPageTree({}, pageData.getPageTreeConfig));
+      await this.props.raiseAction(
+        loadPageTree({}, pageData.getPageTreeConfig)
+      );
       await this.setState({
         parentPath: store.admin.contentTree?.path,
       });
@@ -83,10 +97,20 @@ class PageListing extends BaseContainer {
   }
 
   async refreshPages(options = {}) {
-    const { parentPath = this.state.parentPath, pageNo = 1, pageSize = GLOBAL_OPTIONS.noOfResultsDropdown.toArray()[0].value }:any = options;
+    const {
+      parentPath = this.state.parentPath,
+      pageNo = 1,
+      pageSize = GLOBAL_OPTIONS.noOfResultsDropdown.toArray()[0].value,
+    }: any = options;
     const { pageData } = this.props;
     this.props.commonActions.startLoading();
-    await this.props.raiseAction(loadPagesByPath({ ...this.state.currentFilter, parentPath }, pageData.getPagesConfig, { pageNo, pageSize }));
+    await this.props.raiseAction(
+      loadPagesByPath(
+        { ...this.state.currentFilter, parentPath },
+        pageData.getPagesConfig,
+        { pageNo, pageSize }
+      )
+    );
     this.props.commonActions.stopLoading();
   }
 
@@ -119,13 +143,17 @@ class PageListing extends BaseContainer {
         break;
       case 'delete':
         this.props.commonActions.startLoading();
-        await this.props.raiseAction(deletePage(row, pageData.contentPageConfig));
+        await this.props.raiseAction(
+          deletePage(row, pageData.deletePageConfig)
+        );
         currentPage = this.getCurrentPage();
         this.refreshPages({ ...currentPage });
         break;
       case 'edit':
         utils.redirect.redirectTo(
-          row.type === 'SITE_MAP' ? pageData.editSiteMap || 'editSiteMap' : pageData.editPage || 'editPage',
+          row.type === 'SITE_MAP'
+            ? pageData.editSiteMap || 'editSiteMap'
+            : pageData.editPage || 'editPage',
           {
             path: row.path,
             pageId: row.pageId /* replace with data.uid */,
@@ -136,17 +164,20 @@ class PageListing extends BaseContainer {
       case 'preview':
         params = {
           path: row.path,
-          ...processParams({
-            ...this.props.userData,
-            ...this.props.pageData,
-            ...row,
-          }, this.props.pageData.preview || {}, undefined, this.props.store)
+          ...processParams(
+            {
+              ...this.props.userData,
+              ...this.props.pageData,
+              ...row,
+            },
+            this.props.pageData.preview || {},
+            undefined,
+            this.props.store
+          ),
         };
-        utils.redirect.redirectTo(
-          params.path,
-          params.urlParams,
-          { target: '_blank' }
-        );
+        utils.redirect.redirectTo(params.path, params.urlParams, {
+          target: '_blank',
+        });
         break;
     }
   }
@@ -187,7 +218,9 @@ class PageListing extends BaseContainer {
     this.setState({
       parentPath: data.value,
     });
-    await this.props.raiseAction(loadPagesByPath({ parentPath: data.value }, pageData.getPagesConfig));
+    await this.props.raiseAction(
+      loadPagesByPath({ parentPath: data.value }, pageData.getPagesConfig)
+    );
     this.props.commonActions.stopLoading();
   }
   onQuickFilterChange = async (data, action) => {
@@ -214,7 +247,10 @@ class PageListing extends BaseContainer {
         await this.setState({
           currentFilter: this.state.__currentFilter,
         });
-        utils.storage.preference.write('currentFilter', this.state.__currentFilter)
+        utils.storage.preference.write(
+          'currentFilter',
+          this.state.__currentFilter
+        );
         await this.setState({
           showFilter: !this.state.showFilter,
           __currentFilter: undefined,
@@ -279,27 +315,33 @@ class PageListing extends BaseContainer {
             />
           </Dialog>
         </>
-        <div className={`container-fluid ${pageData.actionInBreadCrumb === true ? 'sq-v-screen__sub-header' : 'mt-wide'}`}>
-          <Actions
-            onAction={this.handleAction}
-            actions={[
-              {
-                type: 'Button',
-                iconName: 'add',
-                to: pageData.addNewPage || 'addNewPage',
-                buttonText: 'Add New',
-              },
-              {
-                actionType: 'edit-filter',
-                iconName: 'filter-list',
-                variant: 'outlined',
-                cmpType: 'Button',
-                buttonText: 'Filters',
-              },
-            ].filter((i) => i)}
-          />
-        </div>
-        <div className="sq-v-screen__container mt-wide">
+        <div className="sq-v-screen__container">
+          <div
+            className={`container-fluid pb-wide ${
+              pageData.actionInBreadCrumb === true
+                ? 'sq-v-screen__sub-header'
+                : 'mt-wide'
+            }`}
+          >
+            <Actions
+              onAction={this.handleAction}
+              actions={[
+                {
+                  type: 'Button',
+                  iconName: 'add',
+                  to: pageData.addNewPage || 'addNewPage',
+                  buttonText: 'Add New',
+                },
+                {
+                  actionType: 'edit-filter',
+                  iconName: 'filter-list',
+                  variant: 'outlined',
+                  cmpType: 'Button',
+                  buttonText: 'Filters',
+                },
+              ].filter((i) => i)}
+            />
+          </div>
           {/* <div className="container-fluid">
             <Form disabled={userData.isLoading} userData={userData} onChange={this.onQuickFilterChange} className="sq-form--inline-auto p-0" value={this.state.currentQuickFilter} fields={this.quickFilterFields} />
           </div> */}
@@ -354,7 +396,9 @@ class PageListing extends BaseContainer {
                     sort: false,
                     component: {
                       name: (row) => {
-                        return row.type === 'SITE_MAP' ? 'AccountTree' : 'Description';
+                        return row.type === 'SITE_MAP'
+                          ? 'AccountTree'
+                          : 'Description';
                       },
                     },
                   },
@@ -362,12 +406,32 @@ class PageListing extends BaseContainer {
                     name: 'title',
                     headerText: 'Page Title',
                     className: 'col-large',
-                    render: (val, col, row) => row.pageName || (row.type === 'SITE_MAP' ? `${row.pageData?.siteMap?.title}` : `${row.pageData?.title}`),
+                    render: (val, col, row) =>
+                      row.pageName ||
+                      (row.type === 'SITE_MAP'
+                        ? `${row.pageData?.siteMap?.title}`
+                        : `${row.pageData?.title}`),
                   },
                   {
                     name: 'path',
                     headerText: 'Path',
                     className: 'col-large-grow',
+                  },
+
+                  {
+                    cmpType: 'TagLabel',
+                    name: 'status',
+                    headerText: 'Status',
+                    className: 'col-medium',
+                    beforeRender: (col, val, data) => {
+                      return {
+                        component: {
+                          value: !data.publishedAt ? 'Draft' : 'Published',
+                          color: !data.publishedAt ? 'success' : 'info',
+                          size: 'small',
+                        },
+                      };
+                    },
                   },
 
                   {
@@ -426,7 +490,8 @@ class PageListing extends BaseContainer {
                           buttonText: translate('Delete'),
                           confirm: {
                             title: 'Confirm?',
-                            content: 'Are you sure you want to delete this page?',
+                            content:
+                              'Are you sure you want to delete this page?',
                           },
                         },
                       ],

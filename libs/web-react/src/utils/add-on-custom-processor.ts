@@ -10,6 +10,11 @@ export default function (processor: any) {
       return translate.translate(value);
     },
   });
+  processor.add('localStore', {
+    read: (key) => {
+      return localStorage.getItem(key);
+    },
+  });
   processor.add('common', {
     accentByChar: (value) => {
       return accent.getColorByChar(_string.getTwoChars(value));
@@ -27,7 +32,12 @@ export default function (processor: any) {
         ?.map((val) => {
           val = val.trim().replace(new RegExp('&nbsp;', 'g'), ' ');
           if (val.charAt(0) === '.') {
-            return object.getDataFromKey(userData, val.substr(1), undefined, options);
+            return object.getDataFromKey(
+              userData,
+              val.substr(1),
+              undefined,
+              options
+            );
           }
           return val;
         })

@@ -1,0 +1,57 @@
+title: Homepage
+template: apps/core/templates/page
+className: body-container-small
+layout: apps/layouts/spa
+containerTemplate: Homepage
+merge:
+
+items:
+  # First image with home content
+  - component: Header
+    header: Login
+  - component: Form
+
+    name: login
+    fields:
+      - name: identifier
+        label: Username
+        validators:
+          - type: required
+      - name: password
+        type: password
+        label: Password
+        validators:
+          - type: required
+      - cmpType: Alert
+        className: sq-error
+        message: Enter a valid username and password
+        type: error
+        inject:
+        match:
+          .lastError.error.message:
+            validators:
+              - type: exists
+    actions:
+      - buttonText: Login
+        type: Button
+        size: large
+        actionType: submit-form
+        url: /strapi/api/auth/local
+        dataKey: loginResponse
+        headers:
+          Authorization: null
+        defaultResponse:  
+          success:
+            data:
+              redirect: /content/integrations/strapi/app/home
+        finally:
+          successAction:  
+            - actionType: set-header
+              params:
+                Authorization: "::common.join(fields: Bearer + .space + .loginResponse.jwt)::"
+            - actionType: set-local-storage
+              params:
+                token: .loginResponse.jwt
+        method: post
+        params:
+          ...form: .login
