@@ -13,16 +13,15 @@ enableTree: false
 editPage: /content/integrations/strapi/app/editor
 addNewPage: /content/integrations/strapi/app/home
 getPagesConfig:
-  url: /strapi/api/pages
+  url: /strapi/admin/content-manager/collection-types/api::page.page
   method: get
-  params:
-    status: draft
+
   query:
     pagination[page]: .pageNo
     pagination[pageSize]: .pageSize
   hook: data.mapper
   mapping:
-    pages: .data.data
+    pages: .data.results
 
 contentPageConfig:
   url: /api/v1/dynamic/form
@@ -32,7 +31,11 @@ deletePageConfig:
   url: |
     ::common.join(fields: /strapi/api/pages/ + .documentId)::
   method: delete
-  
+
+# isPublished:
+#   publishedAt:
+#     validators:
+#       - type: exists
 
 clonePageConfig:
   url: /api/v1/dynamic/form/clone

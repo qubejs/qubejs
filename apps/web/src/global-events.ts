@@ -16,6 +16,10 @@ utils.apiBridge.events.subscribeOnce('onRequestUrl', function (url: string) {
   if (url.startsWith('/crm')) {
     return url.replace('/crm', '');
   }
+  
+  if (url.startsWith('/strapi/admin')) {
+    return url.replace('/strapi/admin', '');
+  }
   if (url.startsWith('/strapi')) {
     return url.replace('/strapi', '');
   }

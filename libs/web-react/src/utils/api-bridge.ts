@@ -84,13 +84,16 @@ export class ApiBridge {
   }
 
   handleCatch(ex) {
-    const response = {
+    const response = this.messageParser({
       status: 'error',
       error: {
-        message: ex?.toString(),
+        error: true,
+        key: 'UNEXPECTED_ERROR',
+        message: ex?.message?.toString(),
         stack: ex.stack?.toString(),
       },
-    };
+    });
+    
     this.events.emit('onUnRecognizedError', response);
     return response;
   }

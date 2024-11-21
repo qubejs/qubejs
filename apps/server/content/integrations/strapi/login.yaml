@@ -13,7 +13,7 @@ items:
 
     name: login
     fields:
-      - name: identifier
+      - name: email
         label: Username
         validators:
           - type: required
@@ -31,12 +31,21 @@ items:
           .lastError.error.message:
             validators:
               - type: exists
+      - cmpType: Alert
+        className: sq-error
+        type: error
+        inject:
+          message: lastError.message
+        match:
+          .lastError.message:
+            validators:
+              - type: exists
     actions:
       - buttonText: Login
         type: Button
         size: large
         actionType: submit-form
-        url: /strapi/api/auth/local
+        url: /strapi/admin/admin/login
         dataKey: loginResponse
         headers:
           Authorization: null
@@ -48,10 +57,10 @@ items:
           successAction:  
             - actionType: set-header
               params:
-                Authorization: "::common.join(fields: Bearer + .space + .loginResponse.jwt)::"
+                Authorization: "::common.join(fields: Bearer + .space + .loginResponse.data.token)::"
             - actionType: set-local-storage
               params:
-                token: .loginResponse.jwt
+                token: .loginResponse.data.token
         method: post
         params:
           ...form: .login

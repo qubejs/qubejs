@@ -438,7 +438,8 @@ export const loadMedia =
 export const savePageDraft =
   (
     payload,
-    { url, method = 'patch', params, hook, autoSave, query }: any = {}
+    { url, method = 'patch', params, hook, autoSave, query }: any = {},
+    isPublished = false
   ) =>
   async (dispatch, getState) => {
     const result = await utils.apiBridge[method](
@@ -474,7 +475,7 @@ export const savePageDraft =
       !autoSave &&
         dispatch(
           showNotificationMessage({
-            message: 'Page saved successfully',
+            message: `Page ${isPublished ? 'published' : 'saved'} successfully`,
           })
         );
       if (hook) {

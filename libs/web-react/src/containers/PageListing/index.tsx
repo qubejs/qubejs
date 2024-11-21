@@ -13,6 +13,7 @@ import { GLOBAL_OPTIONS } from '../../globals';
 
 import PathTree from './PathTree';
 import DynamicContentRoot from '../DynamicContent';
+import { Validator } from '../../utils/validator';
 
 const { translate } = utils.translate;
 
@@ -424,13 +425,29 @@ class PageListing extends BaseContainer {
                     headerText: 'Status',
                     className: 'col-medium',
                     beforeRender: (col, val, data) => {
-                      return {
-                        component: {
-                          value: !data.publishedAt ? 'Draft' : 'Published',
-                          color: !data.publishedAt ? 'success' : 'info',
-                          size: 'small',
-                        },
-                      };
+                      if (pageData.isPublished) {
+                        const validator = new Validator(pageData.isPublished);
+                        validator.setValues(data);
+                        return {
+                          component: {
+                            value: !validator.validateAll()
+                              ? 'Draft'
+                              : 'Published',
+                            color: !validator.validateAll()
+                              ? 'success'
+                              : 'info',
+                            size: 'small',
+                          },
+                        };
+                      } else {
+                        return {
+                          component: {
+                            value: 'Live',
+                            color: 'info',
+                            size: 'small',
+                          },
+                        };
+                      }
                     },
                   },
 

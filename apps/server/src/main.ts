@@ -27,6 +27,7 @@ app.use(session({
 }));
 app.use(cookieParser())
 app.use(bodyParser.json())
+console.log(__dirname);
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 const cmsSever = new ContentServer(

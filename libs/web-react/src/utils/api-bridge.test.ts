@@ -24,6 +24,11 @@ function setUpFakeData(url, data, status?, plain?) {
     };
   }
 }
+function setUpFakeDataError(url, fn) {
+  fakeData[url] = {
+    fn,
+  };
+}
 
 function resetFakeData() {
   fakeData = {};
@@ -31,6 +36,10 @@ function resetFakeData() {
 
 function setUp() {
   global.fetch = jest.fn((url) => {
+    if (fakeData[url].fn) {
+      return fakeData[url].fn();
+    }
+    console.log(fakeData);
     return Promise.resolve(fakeData[url]);
   });
 }
@@ -382,6 +391,29 @@ describe('Api Bridge', () => {
         error: {
           message: 'Oops something went wrong.',
           errorMessage: 'Oops something went wrong.',
+          key: 'UNEXPECTED_ERROR',
+        },
+      });
+    });
+  });
+  describe('error: fetch failed', function () {
+    let response;
+    beforeEach(async () => {
+      resetFakeData();
+      apiBridge.reset();
+    });
+    test('should return the parsed response', async () => {
+      setUpFakeDataError('/login/try/jsfail', () => {
+        return Promise.reject({ message: 'fetch failed', stack: 'fetch failed test' });
+      });
+      response = await apiBridge.post('/login/try/jsfail', {});
+      expect(response).toEqual({
+        status: 'error',
+        error: {
+          error: true,
+          message: 'Oops something went wrong.',
+          errorMessage: 'Oops something went wrong.',
+          stack: 'fetch failed test',
           key: 'UNEXPECTED_ERROR',
         },
       });

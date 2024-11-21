@@ -13,6 +13,9 @@ export default {
     '/strapi/api': {
       prefix: process.env.STRAPI_API_PREFIX || 'http://localhost:1337',
     },
+    '/strapi/admin': {
+      prefix: process.env.STRAPI_API_PREFIX || 'http://localhost:1337',
+    },
   },
   log: 'debug',
 };

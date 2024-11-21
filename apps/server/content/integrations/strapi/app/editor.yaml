@@ -20,6 +20,15 @@ savePageConfig:
   url: |
     ::common.join(fields: /strapi/api/pages/ + .documentId)
   method: put
+  query:
+    status: draft
+  params:
+    data:
+      pageData: .pageData
+publishPageConfig:
+  url: |
+    ::common.join(fields: /strapi/api/pages/ + .documentId)
+  method: put
   params:
     data:
       pageData: .pageData

@@ -8,7 +8,7 @@ hook:
         params:
           Authorization: "::common.join(fields: Bearer + .space + .loginResponse.jwt)::"
   afterLoad:
-    - url: /strapi/api/users/me
+    - url: /strapi/admin/admin/users/me
       method: get
       dataKey: currentUser
       mapper:

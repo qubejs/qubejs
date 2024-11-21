@@ -84,6 +84,9 @@ items:
       finally:
         successAction:
           - actionType: close-popup-screen
+      query: 
+        status: draft
+
       params:
         data:
           pageData:

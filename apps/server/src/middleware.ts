@@ -1,19 +1,19 @@
 import { utils, Response } from '@qubejs/core';
-import { features } from '@qubejs/cms-admin';
+// import { features } from '@qubejs/cms-admin';
 import settings from './settings';
 import apiConfig from './api.config';
 import apiValidationRules from './api.validation.rules';
 const APP_KEY = process.env.APPLICATION_KEY;
 // console.log(features);
-const { middleware } = features.adminPanel;
+// const { middleware } = features.adminPanel;
 export default function (req, res, next) {
   let isPublic = false;
   let isAdmin = false;
   let isSecured = false;
-  const result = middleware()(req, res, next);
-  if (result !== undefined) {
-    return result;
-  }
+  // const result = middleware()(req, res, next);
+  // if (result !== undefined) {
+  //   return result;
+  // }
   utils.logger.log('Middleware:' + req.method + req.originalUrl);
   settings.api.public.forEach(function (urlReg) {
     // utils.logger.log('Middleware:checking for public api:' + req.originalUrl, ' -> ', urlReg);

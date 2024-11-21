@@ -160,7 +160,6 @@ export const updateErrorData = (data) => (dispatch) => {
   const errors = {
     lastError: {},
   };
-  console.log('@@@data', data);
   Object.keys(data).forEach((errorKey) => {
     if (data[errorKey]?.errors) {
       errors[`${errorKey}_errors`] = data[errorKey]?.errors;
@@ -174,7 +173,6 @@ export const updateErrorData = (data) => (dispatch) => {
       ...data,
     };
   }
-  console.log('error', errors);
   dispatch(updateUserData(errors));
 };
 

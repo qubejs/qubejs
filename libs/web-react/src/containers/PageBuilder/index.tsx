@@ -180,6 +180,16 @@ class PageBuilder extends Component {
     );
     !autoSave && this.props.commonActions.stopLoading();
   }
+  async publishPage() {
+    const { pageData } = this.props;
+    this.props.commonActions.startLoading();
+    await this.props.raiseAction(
+      savePageDraft(this.state.contentData, {
+        ...pageData.publishPageConfig,
+      }, true)
+    );
+    this.props.commonActions.stopLoading();
+  }
   componentOnDrop(item, e, idx) {
     const newItems = [
       ...(this.state.contentData.pageData.items || []),
@@ -427,6 +437,13 @@ class PageBuilder extends Component {
                 variant="outlined"
                 buttonText="Save"
                 onClick={() => this.savePageAsDraft()}
+              />
+            )}
+             {pageData.publishPageConfig && (
+              <Button
+                iconName={'CloudUpload'}
+                buttonText="Publish"
+                onClick={() => this.publishPage()}
               />
             )}
             {
