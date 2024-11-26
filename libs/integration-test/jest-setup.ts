@@ -1,6 +1,6 @@
 // import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/jest-dom';
-import "jest-location-mock";
+import 'jest-location-mock';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -26,12 +26,13 @@ Object.defineProperty(window, 'location', {
 });
 Object.defineProperty(window, 'URL', {
   writable: true,
-  value: {
-    createObjectURL: jest.fn().mockImplementation((query) => 'testURl'),
-    revokeObjectURL: jest.fn(),
+  value: class URL {
+    createObjectURL() {
+      return 'testURl';
+    }
+    revokeObjectURL() {}
   },
 });
-
 
 delete window.location;
 window.location = {};
@@ -55,7 +56,7 @@ Object.defineProperty(window.document, 'cookie', {
 if (!AbortSignal.timeout) {
   AbortSignal.timeout = (ms) => {
     const controller = new AbortController();
-    setTimeout(() => controller.abort(new DOMException("TimeoutError")), ms);
+    setTimeout(() => controller.abort(new DOMException('TimeoutError')), ms);
     return controller.signal;
   };
 }

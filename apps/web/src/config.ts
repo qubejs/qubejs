@@ -1,14 +1,14 @@
 export default {
   globals: {
-    path: '/content/admin/root',
+    path: '/content/root',
   },
   urls: {
-    protected: [ '/content/dynamic/app/*', '/content/admin/*'],
+    protected: [ '/content/dynamic/app/*', '/content/admin/*', '/content/integrations/strapi/app/*'],
   },
   urlMapping: {
     homeDashboard: '/content/app/dashboard',
     home: '/content/home',
-    login: '/content/admin/login',
+    login: '/content/integrations/strapi/login',
     '/login': '/login',
     '/register': '/register',
     register: '/content/admin/register',

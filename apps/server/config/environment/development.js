@@ -9,5 +9,13 @@ export default {
   server: {
     host: 'http://localhost:6004',
   },
+  apiPrefix: {
+    '/strapi/api': {
+      prefix: process.env.STRAPI_API_PREFIX || 'http://localhost:1337',
+    },
+    '/strapi/admin': {
+      prefix: process.env.STRAPI_API_PREFIX || 'http://localhost:1337',
+    },
+  },
   log: 'debug',
 };
