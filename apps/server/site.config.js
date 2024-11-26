@@ -23,6 +23,18 @@ export default {
         },
         method: 'post',
       },
+      '/content/integrations/strapi/page/*': {
+        url: '/strapi/api/pages',
+        params: {
+          'filters[path][$eq]': '.url',
+          'status': '.query.status'
+        },
+        method: 'get',
+        mapper: {
+          status: 'success',
+          data: '.data.data.0'
+        }
+      },
     },
     defaultRedirect: {
       '.*premium.com': '/content/premium',
@@ -65,6 +77,10 @@ export default {
               href: '/content/dashboard',
             },
           ],
+        },
+        {
+          title: 'Strapi Integration',
+          href: '/content/integrations/strapi/login',
         },
         {
           title: 'Components',
@@ -155,7 +171,13 @@ export default {
         {
           title: 'Dashboard',
           iconName: 'dashboard',
-          href: '/content/app/dashboard',
+          href: '/content/integrations/strapi/app/listpages',
+        },
+
+        {
+          title: 'Create Page',
+          iconName: 'page',
+          href: '/content/integrations/strapi/app/home',
         },
       ],
       mobileItems: [],

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { timer } from '../../utils';
+import { apiBridge, timer } from '../../utils';
 import DefaultContent from '../Content';
 import Default from './Default';
 import browser from '../../utils/browser';
@@ -40,6 +40,7 @@ import {
   setError,
   clearError,
 } from '../../redux/common';
+import { utils } from '@qubejs/core';
 
 const _window = window;
 containers.set({
@@ -280,7 +281,12 @@ class DynamicContent extends Component {
   }
 
   async componentDidUpdate() {
-    const { location = {}, url: overrideUrl, onThemeChange, pageConfig } = this.props;
+    const {
+      location = {},
+      url: overrideUrl,
+      onThemeChange,
+      pageConfig,
+    } = this.props;
     const activeTheme = this.state.activeTheme;
     const pageDataTheme =
       this.state.pageData?.pageData?.theme ||
@@ -689,6 +695,38 @@ class DynamicContent extends Component {
         break;
       case 'cancel-event':
         onCancel && onCancel(processParams(newUserData, action.params));
+        break;
+      case 'set-local-storage':
+        {
+          let validated = true;
+          if (action.executeIf) {
+            const storeItemValidator = new Validator(action.executeIf);
+            storeItemValidator.setValues(newUserData);
+            validated = storeItemValidator.validateAll();
+          }
+          if (validated) {
+            const processedKeys = processParams(newUserData, action.params);
+            Object.keys(processedKeys).forEach((key) => {
+              localStorage.setItem(key, processedKeys[key]);
+            });
+          }
+        }
+        break;
+      case 'set-header':
+        {
+          let validated = true;
+          if (action.executeIf) {
+            const storeItemValidator = new Validator(action.executeIf);
+            storeItemValidator.setValues(newUserData);
+            validated = storeItemValidator.validateAll();
+          }
+          if (validated) {
+            const processedKeys = processParams(newUserData, action.params);
+            Object.keys(processedKeys).forEach((key) => {
+              apiBridge.addHeader(key, processedKeys[key]);
+            });
+          }
+        }
         break;
       case 'user-store':
         if (Array.isArray(action.bulk)) {
