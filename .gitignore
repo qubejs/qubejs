@@ -44,3 +44,11 @@ Thumbs.db
 .docusaurus/
 .cache-loader/
 .env
+
+# Next.js
+.next
+out
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
