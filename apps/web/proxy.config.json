@@ -1,6 +1,12 @@
 [
   {
-    "context": ["/api", "/env", "/client", "/content", "/dam"],
+    "context": [
+      "/api",
+      "/env",
+      "/client",
+      "/content",
+      "/dam"
+    ],
     "target": "http://localhost:4602"
   }
 ]

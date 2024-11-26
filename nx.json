@@ -15,8 +15,17 @@
         "{workspaceRoot}/.eslintignore"
       ]
     },
-    "test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+    "@nx/jest:jest": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
     }
   },
   "namedInputs": {
@@ -49,5 +58,7 @@
         "unitTestRunner": "jest"
       }
     }
-  }
+  },
+  "useInferencePlugins": false,
+  "useLegacyCache": true
 }
