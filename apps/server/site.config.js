@@ -27,6 +27,7 @@ export default {
         url: '/strapi/api/pages',
         params: {
           'filters[path][$eq]': '.url',
+          'status': '.query.status'
         },
         method: 'get',
         mapper: {

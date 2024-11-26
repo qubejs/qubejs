@@ -176,7 +176,7 @@ class PageListing extends BaseContainer {
             this.props.store
           ),
         };
-        utils.redirect.redirectTo(params.path, params.urlParams, {
+        utils.redirect.redirectTo(params.path, {...params.urlParams, status: 'draft'}, {
           target: '_blank',
         });
         break;
@@ -427,14 +427,22 @@ class PageListing extends BaseContainer {
                     beforeRender: (col, val, data) => {
                       if (pageData.isPublished) {
                         const validator = new Validator(pageData.isPublished);
+                        const validatorModified = new Validator(
+                          pageData.isModified
+                        );
                         validator.setValues(data);
+                        validatorModified.setValues(data);
                         return {
                           component: {
-                            value: !validator.validateAll()
-                              ? 'Draft'
-                              : 'Published',
-                            color: !validator.validateAll()
+                            value: validator.validateAll()
+                              ? 'Published'
+                              : validatorModified.validateAll()
+                              ? 'Modified'
+                              : 'Draft',
+                            color: validator.validateAll()
                               ? 'success'
+                              : validatorModified.validateAll()
+                              ? 'warning'
                               : 'info',
                             size: 'small',
                           },
@@ -479,17 +487,21 @@ class PageListing extends BaseContainer {
                           action: 'unpublish',
                           buttonText: translate('UnPublish'),
                           render: (row) => {
-                            return row.status === 'PUBLISHED';
+                            const validator = new Validator(pageData.isPublished);
+                            validator.setValues(row);
+                            return validator.validateAll();
                           },
                         },
                         {
                           cmpType: 'LinkButton',
-                          iconName: 'active',
-                          iconColor: 'success',
+                          iconName: 'CloudUpload',
+                          iconColor: 'info',
                           action: 'publish',
                           buttonText: translate('Publish'),
                           render: (row) => {
-                            return row.status === 'DRAFT';
+                            const validator = new Validator(pageData.isPublished);
+                            validator.setValues(row);
+                            return !validator.validateAll();
                           },
                         },
                         {

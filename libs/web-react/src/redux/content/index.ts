@@ -40,7 +40,10 @@ const extractUrlInfo = (url, config) => {
           output.url = foundCOnfig.url;
         }
         if (foundCOnfig.params) {
-          output.params = processParams({ url }, foundCOnfig.params);
+          output.params = processParams(
+            { query: utils.queryString.query.get(), url },
+            foundCOnfig.params
+          );
         }
         if (foundCOnfig.method) {
           output.method = foundCOnfig.method;
@@ -74,7 +77,7 @@ export const fetchJsonPath = ({ url, params, headers }: any) => {
     url: overrideUrl,
     params: overrideParams,
     method: overrideMethod,
-    mapper
+    mapper,
   } = extractUrlInfo(
     url,
     win.getWindow().APP_CONFIG?.siteMap?.siteMap?.dynamicContentConfig
@@ -1052,4 +1055,3 @@ export const {
 }: any = content.actions;
 export { customHooks, parseCustomModule, processParams, processEachParam };
 export default content.reducer;
-

@@ -316,7 +316,7 @@ class PageBuilder extends Component {
     };
     utils.redirect.redirectTo(
       params.path,
-      params.urlParams,
+      {...params.urlParams, status: 'draft'},
       { target: '_blank' }
     );
   }
