@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install --legacy-peer-deps
-      - run: npx nx run-many -t test --codeCoverage 
+      - run: npx nx run-many -t test --codeCoverage -p core cms web-react ui-material-base integration-test next-web
 
   publish-npm:
     needs: build
