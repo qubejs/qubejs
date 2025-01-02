@@ -51,6 +51,7 @@
           "react-router-dom",
           "react-html-parser",
           "@qubejs/core",
+          "@qubejs/web-react",
           "d3"
         ],
         "rollupConfig": "libs/ui-material-base/rollup.config.js",
