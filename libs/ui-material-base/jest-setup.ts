@@ -26,9 +26,11 @@ Object.defineProperty(window, 'location', {
 });
 Object.defineProperty(window, 'URL', {
   writable: true,
-  value: {
-    createObjectURL: jest.fn().mockImplementation((query) => 'testURl'),
-    revokeObjectURL: jest.fn(),
+  value: class URL {
+    createObjectURL() {
+      return 'testURl';
+    }
+    revokeObjectURL() {}
   },
 });
 
