@@ -122,6 +122,15 @@ export default {
           buttonText: 'Login',
           to: '/login',
         },
+        {
+          type: 'LinkButton',
+          color: 'secondary',
+          iconName: 'github',
+          iconSize: 'small',
+          buttonText: 'Github',
+          to: 'https://www.github.com/qubejs/qubejs',
+          target: '_blank'
+        },
       ],
       rightItems: [
         {
@@ -150,6 +159,13 @@ export default {
           iconSize: 'small',
           buttonText: 'Login',
           to: '/login',
+        },
+        {
+          type: 'LinkButton',
+          color: 'secondary',
+          buttonText: 'Github',
+          to: 'https://www.github.com/qubejs/qubejs',
+          target: '_blank'
         },
         {
           type: 'Button',
