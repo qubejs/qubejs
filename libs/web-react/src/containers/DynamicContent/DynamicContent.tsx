@@ -836,7 +836,7 @@ class DynamicContent extends Component {
     const { pageData = {}, metaData } = this.state.pageData;
     const dynamicParams = processParams(
       userData,
-      { ...root.merge, ...pageData.inject } || {}
+      { ...root.merge, ...pageData.inject }
     );
     const { classes = {}, ...restDynamic } = dynamicParams;
     const updatedPageData = { ...pageData, ...restDynamic };
