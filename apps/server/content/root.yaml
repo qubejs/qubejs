@@ -1,0 +1,22 @@
+merge:
+  currentUserEmail: .currentUser.emailId
+  token: ::localStore.read::token
+hook:
+  load:
+    successAction:
+      - type: set-header
+        params:
+          Authorization: "::common.join(fields: Bearer + .space + .loginResponse.jwt)::"
+  afterLoad:
+    - url: /strapi/admin/admin/users/me
+      method: get
+      dataKey: currentUser
+      mapper:
+        
+      postHook: authData.setUser
+      match:
+        test:
+          validators: 
+            - type: hasMatchingUrl
+              setName: protected
+

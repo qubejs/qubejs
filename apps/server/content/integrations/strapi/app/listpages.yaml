@@ -1,0 +1,53 @@
+title: Pages
+id: pagelist
+template: apps/core/templates/page
+layout: apps/layouts/spa
+contentBodyClass: container-fluid container-ultrawide
+bodyClassName:
+containerTemplate: AdminDashboard
+container: PageListing
+enableTree: false
+# getPageTreeConfig:
+#   url: /api/v1/dynamic/form/tree/view
+#   method: post
+editPage: /content/integrations/strapi/app/editor
+addNewPage: /content/integrations/strapi/app/home
+getPagesConfig:
+  url: /strapi/admin/content-manager/collection-types/api::page.page
+  method: get
+
+  query:
+    pagination[page]: .pageNo
+    pagination[pageSize]: .pageSize
+  hook: data.mapper
+  mapping:
+    pages: .data.results
+
+contentPageConfig:
+  url: /api/v1/dynamic/form
+  params:
+    pageId: .pageId
+deletePageConfig:
+  url: |
+    ::common.join(fields: /strapi/api/pages/ + .documentId)::
+  method: delete
+
+# isPublished:
+#   publishedAt:
+#     validators:
+#       - type: exists
+
+clonePageConfig:
+  url: /api/v1/dynamic/form/clone
+  params:
+    from: .from
+    to: .to
+    pageName: .name
+cloneConfig:
+  init:
+    to: /content/dynamic/
+  targetPath:
+    required:
+      defaultValue: /content/dynamic/
+    starts:
+      startsWith: /content/dynamic/

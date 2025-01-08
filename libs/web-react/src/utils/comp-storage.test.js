@@ -155,7 +155,6 @@ describe('utils:comp-storage', () => {
       expect(storage.readNamed('parkingviwe', 'Lowes Users', true)).not.toBeDefined();
     });
     test('PreferenceStorage.readNamed(key, viewName) return preloaded data', async () => {
-      console.log(storage);
       expect(storage.readNamed('stored', 'Park Users')).toEqual({ v: 1 });
     });
     test('PreferenceStorage.readNamed(key, viewName) return blank data if not found', async () => {
