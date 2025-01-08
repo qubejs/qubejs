@@ -43,7 +43,7 @@ const LinkButton = ({
           {...rest}
           onClick={(e) => {
             onClick && onClick(e);
-            to && redirectTo(to, urlParams, { ...rest });
+            // to && redirectTo(to, urlParams, { ...rest });
           }}
         ></LinkToRender>
       )}

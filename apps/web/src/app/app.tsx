@@ -26,17 +26,21 @@ const {
 const { closeNotification, closePopup, closePopupScreen } = reducers.common;
 const { initApplication, selectUserData } = reducers.content;
 
-storage.settings.set({
-  grid: {
-    viewType: 'comfort',
-  }
-})
+// storage.settings.set({
+//   grid: {
+//     viewType: 'comfort',
+//   },
+// });
 const { DynamicContent, Application } = containers;
 setUrlMapping(config.urlMapping);
 
 storage.containers.set({
   ...containers,
   ...templates,
+});
+
+utils.setErrorCodes({
+  UNAUTHORIZE_CODE: 401,
 });
 
 export function App({ appActions, appStore }) {
@@ -46,6 +50,8 @@ export function App({ appActions, appStore }) {
   const { Application } = storage.containers.get();
   const onUnauthroized = () => {
     // appActions.clearUser();
+    localStorage.setItem('token', null);
+    console.log('unauthorized');
     const url = window.location.pathname + window.location.search;
     if (url.indexOf('/login') === -1) {
       utils.redirect.redirectTo('login', { returnUrl: url });
@@ -54,11 +60,11 @@ export function App({ appActions, appStore }) {
   useEffect(() => {
     utils.redirect.setNavigate(navigate);
     utils.apiBridge.events.subscribeOnce('onUnauthroized', onUnauthroized);
-    const token = utils.cookie.get('token');
-    utils.apiBridge.addHeader(
-      'tenantCode',
-     utils.queryString.query.get().tenantCode || utils.win.getWindow().APP_CONFIG.tenantCode
-    );
+    const token = localStorage.getItem('token');
+    // utils.apiBridge.addHeader(
+    //   'tenantCode',
+    //  utils.queryString.query.get().tenantCode || utils.win.getWindow().APP_CONFIG.tenantCode
+    // );
     if (token) {
       utils.apiBridge.addHeader('Authorization', `Bearer ${token}`);
     }
@@ -67,7 +73,7 @@ export function App({ appActions, appStore }) {
   useEffect(() => {
     setNavigate(navigate);
   }, []);
-  console.log('@@@appStore', appStore)
+  console.log('@@@appStore', appStore);
   return (
     <>
       {loaded && (
