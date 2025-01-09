@@ -1,27 +1,42 @@
-{
-  "/api": {
+[
+  {
+    "context": [
+      "/api"
+    ],
     "changeOrigin": true,
     "cookieDomainRewrite": "localhost",
     "target": "http://localhost:4602"
   },
-  "/env": {
+  {
+    "context": [
+      "/env"
+    ],
     "changeOrigin": true,
     "cookieDomainRewrite": "localhost",
     "target": "http://localhost:4602"
   },
-  "/client": {
+  {
+    "context": [
+      "/client"
+    ],
     "changeOrigin": true,
     "cookieDomainRewrite": "localhost",
     "target": "http://localhost:4602"
   },
-  "/content": {
+  {
+    "context": [
+      "/content"
+    ],
     "changeOrigin": true,
     "cookieDomainRewrite": "localhost",
     "target": "http://localhost:4602"
   },
-  "/dam": {
+  {
+    "context": [
+      "/dam"
+    ],
     "changeOrigin": true,
     "cookieDomainRewrite": "localhost",
     "target": "http://localhost:4602"
   }
-}
+]
