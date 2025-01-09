@@ -6,7 +6,7 @@
   "tags": [],
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/ui-material-base/**/*.{ts,tsx,js,jsx}"]
@@ -22,12 +22,10 @@
     "build-imports": {
       "command": "node tools/scripts/build-imports.mjs libs/ui-material-base/src"
     },
-
     "dist": {
       "command": "node -v",
       "dependsOn": ["build-imports", "build-scss", "build", "copy-scss"]
     },
-
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],

@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/web/src",
   "projectType": "application",
+  "tags": [],
   "targets": {
     "build-pages": {
       "command": "node tools/scripts/build-pages.mjs",
@@ -76,7 +77,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
@@ -102,6 +103,5 @@
         }
       }
     }
-  },
-  "tags": []
+  }
 }
