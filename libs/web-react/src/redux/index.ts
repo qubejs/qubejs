@@ -5,9 +5,11 @@ import * as authentication from './authentication';
 import * as user from './user';
 import * as emailtemplate from './emailtemplate';
 import * as application from './application';
+import AddOnCustomHooks from '../utils/add-on-custom-hooks';
 
 export { content, common, admin, authentication, user, emailtemplate, application };
 
+AddOnCustomHooks({ content, common, admin, authentication, user, emailtemplate, application });
 export default {
   content: content.default,
   common: common.default,

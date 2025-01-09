@@ -332,7 +332,7 @@ describe('reducer:content', () => {
       pageData: {},
       metaData: {},
       protectedData: {},
-      userData: { currentUrl: '/test', query: {} },
+      userData: { currentUrl: '/test', space: ' ', query: {} },
     });
   });
 
@@ -345,7 +345,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 1 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 1 },
+        },
       });
     });
     test('should override whole data in userData', () => {
@@ -363,7 +368,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 1 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 1 },
+        },
       });
     });
   });
@@ -376,7 +386,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: { test: { nodata: 1 } },
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 1 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 1 },
+        },
       });
     });
   });
@@ -390,7 +405,7 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {} },
+        userData: { currentUrl: '/test', space: ' ', query: {} },
       });
     });
     test('should clear the data except protected data', () => {
@@ -406,7 +421,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: { protect: { nodata: 1 } },
-        userData: { currentUrl: '/test', protect: { nodata: 1 }, query: {} },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          protect: { nodata: 1 },
+          query: {},
+        },
       });
     });
   });
@@ -441,7 +461,12 @@ describe('reducer:content', () => {
         pageData: {},
         metaData: {},
         protectedData: {},
-        userData: { currentUrl: '/test', query: {}, test: { nodata: 2 } },
+        userData: {
+          currentUrl: '/test',
+          space: ' ',
+          query: {},
+          test: { nodata: 2 },
+        },
       };
       const { store, invoke } = fake.thunk.create({
         content: {
@@ -518,6 +543,45 @@ describe('reducer:content', () => {
         });
       });
     });
+
+    // describe('postApi with error in case of fetch failed', () => {
+    //   let store;
+    //   beforeEach(async () => {
+    //     const prevState = {
+    //       isContentLoading: false,
+    //       pageData: {},
+    //       metaData: {},
+    //       protectedData: {},
+    //       userData: { query: {}, test: { nodata: 2 } },
+    //     };
+    //     const { store: _store, invoke } = fake.thunk.create({
+    //       content: {
+    //         ...prevState,
+    //       },
+    //     });
+    //     apiBridge.post = jest.fn(() =>
+    //       Promise.resolve({ status: 'error', error: {error:true, message: 'Fetch failed', stack: 'failed fetch'} })
+    //     );
+    //     const action = postApi({
+    //       method: 'post',
+    //       url: 'fake/api',
+    //     });
+    //     store = _store;
+    //     invoke(action);
+    //   });
+    //   test('should store response in userData', () => {
+    //     expect(store.dispatch).toHaveBeenCalledWith({
+    //       payload: {
+    //         lastError: {
+    //           error: true,
+    //           key: 'UNEXPECTED_ERROR',
+    //           message: 'fetchFailed',
+    //         },
+    //       },
+    //       type: 'content/updateUserData',
+    //     });
+    //   });
+    // });
 
     describe('postApi with notification [success]', () => {
       let store;
