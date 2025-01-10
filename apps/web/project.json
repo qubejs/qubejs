@@ -76,10 +76,6 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {

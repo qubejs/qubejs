@@ -7,6 +7,12 @@ module.exports = [
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
-    rules: {},
+    rules: {
+      '@typescript-eslint/no-unused-expressions': 'off',
+      'no-var': 'off',
+      'no-empty': 'off',
+      '@typescript-eslint/no-this-alias': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
+    },
   },
 ];

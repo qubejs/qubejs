@@ -1,35 +1,55 @@
-const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
-const { NxReactWebpackPlugin } = require('@nx/react/webpack-plugin');
-const { join } = require('path');
+require('dotenv').config();
+const path = require('path');
+// const chalk = require('chalk');
+const { composePlugins, withNx } = require('@nx/webpack');
+const { withReact } = require('@nx/react');
+const packageJson = require('../../package.json');
 
-module.exports = {
-  output: {
-    path: join(__dirname, '../../dist/apps/web'),
-  },
-  devServer: {
-    port: 4200,
-    historyApiFallback: {
-      index: '/index.html',
-      disableDotRule: true,
-      htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
-    },
-  },
-  plugins: [
-    new NxAppWebpackPlugin({
-      tsConfig: './tsconfig.app.json',
-      compiler: 'babel',
-      main: './src/main.tsx',
-      index: './src/index.html',
-      baseHref: '/',
-      assets: ['./src/favicon.ico', './src/assets'],
-      styles: ['./src/styles.scss'],
-      outputHashing: process.env['NODE_ENV'] === 'production' ? 'all' : 'none',
-      optimization: process.env['NODE_ENV'] === 'production',
-    }),
-    new NxReactWebpackPlugin({
-      // Uncomment this line if you don't want to use SVGR
-      // See: https://react-svgr.com/
-      // svgr: false
-    }),
-  ],
-};
+const VERSION = process.env.VERSION || packageJson.version;
+// Nx plugins for webpack.
+module.exports = composePlugins(withNx(), withReact(), (config) => {
+  if (VERSION) {
+    console.log('building for version:' + VERSION);
+    config.output.filename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
+    config.output.chunkFilename = `[name]${VERSION ? `.${VERSION}` : ''}.js`;
+    const plugin = config.plugins.find(
+      (item) => item?.constructor?.name === 'MiniCssExtractPlugin'
+    );
+    console.log(plugin)
+    plugin.options.filename = `[name]${VERSION ? `.${VERSION}` : ''}.css`;
+    plugin.options.chunkFilename = `[name]${VERSION ? `.${VERSION}` : ''}.css`;
+  }
+  // Update the webpack config as needed here.
+  // e.g. `config.plugins.push(new MyPlugin())`
+  const typescss = config.module.rules.filter((i) => '.scss'.match(i.test))[0];
+  // console.log(typescss);
+  const scssMod = typescss.oneOf.filter((i) => '.scss'.match(i.test))[0];
+  // scssMod.use[1].options.importLoaders = 1;
+  // scssMod.use[1].options.modules = {
+  //   compileType: 'icss',
+  // };
+  // console.log(config.module.rules);
+  // console.log(scssMod.use[1]);
+  const typeWeb = scssMod.use[3].options;
+  typeWeb.additionalData = (content, loaderContext) => {
+    if (
+      loaderContext.resourcePath.endsWith(
+        `themes\\main\\abstract\\_variables.scss`
+      ) ||
+      loaderContext.resourcePath.endsWith(
+        `themes/main/abstract/_variables.scss`
+      )
+    ) {
+      return content;
+    }
+    return `
+      @import "themes/main/abstract/_variables.scss";
+      @import "mixins/index.scss";
+    ${content}
+  `;
+  };
+  // console.log(path.resolve('apps/web/src/styles'));
+  typeWeb.sassOptions.includePaths.push(path.resolve('apps/web/src/styles'));
+  typeWeb.sassOptions.includePaths.push(path.resolve('libs'));
+  return config;
+});
