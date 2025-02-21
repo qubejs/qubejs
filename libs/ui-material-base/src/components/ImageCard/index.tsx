@@ -17,6 +17,7 @@ function ImageCard({
   disabledImage = false,
   disabledIcon = false,
   className = '',
+  onClick,
   onChange,
   onAction,
   actions = [],
@@ -29,6 +30,7 @@ function ImageCard({
   return (
     <div
       className={`sq-image-card ${className} sq-image-card--style-${mode} sq-image-card--t-style-${tileStyle}`}
+      onClick={onClick}
     >
       <div className="sq-image-card__container">
         <div style={styles} className="sq-image-card__img-container">
