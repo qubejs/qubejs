@@ -43,12 +43,12 @@ function ImageCard({
             />
           )}
           <div className="sq-image-card__overlay"></div>
-          <Actions
+          {actions?.length > 0 && <Actions
             className="sq-image-card__actions sq-actions--vertical"
             row={row}
             actions={actions}
             onAction={onAction}
-          />
+          />}
         </div>
         <div className="sq-image-card__content-container">
           <div className="sq-image-card__text-wrapper">
@@ -78,12 +78,12 @@ function ImageCard({
               )}
             </div>
           </div>
-          <MoreActions
+          {actions?.length > 0 && <MoreActions
             className="sq-image-card__more-actions"
             row={row}
             actions={actions}
             onAction={onAction}
-          />
+          />}
         </div>
       </div>
     </div>
@@ -104,6 +104,7 @@ ImageCard.propTypes = {
   tileStyle: PropTypes.string,
   onChange: PropTypes.func,
   onAction: PropTypes.func,
+  onClick: PropTypes.func,
   header: PropTypes.string,
   tagLabel: PropTypes.string,
   tagColor: PropTypes.string,

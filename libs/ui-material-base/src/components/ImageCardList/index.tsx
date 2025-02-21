@@ -23,6 +23,7 @@ function ImageCardList({
   tagColor,
   title,
   iconName,
+  onClick,
   imageUrl,
   iconNameField = 'icon',
   iconColorField = 'iconColor',
@@ -56,7 +57,7 @@ function ImageCardList({
             const finalIcon = getValue({}, item[iconNameField] || iconName, item);
             const iconColor = getValue({}, item[iconColorField] || iconColorField, item);
             return (
-              <ImageCard key={idx} iconName={finalIcon} tagSize={tagSize} tileStyle={tileStyle} iconColor={iconColor} disabledImage={disabledImage} disabledIcon={disabledIcon} row={item} mode={finalMode} header={fTitle} tagLabel={tagValue} tagColor={tagColorValue} imageUrl={fImageUrl} className={childClassName} actions={finalActions} onAction={(e, action) => onAction && onAction(item, action)} />
+              <ImageCard onClick={()=> onClick({}, item)} key={idx} iconName={finalIcon} tagSize={tagSize} tileStyle={tileStyle} iconColor={iconColor} disabledImage={disabledImage} disabledIcon={disabledIcon} row={item} mode={finalMode} header={fTitle} tagLabel={tagValue} tagColor={tagColorValue} imageUrl={fImageUrl} className={childClassName} actions={finalActions} onAction={(e, action) => onAction && onAction(item, action)} />
             );
           })}
       </div>
@@ -89,6 +90,7 @@ ImageCardList.propTypes = {
   tagFieldName: PropTypes.string,
   tagColorField: PropTypes.string,
   onAction: PropTypes.func,
+  onClick: PropTypes.func,
   header: PropTypes.string,
   tagSize: PropTypes.string,
   actions: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
