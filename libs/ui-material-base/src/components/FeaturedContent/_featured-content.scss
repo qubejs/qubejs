@@ -21,6 +21,9 @@
       &__icon {
         margin-bottom: $spacing-x2;
       }
+      &__image {
+        padding: 20px;
+      }
       &__title {
         @include t5-style();
         margin-bottom: 16px;
@@ -33,6 +36,7 @@
       &__links {
         margin-top: $spacing-x2;
       }
+      
       &:hover {
         .sq-fc-default-item__icon .sq-icon {
           background-color: $sq-color-primary;
@@ -119,3 +123,4 @@
     }
   }
 }
+

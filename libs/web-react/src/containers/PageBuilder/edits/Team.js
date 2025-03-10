@@ -40,6 +40,16 @@ export default withEditTabsConfig(({ defaultParams, iconList }) => ({
         },
         {
           cmpType: 'Input',
+          label: 'href',
+          name: 'href',
+        },
+        {
+          cmpType: 'FormObject',
+          label: 'urlParams',
+          name: 'urlParams',
+        },
+        {
+          cmpType: 'Input',
           label: 'designation',
           name: 'designation',
         },

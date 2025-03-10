@@ -1,6 +1,11 @@
 $icon-selector-hover-color: $brand-info;
 
 .sq-icon-selector {
+  display: flex;
+  align-items: center;
+  &__label {
+    
+  }
   &__icon-container {
     display: flex;
     flex-wrap: wrap;

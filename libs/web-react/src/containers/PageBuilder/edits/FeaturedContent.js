@@ -1,7 +1,7 @@
 import { GLOBAL_OPTIONS } from '../../../globals';
 import { withEditTabsConfig } from './Common';
 
-export default withEditTabsConfig(({ defaultParams, getIcons, iconColorTypes }) => ({
+export default withEditTabsConfig(({ defaultParams, getIcons, iconSize, iconColorTypes }) => ({
   enableValidations: false,
   pageData: {
     items: [],
@@ -25,7 +25,7 @@ export default withEditTabsConfig(({ defaultParams, getIcons, iconColorTypes }) 
       formClassName: 'sq-form--2-cols',
       fields: [
         {
-          cmpType: 'Autocomplete',
+          cmpType: 'IconSelector',
           label: 'Icon',
           options: getIcons,
           name: 'icon',
@@ -37,14 +37,20 @@ export default withEditTabsConfig(({ defaultParams, getIcons, iconColorTypes }) 
           name: 'iconColor',
         },
         {
-          cmpType: 'Input',
+          cmpType: 'Autocomplete',
           label: 'Icon size',
+          options: iconSize,
           name: 'iconSize',
         },
         {
           cmpType: 'Input',
           label: 'title',
           name: 'title',
+        },
+        {
+          cmpType: 'Input',
+          label: 'imageUrl',
+          name: 'imageUrl',
         },
         {
           cmpType: 'Input',

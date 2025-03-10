@@ -180,6 +180,17 @@ export const GLOBAL_OPTIONS = {
     error: 'error',
     warning: 'warning',
   }),
+  iconSize: new GlobalOptions({
+    xs: 'xs',
+    small: 'small',
+    medium: 'medium',
+    large: 'large',
+    xl: 'xl',
+    xxl: 'xxl',
+    auto: 'auto',
+    xxxl: 'xxxl',
+    full: 'full',
+  }),
   iconColorTypes: new GlobalOptions({
     inherit: 'inherit',
     primary: 'primary',
