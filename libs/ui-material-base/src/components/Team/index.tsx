@@ -5,28 +5,44 @@ import Icon from '../Icon';
 
 import './_team.scss';
 
-const ContentTeam = ({ header, className = '', items = [] }:any) => {
+const ContentTeam = ({ header, className = '', items = [], onAction }: any) => {
   return (
     <div className={`sq-content-team ${className}`}>
       {header && <h2>{header}</h2>}
       <div className="sq-content-team__container">
         {items?.map((item) => {
           return (
-            <div className="sq-content-team__item">
+            <div
+              className={`sq-content-team__item  ${item.href ? 'has-link' : ''}`}
+              onClick={() => {
+                if (item.href) {
+                  onAction &&
+                    onAction(
+                      {},
+                      {
+                        actionType: 'redirect',
+                        to: item.href,
+                        urlParams: item.urlParams,
+                      }
+                    );
+                  }
+              }}
+            >
               {item.profilePic && (
                 <div className="sq-content-team__picture">
-                  {
-                    <img
-                      src={item.profilePic}
-                      alt={'picture'}
-                    />
-                  }
+                  {<img src={item.profilePic} alt={'picture'} />}
                 </div>
               )}
               <div className="sq-content-team__text">
                 <div className="sq-content-team__header">{item.header}</div>
-                <div className="sq-content-team__designation text-center mb-wide">{item.designation}</div>
-                {item.subHeader && <div className="sq-content-team__subheader">{item.subHeader}</div>}
+                <div className="sq-content-team__designation text-center mb-wide">
+                  {item.designation}
+                </div>
+                {item.subHeader && (
+                  <div className="sq-content-team__subheader">
+                    {item.subHeader}
+                  </div>
+                )}
                 {item.links && item.links.map && (
                   <div className="sq-content-team__links">
                     {item.links.map((link) => {
@@ -45,6 +61,7 @@ const ContentTeam = ({ header, className = '', items = [] }:any) => {
 ContentTeam.propTypes = {
   className: PropTypes.string,
   value: PropTypes.any,
+  onAction: PropTypes.func,
   fields: PropTypes.array,
   row: PropTypes.object,
   tag: PropTypes.string,

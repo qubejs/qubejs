@@ -81,7 +81,7 @@ const getIconListMap = () => {
 };
 
 export const withEditTabsConfig = (cb) => {
-  return withEditTabs(cb({ defaultParams, iconList: getIconListMap(), getIcons: getIconListMap, colorTypes: GLOBAL_OPTIONS.colorTypes.toArray(), iconColorTypes: GLOBAL_OPTIONS.iconColorTypes.toArray() }));
+  return withEditTabs(cb({ defaultParams, iconList: getIconListMap(), getIcons: getIconListMap, colorTypes: GLOBAL_OPTIONS.colorTypes.toArray(), iconSize: GLOBAL_OPTIONS.iconSize.toArray(), iconColorTypes: GLOBAL_OPTIONS.iconColorTypes.toArray() }));
 };
 
 export const withEditTabs = ({ classNames = [], pageData = {}, general = [], validations = [], saveParams = {}, enableValidations = true, actions = [] }) => {
