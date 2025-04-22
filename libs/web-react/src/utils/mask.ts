@@ -75,8 +75,8 @@ const masks = {
       }
       return out;
     },
-    unmask: (value) => {
-      return value && value.toString().replace(/[^0-9.]/g, '');
+    unmask: (value, { pattern = '', param = 'D' } = {}) => {
+      return value && value.toString().replace(/[^0-9.]/g, '').substr(0, pattern.replace(new RegExp(`[^${param}]`, 'g'), '').length);
     },
   },
   phone: {
