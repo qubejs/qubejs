@@ -28,7 +28,10 @@ describe('utils:format', () => {
       expect(masks.number.mask('24234324', { pattern: '(DDDDD) DD' })).toEqual('(24234) 32');
     });
     test('should return only numbers', async () => {
-      expect(masks.number.unmask('(24234) 32')).toEqual('2423432');
+      expect(masks.number.unmask('(24234) 32', { pattern: '(DDDDD) DD' })).toEqual('2423432');
+    });
+    test('should return only numbers', async () => {
+      expect(masks.number.unmask('234-245-24545', { pattern: 'DDD-DDD-DDD'})).toEqual('234245245');
     });
   });
   describe('phone()', function () {
