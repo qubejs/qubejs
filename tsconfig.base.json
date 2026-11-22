@@ -29,6 +29,8 @@
       "@qubejs/ui-material-base": ["libs/ui-material-base/src/index.ts"],
       "@qubejs/ui-reui-base": ["libs/ui-reui-base/src/index.ts"],
       "@qubejs/ui-reui-base/styles.css": ["libs/ui-reui-base/src/styles/reui.css"],
+      "@qubejs/ui-daisyui-base": ["libs/ui-daisyui-base/src/index.ts"],
+      "@qubejs/ui-daisyui-base/styles.css": ["libs/ui-daisyui-base/src/styles/daisy.css"],
       "@qubejs/web-nextjs": ["libs/web-nextjs/src/index.ts"],
       "@qubejs/web-nextjs/server": ["libs/web-nextjs/src/server.ts"],
       "@qubejs/web-react": ["libs/web-react/src/index.ts"]

@@ -1,0 +1,11 @@
+.sq-data-field-list {
+  &--columns {
+    .sq-data-field {
+      width: 100%;
+    }
+    .sq-data-field-list__container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

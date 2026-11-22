@@ -28,5 +28,5 @@ jobs:
       - name: Build
         run: |
           pnpm install --frozen-lockfile
-          pnpm nx run-many -t test --codeCoverage -p core cms scripts web-react ui-material-base ui-reui-base integration-test
-          pnpm nx run-many -t dist -p core scripts cms web-react ui-material-base ui-reui-base
+          pnpm nx run-many -t test --codeCoverage -p core cms scripts web-react ui-material-base ui-reui-base ui-daisyui-base integration-test
+          pnpm nx run-many -t dist -p core scripts cms web-react ui-material-base ui-reui-base ui-daisyui-base

@@ -1,0 +1,53 @@
+/*
+ * daisyUI styles for @qubejs/ui-daisyui-base (daisyUI 5 on Tailwind CSS v4).
+ * Compiled to dist/libs/ui-daisyui-base/styles.css by the `build-css` target.
+ *
+ * - daisyUI classes are prefixed `dy-` (dy-btn, dy-modal, ...) so they never meet Bootstrap's
+ *   .btn / .modal / .alert / .card / .dropdown / .tooltip / .collapse.
+ * - Tailwind's preflight reset and daisyUI's root color/scroll rules are not included, so the
+ *   library can sit next to Bootstrap/MUI styles in the same page.
+ * - postcss/daisy-guard.cjs flattens cascade layers (Bootstrap's unlayered element rules would
+ *   otherwise beat daisyUI) and scopes Tailwind utilities that share names with Bootstrap.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@plugin "daisyui" {
+  prefix: "dy-";
+  themes: light --default, dark;
+  exclude: rootcolor, rootscrollgutter, rootscrolllock, scrollbar;
+}
+
+@source "../components";
+@source "../daisy";
+
+/* shadcn-style token names used by shared component code, mapped onto daisyUI colors */
+@theme inline {
+  --color-background: var(--color-base-100);
+  --color-foreground: var(--color-base-content);
+  --color-card: var(--color-base-100);
+  --color-popover: var(--color-base-100);
+  --color-muted: var(--color-base-200);
+  --color-muted-foreground: color-mix(in oklab, var(--color-base-content) 60%, transparent);
+  --color-accent: var(--color-base-200);
+  --color-border: var(--color-base-300);
+  --color-input: var(--color-base-300);
+  --color-ring: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-content);
+  --color-secondary-foreground: var(--color-secondary-content);
+  --color-destructive: var(--color-error);
+}
+
+/*
+ * Plain <button>s inside daisyUI elements (chip remove buttons, list rows...) get the reset
+ * Tailwind's preflight would normally provide. Zero specificity, so classes still win.
+ */
+:where([class*="dy-"]) button:where(:not([class*="dy-"])) {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}

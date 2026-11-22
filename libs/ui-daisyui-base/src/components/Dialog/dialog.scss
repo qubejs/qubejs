@@ -1,0 +1,203 @@
+.sq-dialog {
+  &__content-body {
+    min-height: 200px;
+    min-width: 280px;
+    height: 100%;
+    padding-top: 10px;
+    &--auto {
+      min-height: auto;
+      min-width: auto;
+    }
+    &--as-content {
+      min-height: 0;
+      min-width: 0;
+    }
+    &--standard {
+      min-height: 450px;
+      min-width: 450px;
+    }
+    &--confirm {
+      min-height: auto;
+      padding: 10px 0 32px 0;
+      min-width: 280px;
+    }
+    .sq-content-page {
+      height: 100%;
+    }
+  }
+
+  &--auto {
+    .sq-dialog__content-body {
+      min-height: auto;
+      min-width: auto;
+    }
+  }
+  &--standard-width {
+    .sq-dialog__content-body {
+      min-height: auto;
+      min-width: 400px;
+    }
+  }
+  &--standard-screen {
+    .sq-dialog__content-body {
+      min-height: auto;
+      min-width: 600px;
+      min-height: 400px;
+    }
+  }
+ 
+  &__title {
+    flex-grow: 1;
+    padding: 20px 0px;
+    margin: 0;
+  }
+  &__loader {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-index-level-2ndtopest;
+  }
+  &--fixed-menu-left {
+    .MuiDialog-paperWidthSm {
+        max-width: 400px !important;
+    }
+    .MuiPaper-root {
+      width: 90%;
+      max-height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      bottom: 0;
+      margin: auto;
+      overflow: unset;
+    }
+  }
+  &--fixed-menu-right {
+    .MuiDialog-paperWidthSm {
+        max-width: 400px !important;
+    }
+    .MuiPaper-root {
+      width: 90%;
+      max-height: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      bottom: 0;
+      margin: auto;
+      overflow: unset;
+    }
+  }
+  &--fixed-left {
+    .MuiDialog-paperWidthSm {
+      @media (min-width: $screen-sm) {
+        max-width: 500px !important;
+      }
+    }
+    .MuiPaper-root {
+      width: 100%;
+      max-height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      bottom: 0;
+      margin: auto;
+      overflow: unset;
+    }
+    @media (min-width: $screen-sm) {
+      .sq-dialog__close {
+        left: unset;
+        right: -24px;
+        z-index: $z-index-level-2ndtopest;
+        background: white !important;
+        border-radius: 5px!important;
+        .sq-icon {
+          color:grey;
+          background-color: white;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  &--fixed-right {
+    .MuiDialog-paperWidthSm {
+      @media (min-width: $screen-sm) {
+        max-width: 500px !important;
+      }
+    }
+    .MuiPaper-root.MuiDialog-paperScrollPaper {
+      width: 100%;
+      max-height: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      bottom: 0;
+      margin: auto;
+      overflow: unset;
+    }
+    @media (min-width: $screen-sm) {
+      .sq-dialog__close {
+        left: -24px;
+        z-index: $z-index-level-4;
+        right: unset;
+        background: white !important;
+        border-radius: 5px!important;
+        .sq-icon {
+          color:grey;
+          background-color: white;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  &--fixed-right-large {
+    .MuiDialog-paperWidthSm {
+      @media (min-width: $screen-sm) {
+        max-width: 700px !important;
+      }
+    }
+    .MuiPaper-root.MuiDialog-paperScrollPaper {
+      width: 100%;
+      max-height: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      bottom: 0;
+      margin: auto;
+      overflow: unset;
+    }
+    @media (min-width: $screen-sm) {
+      .sq-dialog__close {
+        left: -24px;
+        z-index: $z-index-level-4;
+        right: unset;
+        background: white !important;
+        border-radius: 5px!important;
+        .sq-icon {
+          color:grey;
+          background-color: white;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+.MuiDialogContent-root {
+  position: relative;
+}
+.MuiDialog-paperWidthSm {
+  max-width: 850px!important;
+}
+
+.MuiDialog-root {
+  z-index: $z-index-level-topest!important;
+}

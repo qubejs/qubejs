@@ -1,0 +1,13 @@
+.sq-label-value {
+  display: flex;
+  padding: 10px 20px;
+
+  &__label {
+    flex-basis: 50%;
+    @include t4-style();
+  }
+  &__value {
+    @include b4-style();
+    flex-basis: 50%;
+  }
+}

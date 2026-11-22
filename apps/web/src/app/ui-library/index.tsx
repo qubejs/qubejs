@@ -1,5 +1,5 @@
 /**
- * UI libraries the sample app can render with. Pick one with `?ui=reui` / `?ui=material`
+ * UI libraries the sample app can render with. Pick one with `?ui=reui` / `?ui=daisyui` / `?ui=material`
  * (remembered in localStorage) or with the floating switcher. Only the selected library
  * (and its styles) is loaded.
  */
@@ -12,6 +12,16 @@ export const UI_LIBRARIES = {
         import('@mui/icons-material/GitHub'),
       ]);
       return { ...plugin, icons: { GitHub } };
+    },
+  },
+  daisyui: {
+    label: 'daisyUI',
+    load: async () => {
+      const [plugin] = await Promise.all([
+        import('@qubejs/ui-daisyui-base'),
+        import('@qubejs/ui-daisyui-base/styles.css'),
+      ]);
+      return plugin;
     },
   },
   reui: {

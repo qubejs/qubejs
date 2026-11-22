@@ -1,0 +1,27 @@
+.sq-header {
+  &__eyebrow {
+    margin-bottom: 16px;
+  }
+  &__header {
+    margin-bottom: 16px;
+  }
+  &__sub-header {
+  }
+  &__image {
+    max-width: 150px;
+    margin-top: 20px;
+    @media (min-width: $screen-sm) {
+      max-width: 200px;
+    }
+  }
+  margin-bottom: 48px;
+  &--center {
+    padding-top: 48px;
+    text-align: center;
+  }
+  &--light {
+    text-align: center;
+    background-color: white;
+    color: $sq-color-primary-darker;
+  }
+}

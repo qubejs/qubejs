@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-// Switch the component library with ?ui=reui (ReUI) or ?ui=material (Material UI).
+// Switch the component library with ?ui=reui (ReUI), ?ui=daisyui (daisyUI) or ?ui=material.
 // For a single library this is simply:
 //   import * as uiReui from '@qubejs/ui-reui-base';
 //   plugins.register(uiReui);

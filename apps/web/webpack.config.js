@@ -7,13 +7,13 @@ const packageJson = require('../../package.json');
 
 const VERSION = process.env.VERSION || packageJson.version;
 /**
- * Runs Tailwind CSS v4 (@tailwindcss/postcss) on the ReUI stylesheet of
- * @qubejs/ui-reui-base only, so the app can consume the library from source.
+ * Runs Tailwind CSS v4 (@tailwindcss/postcss) plus the library's guard plugin on the
+ * stylesheets of @qubejs/ui-reui-base and @qubejs/ui-daisyui-base, so the app can consume
+ * those libraries from source.
  * All other stylesheets keep Nx's default PostCSS pipeline.
  */
-function enableTailwindFor(config, fileRegex) {
+function enableTailwindFor(config, sheets) {
   const tailwind = require('@tailwindcss/postcss');
-  const bootstrapGuard = require('../../libs/ui-reui-base/postcss/bootstrap-guard.cjs');
   const visit = (rule) => {
     if (!rule) return;
     (rule.oneOf || []).forEach(visit);
@@ -24,14 +24,15 @@ function enableTailwindFor(config, fileRegex) {
       if (typeof original !== 'function' || original.__tailwind) return;
       const wrapped = (loader) => {
         const options = original(loader);
-        if (fileRegex.test(loader.resourcePath)) {
+        const sheet = sheets.find((x) => x.test.test(loader.resourcePath));
+        if (sheet) {
           // Tailwind resolves its own @imports, so it replaces postcss-import here
           const rest = (options.plugins || []).filter(
             (p) => p && p.postcssPlugin !== 'postcss-import'
           );
           return {
             ...options,
-            plugins: [tailwind({ base: path.resolve('libs/ui-reui-base/src') }), bootstrapGuard(), ...rest],
+            plugins: [tailwind({ base: sheet.base }), require(sheet.guard)(), ...rest],
           };
         }
         return options;
@@ -88,6 +89,17 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
   // console.log(path.resolve('apps/web/src/styles'));
   typeWeb.sassOptions.includePaths.push(path.resolve('apps/web/src/styles'));
   typeWeb.sassOptions.includePaths.push(path.resolve('libs'));
-  enableTailwindFor(config, /ui-reui-base[\\/]src[\\/]styles[\\/]reui\.css$/);
+  enableTailwindFor(config, [
+    {
+      test: /ui-reui-base[\\/]src[\\/]styles[\\/]reui\.css$/,
+      base: path.resolve('libs/ui-reui-base/src'),
+      guard: path.resolve('libs/ui-reui-base/postcss/bootstrap-guard.cjs'),
+    },
+    {
+      test: /ui-daisyui-base[\\/]src[\\/]styles[\\/]daisy\.css$/,
+      base: path.resolve('libs/ui-daisyui-base/src'),
+      guard: path.resolve('libs/ui-daisyui-base/postcss/daisy-guard.cjs'),
+    },
+  ]);
   return config;
 });
