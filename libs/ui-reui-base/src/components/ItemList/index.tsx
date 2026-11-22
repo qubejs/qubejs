@@ -11,7 +11,7 @@ const ItemList = ({ data, title, textField, fields, valueField, itemTemplate, ic
           {title}
         </div>
         {data && data.length === 0 && noDataMessage}
-        <ItemGroup>
+        <ItemGroup className="gap-0 has-data-[size=sm]:gap-0 has-data-[size=xs]:gap-0">
           {data &&
             data.map((dataItem, index) => {
               return (
@@ -19,7 +19,7 @@ const ItemList = ({ data, title, textField, fields, valueField, itemTemplate, ic
                   key={index}
                   asChild
                   size="sm"
-                  className="cursor-pointer hover:bg-muted"
+                  className="cursor-pointer px-4 py-2 hover:bg-muted"
                 >
                   <button
                     type="button"

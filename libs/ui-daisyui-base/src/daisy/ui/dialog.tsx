@@ -59,7 +59,7 @@ export function DialogContent({ className, children, showCloseButton, placement 
         aria-labelledby={titleId}
         aria-describedby={descId}
         tabIndex={-1}
-        className={cn('dy-modal-box relative grid content-start gap-4 outline-none', className)}
+        className={cn('dy-modal-box relative outline-none', className)}
         {...props}
       >
         {children}

@@ -5,12 +5,12 @@ import Icon from '../Icon';
 const DataList = ({ className = '', items = [] }: any) => {
   return (
     <div className={`sq-data-list ${className}`}>
-      <ItemGroup>
+      <ItemGroup className="gap-0 has-data-[size=sm]:gap-0 has-data-[size=xs]:gap-0">
         {items.map((item, idx) => {
           const { icon = {} } = item;
           return (
             <React.Fragment key={`li-${idx}`}>
-              <Item size="sm" className="sq-data-list__item">
+              <Item size="sm" className="sq-data-list__item px-4 py-2">
                 <ItemMedia>
                   <Icon name={item.iconName} {...icon} />
                 </ItemMedia>

@@ -61,20 +61,21 @@ const SQDialog = ({
         <DialogContent
           showCloseButton={false}
           className={cn(
-            'sq-dialog__paper',
+            // header and footer stay visible; only the body scrolls
+            'sq-dialog__paper flex flex-col gap-4 overflow-hidden',
             className,
             overrideClasses.dialog?.paper,
             transitionOptions[transitionDir],
             fullScreen
               ? 'h-dvh max-h-dvh w-dvw max-w-none rounded-none sm:max-w-none'
-              : 'sm:max-w-lg',
+              : 'max-h-[calc(100dvh-2rem)] sm:max-w-lg',
             hideBackdrop && '[&~[data-slot=dialog-overlay]]:bg-transparent'
           )}
           onEscapeKeyDown={(e) => disableEscapeKeyDown && e.preventDefault()}
           onPointerDownOutside={(e) => backDropClick === false && e.preventDefault()}
           onInteractOutside={(e) => backDropClick === false && e.preventDefault()}
         >
-          <DialogHeader className="sq-dialog__title pr-8">
+          <DialogHeader className="sq-dialog__title shrink-0 grow-0 p-0 pr-8">
             <DialogTitle asChild={!!headerTag}>
               {headerTag ? <HeaderTag>{title}</HeaderTag> : title}
             </DialogTitle>
@@ -93,7 +94,7 @@ const SQDialog = ({
               </Button>
             </DialogClose>
           )}
-          <div className="sq-dialog__content">
+          <div className="sq-dialog__content -mx-4 min-h-0 flex-1 overflow-y-auto overscroll-contain px-4">
             <div className={`sq-dialog__content-body ${overrideClasses.body || ''}`}>
               {isLoading && (
                 <div className="sq-dialog__loader">
@@ -104,7 +105,7 @@ const SQDialog = ({
             </div>
           </div>
           {actions && actions.length > 0 && (
-            <DialogFooter className="sq-dialog__actions">
+            <DialogFooter className={cn('sq-dialog__actions shrink-0', fullScreen && 'rounded-none')}>
               {actions.map((action, idx) => {
                 const {
                   buttonText,

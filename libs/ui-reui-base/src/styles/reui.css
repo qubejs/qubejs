@@ -172,6 +172,12 @@
 }
 button:where([data-slot]),
 :where([data-slot]) button:where(:not([class*='sq-'])) {
+  /* Tailwind preflight for buttons: no browser padding/margins, inherit typography */
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
   background-color: transparent;
   cursor: pointer;
 }

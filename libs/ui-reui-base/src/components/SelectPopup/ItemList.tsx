@@ -65,7 +65,7 @@ const ItemList = ({
             {title}
           </div>
         )}
-        <ItemGroup>
+        <ItemGroup className="gap-0 has-data-[size=sm]:gap-0 has-data-[size=xs]:gap-0">
         {filterData && filterData.length === 0 && noDataMessage}
         {filterData &&
           filterData.map((dataItem, index) => {
@@ -73,7 +73,7 @@ const ItemList = ({
               ? value.indexOf(dataItem[valueField]) > -1
               : value === dataItem[valueField];
             return (
-              <Item key={index} asChild size="sm" className={`cursor-pointer hover:bg-muted ${isSelected ? 'bg-muted' : ''}`}>
+              <Item key={index} asChild size="sm" className={`cursor-pointer px-4 py-2 hover:bg-muted ${isSelected ? "bg-muted" : ""}`}>
               <button
                 type="button"
                 aria-pressed={isSelected}
