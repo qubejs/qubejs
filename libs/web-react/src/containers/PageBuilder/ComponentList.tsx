@@ -28,7 +28,9 @@ const Component = ({ type, name, displayText, metaData, onSuccess }: any) => {
   return (
     <div
       className={`sq-component-list__item sq-component-list__item--${opacity}`}
-      ref={drag}
+      ref={(el) => {
+        drag(el);
+      }}
     >
       {displayText}
     </div>

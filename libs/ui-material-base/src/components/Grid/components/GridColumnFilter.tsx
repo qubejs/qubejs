@@ -92,7 +92,12 @@ const GridColumnFilter = ({ columns = [], value = [], colOrder, onChange, onColu
         <Checkbox checked={hasAllSelection} onChange={handleSelectAll} text={'Select All'} />
       </div>
       <div className="sq-grid__col-filters__body">
-        <div ref={drop} className={`sq-grid__col-filters__list`}>
+        <div
+          ref={(el) => {
+            drop(el);
+          }}
+          className={`sq-grid__col-filters__list`}
+        >
           {internalColumns.map((col, i) => (
             <Card key={col.name} id={col.name} fixed={col.fixed || col.customize === false} index={i} name={`${col.name}`} text={col.headerText || col.name} moveCard={moveCard} findCard={findCard}>
               <div className={`sq-grid__col-filters__item`} key={`col-${col.name}`}>

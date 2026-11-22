@@ -24,7 +24,7 @@ const GlobalNavigationV2 = ({
 }: any) => {
   const [open, setOpen] = useState(false);
   const [height, setHeight] = useState(0);
-  const fillerEl = useRef();
+  const fillerEl = useRef<HTMLElement>(null);
   const { isSticky, element } = useSticky();
   useEffect(() => {
     if (navPosition === 'sticky') {
