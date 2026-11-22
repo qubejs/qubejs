@@ -2,6 +2,7 @@
   "name": "@qubejs/source",
   "version": "0.0.20",
   "license": "MIT",
+  "packageManager": "pnpm@10.0.0",
   "scripts": {},
   "private": true,
   "dependencies": {
@@ -148,5 +149,14 @@
   },
   "nx": {
     "includedScripts": []
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "cypress",
+      "esbuild",
+      "nx"
+    ]
   }
 }

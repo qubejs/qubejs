@@ -1,5 +1,5 @@
 /**
- * This is a minimal script to publish your package to "npm".
+ * This is a minimal script to publish your package to the npm registry (via pnpm).
  * This is meant to be used as-is or customize as you see fit.
  *
  * This script is executed on "dist/path/to/library" as "cwd" by default.
@@ -56,5 +56,8 @@ try {
   console.error(`Error reading package.json file from library build output.`);
 }
 
-// Execute "npm publish" to publish
-execSync(`npm publish --access public --tag ${tag}`);
+// Execute "pnpm publish" to publish.
+// --no-git-checks: dist/ is git-ignored and releases are cut from tags, not a clean main checkout.
+execSync(`pnpm publish --access public --tag ${tag} --no-git-checks`, {
+  stdio: 'inherit',
+});

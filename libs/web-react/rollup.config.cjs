@@ -4,6 +4,39 @@ const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const { withNx } = require('@nx/rollup/with-nx');
 const url = require('@rollup/plugin-url');
 const svg = require('@svgr/rollup');
+const path = require('path');
+const {
+  folderEntries,
+  fileEntries,
+  applyOutputLayout,
+  perEntryExports,
+} = require('../../tools/scripts/rollup-entries.cjs');
+
+const srcDir = path.join(__dirname, 'src');
+const outputPath = path.join(__dirname, '../../dist/libs/web-react');
+
+// Namespace entry points: @qubejs/web-react/utils, @qubejs/web-react/hooks, ...
+const groupEntries = fileEntries(srcDir, {
+  index: 'index.ts',
+  ui: 'ui.ts',
+  utils: 'utils/index.ts',
+  domain: 'domain/index.ts',
+  redux: 'redux/index.ts',
+  plugins: 'plugins.ts',
+  hooks: 'hooks/index.js',
+  globals: 'globals.ts',
+  cordova: 'cordova.ts',
+  components: 'components/index.tsx',
+  containers: 'containers/index.tsx',
+  templates: 'templates/index.tsx',
+});
+
+// One entry per container / template: @qubejs/web-react/PageBuilder, ...
+const componentEntries = folderEntries(
+  srcDir,
+  ['containers', 'components', 'templates'],
+  { reserved: Object.keys(groupEntries) }
+);
 
 const config = withNx(
   {
@@ -44,6 +77,7 @@ const config = withNx(
   {
     // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
     preserveSymlinks: true,
+    input: { ...groupEntries, ...componentEntries },
 
     plugins: [
       peerDepsExternal(),
@@ -61,9 +95,11 @@ const config = withNx(
       url({
         limit: 10000, // 10kB
       }),
+      perEntryExports({ outputPath }),
     ],
   }
 );
 const postCss = config.plugins.filter((i) => i.name === 'postcss')[0];
 config.plugins.splice(config.plugins.indexOf(postCss), 1);
+applyOutputLayout(config);
 module.exports = config;

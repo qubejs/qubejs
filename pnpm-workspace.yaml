@@ -1,0 +1,5 @@
+# The repo is a single Nx workspace installed from the root package.json.
+# The libs/* package.json files are publish manifests (copied to dist/ by the build),
+# so they are intentionally not listed as workspace packages.
+packages:
+  - '.'
