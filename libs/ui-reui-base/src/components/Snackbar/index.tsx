@@ -11,7 +11,7 @@ const icons = { success: CircleCheck, error: CircleAlert, warning: TriangleAlert
 
 const positionClass = ({ vertical = 'top', horizontal = 'center' }) =>
   cn(
-    'fixed z-[1400] w-[min(100vw-2rem,28rem)]',
+    'fixed z-[10020] w-[min(100vw-2rem,28rem)]',
     vertical === 'top' ? 'top-4' : 'bottom-4',
     horizontal === 'left' ? 'left-4' : horizontal === 'right' ? 'right-4' : 'left-1/2 -translate-x-1/2'
   );

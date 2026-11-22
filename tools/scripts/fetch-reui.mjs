@@ -123,6 +123,17 @@ for (const n of names) {
   await fetchItem(s, name);
 }
 
+// Overlay stacking: qubejs apps have a fixed navigation bar at z-index 9998, so modal layers
+// sit above it and floating layers (popover, menus, select, tooltip) above modals.
+const OVERLAY_Z = {
+  'dialog.tsx': 'z-[10000]',
+  'sheet.tsx': 'z-[10000]',
+  'popover.tsx': 'z-[10010]',
+  'dropdown-menu.tsx': 'z-[10010]',
+  'select.tsx': 'z-[10010]',
+  'tooltip.tsx': 'z-[10010]',
+};
+
 let written = 0;
 for (const item of seen.values()) {
   if (!item) continue;
@@ -130,7 +141,10 @@ for (const item of seen.values()) {
     if (!file.content) continue;
     const out = path.join(ROOT, targetFor(file));
     fs.mkdirSync(path.dirname(out), { recursive: true });
-    fs.writeFileSync(out, rewriteImports(file.content, path.dirname(out)));
+    let code = rewriteImports(file.content, path.dirname(out));
+    const z = OVERLAY_Z[path.basename(out)];
+    if (z) code = code.replace(/\bz-50\b/g, z);
+    fs.writeFileSync(out, code);
     written++;
   }
 }
