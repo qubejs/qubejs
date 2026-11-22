@@ -1,0 +1,7 @@
+.sq-pagination {
+  display: flex;
+  align-items: center;
+  &__page-size {
+    min-width: 100px;
+  }
+}

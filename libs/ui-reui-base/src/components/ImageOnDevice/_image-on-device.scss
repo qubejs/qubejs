@@ -1,0 +1,82 @@
+.sq-image-on-device {
+  position: relative;
+  overflow: hidden;
+  &__screen {
+    z-index: -1;
+  }
+  &--iphone {
+    width: 100%;
+    .sq-image-on-device {
+      &__overlay {
+        position: relative;
+        width: 100%;
+        max-width: 418px;
+        img {
+          width: 100%;
+        }
+      }
+      &__screen {
+        width: 92%;
+        overflow: hidden;
+        top: 6.5%;
+        left: 4.59%;
+        position: absolute;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &--iphone11 {
+    width: 100%;
+    .sq-image-on-device {
+      &__overlay {
+        position: relative;
+        width: 100%;
+        max-width: 418px;
+        img {
+          width: 100%;
+        }
+      }
+      &__screen {
+        width: 87%;
+        overflow: hidden;
+        top: 2.5%;
+        left: 6.59%;
+        position: absolute;
+        height: 96%;
+        img {
+          width: 100%;
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &--ipad {
+    width: 100%;
+    .sq-image-on-device {
+      &__overlay {
+        position: relative;
+        width: 100%;
+        max-width: 1236px;
+        img {
+          width: 100%;
+        }
+      }
+      &__screen {
+        width: 85%;
+        overflow: hidden;
+        top: 5%;
+        left: 6.10%;
+        position: absolute;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

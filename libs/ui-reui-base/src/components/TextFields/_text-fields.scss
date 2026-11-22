@@ -1,0 +1,13 @@
+.sq-text-fields {
+  width: 100%;
+  .header {
+    @include b5-style();
+    @media (min-width: $screen-sm) {
+      @include b4-style();
+    }
+  }
+  .sub-header {
+    @include b6-style();
+    color:$sq-color-muted;
+  }
+}

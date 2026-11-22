@@ -1,0 +1,26 @@
+.sq-basic-rte {
+  .ql-toolbar {
+    background-color: white;
+  }
+  &__editor {
+    height: 100%;
+    min-height: 280px;
+  }
+  .public-DraftEditor-content {
+    min-height: 280px;
+    background-color: white;
+    color: $sq-color-black;
+    font-family: $paragraph-font-family;
+  }
+  &--small {
+    .sq-basic-rte__editor {
+      min-height: 90px;
+    }
+    .public-DraftEditor-content {
+      min-height: 90px;
+      background-color: white;
+      color: $sq-color-black;
+      font-family: $paragraph-font-family;
+    }
+  }
+}

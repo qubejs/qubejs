@@ -1,0 +1,49 @@
+.sq-button {
+  &--full-width {
+    width: 100%;
+  }
+  width: 100%;
+  .MuiButton-root {
+    width: 100%;
+  }
+  @media (min-width:$screen-sm) {
+    width: auto;
+    .MuiButton-root {
+      width: auto;
+    }
+  }
+  &--block {
+    width: 100%;
+    .MuiButton-root {
+      width: 100%;
+    }
+  }
+  &--auto {
+    width: 100%;
+    .MuiButton-root {
+      width: 100%;
+    }
+  }
+  display: inline-block;
+  .sq-icon {
+    &.left {
+      margin-right: 8px;
+    }
+    &.right {
+      margin-left: 4px;
+    }
+  }
+  &--inline {
+    width: auto;
+    margin-right: 5px;
+  }
+  margin-right: 5px;
+  &:last-child {
+    margin-right: 0;
+  }
+  &--icon-only {
+    .sq-icon {
+      margin-right: 0;
+    }
+  }
+}

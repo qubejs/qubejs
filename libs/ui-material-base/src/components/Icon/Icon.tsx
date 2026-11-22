@@ -250,8 +250,7 @@ import { ReactComponent as SortDesc } from '../../assets/svg/sort-desc.svg';
 const { getValue } = utils.properties;
 const { icons } = utils.storage;
 
-icons.set(
-  {
+const systemIcons = {
     'add-circle-outline': AddCircleOutline,
     'remove-circle-outline': RemoveCircleOutline,
     'add-circle': AddCircle,
@@ -406,11 +405,9 @@ icons.set(
     FullscreenExit,
     OpenInFull,
     CloseFullscreen,
-  },
-  'system'
-);
-icons.set(
-  {
+};
+icons.set(systemIcons, 'system');
+const basicIcons = {
     code: Code,
     star: Star,
     shared: FolderShared,
@@ -503,16 +500,22 @@ icons.set(
     'sort-asc': SortAsc,
     'sort-desc': SortDesc,
     Move,
-  },
-  'basic'
-);
+};
+icons.set(basicIcons, 'basic');
+const builtInIcons: any = { ...systemIcons, ...basicIcons };
 
 const Icon = ({ className = '', img, textIcon, name, variant = 'default', color, size = 'normal', iconClass = '', row, svg, onClick }:any) => {
   const finalName = getValue(this, name, row);
   const finalIconClass = getValue(this, iconClass, row);
   const finalColor = getValue(this, color, row);
   const finalVariant = getValue(this, variant, row);
-  const IconToRender = icons.getAll()[finalName] || (textIcon ? undefined : !img ? icons.getAll().NoIcon : undefined);
+  // app-registered icons first, then this library's own icons, then anything else registered,
+  // so another UI library loaded in the same app can't replace these built-ins
+  const IconToRender =
+    icons.get('default')[finalName] ||
+    builtInIcons[finalName] ||
+    icons.getAll()[finalName] ||
+    (textIcon ? undefined : !img ? builtInIcons.NoIcon : undefined);
   return (
     <div
       className={`sq-icon ${finalIconClass} ${!finalName && textIcon ? 'sq-icon--text-icon' : ''} sq-icon--${finalVariant} ${finalColor ? `sq-icon--${finalColor}` : ''} sq-icon--${size} ${className}`}

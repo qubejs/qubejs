@@ -1,0 +1,206 @@
+/*
+ * ReUI styles for @qubejs/ui-reui-base (Tailwind CSS v4).
+ * Compiled to dist/libs/ui-reui-base/styles.css by the `build-css` target.
+ *
+ * Tailwind's preflight reset is intentionally NOT included so the library can sit next to
+ * Bootstrap/MUI styles in the same page, and theme variables are prefixed (--reui-*) because
+ * Bootstrap 4 also defines --primary, --secondary, ... on :root.
+ * Utilities whose names collide with Bootstrap 4 (.bg-primary, .p-2, .border, ...) are scoped to
+ * ReUI elements by postcss/bootstrap-guard.cjs (see that file).
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@source "../components";
+@source "../reui";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  --reui-background: oklch(1 0 0);
+  --reui-foreground: oklch(0.145 0 0);
+  --reui-card: oklch(1 0 0);
+  --reui-card-foreground: oklch(0.145 0 0);
+  --reui-popover: oklch(1 0 0);
+  --reui-popover-foreground: oklch(0.145 0 0);
+  --reui-primary: oklch(0.205 0 0);
+  --reui-primary-foreground: oklch(0.985 0 0);
+  --reui-secondary: oklch(0.97 0 0);
+  --reui-secondary-foreground: oklch(0.205 0 0);
+  --reui-muted: oklch(0.97 0 0);
+  --reui-muted-foreground: oklch(0.556 0 0);
+  --reui-accent: oklch(0.97 0 0);
+  --reui-accent-foreground: oklch(0.205 0 0);
+  --reui-destructive: oklch(0.577 0.245 27.325);
+  --reui-border: oklch(0.922 0 0);
+  --reui-input: oklch(0.922 0 0);
+  --reui-ring: oklch(0.708 0 0);
+  --reui-chart-1: oklch(0.87 0 0);
+  --reui-chart-2: oklch(0.556 0 0);
+  --reui-chart-3: oklch(0.439 0 0);
+  --reui-chart-4: oklch(0.371 0 0);
+  --reui-chart-5: oklch(0.269 0 0);
+  --reui-sidebar: oklch(0.985 0 0);
+  --reui-sidebar-foreground: oklch(0.145 0 0);
+  --reui-sidebar-primary: oklch(0.205 0 0);
+  --reui-sidebar-primary-foreground: oklch(0.985 0 0);
+  --reui-sidebar-accent: oklch(0.97 0 0);
+  --reui-sidebar-accent-foreground: oklch(0.205 0 0);
+  --reui-sidebar-border: oklch(0.922 0 0);
+  --reui-sidebar-ring: oklch(0.708 0 0);
+  --reui-destructive-foreground: oklch(0.985 0 0);
+  --reui-info: oklch(0.623 0.214 259.815);
+  --reui-info-foreground: oklch(0.985 0 0);
+  --reui-success: oklch(0.627 0.194 149.214);
+  --reui-success-foreground: oklch(0.985 0 0);
+  --reui-warning: oklch(0.769 0.188 70.08);
+  --reui-warning-foreground: oklch(0.205 0 0);
+  --reui-invert: oklch(0.205 0 0);
+  --reui-invert-foreground: oklch(0.985 0 0);
+}
+
+.dark {
+  --reui-background: oklch(0.145 0 0);
+  --reui-foreground: oklch(0.985 0 0);
+  --reui-card: oklch(0.205 0 0);
+  --reui-card-foreground: oklch(0.985 0 0);
+  --reui-popover: oklch(0.205 0 0);
+  --reui-popover-foreground: oklch(0.985 0 0);
+  --reui-primary: oklch(0.922 0 0);
+  --reui-primary-foreground: oklch(0.205 0 0);
+  --reui-secondary: oklch(0.269 0 0);
+  --reui-secondary-foreground: oklch(0.985 0 0);
+  --reui-muted: oklch(0.269 0 0);
+  --reui-muted-foreground: oklch(0.708 0 0);
+  --reui-accent: oklch(0.269 0 0);
+  --reui-accent-foreground: oklch(0.985 0 0);
+  --reui-destructive: oklch(0.704 0.191 22.216);
+  --reui-border: oklch(1 0 0 / 10%);
+  --reui-input: oklch(1 0 0 / 15%);
+  --reui-ring: oklch(0.556 0 0);
+  --reui-chart-1: oklch(0.87 0 0);
+  --reui-chart-2: oklch(0.556 0 0);
+  --reui-chart-3: oklch(0.439 0 0);
+  --reui-chart-4: oklch(0.371 0 0);
+  --reui-chart-5: oklch(0.269 0 0);
+  --reui-sidebar: oklch(0.205 0 0);
+  --reui-sidebar-foreground: oklch(0.985 0 0);
+  --reui-sidebar-primary: oklch(0.488 0.243 264.376);
+  --reui-sidebar-primary-foreground: oklch(0.985 0 0);
+  --reui-sidebar-accent: oklch(0.269 0 0);
+  --reui-sidebar-accent-foreground: oklch(0.985 0 0);
+  --reui-sidebar-border: oklch(1 0 0 / 10%);
+  --reui-sidebar-ring: oklch(0.556 0 0);
+  --reui-destructive-foreground: oklch(0.985 0 0);
+  --reui-info: oklch(0.707 0.165 254.624);
+  --reui-info-foreground: oklch(0.145 0 0);
+  --reui-success: oklch(0.723 0.219 149.579);
+  --reui-success-foreground: oklch(0.145 0 0);
+  --reui-warning: oklch(0.828 0.189 84.429);
+  --reui-warning-foreground: oklch(0.205 0 0);
+  --reui-invert: oklch(0.985 0 0);
+  --reui-invert-foreground: oklch(0.205 0 0);
+}
+
+@theme inline {
+  --color-background: var(--reui-background);
+  --color-foreground: var(--reui-foreground);
+  --color-card: var(--reui-card);
+  --color-card-foreground: var(--reui-card-foreground);
+  --color-popover: var(--reui-popover);
+  --color-popover-foreground: var(--reui-popover-foreground);
+  --color-primary: var(--reui-primary);
+  --color-primary-foreground: var(--reui-primary-foreground);
+  --color-secondary: var(--reui-secondary);
+  --color-secondary-foreground: var(--reui-secondary-foreground);
+  --color-muted: var(--reui-muted);
+  --color-muted-foreground: var(--reui-muted-foreground);
+  --color-accent: var(--reui-accent);
+  --color-accent-foreground: var(--reui-accent-foreground);
+  --color-destructive: var(--reui-destructive);
+  --color-border: var(--reui-border);
+  --color-input: var(--reui-input);
+  --color-ring: var(--reui-ring);
+  --color-chart-1: var(--reui-chart-1);
+  --color-chart-2: var(--reui-chart-2);
+  --color-chart-3: var(--reui-chart-3);
+  --color-chart-4: var(--reui-chart-4);
+  --color-chart-5: var(--reui-chart-5);
+  --color-sidebar: var(--reui-sidebar);
+  --color-sidebar-foreground: var(--reui-sidebar-foreground);
+  --color-sidebar-primary: var(--reui-sidebar-primary);
+  --color-sidebar-primary-foreground: var(--reui-sidebar-primary-foreground);
+  --color-sidebar-accent: var(--reui-sidebar-accent);
+  --color-sidebar-accent-foreground: var(--reui-sidebar-accent-foreground);
+  --color-sidebar-border: var(--reui-sidebar-border);
+  --color-sidebar-ring: var(--reui-sidebar-ring);
+  --color-destructive-foreground: var(--reui-destructive-foreground);
+  --color-info: var(--reui-info);
+  --color-info-foreground: var(--reui-info-foreground);
+  --color-success: var(--reui-success);
+  --color-success-foreground: var(--reui-success-foreground);
+  --color-warning: var(--reui-warning);
+  --color-warning-foreground: var(--reui-warning-foreground);
+  --color-invert: var(--reui-invert);
+  --color-invert-foreground: var(--reui-invert-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+/*
+ * Scoped resets for ReUI elements. Kept outside @layer on purpose: Bootstrap's element rules
+ * (ul, p, fieldset, button, ...) are unlayered and would beat layered rules; Tailwind utilities
+ * still win over these because the bootstrap guard marks them !important.
+ */
+/* scoped stand-in for shadcn's "* { @apply border-border }" (only ReUI elements) */
+:where([data-slot], [data-slot] *, [data-slot]::before, [data-slot]::after) {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--color-border);
+}
+[data-slot] {
+  outline-color: color-mix(in oklab, var(--color-ring) 50%, transparent);
+  font-family: inherit;
+}
+button:where([data-slot]),
+:where([data-slot]) button:where(:not([class*='sq-'])) {
+  background-color: transparent;
+  cursor: pointer;
+}
+/* parts of Tailwind's preflight that ReUI markup relies on, scoped to ReUI elements */
+ol[data-slot],
+ul[data-slot] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+p[data-slot],
+h1[data-slot],
+h2[data-slot],
+h3[data-slot],
+h4[data-slot],
+legend[data-slot],
+fieldset[data-slot] {
+  margin: 0;
+}
+fieldset[data-slot] {
+  min-width: 0;
+  padding: 0;
+}
+
+@keyframes sq-reui-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}

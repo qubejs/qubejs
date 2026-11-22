@@ -1,24 +1,32 @@
 import { BrowserRouter } from 'react-router-dom';
 import * as ReactDOM from 'react-dom/client';
-import * as uiMaterial from '@qubejs/ui-material-base';
 import { Provider } from 'react-redux';
-// import * as uiMaterial from '@qubejs/ui-material-base';
 import { plugins } from '@qubejs/web-react';
 import { store } from './redux';
 import App from './app/app';
+import { UiLibrarySwitcher, getUiLibrary, loadUiLibrary } from './app/ui-library';
 import './global-events';
-plugins.register(uiMaterial);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>
-);
+
+// Switch the component library with ?ui=reui (ReUI) or ?ui=material (Material UI).
+// For a single library this is simply:
+//   import * as uiReui from '@qubejs/ui-reui-base';
+//   plugins.register(uiReui);
+const uiLibrary = getUiLibrary();
+loadUiLibrary(uiLibrary).then((ui) => {
+  plugins.register(ui);
+  root.render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+        <UiLibrarySwitcher current={uiLibrary} />
+      </Provider>
+    </BrowserRouter>
+  );
+});
 
 const setFullHeight = () => {
   const item: any = document.querySelector(':root');
