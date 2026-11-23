@@ -1,0 +1,40 @@
+.sq-get-in-touch {
+ 
+  color: $white;
+  text-align: center;
+  margin: 80px auto;
+  &__container {
+    border-radius: 16px;
+    padding: 80px 40px 40px 40px;
+    background-color: $sq-color-primary-dark;
+  }
+  &__info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 16px;
+    @include b4-med-style();
+    a {
+      color:$white;
+      &:hover {
+        color:$white;
+      }
+    }
+  }
+  &__header {
+    color: $white;
+  }
+  &__footer-text {
+    padding-top: 40px;
+    border-top: solid 1px rgba(255,255,255,.3);
+    color: rgba(255,255,255,.7);
+    text-align: left;
+    @include b5-style();
+  }
+
+  &--style-bg-black {
+
+  }
+}

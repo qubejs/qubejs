@@ -1,0 +1,12 @@
+.sq-small-ticker {
+  display: inline-block;
+  &__container {
+    display: flex;
+    align-items: center;
+    @include b7-style();
+    @media (min-width: $screen-sm) {
+      @include b6-style();
+    }
+    line-height: 24px;
+  }
+}

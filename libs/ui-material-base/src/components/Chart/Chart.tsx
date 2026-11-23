@@ -87,7 +87,9 @@ class CustomChart extends Component {
         {data.length === 0 && (
           <div className="sq-chart--no-data">{noDataMessage}</div>
         )}
-        <div ref={(div) => (this.chartContainer = div)}></div>
+        <div ref={(div) => {
+          this.chartContainer = div;
+        }}></div>
       </div>
     );
   }

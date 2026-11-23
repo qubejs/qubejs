@@ -10,7 +10,7 @@ const { getValue } = utils.properties;
 const { storage } = utils;
 
 const EditableField = ({ column, row, viewType = 'Default', editType = 'Input', value, editValue, classes = {}, viewProps = {}, editProps = {}, className = '', onChange, onClick, onAction, onAnalytics, onBlur, onKeyPress, formatter = {}, ...rest } :any) => {
-  const editableRef = useRef();
+  const editableRef = useRef<HTMLDivElement>(null);
   const CompMap = {
     ...storage.components.get(),
   };

@@ -47,7 +47,13 @@ const Placeholder = ({
       className={`sq-placeholder-drop ${backgroundCSS} sq-placeholder-drop-style-${plaecHolderStyle}`}
       style={{}}
     >
-      <div className="sq-placeholder-drop__dropper" ref={drop} style={{}}></div>
+      <div
+        className="sq-placeholder-drop__dropper"
+        ref={(el) => {
+          drop(el);
+        }}
+        style={{}}
+      ></div>
 
       <div className="sq-placeholder-drop__hover-text">
         {plaecHolderStyle === 'line' ? hoverText : ''}

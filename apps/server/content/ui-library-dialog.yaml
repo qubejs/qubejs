@@ -1,0 +1,97 @@
+# Dialog with long content and actions, to check the body scrolls and actions stay visible.
+# Open /content/ui-library-dialog?ui=reui (or ?ui=material / ?ui=daisyui).
+title: UI Library Dialog
+template: apps/core/templates/page
+className: sq-content-page--full-width sq-content-page--with-fixed-nav container
+layout: apps/layouts/spa
+containerTemplate: Homepage
+items:
+  - component: Dialog
+    open: true
+    title: Dialog with long content
+    content: |-
+      Paragraph 1: dialog body content that is long enough to need scrolling.
+
+      Paragraph 2: dialog body content that is long enough to need scrolling.
+
+      Paragraph 3: dialog body content that is long enough to need scrolling.
+
+      Paragraph 4: dialog body content that is long enough to need scrolling.
+
+      Paragraph 5: dialog body content that is long enough to need scrolling.
+
+      Paragraph 6: dialog body content that is long enough to need scrolling.
+
+      Paragraph 7: dialog body content that is long enough to need scrolling.
+
+      Paragraph 8: dialog body content that is long enough to need scrolling.
+
+      Paragraph 9: dialog body content that is long enough to need scrolling.
+
+      Paragraph 10: dialog body content that is long enough to need scrolling.
+
+      Paragraph 11: dialog body content that is long enough to need scrolling.
+
+      Paragraph 12: dialog body content that is long enough to need scrolling.
+
+      Paragraph 13: dialog body content that is long enough to need scrolling.
+
+      Paragraph 14: dialog body content that is long enough to need scrolling.
+
+      Paragraph 15: dialog body content that is long enough to need scrolling.
+
+      Paragraph 16: dialog body content that is long enough to need scrolling.
+
+      Paragraph 17: dialog body content that is long enough to need scrolling.
+
+      Paragraph 18: dialog body content that is long enough to need scrolling.
+
+      Paragraph 19: dialog body content that is long enough to need scrolling.
+
+      Paragraph 20: dialog body content that is long enough to need scrolling.
+
+      Paragraph 21: dialog body content that is long enough to need scrolling.
+
+      Paragraph 22: dialog body content that is long enough to need scrolling.
+
+      Paragraph 23: dialog body content that is long enough to need scrolling.
+
+      Paragraph 24: dialog body content that is long enough to need scrolling.
+
+      Paragraph 25: dialog body content that is long enough to need scrolling.
+
+      Paragraph 26: dialog body content that is long enough to need scrolling.
+
+      Paragraph 27: dialog body content that is long enough to need scrolling.
+
+      Paragraph 28: dialog body content that is long enough to need scrolling.
+
+      Paragraph 29: dialog body content that is long enough to need scrolling.
+
+      Paragraph 30: dialog body content that is long enough to need scrolling.
+
+      Paragraph 31: dialog body content that is long enough to need scrolling.
+
+      Paragraph 32: dialog body content that is long enough to need scrolling.
+
+      Paragraph 33: dialog body content that is long enough to need scrolling.
+
+      Paragraph 34: dialog body content that is long enough to need scrolling.
+
+      Paragraph 35: dialog body content that is long enough to need scrolling.
+
+      Paragraph 36: dialog body content that is long enough to need scrolling.
+
+      Paragraph 37: dialog body content that is long enough to need scrolling.
+
+      Paragraph 38: dialog body content that is long enough to need scrolling.
+
+      Paragraph 39: dialog body content that is long enough to need scrolling.
+
+      Paragraph 40: dialog body content that is long enough to need scrolling.
+    actions:
+      - buttonText: Cancel
+        variant: outlined
+        action: cancel
+      - buttonText: Save
+        action: ok

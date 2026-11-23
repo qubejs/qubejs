@@ -19,16 +19,28 @@ https://github.com/qubejs/qubejs
 ### Install from npm
 
 ```
-npm install @qubejs/web-react
+pnpm add @qubejs/web-react
+# or: npm install @qubejs/web-react
 ```
+
+### Importing individual containers
+
+Every container and template has its own entry point, so you only bundle what you use:
+
+```js
+import PageBuilder from '@qubejs/web-react/PageBuilder';
+import { utils } from '@qubejs/web-react/utils';
+```
+
+`import { containers, utils } from '@qubejs/web-react'` still works, and it also registers all components and containers in `storage`.
 ## Available Modules
 
-At present, we officially aim to support 4 modules
-
-- @qubejs/ui-material-base
+- @qubejs/core
 - @qubejs/web-react
 - @qubejs/cms
-- @qubejs/core
+- UI components, pick one: @qubejs/ui-material-base ([Material UI](https://mui.com/material-ui/)), @qubejs/ui-reui-base ([ReUI](https://reui.io))
+  or @qubejs/ui-daisyui-base ([daisyUI](https://daisyui.com)). They share the same components and props; register the
+  one you use with `plugins.register(...)`.
 
 ## CMS Server
 

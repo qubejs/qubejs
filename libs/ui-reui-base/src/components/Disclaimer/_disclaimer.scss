@@ -1,0 +1,19 @@
+.sq-disclaimer {
+  padding: 40px;
+  
+  &__text, &__text p {
+    @include b6-style();
+  }
+  &--default {
+  }
+  &--bg-gray {
+    background-color: $sq-color-slate-lightest;
+  }
+  &--bg-black {
+    background-color: $black;
+    color: $white;
+  }
+  &--top-border {
+    border-top: solid 1px  $sq-color-slate-lighter;
+  }
+}

@@ -24,43 +24,6 @@
       "command": "node tools/scripts/publish.mjs web-react {args.ver} {args.tag}",
       "dependsOn": ["dist"]
     },
-    "build": {
-      "executor": "@nx/rollup:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/web-react",
-        "tsConfig": "libs/web-react/tsconfig.lib.json",
-        "project": "libs/web-react/package.json",
-        "entryFile": "libs/web-react/src/index.ts",
-        "external": [
-          "react",
-          "react-dom",
-          "react/jsx-runtime",
-          "react-router-dom",
-          "react-html-parser",
-          "@qubejs/core",
-          "d3"
-        ],
-        "rollupConfig": "libs/web-react/rollup.config.js",
-        "stylePreprocessorOptions": {
-          "includePaths": ["libs/web-react/src/styles"]
-        },
-        "compiler": "babel",
-        "assets": [
-          {
-            "glob": "libs/web-react/README.md",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/web-react/LICENCE",
-            "input": ".",
-            "output": "."
-          }
-        ],
-        "extractCss": true
-      }
-    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

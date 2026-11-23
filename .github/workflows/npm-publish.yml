@@ -11,27 +11,30 @@ jobs:
   unit-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --legacy-peer-deps
-      - run: npx nx run-many -t test --codeCoverage 
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm nx run-many -t test --codeCoverage 
 
   publish-npm:
     needs: unit-test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: pnpm
           registry-url: https://registry.npmjs.org/
-      - run: npm install
+      - run: pnpm install --frozen-lockfile
       - run: |
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-          echo "Token for test ${{secrets.NPM_TOKEN}}"
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-      - run: npx nx run-many -t publish --args="--ver=${{  github.ref_name }} --tag=latest"
+      - run: pnpm nx run-many -t publish --args="--ver=${{  github.ref_name }} --tag=latest"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

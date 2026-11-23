@@ -1,0 +1,31 @@
+.sq-image-card-list {
+  padding: 20px 0;
+  width: 100%;
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  &__no-data {
+    text-align: left;
+    width: 100%;
+    padding: 20px;
+  }
+  &__top {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &--style {
+    &-list {
+      .sq-image-card-list__wrapper {
+        flex-direction: column;
+      }
+    }
+  }
+  &--left-aligned {
+    .sq-image-card-list__wrapper {
+      justify-content: flex-start;
+    }
+  }
+}

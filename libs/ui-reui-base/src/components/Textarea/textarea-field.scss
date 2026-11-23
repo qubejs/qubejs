@@ -1,0 +1,19 @@
+.sq-textarea-field{
+  &__textarea {
+    width: 100%;
+    margin-bottom: 5px;
+    border-color: $sq-color-slate-light;
+    border-radius: 4px;
+  }
+  &--error {
+    color: $sq-color-error;
+    font-size: 14px;
+    margin-top: 4px;
+    width:100%;
+  }
+  &--focused {
+    .input-field--error {
+      visibility: hidden;
+    }
+  }
+}

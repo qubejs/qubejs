@@ -1,0 +1,17 @@
+.sq-select-field {
+  &--min {
+    .sq-select-field__input {
+      min-width: 150px;
+    }
+  }
+  &__pop-over {
+    z-index: $z-index-level-topest !important;
+  }
+  .sq-icon {
+    margin-right: 4px;
+  }
+  .MuiInputBase-input {
+    display: flex;
+    align-items: center;
+  }
+}

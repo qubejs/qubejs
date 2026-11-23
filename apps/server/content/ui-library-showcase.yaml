@@ -1,0 +1,370 @@
+# Renders the components that were rebuilt for @qubejs/ui-reui-base.
+# Open /content/ui-library-showcase?ui=reui or ?ui=material to compare libraries.
+title: UI Library Showcase
+template: apps/core/templates/page
+className: sq-content-page--full-width sq-content-page--with-fixed-nav container
+layout: apps/layouts/spa
+containerTemplate: Homepage
+items:
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Alert
+  - component: Alert
+    type: info
+    header: Info
+    message: Informational message
+    className: mb-3
+  - component: Alert
+    type: success
+    message: Saved successfully
+    className: mb-3
+  - component: Alert
+    type: warning
+    message: Check your input
+    className: mb-3
+  - component: Alert
+    type: error
+    header: Error
+    message: Something failed
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Button / IconButton / ButtonSelection
+  - component: Button
+    buttonText: Primary
+    className: mb-3
+  - component: Button
+    buttonText: Outlined
+    variant: outlined
+    className: mb-3
+  - component: Button
+    buttonText: With icon
+    iconName: add
+    className: mb-3
+  - component: IconButton
+    iconName: edit
+    title: Edit
+    className: mb-3
+  - component: ButtonSelection
+    label: Pick one
+    options: &ref_0
+      - text: One
+        value: one
+        iconName: home
+      - text: Two
+        value: two
+        iconName: edit
+      - text: Three
+        value: three
+        iconName: settings
+    value: two
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Input / Textarea
+  - component: Input
+    label: Name
+    value: Ada Lovelace
+    className: mb-3
+  - component: Input
+    label: Email
+    errorMessage: Email is required
+    className: mb-3
+  - component: Textarea
+    label: Notes
+    value: Multi-line text
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Select
+  - component: Select
+    label: Single select
+    options: *ref_0
+    value: one
+    className: mb-3
+  - component: Select
+    label: Multi select
+    options: *ref_0
+    multiple: true
+    checkbox: true
+    value:
+      - one
+      - three
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Checkbox / CheckboxList / Radio / Switch
+  - component: Checkbox
+    text: I agree
+    value: 'on'
+    className: mb-3
+  - component: CheckboxList
+    label: Options
+    options: *ref_0
+    value:
+      - one
+    className: mb-3
+  - component: Radio
+    label: Choose
+    options: *ref_0
+    value: two
+    className: mb-3
+  - component: Switch
+    label: Notifications
+    value: true
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Slider / DateSelector
+  - component: Slider
+    label: Volume
+    value: 30
+    className: mb-3
+  - component: DateSelector
+    label: Start date
+    value: '2024-01-15T00:00:00.000Z'
+    className: mb-3
+  - component: DateSelector
+    label: Meeting
+    instanceType: DateTimePicker
+    value: '2024-01-15T10:30:00.000Z'
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Autocomplete / AutoCompleteValue / SelectPopup / TagDropdown
+  - component: Autocomplete
+    label: Autocomplete
+    options: *ref_0
+    value: one
+    className: mb-3
+  - component: Autocomplete
+    label: Multiple
+    options: *ref_0
+    multiple: true
+    value:
+      - one
+      - two
+    className: mb-3
+  - component: AutoCompleteValue
+    label: Tags
+    value: react,reui
+    className: mb-3
+  - component: SelectPopup
+    label: Select popup
+    options: *ref_0
+    className: mb-3
+  - component: TagDropdown
+    options: *ref_0
+    value: one
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Tabs / BreadCrumb / Pagination / BottomNavigation
+  - component: Tabs
+    options: *ref_0
+    value: one
+    className: mb-3
+  - component: BreadCrumb
+    currentPath: /content/ui-library-showcase
+    navigation:
+      - title: Home
+        href: /content/home
+        children:
+          - title: UI showcase
+            href: /content/ui-library-showcase
+    className: mb-3
+  - component: Pagination
+    count: 10
+    value:
+      currentPage: 2
+    className: mb-3
+  - component: BottomNavigation
+    showLabels: true
+    value: home
+    links:
+      - label: Home
+        value: home
+        icon: home
+      - label: Search
+        value: search
+        icon: search
+      - label: Profile
+        value: profile
+        icon: person
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Progress / ProgressIndicator / Skeleton / Loading
+  - component: Progress
+    style: static
+    className: mb-3
+  - component: Progress
+    type: line
+    style: static
+    className: mb-3
+  - component: ProgressIndicator
+    value: 60
+    className: mb-3
+  - component: Skeleton
+    styleName: grid-tran
+    rows: 2
+    className: mb-3
+  - component: Loading
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: PopupMessage / Snackbar
+  - component: PopupMessage
+    variant: success
+    message: Popup message
+    className: mb-3
+  - component: Snackbar
+    open: true
+    message: Snackbar message
+    autoHideDuration: 0
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: 'Menus: CustomMenu / MoreActions / UserMenu / MoreContent / EditableField / SpeedDial'
+  - component: CustomMenu
+    header: Actions
+    options:
+      - buttonText: Save
+        iconName: Save
+      - divider
+      - buttonText: Delete
+        iconName: delete
+    className: mb-3
+  - component: MoreActions
+    actions:
+      - buttonText: Edit
+        iconName: edit
+      - buttonText: Delete
+        iconName: delete
+    className: mb-3
+  - component: UserMenu
+    user:
+      firstName: Ada
+      lastName: Lovelace
+      email: ada@example.com
+    listOfActions:
+      - buttonText: Profile
+        iconName: person
+    className: mb-3
+  - component: MoreContent
+    linkProps:
+      buttonText: More info
+    title: Details
+    content: Extra content shown in a popover
+    className: mb-3
+  - component: EditableField
+    value: Double-click to edit
+    className: mb-3
+  - component: SpeedDial
+    label: Quick actions
+    actions:
+      - name: Copy
+      - name: Share
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: DataList / ItemList
+  - component: DataList
+    items:
+      - title: Inbox
+        subTitle: 3 new
+        iconName: mail
+      - title: Settings
+        iconName: settings
+    className: mb-3
+  - component: ItemList
+    title: Items
+    textField: text
+    valueField: value
+    data: *ref_0
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Carousel / ImageInfoSlider / ImageCard
+  - component: Carousel
+    interval: 0
+    items:
+      - name: Slide one
+        description: First slide
+        imgUrl: /content/dam/qubejs/images/sample.png
+      - name: Slide two
+        description: Second slide
+        imgUrl: /content/dam/qubejs/images/sample.png
+    className: mb-3
+  - component: ImageCard
+    header: Image card
+    imageUrl: /content/dam/qubejs/images/sample.png
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: 'File upload: DropZoneFile / FileUploader / ImageUploader'
+  - component: DropZoneFile
+    className: mb-3
+  - component: FileUploader
+    label: Upload file
+    className: mb-3
+  - component: ImageUploader
+    label: Upload image
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Grid
+  - component: Grid
+    columns:
+      - headerText: Name
+        name: name
+      - headerText: Role
+        name: role
+    data:
+      - name: Ada
+        role: Engineer
+      - name: Alan
+        role: Scientist
+    className: mb-3
+  - component: Text
+    tag: h3
+    className: mt-4 mb-2
+    text: Navigation / LeftNavigation
+  - component: Navigation
+    enableDrawer: true
+    rightMenu:
+      - icon: mail
+        total: 2
+      - icon: notifications
+    options:
+      - text: Home
+        icon: home
+    className: mb-3
+  - component: LeftNavigation
+    items:
+      - title: Home
+        iconName: home
+        href: /content/home
+      - title: Docs
+        iconName: description
+        href: /content/docs
+        children:
+          - title: Intro
+            href: /content/docs/intro
+            iconName: description
+    className: mb-3

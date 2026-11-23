@@ -1,0 +1,28 @@
+.sq-launch-timer {
+  &__digits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__label-ct {
+    margin: 20px 20px;
+    text-align: center;
+    min-width: 150px;
+    border: solid 1px $sq-color-primary-dark;
+    border-radius: 5px;
+   
+  }
+  &__label {
+    @include t4-style();
+    color:$sq-color-primary-dark;
+    padding: 10px;
+  }
+  &__value {
+    @include t1-style();
+    font-size: 80px;
+    padding: 10px;
+    background-color: $sq-color-primary-dark;
+    color:$white;
+  }
+}

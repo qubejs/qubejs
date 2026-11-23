@@ -12,7 +12,7 @@ class ErrorBoundry extends React.Component {
   }
 
   componentDidCatch(error) {
-    /* eslint-disable */
+     
     console.log('@@@@@', error);
     // You can also log the error to an error reporting service
     this.setState({

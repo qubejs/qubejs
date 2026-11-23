@@ -1,0 +1,14 @@
+.sq-radio {
+  &__display {
+    &-Column {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+    &-Inline {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+  }
+}

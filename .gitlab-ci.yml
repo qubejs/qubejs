@@ -7,18 +7,23 @@ before_script:
   - echo ======= before script start ========
   - export GENERATE_SOURCEMAP=false
   - node -v
-  - npm -v
+  - corepack enable
+  - pnpm -v
   - echo ======= before script done ========
 cache:
+  key:
+    files:
+      - pnpm-lock.yaml
   paths:
-  - node_modules/
+  - .pnpm-store/
 build_project:
   stage: build
   script:
     - echo ======= build started ========
-    - npm install --legacy-peer-deps
-    - npx nx run-many -t test --codeCoverage -p core cms scripts web-react
-    - npx nx run-many -t dist -p core scripts cms web-react
+    - pnpm config set store-dir .pnpm-store
+    - pnpm install --frozen-lockfile
+    - pnpm nx run-many -t test --codeCoverage -p core cms scripts web-react
+    - pnpm nx run-many -t dist -p core scripts cms web-react
     - echo ======= build finished ========
   artifacts:
       reports:
@@ -33,9 +38,10 @@ build_release:
   stage: build
   script:
     - echo ======= release started ========
-    - npm install --legacy-peer-deps
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - npx nx run-many -t publish  -p --args="--ver=$CI_COMMIT_TAG --tag=latest"
+    - pnpm config set store-dir .pnpm-store
+    - pnpm install --frozen-lockfile
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> ~/.npmrc
+    - pnpm nx run-many -t publish  -p --args="--ver=$CI_COMMIT_TAG --tag=latest"
     - echo ======= release finished ========
   artifacts:
     reports:

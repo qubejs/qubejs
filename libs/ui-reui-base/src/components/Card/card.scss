@@ -1,0 +1,35 @@
+.sq-plain-card {
+  padding: 16px 24px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px $sq-color-muted;
+  display: inline-block;
+  min-width: 250px;
+  max-width: 100%;
+  background-color: $white;
+  &__header {
+    margin-bottom: 16px;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    &-text {
+      @include t6-style();
+    }
+  }
+  &__value {
+    @include t3-style();
+    color: $sq-color-gray-darkest;
+  }
+
+  &--primary {
+    cursor: pointer;
+    &:hover {
+      .sq-plain-card__header-text {
+        color: $sq-color-primary;
+      }
+      .sq-plain-card__value {
+        color: $sq-color-primary;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.sq-user-menu {
+ 
+  &__menu {
+    .MuiList-root {
+      min-width: 180px;
+      padding-top: 0;
+    }
+  }
+  &__header {
+    padding: 10px;
+    background-color: $sq-color-gray-lightest;
+  }
+  &__user-name {
+    @include b4-style();
+  }
+  &__email {
+    @include b6-style();
+    color: $sq-color-gray;
+  }
+}
