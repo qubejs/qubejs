@@ -8,7 +8,8 @@
  */
 
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 import devkit from '@nx/devkit';
 const { readCachedProjectGraph } = devkit;
@@ -20,9 +21,11 @@ function invariant(condition, message) {
   }
 }
 
-// Executing publish script: node path/to/publish.mjs {name} --version {version} --tag {tag}
+// Executing publish script: node path/to/publish.mjs {name} {version} [tag] [--dry-run]
 // Default "tag" to "next" so we won't publish the "latest" tag by accident.
-const [, , name, version, tag = 'next'] = process.argv;
+// --dry-run packs and validates the package without uploading it.
+const dryRun = process.argv.includes('--dry-run');
+const [, , name, version, tag = 'next'] = process.argv.filter((a) => a !== '--dry-run');
 
 // A simple SemVer validation to validate the version
 const validVersion = /^\d+\.\d+\.\d+(-\w+\.\d+)?/;
@@ -39,10 +42,16 @@ invariant(
   `Could not find project "${name}" in the workspace. Is the project.json configured correctly?`
 );
 
-const outputPath = project.data?.targets?.build?.options?.outputPath;
+// Executor-based builds (@nx/js:tsc) expose options.outputPath; builds inferred by
+// @nx/rollup/plugin (web-react, ui-*-base) only declare it in `outputs`.
+const buildTarget = project.data?.targets?.build;
+const outputFromOutputs = (buildTarget?.outputs || [])
+  .map((o) => o.replace('{workspaceRoot}/', '').replace('{projectRoot}', project.data.root))
+  .find((o) => !o.includes('{'));
+const outputPath = buildTarget?.options?.outputPath || outputFromOutputs;
 invariant(
-  outputPath,
-  `Could not find "build.options.outputPath" of project "${name}". Is project.json configured  correctly?`
+  outputPath && existsSync(join(outputPath, 'package.json')),
+  `Could not find the build output of project "${name}" (looked for "${outputPath}/package.json"). Run "nx run ${name}:dist" first.`
 );
 
 process.chdir(outputPath);
@@ -58,6 +67,7 @@ try {
 
 // Execute "pnpm publish" to publish.
 // --no-git-checks: dist/ is git-ignored and releases are cut from tags, not a clean main checkout.
-execSync(`pnpm publish --access public --tag ${tag} --no-git-checks`, {
-  stdio: 'inherit',
-});
+execSync(
+  `pnpm publish --access public --tag ${tag} --no-git-checks${dryRun ? ' --dry-run' : ''}`,
+  { stdio: 'inherit' }
+);
