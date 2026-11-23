@@ -212,7 +212,7 @@ class ComponentEditor extends Component {
           title={`${component} Configuration`}
           open={this.state.openSettings}
         >
-          <div className="mt-wide">
+          <div className="mt-wide px-2">
             {editData && (
               <DynamicContentRoot
                 pageConfig={editData}
