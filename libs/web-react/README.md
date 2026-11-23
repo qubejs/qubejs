@@ -35,12 +35,12 @@ import { utils } from '@qubejs/web-react/utils';
 `import { containers, utils } from '@qubejs/web-react'` still works, and it also registers all components and containers in `storage`.
 ## Available Modules
 
-At present, we officially aim to support 4 modules
-
-- @qubejs/ui-material-base
+- @qubejs/core
 - @qubejs/web-react
 - @qubejs/cms
-- @qubejs/core
+- UI components, pick one: @qubejs/ui-material-base (Material UI), @qubejs/ui-reui-base (ReUI)
+  or @qubejs/ui-daisyui-base (daisyUI). They share the same components and props; register the
+  one you use with `plugins.register(...)`.
 
 ## CMS Server
 
