@@ -38,8 +38,8 @@ import { utils } from '@qubejs/web-react/utils';
 - @qubejs/core
 - @qubejs/web-react
 - @qubejs/cms
-- UI components, pick one: @qubejs/ui-material-base (Material UI), @qubejs/ui-reui-base (ReUI)
-  or @qubejs/ui-daisyui-base (daisyUI). They share the same components and props; register the
+- UI components, pick one: @qubejs/ui-material-base ([Material UI](https://mui.com/material-ui/)), @qubejs/ui-reui-base ([ReUI](https://reui.io))
+  or @qubejs/ui-daisyui-base ([daisyUI](https://daisyui.com)). They share the same components and props; register the
   one you use with `plugins.register(...)`.
 
 ## CMS Server

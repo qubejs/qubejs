@@ -33,7 +33,7 @@ Requires React 19 (`react`, `react-dom`), `react-redux` and `react-router-dom` a
 | `@qubejs/core` | Core utilities shared by all packages |
 | `@qubejs/web-react` | React framework: containers, templates, redux, plugin system |
 | `@qubejs/cms` | CMS content server (express) |
-| `@qubejs/ui-material-base` | UI components built with Material UI |
+| `@qubejs/ui-material-base` | UI components built with [Material UI](https://mui.com/material-ui/) (MUI v5, emotion) |
 | `@qubejs/ui-reui-base` | The same UI components built with [ReUI](https://reui.io) (shadcn/ui, Radix UI, Tailwind CSS v4) |
 | `@qubejs/ui-daisyui-base` | The same UI components built with [daisyUI 5](https://daisyui.com) (Tailwind CSS v4) |
 

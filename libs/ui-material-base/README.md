@@ -1,6 +1,6 @@
 # @qubejs/ui-material-base
 
-Material UI based components for qubejs.
+qubejs UI components built with [Material UI](https://mui.com/material-ui/) (MUI v5) and [Material Icons](https://mui.com/material-ui/material-icons/).
 
 ## Install
 
